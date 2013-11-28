@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="eu.pasusu.megal.sdk"
+	label="MegaL SDK Feature "
+	version="1.0.0.qualifier">
+	<plugin
+			id="eu.pasusu.megal"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+	<plugin
+			id="eu.pasusu.megal.ui"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+</feature>
