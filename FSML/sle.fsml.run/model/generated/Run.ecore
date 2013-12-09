@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="run" nsURI="http://www.fsml.sle/run/Run" nsPrefix="run">
+  <eClassifiers xsi:type="ecore:EClass" name="Runfile">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1" eType="#//Run"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Run">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="machine" eType="#//Machine"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="#//Input"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Machine"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MachineReference" eSuperTypes="#//Machine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" eType="ecore:EClass ../../../sle.fsml/model/generated/FSML.ecore#//FSM"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MachnineLocation" eSuperTypes="#//Machine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InputReference" eSuperTypes="#//Input">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="ecore:EClass ../../../sle.fsml.input/model/generated/Input.ecore#//Input"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputLocation" eSuperTypes="#//Input">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

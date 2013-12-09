@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/sle.fsml.run/src-gen" editDirectory="/sle.fsml.run.edit/src"
+    editorDirectory="/sle.fsml.run.editor/src" modelPluginID="sle.fsml.run" forceOverwrite="true"
+    modelName="Run" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="sle.fsml.run.edit"
+    editorPluginID="sle.fsml.run.editor" runtimeVersion="2.9" usedGenPackages="../../../sle.fsml.input/model/generated/Input.genmodel#//input ../../../sle.fsml/model/generated/FSML.genmodel#//fSML">
+  <genPackages prefix="Run" basePackage="sle.fsml.run" disposableProviderFactory="true"
+      fileExtensions="run" ecorePackage="Run.ecore#/">
+    <genClasses ecoreClass="Run.ecore#//Runfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Run.ecore#//Runfile/runs"/>
+    </genClasses>
+    <genClasses ecoreClass="Run.ecore#//Run">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Run.ecore#//Run/machine"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Run.ecore#//Run/input"/>
+    </genClasses>
+    <genClasses ecoreClass="Run.ecore#//Machine"/>
+    <genClasses ecoreClass="Run.ecore#//MachineReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Run.ecore#//MachineReference/fsm"/>
+    </genClasses>
+    <genClasses ecoreClass="Run.ecore#//MachnineLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Run.ecore#//MachnineLocation/location"/>
+    </genClasses>
+    <genClasses ecoreClass="Run.ecore#//Input"/>
+    <genClasses ecoreClass="Run.ecore#//InputReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Run.ecore#//InputReference/input"/>
+    </genClasses>
+    <genClasses ecoreClass="Run.ecore#//InputLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Run.ecore#//InputLocation/location"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

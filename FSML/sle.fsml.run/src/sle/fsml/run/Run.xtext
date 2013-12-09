@@ -1,0 +1,29 @@
+grammar sle.fsml.run.Run with org.eclipse.xtext.common.Terminals
+
+generate run "http://www.fsml.sle/run/Run"
+import "http://www.fsml.sle/input/Input" as input
+import "http://www.fsml.sle/FSML" as fsml
+
+Runfile:
+	{Runfile} runs+=Run;
+
+Run:
+	'run' machine=Machine 'on' input=Input;
+
+Machine:
+	MachineReference | MachnineLocation;
+
+MachineReference:
+	fsm=[fsml::FSM];
+
+MachnineLocation:
+	location=STRING;
+
+Input:
+	InputReference | InputLocation;
+
+InputReference:
+	input=[input::Input];
+
+InputLocation:
+	location=STRING;

@@ -1,0 +1,13 @@
+grammar sle.fsml.FSML with org.eclipse.xtext.common.Terminals
+
+generate fSML "http://www.fsml.sle/FSML"
+
+FSM:
+	(name=ID ':')? states+=FSMState*;
+	
+FSMState:
+	(initial ?= 'initial')? 'state' name=ID '{' transitions+=FSMTransition* '}'
+;
+
+FSMTransition:
+	input=ID (withAction ?= '/' action=ID)? (withTarget ?= '->' target=[FSMState])? ';';

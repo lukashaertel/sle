@@ -1,0 +1,412 @@
+/**
+ */
+package sle.fsml.fSML.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import sle.fsml.fSML.FSMLPackage;
+import sle.fsml.fSML.FSMState;
+import sle.fsml.fSML.FSMTransition;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>FSM Transition</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getInput <em>Input</em>}</li>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#isWithAction <em>With Action</em>}</li>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#isWithTarget <em>With Target</em>}</li>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getTarget <em>Target</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements FSMTransition
+{
+  /**
+   * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInput()
+   * @generated
+   * @ordered
+   */
+  protected static final String INPUT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInput()
+   * @generated
+   * @ordered
+   */
+  protected String input = INPUT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isWithAction() <em>With Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isWithAction()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean WITH_ACTION_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isWithAction() <em>With Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isWithAction()
+   * @generated
+   * @ordered
+   */
+  protected boolean withAction = WITH_ACTION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAction()
+   * @generated
+   * @ordered
+   */
+  protected static final String ACTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAction()
+   * @generated
+   * @ordered
+   */
+  protected String action = ACTION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isWithTarget() <em>With Target</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isWithTarget()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean WITH_TARGET_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isWithTarget() <em>With Target</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isWithTarget()
+   * @generated
+   * @ordered
+   */
+  protected boolean withTarget = WITH_TARGET_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTarget()
+   * @generated
+   * @ordered
+   */
+  protected FSMState target;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FSMTransitionImpl()
+  {
+    super();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return FSMLPackage.Literals.FSM_TRANSITION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getInput()
+  {
+    return input;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInput(String newInput)
+  {
+    String oldInput = input;
+    input = newInput;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__INPUT, oldInput, input));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isWithAction()
+  {
+    return withAction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setWithAction(boolean newWithAction)
+  {
+    boolean oldWithAction = withAction;
+    withAction = newWithAction;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__WITH_ACTION, oldWithAction, withAction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getAction()
+  {
+    return action;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAction(String newAction)
+  {
+    String oldAction = action;
+    action = newAction;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__ACTION, oldAction, action));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isWithTarget()
+  {
+    return withTarget;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setWithTarget(boolean newWithTarget)
+  {
+    boolean oldWithTarget = withTarget;
+    withTarget = newWithTarget;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__WITH_TARGET, oldWithTarget, withTarget));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FSMState getTarget()
+  {
+    if (target != null && target.eIsProxy())
+    {
+      InternalEObject oldTarget = (InternalEObject)target;
+      target = (FSMState)eResolveProxy(oldTarget);
+      if (target != oldTarget)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FSMLPackage.FSM_TRANSITION__TARGET, oldTarget, target));
+      }
+    }
+    return target;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FSMState basicGetTarget()
+  {
+    return target;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTarget(FSMState newTarget)
+  {
+    FSMState oldTarget = target;
+    target = newTarget;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__TARGET, oldTarget, target));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case FSMLPackage.FSM_TRANSITION__INPUT:
+        return getInput();
+      case FSMLPackage.FSM_TRANSITION__WITH_ACTION:
+        return isWithAction();
+      case FSMLPackage.FSM_TRANSITION__ACTION:
+        return getAction();
+      case FSMLPackage.FSM_TRANSITION__WITH_TARGET:
+        return isWithTarget();
+      case FSMLPackage.FSM_TRANSITION__TARGET:
+        if (resolve) return getTarget();
+        return basicGetTarget();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case FSMLPackage.FSM_TRANSITION__INPUT:
+        setInput((String)newValue);
+        return;
+      case FSMLPackage.FSM_TRANSITION__WITH_ACTION:
+        setWithAction((Boolean)newValue);
+        return;
+      case FSMLPackage.FSM_TRANSITION__ACTION:
+        setAction((String)newValue);
+        return;
+      case FSMLPackage.FSM_TRANSITION__WITH_TARGET:
+        setWithTarget((Boolean)newValue);
+        return;
+      case FSMLPackage.FSM_TRANSITION__TARGET:
+        setTarget((FSMState)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case FSMLPackage.FSM_TRANSITION__INPUT:
+        setInput(INPUT_EDEFAULT);
+        return;
+      case FSMLPackage.FSM_TRANSITION__WITH_ACTION:
+        setWithAction(WITH_ACTION_EDEFAULT);
+        return;
+      case FSMLPackage.FSM_TRANSITION__ACTION:
+        setAction(ACTION_EDEFAULT);
+        return;
+      case FSMLPackage.FSM_TRANSITION__WITH_TARGET:
+        setWithTarget(WITH_TARGET_EDEFAULT);
+        return;
+      case FSMLPackage.FSM_TRANSITION__TARGET:
+        setTarget((FSMState)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case FSMLPackage.FSM_TRANSITION__INPUT:
+        return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
+      case FSMLPackage.FSM_TRANSITION__WITH_ACTION:
+        return withAction != WITH_ACTION_EDEFAULT;
+      case FSMLPackage.FSM_TRANSITION__ACTION:
+        return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+      case FSMLPackage.FSM_TRANSITION__WITH_TARGET:
+        return withTarget != WITH_TARGET_EDEFAULT;
+      case FSMLPackage.FSM_TRANSITION__TARGET:
+        return target != null;
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (input: ");
+    result.append(input);
+    result.append(", withAction: ");
+    result.append(withAction);
+    result.append(", action: ");
+    result.append(action);
+    result.append(", withTarget: ");
+    result.append(withTarget);
+    result.append(')');
+    return result.toString();
+  }
+
+} //FSMTransitionImpl
