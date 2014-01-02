@@ -44,8 +44,9 @@ public class RunParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRunfileAccess().getRunsAssignment_1(), "rule__Runfile__RunsAssignment_1");
 					put(grammarAccess.getRunAccess().getMachineAssignment_1(), "rule__Run__MachineAssignment_1");
 					put(grammarAccess.getRunAccess().getInputAssignment_3(), "rule__Run__InputAssignment_3");
+					put(grammarAccess.getRunAccess().getTargetAssignment_5(), "rule__Run__TargetAssignment_5");
 					put(grammarAccess.getMachineReferenceAccess().getFsmAssignment(), "rule__MachineReference__FsmAssignment");
-					put(grammarAccess.getMachnineLocationAccess().getLocationAssignment(), "rule__MachnineLocation__LocationAssignment");
+					put(grammarAccess.getMachineLocationAccess().getLocationAssignment(), "rule__MachineLocation__LocationAssignment");
 					put(grammarAccess.getInputReferenceAccess().getInputAssignment(), "rule__InputReference__InputAssignment");
 					put(grammarAccess.getInputLocationAccess().getLocationAssignment(), "rule__InputLocation__LocationAssignment");
 				}

@@ -41,15 +41,6 @@ public interface InputFactory extends EFactory
   InputEntry createInputEntry();
 
   /**
-   * Returns a new object of class '<em>Inputfile</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Inputfile</em>'.
-   * @generated
-   */
-  Inputfile createInputfile();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

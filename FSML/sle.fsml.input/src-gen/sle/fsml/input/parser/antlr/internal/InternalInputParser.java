@@ -137,7 +137,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
             {
 
                     current = forceCreateModelElement(
-                        grammarAccess.getInputAccess().getInputfileAction_0(),
+                        grammarAccess.getInputAccess().getInputAction_0(),
                         current);
                 
 

@@ -101,7 +101,7 @@ ruleRunfile returns [EObject current=null]
 	    }
 
 )
-))
+)+)
 ;
 
 
@@ -166,6 +166,28 @@ ruleRun returns [EObject current=null]
 	    }
 
 )
+)	otherlv_4='to' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getRunAccess().getToKeyword_4());
+    }
+(
+(
+		lv_target_5_0=RULE_STRING
+		{
+			newLeafNode(lv_target_5_0, grammarAccess.getRunAccess().getTargetSTRINGTerminalRuleCall_5_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRunRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"target",
+        		lv_target_5_0, 
+        		"STRING");
+	    }
+
+)
 ))
 ;
 
@@ -199,11 +221,11 @@ ruleMachine returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getMachineAccess().getMachnineLocationParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getMachineAccess().getMachineLocationParserRuleCall_1()); 
     }
-    this_MachnineLocation_1=ruleMachnineLocation
+    this_MachineLocation_1=ruleMachineLocation
     { 
-        $current = $this_MachnineLocation_1.current; 
+        $current = $this_MachineLocation_1.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -247,17 +269,17 @@ ruleMachineReference returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMachnineLocation
-entryRuleMachnineLocation returns [EObject current=null] 
+// Entry rule entryRuleMachineLocation
+entryRuleMachineLocation returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMachnineLocationRule()); }
-	 iv_ruleMachnineLocation=ruleMachnineLocation 
-	 { $current=$iv_ruleMachnineLocation.current; } 
+	{ newCompositeNode(grammarAccess.getMachineLocationRule()); }
+	 iv_ruleMachineLocation=ruleMachineLocation 
+	 { $current=$iv_ruleMachineLocation.current; } 
 	 EOF 
 ;
 
-// Rule MachnineLocation
-ruleMachnineLocation returns [EObject current=null] 
+// Rule MachineLocation
+ruleMachineLocation returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -265,11 +287,11 @@ ruleMachnineLocation returns [EObject current=null]
 (
 		lv_location_0_0=RULE_STRING
 		{
-			newLeafNode(lv_location_0_0, grammarAccess.getMachnineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); 
+			newLeafNode(lv_location_0_0, grammarAccess.getMachineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMachnineLocationRule());
+	            $current = createModelElement(grammarAccess.getMachineLocationRule());
 	        }
        		setWithLastConsumed(
        			$current, 

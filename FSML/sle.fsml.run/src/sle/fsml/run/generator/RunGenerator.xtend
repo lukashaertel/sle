@@ -6,19 +6,90 @@ package sle.fsml.run.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import sle.fsml.run.run.Run
+import sle.fsml.run.run.MachineReference
+import sle.fsml.run.run.MachineLocation
+import sle.fsml.run.run.InputReference
+import sle.fsml.run.run.InputLocation
+import sle.fsml.run.simulation.Simulation
 
 /**
  * Generates code from your model files on save.
  * 
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
-class RunGenerator implements IGenerator {
-	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+class RunGenerator implements IGenerator
+{
+
+	/**
+	 * Normalize file path as package name element
+	 */
+	def toPackage(String n)
+	{
+		n.replace('.', '_').replace('/', '_').replace('\\', '_')
+	}
+
+	/**
+	 * Get the first package segment
+	 */
+	def headPackage(Run run)
+	{
+		val machine = run.machine
+		switch (machine)
+		{
+			MachineReference: machine.fsm.name
+			MachineLocation: machine.location.toPackage
+		}
+	}
+
+	/**
+	 * Get the second package segment
+	 */
+	def tailPackage(Run run)
+	{
+		val input = run.input
+		switch (input)
+		{
+			InputReference: input.input.name
+			InputLocation: input.location.toPackage
+		}
+	}
+
+	override void doGenerate(Resource resource, IFileSystemAccess fsa)
+	{
+		for (Run run : resource.allContents.filter(typeof(Run)).toIterable)
+		{
+
+			// Simulate FSM with given input
+			val simulation = Simulation::simulate(run)
+
+			// Save result to target
+			fsa.generateFile(run.target,
+				'''
+					[
+					«FOR p : simulation SEPARATOR ','»  («IF p.key == null»[]«ELSE»[«p.key»]«ENDIF», «p.value.name»)
+					«ENDFOR»
+					].
+				''')
+
+			// Generate Java code
+			val hp = run.headPackage
+			val tp = run.tailPackage
+
+			val fn = 'java/' + hp + '/' + tp + '/Run.java'
+			val pn = 'java.' + hp + '.' + tp;
+			val cn = 'Run';
+
+			fsa.generateFile(fn,
+				'''package «pn»;
+			public final class «cn»
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("«pn» in «fn»");
+				}
+			}
+			''')
+		}
 	}
 }

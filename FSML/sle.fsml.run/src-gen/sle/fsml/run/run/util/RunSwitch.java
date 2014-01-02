@@ -101,11 +101,11 @@ public class RunSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RunPackage.MACHNINE_LOCATION:
+      case RunPackage.MACHINE_LOCATION:
       {
-        MachnineLocation machnineLocation = (MachnineLocation)theEObject;
-        T result = caseMachnineLocation(machnineLocation);
-        if (result == null) result = caseMachine(machnineLocation);
+        MachineLocation machineLocation = (MachineLocation)theEObject;
+        T result = caseMachineLocation(machineLocation);
+        if (result == null) result = caseMachine(machineLocation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -201,17 +201,17 @@ public class RunSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Machnine Location</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Machine Location</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Machnine Location</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Machine Location</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMachnineLocation(MachnineLocation object)
+  public T caseMachineLocation(MachineLocation object)
   {
     return null;
   }

@@ -25,6 +25,7 @@ import sle.fsml.run.run.RunPackage;
  * <ul>
  *   <li>{@link sle.fsml.run.run.impl.RunImpl#getMachine <em>Machine</em>}</li>
  *   <li>{@link sle.fsml.run.run.impl.RunImpl#getInput <em>Input</em>}</li>
+ *   <li>{@link sle.fsml.run.run.impl.RunImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +52,26 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * @ordered
    */
   protected Input input;
+
+  /**
+   * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTarget()
+   * @generated
+   * @ordered
+   */
+  protected static final String TARGET_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTarget()
+   * @generated
+   * @ordered
+   */
+  protected String target = TARGET_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -174,6 +195,29 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getTarget()
+  {
+    return target;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTarget(String newTarget)
+  {
+    String oldTarget = target;
+    target = newTarget;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__TARGET, oldTarget, target));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -201,6 +245,8 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
         return getMachine();
       case RunPackage.RUN__INPUT:
         return getInput();
+      case RunPackage.RUN__TARGET:
+        return getTarget();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -220,6 +266,9 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
         return;
       case RunPackage.RUN__INPUT:
         setInput((Input)newValue);
+        return;
+      case RunPackage.RUN__TARGET:
+        setTarget((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -241,6 +290,9 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
       case RunPackage.RUN__INPUT:
         setInput((Input)null);
         return;
+      case RunPackage.RUN__TARGET:
+        setTarget(TARGET_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -259,8 +311,27 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
         return machine != null;
       case RunPackage.RUN__INPUT:
         return input != null;
+      case RunPackage.RUN__TARGET:
+        return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (target: ");
+    result.append(target);
+    result.append(')');
+    return result.toString();
   }
 
 } //RunImpl

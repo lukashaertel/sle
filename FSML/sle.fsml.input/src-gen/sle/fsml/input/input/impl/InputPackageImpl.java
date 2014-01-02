@@ -13,7 +13,6 @@ import sle.fsml.input.input.Input;
 import sle.fsml.input.input.InputEntry;
 import sle.fsml.input.input.InputFactory;
 import sle.fsml.input.input.InputPackage;
-import sle.fsml.input.input.Inputfile;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +35,6 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
    * @generated
    */
   private EClass inputEntryEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass inputfileEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -122,6 +114,26 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getInput_Name()
+  {
+    return (EAttribute)inputEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInput_Inputs()
+  {
+    return (EReference)inputEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getInputEntry()
   {
     return inputEntryEClass;
@@ -135,36 +147,6 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
   public EAttribute getInputEntry_Value()
   {
     return (EAttribute)inputEntryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInputfile()
-  {
-    return inputfileEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getInputfile_Name()
-  {
-    return (EAttribute)inputfileEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getInputfile_Inputs()
-  {
-    return (EReference)inputfileEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -198,13 +180,11 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
 
     // Create classes and their features
     inputEClass = createEClass(INPUT);
+    createEAttribute(inputEClass, INPUT__NAME);
+    createEReference(inputEClass, INPUT__INPUTS);
 
     inputEntryEClass = createEClass(INPUT_ENTRY);
     createEAttribute(inputEntryEClass, INPUT_ENTRY__VALUE);
-
-    inputfileEClass = createEClass(INPUTFILE);
-    createEAttribute(inputfileEClass, INPUTFILE__NAME);
-    createEReference(inputfileEClass, INPUTFILE__INPUTS);
   }
 
   /**
@@ -236,17 +216,14 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    inputfileEClass.getESuperTypes().add(this.getInput());
 
     // Initialize classes and features; add operations and parameters
     initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInput_Name(), ecorePackage.getEString(), "name", null, 0, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInput_Inputs(), this.getInputEntry(), null, "inputs", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(inputEntryEClass, InputEntry.class, "InputEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getInputEntry_Value(), ecorePackage.getEString(), "value", null, 0, 1, InputEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(inputfileEClass, Inputfile.class, "Inputfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInputfile_Name(), ecorePackage.getEString(), "name", null, 0, 1, Inputfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInputfile_Inputs(), this.getInputEntry(), null, "inputs", null, 0, -1, Inputfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

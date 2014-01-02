@@ -17,8 +17,8 @@ import sle.fsml.run.run.Input;
 import sle.fsml.run.run.InputLocation;
 import sle.fsml.run.run.InputReference;
 import sle.fsml.run.run.Machine;
+import sle.fsml.run.run.MachineLocation;
 import sle.fsml.run.run.MachineReference;
-import sle.fsml.run.run.MachnineLocation;
 import sle.fsml.run.run.Run;
 import sle.fsml.run.run.RunFactory;
 import sle.fsml.run.run.RunPackage;
@@ -65,7 +65,7 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass machnineLocationEClass = null;
+  private EClass machineLocationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -210,6 +210,16 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRun_Target()
+  {
+    return (EAttribute)runEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMachine()
   {
     return machineEClass;
@@ -240,9 +250,9 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getMachnineLocation()
+  public EClass getMachineLocation()
   {
-    return machnineLocationEClass;
+    return machineLocationEClass;
   }
 
   /**
@@ -250,9 +260,9 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMachnineLocation_Location()
+  public EAttribute getMachineLocation_Location()
   {
-    return (EAttribute)machnineLocationEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)machineLocationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -341,14 +351,15 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
     runEClass = createEClass(RUN);
     createEReference(runEClass, RUN__MACHINE);
     createEReference(runEClass, RUN__INPUT);
+    createEAttribute(runEClass, RUN__TARGET);
 
     machineEClass = createEClass(MACHINE);
 
     machineReferenceEClass = createEClass(MACHINE_REFERENCE);
     createEReference(machineReferenceEClass, MACHINE_REFERENCE__FSM);
 
-    machnineLocationEClass = createEClass(MACHNINE_LOCATION);
-    createEAttribute(machnineLocationEClass, MACHNINE_LOCATION__LOCATION);
+    machineLocationEClass = createEClass(MACHINE_LOCATION);
+    createEAttribute(machineLocationEClass, MACHINE_LOCATION__LOCATION);
 
     inputEClass = createEClass(INPUT);
 
@@ -393,7 +404,7 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
 
     // Add supertypes to classes
     machineReferenceEClass.getESuperTypes().add(this.getMachine());
-    machnineLocationEClass.getESuperTypes().add(this.getMachine());
+    machineLocationEClass.getESuperTypes().add(this.getMachine());
     inputReferenceEClass.getESuperTypes().add(this.getInput());
     inputLocationEClass.getESuperTypes().add(this.getInput());
 
@@ -404,14 +415,15 @@ public class RunPackageImpl extends EPackageImpl implements RunPackage
     initEClass(runEClass, Run.class, "Run", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRun_Machine(), this.getMachine(), null, "machine", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRun_Input(), this.getInput(), null, "input", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRun_Target(), ecorePackage.getEString(), "target", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(machineReferenceEClass, MachineReference.class, "MachineReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMachineReference_Fsm(), theFSMLPackage.getFSM(), null, "fsm", null, 0, 1, MachineReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(machnineLocationEClass, MachnineLocation.class, "MachnineLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMachnineLocation_Location(), ecorePackage.getEString(), "location", null, 0, 1, MachnineLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(machineLocationEClass, MachineLocation.class, "MachineLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMachineLocation_Location(), ecorePackage.getEString(), "location", null, 0, 1, MachineLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

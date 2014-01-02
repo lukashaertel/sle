@@ -5,18 +5,18 @@ import "http://www.fsml.sle/input/Input" as input
 import "http://www.fsml.sle/FSML" as fsml
 
 Runfile:
-	{Runfile} runs+=Run;
+	{Runfile} runs+=Run+;
 
 Run:
-	'run' machine=Machine 'on' input=Input;
+	'run' machine=Machine 'on' input=Input 'to' target=STRING;
 
 Machine:
-	MachineReference | MachnineLocation;
+	MachineReference | MachineLocation;
 
 MachineReference:
 	fsm=[fsml::FSM];
 
-MachnineLocation:
+MachineLocation:
 	location=STRING;
 
 Input:

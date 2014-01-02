@@ -8,23 +8,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import sle.fsml.run.run.MachnineLocation;
+import sle.fsml.run.run.MachineLocation;
 import sle.fsml.run.run.RunPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Machnine Location</b></em>'.
+ * An implementation of the model object '<em><b>Machine Location</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sle.fsml.run.run.impl.MachnineLocationImpl#getLocation <em>Location</em>}</li>
+ *   <li>{@link sle.fsml.run.run.impl.MachineLocationImpl#getLocation <em>Location</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MachnineLocationImpl extends MachineImpl implements MachnineLocation
+public class MachineLocationImpl extends MachineImpl implements MachineLocation
 {
   /**
    * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
@@ -51,7 +51,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MachnineLocationImpl()
+  protected MachineLocationImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
   @Override
   protected EClass eStaticClass()
   {
-    return RunPackage.Literals.MACHNINE_LOCATION;
+    return RunPackage.Literals.MACHINE_LOCATION;
   }
 
   /**
@@ -87,7 +87,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
     String oldLocation = location;
     location = newLocation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.MACHNINE_LOCATION__LOCATION, oldLocation, location));
+      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.MACHINE_LOCATION__LOCATION, oldLocation, location));
   }
 
   /**
@@ -100,7 +100,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
   {
     switch (featureID)
     {
-      case RunPackage.MACHNINE_LOCATION__LOCATION:
+      case RunPackage.MACHINE_LOCATION__LOCATION:
         return getLocation();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
   {
     switch (featureID)
     {
-      case RunPackage.MACHNINE_LOCATION__LOCATION:
+      case RunPackage.MACHINE_LOCATION__LOCATION:
         setLocation((String)newValue);
         return;
     }
@@ -133,7 +133,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
   {
     switch (featureID)
     {
-      case RunPackage.MACHNINE_LOCATION__LOCATION:
+      case RunPackage.MACHINE_LOCATION__LOCATION:
         setLocation(LOCATION_EDEFAULT);
         return;
     }
@@ -150,7 +150,7 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
   {
     switch (featureID)
     {
-      case RunPackage.MACHNINE_LOCATION__LOCATION:
+      case RunPackage.MACHINE_LOCATION__LOCATION:
         return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
     }
     return super.eIsSet(featureID);
@@ -173,4 +173,4 @@ public class MachnineLocationImpl extends MachineImpl implements MachnineLocatio
     return result.toString();
   }
 
-} //MachnineLocationImpl
+} //MachineLocationImpl

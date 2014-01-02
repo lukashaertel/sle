@@ -113,13 +113,22 @@ public interface RunPackage extends EPackage
   int RUN__INPUT = 1;
 
   /**
+   * The feature id for the '<em><b>Target</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RUN__TARGET = 2;
+
+  /**
    * The number of structural features of the '<em>Run</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RUN_FEATURE_COUNT = 2;
+  int RUN_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link sle.fsml.run.run.impl.MachineImpl <em>Machine</em>}' class.
@@ -169,14 +178,14 @@ public interface RunPackage extends EPackage
   int MACHINE_REFERENCE_FEATURE_COUNT = MACHINE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link sle.fsml.run.run.impl.MachnineLocationImpl <em>Machnine Location</em>}' class.
+   * The meta object id for the '{@link sle.fsml.run.run.impl.MachineLocationImpl <em>Machine Location</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see sle.fsml.run.run.impl.MachnineLocationImpl
-   * @see sle.fsml.run.run.impl.RunPackageImpl#getMachnineLocation()
+   * @see sle.fsml.run.run.impl.MachineLocationImpl
+   * @see sle.fsml.run.run.impl.RunPackageImpl#getMachineLocation()
    * @generated
    */
-  int MACHNINE_LOCATION = 4;
+  int MACHINE_LOCATION = 4;
 
   /**
    * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -185,16 +194,16 @@ public interface RunPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHNINE_LOCATION__LOCATION = MACHINE_FEATURE_COUNT + 0;
+  int MACHINE_LOCATION__LOCATION = MACHINE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Machnine Location</em>' class.
+   * The number of structural features of the '<em>Machine Location</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACHNINE_LOCATION_FEATURE_COUNT = MACHINE_FEATURE_COUNT + 1;
+  int MACHINE_LOCATION_FEATURE_COUNT = MACHINE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link sle.fsml.run.run.impl.InputImpl <em>Input</em>}' class.
@@ -326,6 +335,17 @@ public interface RunPackage extends EPackage
   EReference getRun_Input();
 
   /**
+   * Returns the meta object for the attribute '{@link sle.fsml.run.run.Run#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Target</em>'.
+   * @see sle.fsml.run.run.Run#getTarget()
+   * @see #getRun()
+   * @generated
+   */
+  EAttribute getRun_Target();
+
+  /**
    * Returns the meta object for class '{@link sle.fsml.run.run.Machine <em>Machine</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -357,25 +377,25 @@ public interface RunPackage extends EPackage
   EReference getMachineReference_Fsm();
 
   /**
-   * Returns the meta object for class '{@link sle.fsml.run.run.MachnineLocation <em>Machnine Location</em>}'.
+   * Returns the meta object for class '{@link sle.fsml.run.run.MachineLocation <em>Machine Location</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Machnine Location</em>'.
-   * @see sle.fsml.run.run.MachnineLocation
+   * @return the meta object for class '<em>Machine Location</em>'.
+   * @see sle.fsml.run.run.MachineLocation
    * @generated
    */
-  EClass getMachnineLocation();
+  EClass getMachineLocation();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.fsml.run.run.MachnineLocation#getLocation <em>Location</em>}'.
+   * Returns the meta object for the attribute '{@link sle.fsml.run.run.MachineLocation#getLocation <em>Location</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Location</em>'.
-   * @see sle.fsml.run.run.MachnineLocation#getLocation()
-   * @see #getMachnineLocation()
+   * @see sle.fsml.run.run.MachineLocation#getLocation()
+   * @see #getMachineLocation()
    * @generated
    */
-  EAttribute getMachnineLocation_Location();
+  EAttribute getMachineLocation_Location();
 
   /**
    * Returns the meta object for class '{@link sle.fsml.run.run.Input <em>Input</em>}'.
@@ -497,6 +517,14 @@ public interface RunPackage extends EPackage
     EReference RUN__INPUT = eINSTANCE.getRun_Input();
 
     /**
+     * The meta object literal for the '<em><b>Target</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RUN__TARGET = eINSTANCE.getRun_Target();
+
+    /**
      * The meta object literal for the '{@link sle.fsml.run.run.impl.MachineImpl <em>Machine</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -525,14 +553,14 @@ public interface RunPackage extends EPackage
     EReference MACHINE_REFERENCE__FSM = eINSTANCE.getMachineReference_Fsm();
 
     /**
-     * The meta object literal for the '{@link sle.fsml.run.run.impl.MachnineLocationImpl <em>Machnine Location</em>}' class.
+     * The meta object literal for the '{@link sle.fsml.run.run.impl.MachineLocationImpl <em>Machine Location</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see sle.fsml.run.run.impl.MachnineLocationImpl
-     * @see sle.fsml.run.run.impl.RunPackageImpl#getMachnineLocation()
+     * @see sle.fsml.run.run.impl.MachineLocationImpl
+     * @see sle.fsml.run.run.impl.RunPackageImpl#getMachineLocation()
      * @generated
      */
-    EClass MACHNINE_LOCATION = eINSTANCE.getMachnineLocation();
+    EClass MACHINE_LOCATION = eINSTANCE.getMachineLocation();
 
     /**
      * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
@@ -540,7 +568,7 @@ public interface RunPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MACHNINE_LOCATION__LOCATION = eINSTANCE.getMachnineLocation_Location();
+    EAttribute MACHINE_LOCATION__LOCATION = eINSTANCE.getMachineLocation_Location();
 
     /**
      * The meta object literal for the '{@link sle.fsml.run.run.impl.InputImpl <em>Input</em>}' class.

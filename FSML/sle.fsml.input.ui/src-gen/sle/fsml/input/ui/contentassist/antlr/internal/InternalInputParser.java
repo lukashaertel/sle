@@ -276,13 +276,13 @@ public class InternalInputParser extends AbstractInternalContentAssistParser {
             // ../sle.fsml.input.ui/src-gen/sle/fsml/input/ui/contentassist/antlr/internal/InternalInput.g:135:1: ( () )
             // ../sle.fsml.input.ui/src-gen/sle/fsml/input/ui/contentassist/antlr/internal/InternalInput.g:136:1: ()
             {
-             before(grammarAccess.getInputAccess().getInputfileAction_0()); 
+             before(grammarAccess.getInputAccess().getInputAction_0()); 
             // ../sle.fsml.input.ui/src-gen/sle/fsml/input/ui/contentassist/antlr/internal/InternalInput.g:137:1: ()
             // ../sle.fsml.input.ui/src-gen/sle/fsml/input/ui/contentassist/antlr/internal/InternalInput.g:139:1: 
             {
             }
 
-             after(grammarAccess.getInputAccess().getInputfileAction_0()); 
+             after(grammarAccess.getInputAccess().getInputAction_0()); 
 
             }
 

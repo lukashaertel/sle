@@ -5,21 +5,21 @@ package sle.fsml.run.run;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Machnine Location</b></em>'.
+ * A representation of the model object '<em><b>Machine Location</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sle.fsml.run.run.MachnineLocation#getLocation <em>Location</em>}</li>
+ *   <li>{@link sle.fsml.run.run.MachineLocation#getLocation <em>Location</em>}</li>
  * </ul>
  * </p>
  *
- * @see sle.fsml.run.run.RunPackage#getMachnineLocation()
+ * @see sle.fsml.run.run.RunPackage#getMachineLocation()
  * @model
  * @generated
  */
-public interface MachnineLocation extends Machine
+public interface MachineLocation extends Machine
 {
   /**
    * Returns the value of the '<em><b>Location</b></em>' attribute.
@@ -31,14 +31,14 @@ public interface MachnineLocation extends Machine
    * <!-- end-user-doc -->
    * @return the value of the '<em>Location</em>' attribute.
    * @see #setLocation(String)
-   * @see sle.fsml.run.run.RunPackage#getMachnineLocation_Location()
+   * @see sle.fsml.run.run.RunPackage#getMachineLocation_Location()
    * @model
    * @generated
    */
   String getLocation();
 
   /**
-   * Sets the value of the '{@link sle.fsml.run.run.MachnineLocation#getLocation <em>Location</em>}' attribute.
+   * Sets the value of the '{@link sle.fsml.run.run.MachineLocation#getLocation <em>Location</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Location</em>' attribute.
@@ -47,4 +47,4 @@ public interface MachnineLocation extends Machine
    */
   void setLocation(String value);
 
-} // MachnineLocation
+} // MachineLocation

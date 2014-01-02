@@ -13,13 +13,14 @@
     <genClasses ecoreClass="Run.ecore#//Run">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Run.ecore#//Run/machine"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Run.ecore#//Run/input"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Run.ecore#//Run/target"/>
     </genClasses>
     <genClasses ecoreClass="Run.ecore#//Machine"/>
     <genClasses ecoreClass="Run.ecore#//MachineReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Run.ecore#//MachineReference/fsm"/>
     </genClasses>
-    <genClasses ecoreClass="Run.ecore#//MachnineLocation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Run.ecore#//MachnineLocation/location"/>
+    <genClasses ecoreClass="Run.ecore#//MachineLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Run.ecore#//MachineLocation/location"/>
     </genClasses>
     <genClasses ecoreClass="Run.ecore#//Input"/>
     <genClasses ecoreClass="Run.ecore#//InputReference">

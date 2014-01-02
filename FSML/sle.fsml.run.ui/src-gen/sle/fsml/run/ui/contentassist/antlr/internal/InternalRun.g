@@ -168,25 +168,25 @@ finally {
 
 
 
-// Entry rule entryRuleMachnineLocation
-entryRuleMachnineLocation 
+// Entry rule entryRuleMachineLocation
+entryRuleMachineLocation 
 :
-{ before(grammarAccess.getMachnineLocationRule()); }
-	 ruleMachnineLocation
-{ after(grammarAccess.getMachnineLocationRule()); } 
+{ before(grammarAccess.getMachineLocationRule()); }
+	 ruleMachineLocation
+{ after(grammarAccess.getMachineLocationRule()); } 
 	 EOF 
 ;
 
-// Rule MachnineLocation
-ruleMachnineLocation
+// Rule MachineLocation
+ruleMachineLocation
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getMachnineLocationAccess().getLocationAssignment()); }
-(rule__MachnineLocation__LocationAssignment)
-{ after(grammarAccess.getMachnineLocationAccess().getLocationAssignment()); }
+{ before(grammarAccess.getMachineLocationAccess().getLocationAssignment()); }
+(rule__MachineLocation__LocationAssignment)
+{ after(grammarAccess.getMachineLocationAccess().getLocationAssignment()); }
 )
 
 ;
@@ -293,9 +293,9 @@ rule__Machine__Alternatives
 )
 
     |(
-{ before(grammarAccess.getMachineAccess().getMachnineLocationParserRuleCall_1()); }
-	ruleMachnineLocation
-{ after(grammarAccess.getMachineAccess().getMachnineLocationParserRuleCall_1()); }
+{ before(grammarAccess.getMachineAccess().getMachineLocationParserRuleCall_1()); }
+	ruleMachineLocation
+{ after(grammarAccess.getMachineAccess().getMachineLocationParserRuleCall_1()); }
 )
 
 ;
@@ -375,9 +375,16 @@ rule__Runfile__Group__1__Impl
     }
 :
 (
+(
 { before(grammarAccess.getRunfileAccess().getRunsAssignment_1()); }
 (rule__Runfile__RunsAssignment_1)
 { after(grammarAccess.getRunfileAccess().getRunsAssignment_1()); }
+)
+(
+{ before(grammarAccess.getRunfileAccess().getRunsAssignment_1()); }
+(rule__Runfile__RunsAssignment_1)*
+{ after(grammarAccess.getRunfileAccess().getRunsAssignment_1()); }
+)
 )
 
 ;
@@ -487,6 +494,7 @@ rule__Run__Group__3
     }
 :
 	rule__Run__Group__3__Impl
+	rule__Run__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -507,6 +515,69 @@ rule__Run__Group__3__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__Run__Group__4
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Run__Group__4__Impl
+	rule__Run__Group__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Run__Group__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRunAccess().getToKeyword_4()); }
+
+	'to' 
+
+{ after(grammarAccess.getRunAccess().getToKeyword_4()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__Run__Group__5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Run__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Run__Group__5__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRunAccess().getTargetAssignment_5()); }
+(rule__Run__TargetAssignment_5)
+{ after(grammarAccess.getRunAccess().getTargetAssignment_5()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
 
 
 
@@ -563,6 +634,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Run__TargetAssignment_5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRunAccess().getTargetSTRINGTerminalRuleCall_5_0()); }
+	RULE_STRING{ after(grammarAccess.getRunAccess().getTargetSTRINGTerminalRuleCall_5_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__MachineReference__FsmAssignment
     @init {
 		int stackSize = keepStackSize();
@@ -582,14 +668,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MachnineLocation__LocationAssignment
+rule__MachineLocation__LocationAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMachnineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); }
-	RULE_STRING{ after(grammarAccess.getMachnineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); }
+{ before(grammarAccess.getMachineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); }
+	RULE_STRING{ after(grammarAccess.getMachineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); }
 )
 
 ;

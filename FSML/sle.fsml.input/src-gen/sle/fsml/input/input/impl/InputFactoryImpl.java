@@ -66,7 +66,6 @@ public class InputFactoryImpl extends EFactoryImpl implements InputFactory
     {
       case InputPackage.INPUT: return createInput();
       case InputPackage.INPUT_ENTRY: return createInputEntry();
-      case InputPackage.INPUTFILE: return createInputfile();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -92,17 +91,6 @@ public class InputFactoryImpl extends EFactoryImpl implements InputFactory
   {
     InputEntryImpl inputEntry = new InputEntryImpl();
     return inputEntry;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Inputfile createInputfile()
-  {
-    InputfileImpl inputfile = new InputfileImpl();
-    return inputfile;
   }
 
   /**

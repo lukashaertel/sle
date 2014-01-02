@@ -67,13 +67,31 @@ public interface InputPackage extends EPackage
   int INPUT = 0;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INPUT__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INPUT__INPUTS = 1;
+
+  /**
    * The number of structural features of the '<em>Input</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INPUT_FEATURE_COUNT = 0;
+  int INPUT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link sle.fsml.input.input.impl.InputEntryImpl <em>Entry</em>}' class.
@@ -103,43 +121,6 @@ public interface InputPackage extends EPackage
    */
   int INPUT_ENTRY_FEATURE_COUNT = 1;
 
-  /**
-   * The meta object id for the '{@link sle.fsml.input.input.impl.InputfileImpl <em>Inputfile</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see sle.fsml.input.input.impl.InputfileImpl
-   * @see sle.fsml.input.input.impl.InputPackageImpl#getInputfile()
-   * @generated
-   */
-  int INPUTFILE = 2;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUTFILE__NAME = INPUT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUTFILE__INPUTS = INPUT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Inputfile</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUTFILE_FEATURE_COUNT = INPUT_FEATURE_COUNT + 2;
-
 
   /**
    * Returns the meta object for class '{@link sle.fsml.input.input.Input <em>Input</em>}'.
@@ -150,6 +131,28 @@ public interface InputPackage extends EPackage
    * @generated
    */
   EClass getInput();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.fsml.input.input.Input#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see sle.fsml.input.input.Input#getName()
+   * @see #getInput()
+   * @generated
+   */
+  EAttribute getInput_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link sle.fsml.input.input.Input#getInputs <em>Inputs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Inputs</em>'.
+   * @see sle.fsml.input.input.Input#getInputs()
+   * @see #getInput()
+   * @generated
+   */
+  EReference getInput_Inputs();
 
   /**
    * Returns the meta object for class '{@link sle.fsml.input.input.InputEntry <em>Entry</em>}'.
@@ -171,38 +174,6 @@ public interface InputPackage extends EPackage
    * @generated
    */
   EAttribute getInputEntry_Value();
-
-  /**
-   * Returns the meta object for class '{@link sle.fsml.input.input.Inputfile <em>Inputfile</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Inputfile</em>'.
-   * @see sle.fsml.input.input.Inputfile
-   * @generated
-   */
-  EClass getInputfile();
-
-  /**
-   * Returns the meta object for the attribute '{@link sle.fsml.input.input.Inputfile#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see sle.fsml.input.input.Inputfile#getName()
-   * @see #getInputfile()
-   * @generated
-   */
-  EAttribute getInputfile_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link sle.fsml.input.input.Inputfile#getInputs <em>Inputs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Inputs</em>'.
-   * @see sle.fsml.input.input.Inputfile#getInputs()
-   * @see #getInputfile()
-   * @generated
-   */
-  EReference getInputfile_Inputs();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -238,6 +209,22 @@ public interface InputPackage extends EPackage
     EClass INPUT = eINSTANCE.getInput();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INPUT__NAME = eINSTANCE.getInput_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INPUT__INPUTS = eINSTANCE.getInput_Inputs();
+
+    /**
      * The meta object literal for the '{@link sle.fsml.input.input.impl.InputEntryImpl <em>Entry</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -254,32 +241,6 @@ public interface InputPackage extends EPackage
      * @generated
      */
     EAttribute INPUT_ENTRY__VALUE = eINSTANCE.getInputEntry_Value();
-
-    /**
-     * The meta object literal for the '{@link sle.fsml.input.input.impl.InputfileImpl <em>Inputfile</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see sle.fsml.input.input.impl.InputfileImpl
-     * @see sle.fsml.input.input.impl.InputPackageImpl#getInputfile()
-     * @generated
-     */
-    EClass INPUTFILE = eINSTANCE.getInputfile();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INPUTFILE__NAME = eINSTANCE.getInputfile_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INPUTFILE__INPUTS = eINSTANCE.getInputfile_Inputs();
 
   }
 

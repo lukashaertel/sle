@@ -68,7 +68,7 @@ public class RunFactoryImpl extends EFactoryImpl implements RunFactory
       case RunPackage.RUN: return createRun();
       case RunPackage.MACHINE: return createMachine();
       case RunPackage.MACHINE_REFERENCE: return createMachineReference();
-      case RunPackage.MACHNINE_LOCATION: return createMachnineLocation();
+      case RunPackage.MACHINE_LOCATION: return createMachineLocation();
       case RunPackage.INPUT: return createInput();
       case RunPackage.INPUT_REFERENCE: return createInputReference();
       case RunPackage.INPUT_LOCATION: return createInputLocation();
@@ -126,10 +126,10 @@ public class RunFactoryImpl extends EFactoryImpl implements RunFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public MachnineLocation createMachnineLocation()
+  public MachineLocation createMachineLocation()
   {
-    MachnineLocationImpl machnineLocation = new MachnineLocationImpl();
-    return machnineLocation;
+    MachineLocationImpl machineLocation = new MachineLocationImpl();
+    return machineLocation;
   }
 
   /**

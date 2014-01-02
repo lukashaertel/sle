@@ -20,7 +20,7 @@ public class InputGrammarAccess extends AbstractGrammarElementFinder {
 	public class InputElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Input");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cInputfileAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cInputAction_0 = (Action)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
@@ -37,14 +37,14 @@ public class InputGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Input:
-		//	{Inputfile} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
+		//	{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
 		public ParserRule getRule() { return rule; }
 
-		//{Inputfile} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" "."
+		//{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" "."
 		public Group getGroup() { return cGroup; }
 
-		//{Inputfile}
-		public Action getInputfileAction_0() { return cInputfileAction_0; }
+		//{Input}
+		public Action getInputAction_0() { return cInputAction_0; }
 
 		//(name=ID ":")?
 		public Group getGroup_1() { return cGroup_1; }
@@ -143,7 +143,7 @@ public class InputGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Input:
-	//	{Inputfile} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
+	//	{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
 	public InputElements getInputAccess() {
 		return (pInput != null) ? pInput : (pInput = new InputElements());
 	}

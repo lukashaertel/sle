@@ -80,7 +80,7 @@ ruleInput returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getInputAccess().getInputfileAction_0(),
+            grammarAccess.getInputAccess().getInputAction_0(),
             $current);
     }
 )((

@@ -26,16 +26,16 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRunsRunParserRuleCall_1_0 = (RuleCall)cRunsAssignment_1.eContents().get(0);
 		
 		//Runfile:
-		//	{Runfile} runs+=Run;
+		//	{Runfile} runs+=Run+;
 		public ParserRule getRule() { return rule; }
 
-		//{Runfile} runs+=Run
+		//{Runfile} runs+=Run+
 		public Group getGroup() { return cGroup; }
 
 		//{Runfile}
 		public Action getRunfileAction_0() { return cRunfileAction_0; }
 
-		//runs+=Run
+		//runs+=Run+
 		public Assignment getRunsAssignment_1() { return cRunsAssignment_1; }
 
 		//Run
@@ -51,12 +51,15 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOnKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cInputAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInputInputParserRuleCall_3_0 = (RuleCall)cInputAssignment_3.eContents().get(0);
+		private final Keyword cToKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTargetAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTargetSTRINGTerminalRuleCall_5_0 = (RuleCall)cTargetAssignment_5.eContents().get(0);
 		
 		//Run:
-		//	"run" machine=Machine "on" input=Input;
+		//	"run" machine=Machine "on" input=Input "to" target=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"run" machine=Machine "on" input=Input
+		//"run" machine=Machine "on" input=Input "to" target=STRING
 		public Group getGroup() { return cGroup; }
 
 		//"run"
@@ -76,26 +79,35 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Input
 		public RuleCall getInputInputParserRuleCall_3_0() { return cInputInputParserRuleCall_3_0; }
+
+		//"to"
+		public Keyword getToKeyword_4() { return cToKeyword_4; }
+
+		//target=STRING
+		public Assignment getTargetAssignment_5() { return cTargetAssignment_5; }
+
+		//STRING
+		public RuleCall getTargetSTRINGTerminalRuleCall_5_0() { return cTargetSTRINGTerminalRuleCall_5_0; }
 	}
 
 	public class MachineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Machine");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMachineReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cMachnineLocationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cMachineLocationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Machine:
-		//	MachineReference | MachnineLocation;
+		//	MachineReference | MachineLocation;
 		public ParserRule getRule() { return rule; }
 
-		//MachineReference | MachnineLocation
+		//MachineReference | MachineLocation
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MachineReference
 		public RuleCall getMachineReferenceParserRuleCall_0() { return cMachineReferenceParserRuleCall_0; }
 
-		//MachnineLocation
-		public RuleCall getMachnineLocationParserRuleCall_1() { return cMachnineLocationParserRuleCall_1; }
+		//MachineLocation
+		public RuleCall getMachineLocationParserRuleCall_1() { return cMachineLocationParserRuleCall_1; }
 	}
 
 	public class MachineReferenceElements extends AbstractParserRuleElementFinder {
@@ -118,12 +130,12 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getFsmFSMIDTerminalRuleCall_0_1() { return cFsmFSMIDTerminalRuleCall_0_1; }
 	}
 
-	public class MachnineLocationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MachnineLocation");
+	public class MachineLocationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MachineLocation");
 		private final Assignment cLocationAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cLocationSTRINGTerminalRuleCall_0 = (RuleCall)cLocationAssignment.eContents().get(0);
 		
-		//MachnineLocation:
+		//MachineLocation:
 		//	location=STRING;
 		public ParserRule getRule() { return rule; }
 
@@ -195,7 +207,7 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 	private RunElements pRun;
 	private MachineElements pMachine;
 	private MachineReferenceElements pMachineReference;
-	private MachnineLocationElements pMachnineLocation;
+	private MachineLocationElements pMachineLocation;
 	private InputElements pInput;
 	private InputReferenceElements pInputReference;
 	private InputLocationElements pInputLocation;
@@ -239,7 +251,7 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Runfile:
-	//	{Runfile} runs+=Run;
+	//	{Runfile} runs+=Run+;
 	public RunfileElements getRunfileAccess() {
 		return (pRunfile != null) ? pRunfile : (pRunfile = new RunfileElements());
 	}
@@ -249,7 +261,7 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Run:
-	//	"run" machine=Machine "on" input=Input;
+	//	"run" machine=Machine "on" input=Input "to" target=STRING;
 	public RunElements getRunAccess() {
 		return (pRun != null) ? pRun : (pRun = new RunElements());
 	}
@@ -259,7 +271,7 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Machine:
-	//	MachineReference | MachnineLocation;
+	//	MachineReference | MachineLocation;
 	public MachineElements getMachineAccess() {
 		return (pMachine != null) ? pMachine : (pMachine = new MachineElements());
 	}
@@ -278,14 +290,14 @@ public class RunGrammarAccess extends AbstractGrammarElementFinder {
 		return getMachineReferenceAccess().getRule();
 	}
 
-	//MachnineLocation:
+	//MachineLocation:
 	//	location=STRING;
-	public MachnineLocationElements getMachnineLocationAccess() {
-		return (pMachnineLocation != null) ? pMachnineLocation : (pMachnineLocation = new MachnineLocationElements());
+	public MachineLocationElements getMachineLocationAccess() {
+		return (pMachineLocation != null) ? pMachineLocation : (pMachineLocation = new MachineLocationElements());
 	}
 	
-	public ParserRule getMachnineLocationRule() {
-		return getMachnineLocationAccess().getRule();
+	public ParserRule getMachineLocationRule() {
+		return getMachineLocationAccess().getRule();
 	}
 
 	//Input:

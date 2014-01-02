@@ -13,9 +13,9 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import sle.fsml.input.input.Input;
 import sle.fsml.input.input.InputEntry;
 import sle.fsml.input.input.InputPackage;
-import sle.fsml.input.input.Inputfile;
 import sle.fsml.input.services.InputGrammarAccess;
 
 @SuppressWarnings("all")
@@ -26,15 +26,15 @@ public class InputSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == InputPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case InputPackage.INPUT_ENTRY:
-				if(context == grammarAccess.getInputEntryRule()) {
-					sequence_InputEntry(context, (InputEntry) semanticObject); 
+			case InputPackage.INPUT:
+				if(context == grammarAccess.getInputRule()) {
+					sequence_Input(context, (Input) semanticObject); 
 					return; 
 				}
 				else break;
-			case InputPackage.INPUTFILE:
-				if(context == grammarAccess.getInputRule()) {
-					sequence_Input(context, (Inputfile) semanticObject); 
+			case InputPackage.INPUT_ENTRY:
+				if(context == grammarAccess.getInputEntryRule()) {
+					sequence_InputEntry(context, (InputEntry) semanticObject); 
 					return; 
 				}
 				else break;
@@ -62,7 +62,7 @@ public class InputSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (name=ID? (inputs+=InputEntry inputs+=InputEntry*)?)
 	 */
-	protected void sequence_Input(EObject context, Inputfile semanticObject) {
+	protected void sequence_Input(EObject context, Input semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

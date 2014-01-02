@@ -133,11 +133,11 @@ rule__Input__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getInputAccess().getInputfileAction_0()); }
+{ before(grammarAccess.getInputAccess().getInputAction_0()); }
 (
 
 )
-{ after(grammarAccess.getInputAccess().getInputfileAction_0()); }
+{ after(grammarAccess.getInputAccess().getInputAction_0()); }
 )
 
 ;

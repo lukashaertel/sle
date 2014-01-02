@@ -15,8 +15,8 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import sle.fsml.run.run.InputLocation;
 import sle.fsml.run.run.InputReference;
+import sle.fsml.run.run.MachineLocation;
 import sle.fsml.run.run.MachineReference;
-import sle.fsml.run.run.MachnineLocation;
 import sle.fsml.run.run.Run;
 import sle.fsml.run.run.RunPackage;
 import sle.fsml.run.run.Runfile;
@@ -44,17 +44,17 @@ public class RunSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RunPackage.MACHINE_LOCATION:
+				if(context == grammarAccess.getMachineRule() ||
+				   context == grammarAccess.getMachineLocationRule()) {
+					sequence_MachineLocation(context, (MachineLocation) semanticObject); 
+					return; 
+				}
+				else break;
 			case RunPackage.MACHINE_REFERENCE:
 				if(context == grammarAccess.getMachineRule() ||
 				   context == grammarAccess.getMachineReferenceRule()) {
 					sequence_MachineReference(context, (MachineReference) semanticObject); 
-					return; 
-				}
-				else break;
-			case RunPackage.MACHNINE_LOCATION:
-				if(context == grammarAccess.getMachineRule() ||
-				   context == grammarAccess.getMachnineLocationRule()) {
-					sequence_MachnineLocation(context, (MachnineLocation) semanticObject); 
 					return; 
 				}
 				else break;
@@ -108,6 +108,22 @@ public class RunSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     location=STRING
+	 */
+	protected void sequence_MachineLocation(EObject context, MachineLocation semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RunPackage.Literals.MACHINE_LOCATION__LOCATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RunPackage.Literals.MACHINE_LOCATION__LOCATION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getMachineLocationAccess().getLocationSTRINGTerminalRuleCall_0(), semanticObject.getLocation());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     fsm=[FSM|ID]
 	 */
 	protected void sequence_MachineReference(EObject context, MachineReference semanticObject) {
@@ -124,23 +140,7 @@ public class RunSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     location=STRING
-	 */
-	protected void sequence_MachnineLocation(EObject context, MachnineLocation semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RunPackage.Literals.MACHNINE_LOCATION__LOCATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RunPackage.Literals.MACHNINE_LOCATION__LOCATION));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMachnineLocationAccess().getLocationSTRINGTerminalRuleCall_0(), semanticObject.getLocation());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (machine=Machine input=Input)
+	 *     (machine=Machine input=Input target=STRING)
 	 */
 	protected void sequence_Run(EObject context, Run semanticObject) {
 		if(errorAcceptor != null) {
@@ -148,18 +148,21 @@ public class RunSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RunPackage.Literals.RUN__MACHINE));
 			if(transientValues.isValueTransient(semanticObject, RunPackage.Literals.RUN__INPUT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RunPackage.Literals.RUN__INPUT));
+			if(transientValues.isValueTransient(semanticObject, RunPackage.Literals.RUN__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RunPackage.Literals.RUN__TARGET));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getRunAccess().getMachineMachineParserRuleCall_1_0(), semanticObject.getMachine());
 		feeder.accept(grammarAccess.getRunAccess().getInputInputParserRuleCall_3_0(), semanticObject.getInput());
+		feeder.accept(grammarAccess.getRunAccess().getTargetSTRINGTerminalRuleCall_5_0(), semanticObject.getTarget());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     runs+=Run
+	 *     runs+=Run+
 	 */
 	protected void sequence_Runfile(EObject context, Runfile semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

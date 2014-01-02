@@ -10,12 +10,13 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="#//Input"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Machine"/>
   <eClassifiers xsi:type="ecore:EClass" name="MachineReference" eSuperTypes="#//Machine">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" eType="ecore:EClass ../../../sle.fsml/model/generated/FSML.ecore#//FSM"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MachnineLocation" eSuperTypes="#//Machine">
+  <eClassifiers xsi:type="ecore:EClass" name="MachineLocation" eSuperTypes="#//Machine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Input"/>

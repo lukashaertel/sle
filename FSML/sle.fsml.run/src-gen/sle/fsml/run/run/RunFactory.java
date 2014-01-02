@@ -59,13 +59,13 @@ public interface RunFactory extends EFactory
   MachineReference createMachineReference();
 
   /**
-   * Returns a new object of class '<em>Machnine Location</em>'.
+   * Returns a new object of class '<em>Machine Location</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Machnine Location</em>'.
+   * @return a new object of class '<em>Machine Location</em>'.
    * @generated
    */
-  MachnineLocation createMachnineLocation();
+  MachineLocation createMachineLocation();
 
   /**
    * Returns a new object of class '<em>Input</em>'.

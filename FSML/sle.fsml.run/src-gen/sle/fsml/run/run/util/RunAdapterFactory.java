@@ -95,9 +95,9 @@ public class RunAdapterFactory extends AdapterFactoryImpl
         return createMachineReferenceAdapter();
       }
       @Override
-      public Adapter caseMachnineLocation(MachnineLocation object)
+      public Adapter caseMachineLocation(MachineLocation object)
       {
-        return createMachnineLocationAdapter();
+        return createMachineLocationAdapter();
       }
       @Override
       public Adapter caseInput(Input object)
@@ -197,16 +197,16 @@ public class RunAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.MachnineLocation <em>Machnine Location</em>}'.
+   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.MachineLocation <em>Machine Location</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see sle.fsml.run.run.MachnineLocation
+   * @see sle.fsml.run.run.MachineLocation
    * @generated
    */
-  public Adapter createMachnineLocationAdapter()
+  public Adapter createMachineLocationAdapter()
   {
     return null;
   }

@@ -86,14 +86,6 @@ public class InputSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case InputPackage.INPUTFILE:
-      {
-        Inputfile inputfile = (Inputfile)theEObject;
-        T result = caseInputfile(inputfile);
-        if (result == null) result = caseInput(inputfile);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -126,22 +118,6 @@ public class InputSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInputEntry(InputEntry object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Inputfile</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Inputfile</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInputfile(Inputfile object)
   {
     return null;
   }

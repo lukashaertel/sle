@@ -85,11 +85,6 @@ public class InputAdapterFactory extends AdapterFactoryImpl
         return createInputEntryAdapter();
       }
       @Override
-      public Adapter caseInputfile(Inputfile object)
-      {
-        return createInputfileAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -137,21 +132,6 @@ public class InputAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInputEntryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.input.input.Inputfile <em>Inputfile</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.input.input.Inputfile
-   * @generated
-   */
-  public Adapter createInputfileAdapter()
   {
     return null;
   }
