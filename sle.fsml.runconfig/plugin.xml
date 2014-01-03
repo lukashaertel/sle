@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="sle.fsml.runconfig.FSMLSimulationDelegate"
+            id="sle.fsml.runconfig.fsmlSimulation"
+            modes="run, debug"
+            name="FSLM Simulation">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="sle.fsml.runconfig.FSMLSimulationTabGroup"
+            id="sle.fsml.runconfig.fsmlSimulationTabGroup"
+            type="sle.fsml.runconfig.fsmlSimulation">
+      </launchConfigurationTabGroup>
+   </extension>
+
+</plugin>
