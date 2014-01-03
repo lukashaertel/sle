@@ -146,10 +146,12 @@ class FSMLGenerator implements IGenerator
 					
 					protected void unhandled(Action action)
 					{
-						System.out.println("Unhandled action in " + getClass().getSimpleName() + ": " + action);
+						final Class<?> c = getClass();
+						
+						System.out.println("Unhandled action in " + (c.isAnonymousClass() ? "anonymous class" : c.getSimpleName()) + ": " + action);
 					}
 				}''');
-				
+
 			// Generate a derived stepper
 			fsa.generateFile(packagePath + '/Stepper.java',
 				'''
@@ -158,7 +160,7 @@ class FSMLGenerator implements IGenerator
 				import sle.fsml.runtime.HandlerBase;
 				import sle.fsml.runtime.StepperBase;
 				
-				public abstract class Stepper extends StepperBase<State, Input, Action>
+				public class Stepper extends StepperBase<State, Input, Action>
 				{
 					public Stepper(HandlerBase<Action> handler)
 					{
@@ -167,7 +169,8 @@ class FSMLGenerator implements IGenerator
 						
 						«FOR s : fsm.states»
 							«FOR t : s.transitions»
-							add(State.«s.name», Input.«t.input», «IF t.withAction»Action.«t.action»«ELSE»null«ENDIF», «IF t.withTarget»State.«t.target.name»«ELSE»State.«s.name»«ENDIF»);
+								add(State.«s.name», Input.«t.input», «IF t.withAction»Action.«t.action»«ELSE»null«ENDIF», «IF t.withTarget»State.«t.
+					target.name»«ELSE»State.«s.name»«ENDIF»);
 							«ENDFOR»
 						«ENDFOR»
 					}
