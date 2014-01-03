@@ -31,12 +31,12 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * File field editor for the machine location
 	 */
-	private FileFieldEditor machineLocation;
+	private ResourceFieldEditor machineLocation;
 
 	/**
 	 * File field editor for the input location
 	 */
-	private FileFieldEditor inputLocation;
+	private ResourceFieldEditor inputLocation;
 
 	/**
 	 * File field editor for the output location
@@ -47,34 +47,31 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 	public void createControl(Composite parent) {
 		final Composite panel = new Composite(parent, SWT.NONE);
 
-		// Find root file for dialogs
-		final File rootFile = ResourcesPlugin.getWorkspace().getRoot()
-				.getFullPath().toFile();
+		final File workspaceFile = ResourcesPlugin.getWorkspace().getRoot()
+				.getLocation().toFile();
 
 		// Create editor for machine location
-		machineLocation = new FileFieldEditor(
+		machineLocation = new ResourceFieldEditor(
 				FSMLLaunchConstants.MACHINE_FILE_ATTR, "Machine", panel);
 		machineLocation.setPropertyChangeListener(editorChanged);
-		machineLocation.setFilterPath(rootFile);
-		machineLocation.setFileExtensions(new String[] { "fsml" });
+		machineLocation.setInitialFilter("*.fsml");
 		machineLocation
 				.setValidateStrategy(StringFieldEditor.VALIDATE_ON_KEY_STROKE);
 
 		// Create editor for input location
-		inputLocation = new FileFieldEditor(
+		inputLocation = new ResourceFieldEditor(
 				FSMLLaunchConstants.INPUT_FILE_ATTR, "Input", panel);
 		inputLocation.setPropertyChangeListener(editorChanged);
-		inputLocation.setFilterPath(rootFile);
-		inputLocation.setFileExtensions(new String[] { "input" });
+		inputLocation.setInitialFilter("*.input");
 		inputLocation
 				.setValidateStrategy(StringFieldEditor.VALIDATE_ON_KEY_STROKE);
 
 		// Create editor for output location
 		outputLocation = new FileFieldEditor(
 				FSMLLaunchConstants.OUTPUT_FILE_ATTR, "Output", panel);
+		outputLocation.setFilterPath(workspaceFile);
 		outputLocation.setPropertyChangeListener(editorChanged);
-		outputLocation.setFilterPath(rootFile);
-		outputLocation.setFileExtensions(new String[] { "output" });
+		outputLocation.setFileExtensions(new String[] { "*.output" });
 		outputLocation
 				.setValidateStrategy(StringFieldEditor.VALIDATE_ON_KEY_STROKE);
 
