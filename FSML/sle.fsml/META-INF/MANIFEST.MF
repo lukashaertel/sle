@@ -21,14 +21,15 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: sle.fsml,
- sle.fsml.services,
  sle.fsml.fSML,
  sle.fsml.fSML.impl,
  sle.fsml.fSML.util,
- sle.fsml.serializer,
+ sle.fsml.formatting,
+ sle.fsml.generator,
  sle.fsml.parser.antlr,
  sle.fsml.parser.antlr.internal,
- sle.fsml.validation,
+ sle.fsml.runtime,
  sle.fsml.scoping,
- sle.fsml.generator,
- sle.fsml.formatting
+ sle.fsml.serializer,
+ sle.fsml.services,
+ sle.fsml.validation

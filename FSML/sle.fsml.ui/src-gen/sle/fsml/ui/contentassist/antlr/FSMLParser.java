@@ -37,14 +37,11 @@ public class FSMLParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getFSMAccess().getGroup(), "rule__FSM__Group__0");
-					put(grammarAccess.getFSMAccess().getGroup_0(), "rule__FSM__Group_0__0");
 					put(grammarAccess.getFSMStateAccess().getGroup(), "rule__FSMState__Group__0");
 					put(grammarAccess.getFSMTransitionAccess().getGroup(), "rule__FSMTransition__Group__0");
 					put(grammarAccess.getFSMTransitionAccess().getGroup_1(), "rule__FSMTransition__Group_1__0");
 					put(grammarAccess.getFSMTransitionAccess().getGroup_2(), "rule__FSMTransition__Group_2__0");
-					put(grammarAccess.getFSMAccess().getNameAssignment_0_0(), "rule__FSM__NameAssignment_0_0");
-					put(grammarAccess.getFSMAccess().getStatesAssignment_1(), "rule__FSM__StatesAssignment_1");
+					put(grammarAccess.getFSMAccess().getStatesAssignment(), "rule__FSM__StatesAssignment");
 					put(grammarAccess.getFSMStateAccess().getInitialAssignment_0(), "rule__FSMState__InitialAssignment_0");
 					put(grammarAccess.getFSMStateAccess().getNameAssignment_2(), "rule__FSMState__NameAssignment_2");
 					put(grammarAccess.getFSMStateAccess().getTransitionsAssignment_4(), "rule__FSMState__TransitionsAssignment_4");

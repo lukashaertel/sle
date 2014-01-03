@@ -6,19 +6,172 @@ package sle.fsml.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import sle.fsml.fSML.FSM
+import org.eclipse.emf.common.util.URI
 
 /**
  * Generates code from your model files on save.
  * 
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
-class FSMLGenerator implements IGenerator {
-	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+class FSMLGenerator implements IGenerator
+{
+	def getFileName(String name)
+	{
+		val l = name.lastIndexOf('.');
+
+		if(l >= 0)
+		{
+			return name.substring(0, l);
+		}
+		else
+		{
+			return name;
+		}
+	}
+
+	def getPackageName(Resource resource)
+	{
+		val result = new StringBuilder;
+
+		val uri = resource.URI;
+		for (i : 3 ..< uri.segmentCount - 1)
+		{
+			result.append(uri.segment(i).toFirstLower)
+			result.append('.')
+		}
+
+		result.append(uri.lastSegment.toFirstLower.fileName);
+
+		return result.toString;
+	}
+
+	def getPackagePath(Resource resource)
+	{
+		val result = new StringBuilder;
+
+		val uri = resource.URI;
+		for (i : 3 ..< uri.segmentCount - 1)
+		{
+			result.append(uri.segment(i).toFirstLower)
+			result.append('/')
+		}
+
+		result.append(uri.lastSegment.toFirstLower.fileName);
+
+		return result.toString;
+	}
+
+	override void doGenerate(Resource resource, IFileSystemAccess fsa)
+	{
+		val packageName = resource.packageName;
+		val packagePath = resource.packagePath;
+
+		for (FSM fsm : resource.allContents.filter(typeof(FSM)).toIterable)
+		{
+
+			// Precalculate values
+			val states = fsm.states.map[s|s.name].toSet;
+			val initial = fsm.states.findFirst[s|s.initial].name;
+			val inputs = fsm.states.map[s|s.transitions.map[t|t.input]].flatten.toSet;
+			val actions = fsm.states.map[s|s.transitions.filter[t|t.withAction].map[t|t.action]].flatten.toSet;
+
+			// FInd all states and write down their names
+			fsa.generateFile(packagePath + '/State.java',
+				'''
+				package «packageName»;
+				
+				public enum State
+				{
+					«FOR x : states SEPARATOR ', '»«x»«ENDFOR»; public static final State INITIAL = «initial»;
+				}''');
+
+			// Find all inputs and write down the distinct names
+			fsa.generateFile(packagePath + '/Input.java',
+				'''
+				package «packageName»;
+				
+				public enum Input
+				{
+					«FOR x : inputs SEPARATOR ', '»«x»«ENDFOR»
+				}''');
+
+			// Find all actions and write down the distinct names
+			fsa.generateFile(packagePath + '/Action.java',
+				'''
+				package «packageName»;
+				
+				public enum Action
+				{
+					«FOR x : actions SEPARATOR ', '»«x»«ENDFOR»
+				}''');
+
+			// Generate a derived handler that provides optional methods
+			fsa.generateFile(packagePath + '/Handler.java',
+				'''
+				package «packageName»;
+				
+				import sle.fsml.runtime.HandlerBase;
+				
+				public abstract class Handler implements HandlerBase<Action>
+				{
+					@Override
+					public void handle(Action action)
+					{
+						if(action == null)
+						{
+							throw new IllegalArgumentException("null");
+						}
+						
+						switch(action)
+						{
+							«FOR x : actions»
+								case «x»:
+									handle«x.toFirstUpper»();
+									return;
+							«ENDFOR»
+							
+							default:
+							throw new IllegalArgumentException(action.toString());
+						}
+					}
+					
+					«FOR x : actions»
+						protected void handle«x.toFirstUpper»()
+						{
+							unhandled(Action.«x»);
+						}
+						
+					«ENDFOR»
+					
+					protected void unhandled(Action action)
+					{
+						System.out.println("Unhandled action in " + getClass().getSimpleName() + ": " + action);
+					}
+				}''');
+				
+			// Generate a derived stepper
+			fsa.generateFile(packagePath + '/Stepper.java',
+				'''
+				package «packageName»;
+				
+				import sle.fsml.runtime.HandlerBase;
+				import sle.fsml.runtime.StepperBase;
+				
+				public abstract class Stepper extends StepperBase<State, Input, Action>
+				{
+					public Stepper(HandlerBase<Action> handler)
+					{
+						this.handler = handler;
+						this.state = State.INITIAL;
+						
+						«FOR s : fsm.states»
+							«FOR t : s.transitions»
+							add(State.«s.name», Input.«t.input», «IF t.withAction»Action.«t.action»«ELSE»null«ENDIF», «IF t.withTarget»State.«t.target.name»«ELSE»State.«s.name»«ENDIF»);
+							«ENDFOR»
+						«ENDFOR»
+					}
+				}''');
+		}
 	}
 }

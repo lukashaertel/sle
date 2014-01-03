@@ -37,18 +37,12 @@ public class RunParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getMachineAccess().getAlternatives(), "rule__Machine__Alternatives");
-					put(grammarAccess.getInputAccess().getAlternatives(), "rule__Input__Alternatives");
 					put(grammarAccess.getRunfileAccess().getGroup(), "rule__Runfile__Group__0");
 					put(grammarAccess.getRunAccess().getGroup(), "rule__Run__Group__0");
 					put(grammarAccess.getRunfileAccess().getRunsAssignment_1(), "rule__Runfile__RunsAssignment_1");
 					put(grammarAccess.getRunAccess().getMachineAssignment_1(), "rule__Run__MachineAssignment_1");
 					put(grammarAccess.getRunAccess().getInputAssignment_3(), "rule__Run__InputAssignment_3");
 					put(grammarAccess.getRunAccess().getTargetAssignment_5(), "rule__Run__TargetAssignment_5");
-					put(grammarAccess.getMachineReferenceAccess().getFsmAssignment(), "rule__MachineReference__FsmAssignment");
-					put(grammarAccess.getMachineLocationAccess().getLocationAssignment(), "rule__MachineLocation__LocationAssignment");
-					put(grammarAccess.getInputReferenceAccess().getInputAssignment(), "rule__InputReference__InputAssignment");
-					put(grammarAccess.getInputLocationAccess().getLocationAssignment(), "rule__InputLocation__LocationAssignment");
 				}
 			};
 		}

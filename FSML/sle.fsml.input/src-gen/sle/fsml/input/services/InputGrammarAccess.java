@@ -21,72 +21,56 @@ public class InputGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Input");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cInputAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
-		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cInputsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cInputsInputEntryParserRuleCall_3_0_0 = (RuleCall)cInputsAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cInputsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cInputsInputEntryParserRuleCall_3_1_1_0 = (RuleCall)cInputsAssignment_3_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cFullStopKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cInputsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cInputsInputEntryParserRuleCall_2_0_0 = (RuleCall)cInputsAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cInputsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cInputsInputEntryParserRuleCall_2_1_1_0 = (RuleCall)cInputsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cFullStopKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Input:
-		//	{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
+		//	{Input} "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
 		public ParserRule getRule() { return rule; }
 
-		//{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" "."
+		//{Input} "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" "."
 		public Group getGroup() { return cGroup; }
 
 		//{Input}
 		public Action getInputAction_0() { return cInputAction_0; }
 
-		//(name=ID ":")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//name=ID
-		public Assignment getNameAssignment_1_0() { return cNameAssignment_1_0; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0_0() { return cNameIDTerminalRuleCall_1_0_0; }
-
-		//":"
-		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
-
 		//"["
-		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
 		//(inputs+=InputEntry ("," inputs+=InputEntry)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//inputs+=InputEntry
-		public Assignment getInputsAssignment_3_0() { return cInputsAssignment_3_0; }
+		public Assignment getInputsAssignment_2_0() { return cInputsAssignment_2_0; }
 
 		//InputEntry
-		public RuleCall getInputsInputEntryParserRuleCall_3_0_0() { return cInputsInputEntryParserRuleCall_3_0_0; }
+		public RuleCall getInputsInputEntryParserRuleCall_2_0_0() { return cInputsInputEntryParserRuleCall_2_0_0; }
 
 		//("," inputs+=InputEntry)*
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//","
-		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
 		//inputs+=InputEntry
-		public Assignment getInputsAssignment_3_1_1() { return cInputsAssignment_3_1_1; }
+		public Assignment getInputsAssignment_2_1_1() { return cInputsAssignment_2_1_1; }
 
 		//InputEntry
-		public RuleCall getInputsInputEntryParserRuleCall_3_1_1_0() { return cInputsInputEntryParserRuleCall_3_1_1_0; }
+		public RuleCall getInputsInputEntryParserRuleCall_2_1_1_0() { return cInputsInputEntryParserRuleCall_2_1_1_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 
 		//"."
-		public Keyword getFullStopKeyword_5() { return cFullStopKeyword_5; }
+		public Keyword getFullStopKeyword_4() { return cFullStopKeyword_4; }
 	}
 
 	public class InputEntryElements extends AbstractParserRuleElementFinder {
@@ -143,7 +127,7 @@ public class InputGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Input:
-	//	{Input} (name=ID ":")? "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
+	//	{Input} "[" (inputs+=InputEntry ("," inputs+=InputEntry)*)? "]" ".";
 	public InputElements getInputAccess() {
 		return (pInput != null) ? pInput : (pInput = new InputElements());
 	}

@@ -66,7 +66,7 @@ public class FSMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? states+=FSMState*)
+	 *     states+=FSMState*
 	 */
 	protected void sequence_FSM(EObject context, FSM semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

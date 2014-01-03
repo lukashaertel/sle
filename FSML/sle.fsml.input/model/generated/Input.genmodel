@@ -8,7 +8,6 @@
   <genPackages prefix="Input" basePackage="sle.fsml.input" disposableProviderFactory="true"
       fileExtensions="input" ecorePackage="Input.ecore#/">
     <genClasses ecoreClass="Input.ecore#//Input">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Input.ecore#//Input/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Input.ecore#//Input/inputs"/>
     </genClasses>
     <genClasses ecoreClass="Input.ecore#//InputEntry">

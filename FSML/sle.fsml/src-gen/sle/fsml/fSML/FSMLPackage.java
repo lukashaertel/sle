@@ -67,22 +67,13 @@ public interface FSMLPackage extends EPackage
   int FSM = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FSM__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>States</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FSM__STATES = 1;
+  int FSM__STATES = 0;
 
   /**
    * The number of structural features of the '<em>FSM</em>' class.
@@ -91,7 +82,7 @@ public interface FSMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FSM_FEATURE_COUNT = 2;
+  int FSM_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link sle.fsml.fSML.impl.FSMStateImpl <em>FSM State</em>}' class.
@@ -213,17 +204,6 @@ public interface FSMLPackage extends EPackage
    * @generated
    */
   EClass getFSM();
-
-  /**
-   * Returns the meta object for the attribute '{@link sle.fsml.fSML.FSM#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see sle.fsml.fSML.FSM#getName()
-   * @see #getFSM()
-   * @generated
-   */
-  EAttribute getFSM_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link sle.fsml.fSML.FSM#getStates <em>States</em>}'.
@@ -376,14 +356,6 @@ public interface FSMLPackage extends EPackage
      * @generated
      */
     EClass FSM = eINSTANCE.getFSM();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FSM__NAME = eINSTANCE.getFSM_Name();
 
     /**
      * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.

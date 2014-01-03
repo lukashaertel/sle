@@ -8,7 +8,6 @@
   <genPackages prefix="FSML" basePackage="sle.fsml" disposableProviderFactory="true"
       fileExtensions="fsml" ecorePackage="FSML.ecore#/">
     <genClasses ecoreClass="FSML.ecore#//FSM">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FSML.ecore#//FSM/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FSML.ecore#//FSM/states"/>
     </genClasses>
     <genClasses ecoreClass="FSML.ecore#//FSMState">

@@ -6,24 +6,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Run">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="machine" eType="#//Machine"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="#//Input"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Machine"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MachineReference" eSuperTypes="#//Machine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" eType="ecore:EClass ../../../sle.fsml/model/generated/FSML.ecore#//FSM"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MachineLocation" eSuperTypes="#//Machine">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Input"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputReference" eSuperTypes="#//Input">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="ecore:EClass ../../../sle.fsml.input/model/generated/Input.ecore#//Input"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InputLocation" eSuperTypes="#//Input">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

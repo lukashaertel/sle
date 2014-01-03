@@ -25,56 +25,56 @@ import org.eclipse.emf.ecore.EObject;
 public interface Run extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Machine</b></em>' containment reference.
+   * Returns the value of the '<em><b>Machine</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Machine</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Machine</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Machine</em>' containment reference.
-   * @see #setMachine(Machine)
+   * @return the value of the '<em>Machine</em>' attribute.
+   * @see #setMachine(String)
    * @see sle.fsml.run.run.RunPackage#getRun_Machine()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  Machine getMachine();
+  String getMachine();
 
   /**
-   * Sets the value of the '{@link sle.fsml.run.run.Run#getMachine <em>Machine</em>}' containment reference.
+   * Sets the value of the '{@link sle.fsml.run.run.Run#getMachine <em>Machine</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Machine</em>' containment reference.
+   * @param value the new value of the '<em>Machine</em>' attribute.
    * @see #getMachine()
    * @generated
    */
-  void setMachine(Machine value);
+  void setMachine(String value);
 
   /**
-   * Returns the value of the '<em><b>Input</b></em>' containment reference.
+   * Returns the value of the '<em><b>Input</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Input</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Input</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Input</em>' containment reference.
-   * @see #setInput(Input)
+   * @return the value of the '<em>Input</em>' attribute.
+   * @see #setInput(String)
    * @see sle.fsml.run.run.RunPackage#getRun_Input()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  Input getInput();
+  String getInput();
 
   /**
-   * Sets the value of the '{@link sle.fsml.run.run.Run#getInput <em>Input</em>}' containment reference.
+   * Sets the value of the '{@link sle.fsml.run.run.Run#getInput <em>Input</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Input</em>' containment reference.
+   * @param value the new value of the '<em>Input</em>' attribute.
    * @see #getInput()
    * @generated
    */
-  void setInput(Input value);
+  void setInput(String value);
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' attribute.

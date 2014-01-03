@@ -60,7 +60,7 @@ public class InputSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? (inputs+=InputEntry inputs+=InputEntry*)?)
+	 *     ((inputs+=InputEntry inputs+=InputEntry*)?)
 	 */
 	protected void sequence_Input(EObject context, Input semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

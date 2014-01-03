@@ -1,4 +1,4 @@
-package sle.fsml.run.simulation
+package sle.fsml.run
 
 import java.util.List
 import sle.fsml.fSML.FSM
@@ -11,7 +11,8 @@ import sle.fsml.run.run.InputReference
 import sle.fsml.run.run.InputLocation
 import sle.fsml.fSML.FSMState
 
-class Simulation
+
+class Resolve
 {
 	def static dispatch resolveFSM(MachineReference reference)
 	{
@@ -59,27 +60,5 @@ class Simulation
 		}
 
 		throw new UnsupportedOperationException
-	}
-
-	def static List<Pair<String, FSMState>> simulate(Run run)
-	{
-		simulate(run.machine.resolveFSM, run.input.resolveInput)
-	}
-
-	def static List<Pair<String, FSMState>> simulate(FSM machine, Input input)
-	{
-		val result = newLinkedList
-
-		var state = machine.states.findFirst[initial]
-		for (token : input.inputs)
-		{
-			val transition = state.transitions.findFirst[t|token.value == t.input]
-			
-			state = if(transition.withTarget) transition.target else state
-			
-			result += transition.action -> state
-		}
-
-		return result
 	}
 }

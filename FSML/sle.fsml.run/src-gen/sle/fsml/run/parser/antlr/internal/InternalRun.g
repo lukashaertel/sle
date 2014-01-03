@@ -128,19 +128,19 @@ ruleRun returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getRunAccess().getMachineMachineParserRuleCall_1_0()); 
-	    }
-		lv_machine_1_0=ruleMachine		{
+		lv_machine_1_0=RULE_STRING
+		{
+			newLeafNode(lv_machine_1_0, grammarAccess.getRunAccess().getMachineSTRINGTerminalRuleCall_1_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRunRule());
+	            $current = createModelElement(grammarAccess.getRunRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"machine",
         		lv_machine_1_0, 
-        		"Machine");
-	        afterParserOrEnumRuleCall();
+        		"STRING");
 	    }
 
 )
@@ -150,19 +150,19 @@ ruleRun returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getRunAccess().getInputInputParserRuleCall_3_0()); 
-	    }
-		lv_input_3_0=ruleInput		{
+		lv_input_3_0=RULE_STRING
+		{
+			newLeafNode(lv_input_3_0, grammarAccess.getRunAccess().getInputSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRunRule());
+	            $current = createModelElement(grammarAccess.getRunRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"input",
         		lv_input_3_0, 
-        		"Input");
-	        afterParserOrEnumRuleCall();
+        		"STRING");
 	    }
 
 )
@@ -189,232 +189,6 @@ ruleRun returns [EObject current=null]
 
 )
 ))
-;
-
-
-
-
-
-// Entry rule entryRuleMachine
-entryRuleMachine returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getMachineRule()); }
-	 iv_ruleMachine=ruleMachine 
-	 { $current=$iv_ruleMachine.current; } 
-	 EOF 
-;
-
-// Rule Machine
-ruleMachine returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getMachineAccess().getMachineReferenceParserRuleCall_0()); 
-    }
-    this_MachineReference_0=ruleMachineReference
-    { 
-        $current = $this_MachineReference_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getMachineAccess().getMachineLocationParserRuleCall_1()); 
-    }
-    this_MachineLocation_1=ruleMachineLocation
-    { 
-        $current = $this_MachineLocation_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleMachineReference
-entryRuleMachineReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getMachineReferenceRule()); }
-	 iv_ruleMachineReference=ruleMachineReference 
-	 { $current=$iv_ruleMachineReference.current; } 
-	 EOF 
-;
-
-// Rule MachineReference
-ruleMachineReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMachineReferenceRule());
-	        }
-        }
-	otherlv_0=RULE_ID
-	{
-		newLeafNode(otherlv_0, grammarAccess.getMachineReferenceAccess().getFsmFSMCrossReference_0()); 
-	}
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRuleMachineLocation
-entryRuleMachineLocation returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getMachineLocationRule()); }
-	 iv_ruleMachineLocation=ruleMachineLocation 
-	 { $current=$iv_ruleMachineLocation.current; } 
-	 EOF 
-;
-
-// Rule MachineLocation
-ruleMachineLocation returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		lv_location_0_0=RULE_STRING
-		{
-			newLeafNode(lv_location_0_0, grammarAccess.getMachineLocationAccess().getLocationSTRINGTerminalRuleCall_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMachineLocationRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"location",
-        		lv_location_0_0, 
-        		"STRING");
-	    }
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRuleInput
-entryRuleInput returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getInputRule()); }
-	 iv_ruleInput=ruleInput 
-	 { $current=$iv_ruleInput.current; } 
-	 EOF 
-;
-
-// Rule Input
-ruleInput returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getInputAccess().getInputReferenceParserRuleCall_0()); 
-    }
-    this_InputReference_0=ruleInputReference
-    { 
-        $current = $this_InputReference_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getInputAccess().getInputLocationParserRuleCall_1()); 
-    }
-    this_InputLocation_1=ruleInputLocation
-    { 
-        $current = $this_InputLocation_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleInputReference
-entryRuleInputReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getInputReferenceRule()); }
-	 iv_ruleInputReference=ruleInputReference 
-	 { $current=$iv_ruleInputReference.current; } 
-	 EOF 
-;
-
-// Rule InputReference
-ruleInputReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInputReferenceRule());
-	        }
-        }
-	otherlv_0=RULE_ID
-	{
-		newLeafNode(otherlv_0, grammarAccess.getInputReferenceAccess().getInputInputCrossReference_0()); 
-	}
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRuleInputLocation
-entryRuleInputLocation returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getInputLocationRule()); }
-	 iv_ruleInputLocation=ruleInputLocation 
-	 { $current=$iv_ruleInputLocation.current; } 
-	 EOF 
-;
-
-// Rule InputLocation
-ruleInputLocation returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		lv_location_0_0=RULE_STRING
-		{
-			newLeafNode(lv_location_0_0, grammarAccess.getInputLocationAccess().getLocationSTRINGTerminalRuleCall_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInputLocationRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"location",
-        		lv_location_0_0, 
-        		"STRING");
-	    }
-
-)
-)
 ;
 
 

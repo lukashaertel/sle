@@ -67,22 +67,13 @@ public interface InputPackage extends EPackage
   int INPUT = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INPUT__INPUTS = 1;
+  int INPUT__INPUTS = 0;
 
   /**
    * The number of structural features of the '<em>Input</em>' class.
@@ -91,7 +82,7 @@ public interface InputPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INPUT_FEATURE_COUNT = 2;
+  int INPUT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link sle.fsml.input.input.impl.InputEntryImpl <em>Entry</em>}' class.
@@ -131,17 +122,6 @@ public interface InputPackage extends EPackage
    * @generated
    */
   EClass getInput();
-
-  /**
-   * Returns the meta object for the attribute '{@link sle.fsml.input.input.Input#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see sle.fsml.input.input.Input#getName()
-   * @see #getInput()
-   * @generated
-   */
-  EAttribute getInput_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link sle.fsml.input.input.Input#getInputs <em>Inputs</em>}'.
@@ -207,14 +187,6 @@ public interface InputPackage extends EPackage
      * @generated
      */
     EClass INPUT = eINSTANCE.getInput();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INPUT__NAME = eINSTANCE.getInput_Name();
 
     /**
      * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.

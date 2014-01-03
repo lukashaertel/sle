@@ -77,47 +77,25 @@ ruleFSM returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(((
 (
-		lv_name_0_0=RULE_ID
-		{
-			newLeafNode(lv_name_0_0, grammarAccess.getFSMAccess().getNameIDTerminalRuleCall_0_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFSMRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"ID");
-	    }
-
-)
-)	otherlv_1=':' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getFSMAccess().getColonKeyword_0_1());
-    }
-)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFSMAccess().getStatesFSMStateParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getFSMAccess().getStatesFSMStateParserRuleCall_0()); 
 	    }
-		lv_states_2_0=ruleFSMState		{
+		lv_states_0_0=ruleFSMState		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFSMRule());
 	        }
        		add(
        			$current, 
        			"states",
-        		lv_states_2_0, 
+        		lv_states_0_0, 
         		"FSMState");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)
+)*
 ;
 
 

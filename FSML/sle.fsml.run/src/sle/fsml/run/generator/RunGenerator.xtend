@@ -11,7 +11,8 @@ import sle.fsml.run.run.MachineReference
 import sle.fsml.run.run.MachineLocation
 import sle.fsml.run.run.InputReference
 import sle.fsml.run.run.InputLocation
-import sle.fsml.run.simulation.Simulation
+import static extension sle.fsml.run.Resolve.*
+import sle.fsml.run.Simulate
 
 /**
  * Generates code from your model files on save.
@@ -59,9 +60,12 @@ class RunGenerator implements IGenerator
 	{
 		for (Run run : resource.allContents.filter(typeof(Run)).toIterable)
 		{
+			// Resolve locations to machines and input
+			val fsm = run.machine.resolveFSM;
+			val input = run.input.resolveInput;
 
-			// Simulate FSM with given input
-			val simulation = Simulation::simulate(run)
+			// Simulate FSM with given machine and input
+			val simulation = Simulate::simulate(fsm, input);
 
 			// Save result to target
 			fsa.generateFile(run.target,
@@ -72,24 +76,45 @@ class RunGenerator implements IGenerator
 					].
 				''')
 
-			// Generate Java code
-			val hp = run.headPackage
-			val tp = run.tailPackage
-
-			val fn = 'java/' + hp + '/' + tp + '/Run.java'
-			val pn = 'java.' + hp + '.' + tp;
-			val cn = 'Run';
-
-			fsa.generateFile(fn,
-				'''package «pn»;
-			public final class «cn»
-			{
-				public static void main(String[] args)
-				{
-					System.out.println("«pn» in «fn»");
-				}
-			}
-			''')
+//			// Generate Java code
+//			val hp = run.headPackage
+//			val tp = run.tailPackage
+//
+//			val stateCN = 'State';
+//			val stateFN = 'java/' + hp + '/' + tp + '/' + stateCN + '.java'
+//			val statePN = 'java.' + hp + '.' + tp;
+//
+//			fsa.generateFile(stateFN,
+//				'''package «statePN»;
+//			public enum «stateCN»
+//			{
+//				«FOR s : fsm.states SEPARATOR ', '»«s.name»«ENDFOR»
+//			}
+//			''')
+//
+//			val inputCN = 'Input';
+//			val inputFN = 'java/' + hp + '/' + tp + '/' + inputCN + '.java'
+//			val inputPN = 'java.' + hp + '.' + tp;
+//
+//			fsa.generateFile(inputFN,
+//				'''package «inputPN»;
+//			public enum «inputCN»
+//			{
+//				«FOR s : fsm.states.map[s|s.transitions.map[t|t.input]].flatten SEPARATOR ', '»«s»«ENDFOR»
+//			}
+//			''')
+//
+//			val actionCN = 'Action';
+//			val actionFN = 'java/' + hp + '/' + tp + '/' + actionCN + '.java'
+//			val actionPN = 'java.' + hp + '.' + tp;
+//
+//			fsa.generateFile(actionFN,
+//				'''package «actionPN»;
+//			public enum «actionCN»
+//			{
+//				«FOR s : fsm.states.map[s|s.transitions.filter[t|t.withAction].map[t|t.action]].flatten SEPARATOR ', '»«s»«ENDFOR»
+//			}
+//			''')
 		}
 	}
 }

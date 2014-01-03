@@ -85,36 +85,6 @@ public class RunAdapterFactory extends AdapterFactoryImpl
         return createRunAdapter();
       }
       @Override
-      public Adapter caseMachine(Machine object)
-      {
-        return createMachineAdapter();
-      }
-      @Override
-      public Adapter caseMachineReference(MachineReference object)
-      {
-        return createMachineReferenceAdapter();
-      }
-      @Override
-      public Adapter caseMachineLocation(MachineLocation object)
-      {
-        return createMachineLocationAdapter();
-      }
-      @Override
-      public Adapter caseInput(Input object)
-      {
-        return createInputAdapter();
-      }
-      @Override
-      public Adapter caseInputReference(InputReference object)
-      {
-        return createInputReferenceAdapter();
-      }
-      @Override
-      public Adapter caseInputLocation(InputLocation object)
-      {
-        return createInputLocationAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -162,96 +132,6 @@ public class RunAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRunAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.Machine <em>Machine</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.Machine
-   * @generated
-   */
-  public Adapter createMachineAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.MachineReference <em>Machine Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.MachineReference
-   * @generated
-   */
-  public Adapter createMachineReferenceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.MachineLocation <em>Machine Location</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.MachineLocation
-   * @generated
-   */
-  public Adapter createMachineLocationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.Input <em>Input</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.Input
-   * @generated
-   */
-  public Adapter createInputAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.InputReference <em>Input Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.InputReference
-   * @generated
-   */
-  public Adapter createInputReferenceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link sle.fsml.run.run.InputLocation <em>Input Location</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see sle.fsml.run.run.InputLocation
-   * @generated
-   */
-  public Adapter createInputLocationAdapter()
   {
     return null;
   }

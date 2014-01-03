@@ -20,38 +20,18 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class FSMElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FSM");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
-		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cStatesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cStatesFSMStateParserRuleCall_1_0 = (RuleCall)cStatesAssignment_1.eContents().get(0);
+		private final Assignment cStatesAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cStatesFSMStateParserRuleCall_0 = (RuleCall)cStatesAssignment.eContents().get(0);
 		
 		//FSM:
-		//	(name=ID ":")? states+=FSMState*;
+		//	states+=FSMState*;
 		public ParserRule getRule() { return rule; }
 
-		//(name=ID ":")? states+=FSMState*
-		public Group getGroup() { return cGroup; }
-
-		//(name=ID ":")?
-		public Group getGroup_0() { return cGroup_0; }
-
-		//name=ID
-		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0_0() { return cNameIDTerminalRuleCall_0_0_0; }
-
-		//":"
-		public Keyword getColonKeyword_0_1() { return cColonKeyword_0_1; }
-
 		//states+=FSMState*
-		public Assignment getStatesAssignment_1() { return cStatesAssignment_1; }
+		public Assignment getStatesAssignment() { return cStatesAssignment; }
 
 		//FSMState
-		public RuleCall getStatesFSMStateParserRuleCall_1_0() { return cStatesFSMStateParserRuleCall_1_0; }
+		public RuleCall getStatesFSMStateParserRuleCall_0() { return cStatesFSMStateParserRuleCall_0; }
 	}
 
 	public class FSMStateElements extends AbstractParserRuleElementFinder {
@@ -214,7 +194,7 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//FSM:
-	//	(name=ID ":")? states+=FSMState*;
+	//	states+=FSMState*;
 	public FSMElements getFSMAccess() {
 		return (pFSM != null) ? pFSM : (pFSM = new FSMElements());
 	}

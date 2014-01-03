@@ -3,16 +3,12 @@
 package sle.fsml.run.run.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import sle.fsml.run.run.Input;
-import sle.fsml.run.run.Machine;
 import sle.fsml.run.run.Run;
 import sle.fsml.run.run.RunPackage;
 
@@ -34,24 +30,44 @@ import sle.fsml.run.run.RunPackage;
 public class RunImpl extends MinimalEObjectImpl.Container implements Run
 {
   /**
-   * The cached value of the '{@link #getMachine() <em>Machine</em>}' containment reference.
+   * The default value of the '{@link #getMachine() <em>Machine</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMachine()
    * @generated
    * @ordered
    */
-  protected Machine machine;
+  protected static final String MACHINE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInput() <em>Input</em>}' containment reference.
+   * The cached value of the '{@link #getMachine() <em>Machine</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMachine()
+   * @generated
+   * @ordered
+   */
+  protected String machine = MACHINE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getInput()
    * @generated
    * @ordered
    */
-  protected Input input;
+  protected static final String INPUT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInput()
+   * @generated
+   * @ordered
+   */
+  protected String input = INPUT_EDEFAULT;
 
   /**
    * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
@@ -99,7 +115,7 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * <!-- end-user-doc -->
    * @generated
    */
-  public Machine getMachine()
+  public String getMachine()
   {
     return machine;
   }
@@ -109,16 +125,12 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetMachine(Machine newMachine, NotificationChain msgs)
+  public void setMachine(String newMachine)
   {
-    Machine oldMachine = machine;
+    String oldMachine = machine;
     machine = newMachine;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RunPackage.RUN__MACHINE, oldMachine, newMachine);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__MACHINE, oldMachine, machine));
   }
 
   /**
@@ -126,28 +138,7 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMachine(Machine newMachine)
-  {
-    if (newMachine != machine)
-    {
-      NotificationChain msgs = null;
-      if (machine != null)
-        msgs = ((InternalEObject)machine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RunPackage.RUN__MACHINE, null, msgs);
-      if (newMachine != null)
-        msgs = ((InternalEObject)newMachine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RunPackage.RUN__MACHINE, null, msgs);
-      msgs = basicSetMachine(newMachine, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__MACHINE, newMachine, newMachine));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Input getInput()
+  public String getInput()
   {
     return input;
   }
@@ -157,37 +148,12 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetInput(Input newInput, NotificationChain msgs)
+  public void setInput(String newInput)
   {
-    Input oldInput = input;
+    String oldInput = input;
     input = newInput;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RunPackage.RUN__INPUT, oldInput, newInput);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setInput(Input newInput)
-  {
-    if (newInput != input)
-    {
-      NotificationChain msgs = null;
-      if (input != null)
-        msgs = ((InternalEObject)input).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RunPackage.RUN__INPUT, null, msgs);
-      if (newInput != null)
-        msgs = ((InternalEObject)newInput).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RunPackage.RUN__INPUT, null, msgs);
-      msgs = basicSetInput(newInput, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__INPUT, newInput, newInput));
+      eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__INPUT, oldInput, input));
   }
 
   /**
@@ -211,24 +177,6 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
     target = newTarget;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, RunPackage.RUN__TARGET, oldTarget, target));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case RunPackage.RUN__MACHINE:
-        return basicSetMachine(null, msgs);
-      case RunPackage.RUN__INPUT:
-        return basicSetInput(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -262,10 +210,10 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
     switch (featureID)
     {
       case RunPackage.RUN__MACHINE:
-        setMachine((Machine)newValue);
+        setMachine((String)newValue);
         return;
       case RunPackage.RUN__INPUT:
-        setInput((Input)newValue);
+        setInput((String)newValue);
         return;
       case RunPackage.RUN__TARGET:
         setTarget((String)newValue);
@@ -285,10 +233,10 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
     switch (featureID)
     {
       case RunPackage.RUN__MACHINE:
-        setMachine((Machine)null);
+        setMachine(MACHINE_EDEFAULT);
         return;
       case RunPackage.RUN__INPUT:
-        setInput((Input)null);
+        setInput(INPUT_EDEFAULT);
         return;
       case RunPackage.RUN__TARGET:
         setTarget(TARGET_EDEFAULT);
@@ -308,9 +256,9 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
     switch (featureID)
     {
       case RunPackage.RUN__MACHINE:
-        return machine != null;
+        return MACHINE_EDEFAULT == null ? machine != null : !MACHINE_EDEFAULT.equals(machine);
       case RunPackage.RUN__INPUT:
-        return input != null;
+        return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
       case RunPackage.RUN__TARGET:
         return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
     }
@@ -328,7 +276,11 @@ public class RunImpl extends MinimalEObjectImpl.Container implements Run
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (target: ");
+    result.append(" (machine: ");
+    result.append(machine);
+    result.append(", input: ");
+    result.append(input);
+    result.append(", target: ");
     result.append(target);
     result.append(')');
     return result.toString();

@@ -66,12 +66,6 @@ public class RunFactoryImpl extends EFactoryImpl implements RunFactory
     {
       case RunPackage.RUNFILE: return createRunfile();
       case RunPackage.RUN: return createRun();
-      case RunPackage.MACHINE: return createMachine();
-      case RunPackage.MACHINE_REFERENCE: return createMachineReference();
-      case RunPackage.MACHINE_LOCATION: return createMachineLocation();
-      case RunPackage.INPUT: return createInput();
-      case RunPackage.INPUT_REFERENCE: return createInputReference();
-      case RunPackage.INPUT_LOCATION: return createInputLocation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -97,72 +91,6 @@ public class RunFactoryImpl extends EFactoryImpl implements RunFactory
   {
     RunImpl run = new RunImpl();
     return run;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Machine createMachine()
-  {
-    MachineImpl machine = new MachineImpl();
-    return machine;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MachineReference createMachineReference()
-  {
-    MachineReferenceImpl machineReference = new MachineReferenceImpl();
-    return machineReference;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MachineLocation createMachineLocation()
-  {
-    MachineLocationImpl machineLocation = new MachineLocationImpl();
-    return machineLocation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Input createInput()
-  {
-    InputImpl input = new InputImpl();
-    return input;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InputReference createInputReference()
-  {
-    InputReferenceImpl inputReference = new InputReferenceImpl();
-    return inputReference;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InputLocation createInputLocation()
-  {
-    InputLocationImpl inputLocation = new InputLocationImpl();
-    return inputLocation;
   }
 
   /**

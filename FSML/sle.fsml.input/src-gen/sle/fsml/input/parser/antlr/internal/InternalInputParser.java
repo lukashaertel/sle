@@ -21,11 +21,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalInputParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_CM", "RULE_WS", "':'", "'['", "','", "']'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_CM", "RULE_WS", "'['", "','", "']'", "'.'"
     };
     public static final int RULE_ID=4;
     public static final int RULE_CM=5;
-    public static final int T__11=11;
     public static final int T__10=10;
     public static final int RULE_WS=6;
     public static final int EOF=-1;
@@ -108,29 +107,27 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInput"
-    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:76:1: ruleInput returns [EObject current=null] : ( () ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )? otherlv_3= '[' ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )? otherlv_7= ']' otherlv_8= '.' ) ;
+    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:76:1: ruleInput returns [EObject current=null] : ( () otherlv_1= '[' ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )? otherlv_5= ']' otherlv_6= '.' ) ;
     public final EObject ruleInput() throws RecognitionException {
         EObject current = null;
 
-        Token lv_name_1_0=null;
-        Token otherlv_2=null;
+        Token otherlv_1=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
-        Token otherlv_7=null;
-        Token otherlv_8=null;
-        EObject lv_inputs_4_0 = null;
+        Token otherlv_6=null;
+        EObject lv_inputs_2_0 = null;
 
-        EObject lv_inputs_6_0 = null;
+        EObject lv_inputs_4_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:79:28: ( ( () ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )? otherlv_3= '[' ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )? otherlv_7= ']' otherlv_8= '.' ) )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:1: ( () ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )? otherlv_3= '[' ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )? otherlv_7= ']' otherlv_8= '.' )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:79:28: ( ( () otherlv_1= '[' ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )? otherlv_5= ']' otherlv_6= '.' ) )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:1: ( () otherlv_1= '[' ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )? otherlv_5= ']' otherlv_6= '.' )
             {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:1: ( () ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )? otherlv_3= '[' ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )? otherlv_7= ']' otherlv_8= '.' )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:2: () ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )? otherlv_3= '[' ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )? otherlv_7= ']' otherlv_8= '.'
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:1: ( () otherlv_1= '[' ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )? otherlv_5= ']' otherlv_6= '.' )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:2: () otherlv_1= '[' ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )? otherlv_5= ']' otherlv_6= '.'
             {
             // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:80:2: ()
             // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:81:5: 
@@ -143,79 +140,32 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:86:2: ( ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' )?
-            int alt1=2;
-            int LA1_0 = input.LA(1);
+            otherlv_1=(Token)match(input,7,FOLLOW_7_in_ruleInput131); 
 
-            if ( (LA1_0==RULE_ID) ) {
-                alt1=1;
-            }
-            switch (alt1) {
-                case 1 :
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:86:3: ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':'
-                    {
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:86:3: ( (lv_name_1_0= RULE_ID ) )
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:87:1: (lv_name_1_0= RULE_ID )
-                    {
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:87:1: (lv_name_1_0= RULE_ID )
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:88:3: lv_name_1_0= RULE_ID
-                    {
-                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInput137); 
-
-                    			newLeafNode(lv_name_1_0, grammarAccess.getInputAccess().getNameIDTerminalRuleCall_1_0_0()); 
-                    		
-
-                    	        if (current==null) {
-                    	            current = createModelElement(grammarAccess.getInputRule());
-                    	        }
-                           		setWithLastConsumed(
-                           			current, 
-                           			"name",
-                            		lv_name_1_0, 
-                            		"ID");
-                    	    
-
-                    }
-
-
-                    }
-
-                    otherlv_2=(Token)match(input,7,FOLLOW_7_in_ruleInput154); 
-
-                        	newLeafNode(otherlv_2, grammarAccess.getInputAccess().getColonKeyword_1_1());
-                        
-
-                    }
-                    break;
-
-            }
-
-            otherlv_3=(Token)match(input,8,FOLLOW_8_in_ruleInput168); 
-
-                	newLeafNode(otherlv_3, grammarAccess.getInputAccess().getLeftSquareBracketKeyword_2());
+                	newLeafNode(otherlv_1, grammarAccess.getInputAccess().getLeftSquareBracketKeyword_1());
                 
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:112:1: ( ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )* )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:90:1: ( ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )* )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA3_0==RULE_ID) ) {
-                alt3=1;
+            if ( (LA2_0==RULE_ID) ) {
+                alt2=1;
             }
-            switch (alt3) {
+            switch (alt2) {
                 case 1 :
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:112:2: ( (lv_inputs_4_0= ruleInputEntry ) ) (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )*
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:90:2: ( (lv_inputs_2_0= ruleInputEntry ) ) (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )*
                     {
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:112:2: ( (lv_inputs_4_0= ruleInputEntry ) )
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:113:1: (lv_inputs_4_0= ruleInputEntry )
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:90:2: ( (lv_inputs_2_0= ruleInputEntry ) )
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:91:1: (lv_inputs_2_0= ruleInputEntry )
                     {
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:113:1: (lv_inputs_4_0= ruleInputEntry )
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:114:3: lv_inputs_4_0= ruleInputEntry
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:91:1: (lv_inputs_2_0= ruleInputEntry )
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:92:3: lv_inputs_2_0= ruleInputEntry
                     {
                      
-                    	        newCompositeNode(grammarAccess.getInputAccess().getInputsInputEntryParserRuleCall_3_0_0()); 
+                    	        newCompositeNode(grammarAccess.getInputAccess().getInputsInputEntryParserRuleCall_2_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleInputEntry_in_ruleInput190);
-                    lv_inputs_4_0=ruleInputEntry();
+                    pushFollow(FOLLOW_ruleInputEntry_in_ruleInput153);
+                    lv_inputs_2_0=ruleInputEntry();
 
                     state._fsp--;
 
@@ -226,7 +176,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
                            		add(
                            			current, 
                            			"inputs",
-                            		lv_inputs_4_0, 
+                            		lv_inputs_2_0, 
                             		"InputEntry");
                     	        afterParserOrEnumRuleCall();
                     	    
@@ -236,36 +186,36 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:130:2: (otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) ) )*
-                    loop2:
+                    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:108:2: (otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) ) )*
+                    loop1:
                     do {
-                        int alt2=2;
-                        int LA2_0 = input.LA(1);
+                        int alt1=2;
+                        int LA1_0 = input.LA(1);
 
-                        if ( (LA2_0==9) ) {
-                            alt2=1;
+                        if ( (LA1_0==8) ) {
+                            alt1=1;
                         }
 
 
-                        switch (alt2) {
+                        switch (alt1) {
                     	case 1 :
-                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:130:4: otherlv_5= ',' ( (lv_inputs_6_0= ruleInputEntry ) )
+                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:108:4: otherlv_3= ',' ( (lv_inputs_4_0= ruleInputEntry ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,9,FOLLOW_9_in_ruleInput203); 
+                    	    otherlv_3=(Token)match(input,8,FOLLOW_8_in_ruleInput166); 
 
-                    	        	newLeafNode(otherlv_5, grammarAccess.getInputAccess().getCommaKeyword_3_1_0());
+                    	        	newLeafNode(otherlv_3, grammarAccess.getInputAccess().getCommaKeyword_2_1_0());
                     	        
-                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:134:1: ( (lv_inputs_6_0= ruleInputEntry ) )
-                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:135:1: (lv_inputs_6_0= ruleInputEntry )
+                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:112:1: ( (lv_inputs_4_0= ruleInputEntry ) )
+                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:113:1: (lv_inputs_4_0= ruleInputEntry )
                     	    {
-                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:135:1: (lv_inputs_6_0= ruleInputEntry )
-                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:136:3: lv_inputs_6_0= ruleInputEntry
+                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:113:1: (lv_inputs_4_0= ruleInputEntry )
+                    	    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:114:3: lv_inputs_4_0= ruleInputEntry
                     	    {
                     	     
-                    	    	        newCompositeNode(grammarAccess.getInputAccess().getInputsInputEntryParserRuleCall_3_1_1_0()); 
+                    	    	        newCompositeNode(grammarAccess.getInputAccess().getInputsInputEntryParserRuleCall_2_1_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleInputEntry_in_ruleInput224);
-                    	    lv_inputs_6_0=ruleInputEntry();
+                    	    pushFollow(FOLLOW_ruleInputEntry_in_ruleInput187);
+                    	    lv_inputs_4_0=ruleInputEntry();
 
                     	    state._fsp--;
 
@@ -276,7 +226,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
                     	           		add(
                     	           			current, 
                     	           			"inputs",
-                    	            		lv_inputs_6_0, 
+                    	            		lv_inputs_4_0, 
                     	            		"InputEntry");
                     	    	        afterParserOrEnumRuleCall();
                     	    	    
@@ -291,7 +241,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop2;
+                    	    break loop1;
                         }
                     } while (true);
 
@@ -301,13 +251,13 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,10,FOLLOW_10_in_ruleInput240); 
+            otherlv_5=(Token)match(input,9,FOLLOW_9_in_ruleInput203); 
 
-                	newLeafNode(otherlv_7, grammarAccess.getInputAccess().getRightSquareBracketKeyword_4());
+                	newLeafNode(otherlv_5, grammarAccess.getInputAccess().getRightSquareBracketKeyword_3());
                 
-            otherlv_8=(Token)match(input,11,FOLLOW_11_in_ruleInput252); 
+            otherlv_6=(Token)match(input,10,FOLLOW_10_in_ruleInput215); 
 
-                	newLeafNode(otherlv_8, grammarAccess.getInputAccess().getFullStopKeyword_5());
+                	newLeafNode(otherlv_6, grammarAccess.getInputAccess().getFullStopKeyword_4());
                 
 
             }
@@ -330,7 +280,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInputEntry"
-    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:168:1: entryRuleInputEntry returns [EObject current=null] : iv_ruleInputEntry= ruleInputEntry EOF ;
+    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:146:1: entryRuleInputEntry returns [EObject current=null] : iv_ruleInputEntry= ruleInputEntry EOF ;
     public final EObject entryRuleInputEntry() throws RecognitionException {
         EObject current = null;
 
@@ -338,17 +288,17 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:169:2: (iv_ruleInputEntry= ruleInputEntry EOF )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:170:2: iv_ruleInputEntry= ruleInputEntry EOF
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:147:2: (iv_ruleInputEntry= ruleInputEntry EOF )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:148:2: iv_ruleInputEntry= ruleInputEntry EOF
             {
              newCompositeNode(grammarAccess.getInputEntryRule()); 
-            pushFollow(FOLLOW_ruleInputEntry_in_entryRuleInputEntry288);
+            pushFollow(FOLLOW_ruleInputEntry_in_entryRuleInputEntry251);
             iv_ruleInputEntry=ruleInputEntry();
 
             state._fsp--;
 
              current =iv_ruleInputEntry; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInputEntry298); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInputEntry261); 
 
             }
 
@@ -366,7 +316,7 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInputEntry"
-    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:177:1: ruleInputEntry returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
+    // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:155:1: ruleInputEntry returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
     public final EObject ruleInputEntry() throws RecognitionException {
         EObject current = null;
 
@@ -375,16 +325,16 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:180:28: ( ( (lv_value_0_0= RULE_ID ) ) )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:181:1: ( (lv_value_0_0= RULE_ID ) )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:158:28: ( ( (lv_value_0_0= RULE_ID ) ) )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:159:1: ( (lv_value_0_0= RULE_ID ) )
             {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:181:1: ( (lv_value_0_0= RULE_ID ) )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:182:1: (lv_value_0_0= RULE_ID )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:159:1: ( (lv_value_0_0= RULE_ID ) )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:160:1: (lv_value_0_0= RULE_ID )
             {
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:182:1: (lv_value_0_0= RULE_ID )
-            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:183:3: lv_value_0_0= RULE_ID
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:160:1: (lv_value_0_0= RULE_ID )
+            // ../sle.fsml.input/src-gen/sle/fsml/input/parser/antlr/internal/InternalInput.g:161:3: lv_value_0_0= RULE_ID
             {
-            lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInputEntry339); 
+            lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInputEntry302); 
 
             			newLeafNode(lv_value_0_0, grammarAccess.getInputEntryAccess().getValueIDTerminalRuleCall_0()); 
             		
@@ -427,16 +377,14 @@ public class InternalInputParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleInput_in_entryRuleInput75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleInput85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleInput137 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_7_in_ruleInput154 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_8_in_ruleInput168 = new BitSet(new long[]{0x0000000000000410L});
-    public static final BitSet FOLLOW_ruleInputEntry_in_ruleInput190 = new BitSet(new long[]{0x0000000000000600L});
-    public static final BitSet FOLLOW_9_in_ruleInput203 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleInputEntry_in_ruleInput224 = new BitSet(new long[]{0x0000000000000600L});
-    public static final BitSet FOLLOW_10_in_ruleInput240 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleInput252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInputEntry_in_entryRuleInputEntry288 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInputEntry298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleInputEntry339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_7_in_ruleInput131 = new BitSet(new long[]{0x0000000000000210L});
+    public static final BitSet FOLLOW_ruleInputEntry_in_ruleInput153 = new BitSet(new long[]{0x0000000000000300L});
+    public static final BitSet FOLLOW_8_in_ruleInput166 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleInputEntry_in_ruleInput187 = new BitSet(new long[]{0x0000000000000300L});
+    public static final BitSet FOLLOW_9_in_ruleInput203 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_10_in_ruleInput215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInputEntry_in_entryRuleInputEntry251 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInputEntry261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleInputEntry302 = new BitSet(new long[]{0x0000000000000002L});
 
 }

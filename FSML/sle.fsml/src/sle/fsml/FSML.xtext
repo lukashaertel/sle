@@ -3,7 +3,7 @@ grammar sle.fsml.FSML with org.eclipse.xtext.common.Terminals
 generate fSML "http://www.fsml.sle/FSML"
 
 FSM:
-	(name=ID ':')? states+=FSMState*;
+	states+=FSMState*;
 	
 FSMState:
 	(initial ?= 'initial')? 'state' name=ID '{' transitions+=FSMTransition* '}'

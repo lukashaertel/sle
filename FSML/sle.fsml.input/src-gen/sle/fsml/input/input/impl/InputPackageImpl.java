@@ -114,19 +114,9 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInput_Name()
-  {
-    return (EAttribute)inputEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getInput_Inputs()
   {
-    return (EReference)inputEClass.getEStructuralFeatures().get(1);
+    return (EReference)inputEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -180,7 +170,6 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
 
     // Create classes and their features
     inputEClass = createEClass(INPUT);
-    createEAttribute(inputEClass, INPUT__NAME);
     createEReference(inputEClass, INPUT__INPUTS);
 
     inputEntryEClass = createEClass(INPUT_ENTRY);
@@ -219,7 +208,6 @@ public class InputPackageImpl extends EPackageImpl implements InputPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInput_Name(), ecorePackage.getEString(), "name", null, 0, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInput_Inputs(), this.getInputEntry(), null, "inputs", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(inputEntryEClass, InputEntry.class, "InputEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

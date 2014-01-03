@@ -121,19 +121,9 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFSM_Name()
-  {
-    return (EAttribute)fsmEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getFSM_States()
   {
-    return (EReference)fsmEClass.getEStructuralFeatures().get(1);
+    return (EReference)fsmEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -267,7 +257,6 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
 
     // Create classes and their features
     fsmEClass = createEClass(FSM);
-    createEAttribute(fsmEClass, FSM__NAME);
     createEReference(fsmEClass, FSM__STATES);
 
     fsmStateEClass = createEClass(FSM_STATE);
@@ -315,7 +304,6 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(fsmEClass, sle.fsml.fSML.FSM.class, "FSM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFSM_Name(), ecorePackage.getEString(), "name", null, 0, 1, sle.fsml.fSML.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFSM_States(), this.getFSMState(), null, "states", null, 0, -1, sle.fsml.fSML.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fsmStateEClass, FSMState.class, "FSMState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

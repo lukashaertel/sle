@@ -8,22 +8,4 @@ Runfile:
 	{Runfile} runs+=Run+;
 
 Run:
-	'run' machine=Machine 'on' input=Input 'to' target=STRING;
-
-Machine:
-	MachineReference | MachineLocation;
-
-MachineReference:
-	fsm=[fsml::FSM];
-
-MachineLocation:
-	location=STRING;
-
-Input:
-	InputReference | InputLocation;
-
-InputReference:
-	input=[input::Input];
-
-InputLocation:
-	location=STRING;
+	'run' machine=STRING 'on' input=STRING 'to' target=STRING;

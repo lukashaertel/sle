@@ -4,7 +4,6 @@ package sle.fsml.input.input.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,7 +27,6 @@ import sle.fsml.input.input.InputPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sle.fsml.input.input.impl.InputImpl#getName <em>Name</em>}</li>
  *   <li>{@link sle.fsml.input.input.impl.InputImpl#getInputs <em>Inputs</em>}</li>
  * </ul>
  * </p>
@@ -38,26 +35,6 @@ import sle.fsml.input.input.InputPackage;
  */
 public class InputImpl extends MinimalEObjectImpl.Container implements Input
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -87,29 +64,6 @@ public class InputImpl extends MinimalEObjectImpl.Container implements Input
   protected EClass eStaticClass()
   {
     return InputPackage.Literals.INPUT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, InputPackage.INPUT__NAME, oldName, name));
   }
 
   /**
@@ -152,8 +106,6 @@ public class InputImpl extends MinimalEObjectImpl.Container implements Input
   {
     switch (featureID)
     {
-      case InputPackage.INPUT__NAME:
-        return getName();
       case InputPackage.INPUT__INPUTS:
         return getInputs();
     }
@@ -171,9 +123,6 @@ public class InputImpl extends MinimalEObjectImpl.Container implements Input
   {
     switch (featureID)
     {
-      case InputPackage.INPUT__NAME:
-        setName((String)newValue);
-        return;
       case InputPackage.INPUT__INPUTS:
         getInputs().clear();
         getInputs().addAll((Collection<? extends InputEntry>)newValue);
@@ -192,9 +141,6 @@ public class InputImpl extends MinimalEObjectImpl.Container implements Input
   {
     switch (featureID)
     {
-      case InputPackage.INPUT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case InputPackage.INPUT__INPUTS:
         getInputs().clear();
         return;
@@ -212,29 +158,10 @@ public class InputImpl extends MinimalEObjectImpl.Container implements Input
   {
     switch (featureID)
     {
-      case InputPackage.INPUT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case InputPackage.INPUT__INPUTS:
         return inputs != null && !inputs.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //InputImpl

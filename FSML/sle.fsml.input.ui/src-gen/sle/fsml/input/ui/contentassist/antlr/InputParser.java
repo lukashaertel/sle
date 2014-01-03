@@ -38,12 +38,10 @@ public class InputParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getInputAccess().getGroup(), "rule__Input__Group__0");
-					put(grammarAccess.getInputAccess().getGroup_1(), "rule__Input__Group_1__0");
-					put(grammarAccess.getInputAccess().getGroup_3(), "rule__Input__Group_3__0");
-					put(grammarAccess.getInputAccess().getGroup_3_1(), "rule__Input__Group_3_1__0");
-					put(grammarAccess.getInputAccess().getNameAssignment_1_0(), "rule__Input__NameAssignment_1_0");
-					put(grammarAccess.getInputAccess().getInputsAssignment_3_0(), "rule__Input__InputsAssignment_3_0");
-					put(grammarAccess.getInputAccess().getInputsAssignment_3_1_1(), "rule__Input__InputsAssignment_3_1_1");
+					put(grammarAccess.getInputAccess().getGroup_2(), "rule__Input__Group_2__0");
+					put(grammarAccess.getInputAccess().getGroup_2_1(), "rule__Input__Group_2_1__0");
+					put(grammarAccess.getInputAccess().getInputsAssignment_2_0(), "rule__Input__InputsAssignment_2_0");
+					put(grammarAccess.getInputAccess().getInputsAssignment_2_1_1(), "rule__Input__InputsAssignment_2_1_1");
 					put(grammarAccess.getInputEntryAccess().getValueAssignment(), "rule__InputEntry__ValueAssignment");
 				}
 			};
