@@ -16,6 +16,9 @@ import org.eclipse.emf.common.util.URI
  */
 class FSMLGenerator implements IGenerator
 {
+	/**
+	 * Utility, gets the file name without the extension
+	 */
 	def getFileName(String name)
 	{
 		val l = name.lastIndexOf('.');
@@ -30,6 +33,9 @@ class FSMLGenerator implements IGenerator
 		}
 	}
 
+	/**
+	 * Gets an appropriate package name for the resource
+	 */
 	def getPackageName(Resource resource)
 	{
 		val result = new StringBuilder;
@@ -46,6 +52,10 @@ class FSMLGenerator implements IGenerator
 		return result.toString;
 	}
 
+
+	/**
+	 * Gets an appropriate package file path for the resource
+	 */
 	def getPackagePath(Resource resource)
 	{
 		val result = new StringBuilder;
