@@ -8,6 +8,8 @@ import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
 import sle.fsml.fSML.FSM
 import org.eclipse.emf.common.util.URI
+import sle.fsml.fSML.FSMState
+import sle.fsml.fSML.FSMTransition
 
 /**
  * Generates code from your model files on save.
@@ -16,6 +18,7 @@ import org.eclipse.emf.common.util.URI
  */
 class FSMLGenerator implements IGenerator
 {
+
 	/**
 	 * Utility, gets the file name without the extension
 	 */
@@ -52,7 +55,6 @@ class FSMLGenerator implements IGenerator
 		return result.toString;
 	}
 
-
 	/**
 	 * Gets an appropriate package file path for the resource
 	 */
@@ -72,6 +74,21 @@ class FSMLGenerator implements IGenerator
 		return result.toString;
 	}
 
+	def getContainingState(FSMTransition t)
+	{
+		return t.eContainer as FSMState;
+	}
+
+	def getDestinationState(FSMTransition t)
+	{
+		return if(t.target == null) t.containingState else t.target;
+	}
+
+	def getGraphLabel(FSMTransition t)
+	{
+		return if(t.action == null) t.input else "'" + t.input + "/" + t.action + "'";
+	}
+
 	override void doGenerate(Resource resource, IFileSystemAccess fsa)
 	{
 		val packageName = resource.packageName;
@@ -86,7 +103,7 @@ class FSMLGenerator implements IGenerator
 			val inputs = fsm.states.map[s|s.transitions.map[t|t.input]].flatten.toSet;
 			val actions = fsm.states.map[s|s.transitions.filter[t|t.action != null].map[t|t.action]].flatten.toSet;
 
-			// FInd all states and write down their names
+			// Find all states and write down their names
 			fsa.generateFile(packagePath + '/State.java',
 				'''
 				package «packageName»;
@@ -179,12 +196,28 @@ class FSMLGenerator implements IGenerator
 						
 						«FOR s : fsm.states»
 							«FOR t : s.transitions»
-								add(State.«s.name», Input.«t.input», «IF t.action != null»Action.«t.action»«ELSE»null«ENDIF», «IF t.target != null»State.«t.
-					target.name»«ELSE»State.«s.name»«ENDIF»);
+								add(State.«s.name», Input.«t.input», «IF t.action != null»Action.«t.action»«ELSE»null«ENDIF», State.«t.
+					destinationState.name»);
 							«ENDFOR»
 						«ENDFOR»
 					}
 				}''');
+
+			// Generate the DGL file
+			fsa.generateFile(packagePath + '.dgl',
+				'''(
+  % States
+  [
+  «FOR s : fsm.states SEPARATOR ',
+'»	(«s.name»,«s.name»,ellipse,[«IF s.initial»filled«ENDIF»])«ENDFOR»
+  ],
+  % Edges
+  [
+  «FOR t : fsm.states.map[transitions].flatten SEPARATOR ',
+'»  («t.containingState.name»,«t.destinationState.name»,[«t.graphLabel»])«ENDFOR»
+  ]
+).
+					''');
 		}
 	}
 }
