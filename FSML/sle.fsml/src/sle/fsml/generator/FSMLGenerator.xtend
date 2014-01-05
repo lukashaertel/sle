@@ -93,7 +93,7 @@ class FSMLGenerator implements IGenerator
 				
 				public enum State
 				{
-					«FOR x : states SEPARATOR ', '»«x»«ENDFOR»; public static final State INITIAL = «initial»;
+					«FOR x : states SEPARATOR ', '»«x»«ENDFOR»
 				}''');
 
 			// Find all inputs and write down the distinct names
@@ -175,7 +175,7 @@ class FSMLGenerator implements IGenerator
 					public Stepper(HandlerBase<Action> handler)
 					{
 						this.handler = handler;
-						this.state = State.INITIAL;
+						this.state = State.«initial»;
 						
 						«FOR s : fsm.states»
 							«FOR t : s.transitions»
