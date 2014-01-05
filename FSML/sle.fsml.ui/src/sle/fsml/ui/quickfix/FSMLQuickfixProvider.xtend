@@ -3,24 +3,63 @@
 */
 package sle.fsml.ui.quickfix
 
-//import org.eclipse.xtext.ui.editor.quickfix.Fix
-//import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-//import org.eclipse.xtext.validation.Issue
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import org.eclipse.xtext.validation.Issue
+import sle.fsml.validation.FSMLValidator
+import org.eclipse.jface.text.FindReplaceDocumentAdapter
 
 /**
  * Custom quickfixes.
  *
  * see http://www.eclipse.org/Xtext/documentation.html#quickfixes
  */
-class FSMLQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
+class FSMLQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
+{
 
-//	@Fix(MyDslValidator::INVALID_NAME)
-//	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
-//			context |
-//			val xtextDocument = context.xtextDocument
-//			val firstLetter = xtextDocument.get(issue.offset, 1)
-//			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//		]
-//	}
+	@Fix(FSMLValidator::NO_INITIAL_STATE)
+	def makeStateInitial(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		acceptor.accept(issue, 'Make initial', 'Makes the selected state initial.', 'make_initial.gif') [ context |
+			// Open document and create a replacer
+			val xtextDocument = context.xtextDocument
+			val findReplacer = new FindReplaceDocumentAdapter(xtextDocument);
+			// Find the previous state token
+			val region = findReplacer.find(issue.offset, "state", false, true, true, false);
+			// Replace it with "initial state"
+			xtextDocument.replace(region.offset, region.length, "initial state");
+		]
+	}
+
+	@Fix(FSMLValidator::MORE_THAN_ONE_INITIAL_STATE)
+	def makeStateNonInitial(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		acceptor.accept(issue, 'Make non-initial', 'Makes the selected state non-initial.', 'make_noninitial.gif') [ context |
+			// Open document and create a replacer
+			val xtextDocument = context.xtextDocument
+			val findReplacer = new FindReplaceDocumentAdapter(xtextDocument);
+			// Find the previous initial token
+			val region = findReplacer.find(issue.offset, "initial", false, true, true, false);
+			// Replace it with an empty string
+			xtextDocument.replace(region.offset, region.length, "");
+		]
+	}
+
+	@Fix(FSMLValidator::EXPLICIT_NON_TRANSITION)
+	def removeExplicitNonTransition(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		acceptor.accept(issue, 'Omit target',
+			'Removes the explicit non-transition reference and leaves the input and action.',
+			'remove_nontransition.gif') [ context |
+			// Open document and create a replacer
+			val xtextDocument = context.xtextDocument
+			val findReplacer = new FindReplaceDocumentAdapter(xtextDocument);
+			// Remove the token
+			xtextDocument.replace(issue.offset, issue.length, "");
+			// Find the previous arrow token
+			val regionArrow = findReplacer.find(issue.offset, "->", false, true, false, false);
+			// Replace it with an empty string
+			xtextDocument.replace(regionArrow.offset, regionArrow.length, "");
+		]
+	}
 }

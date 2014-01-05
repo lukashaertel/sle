@@ -9,4 +9,5 @@ import sle.fsml.ui.contentassist.AbstractFSMLProposalProvider
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
  */
 class FSMLProposalProvider extends AbstractFSMLProposalProvider {
+	
 }

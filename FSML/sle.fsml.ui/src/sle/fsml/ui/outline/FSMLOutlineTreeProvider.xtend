@@ -3,11 +3,69 @@
 */
 package sle.fsml.ui.outline
 
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import sle.fsml.fSML.FSM
+import sle.fsml.fSML.FSMLPackage
+import sle.fsml.fSML.FSMState
+import sle.fsml.fSML.FSMTransition
+
 /**
  * Customization of the default outline structure.
  *
  * see http://www.eclipse.org/Xtext/documentation.html#outline
  */
-class FSMLOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+class FSMLOutlineTreeProvider extends DefaultOutlineTreeProvider
+{
+	def getContainingFSM(FSMState state)
+	{
+		return state.eContainer as FSM;
+	}
+
+	def _createChildren(IOutlineNode parentNode, FSMState state)
+	{
+		val parent = state.containingFSM
+		val sources = parent.states.filter[transitions.exists[target == state]];
+		val targets = state.transitions.filter[target != null].map[target];
+
+		for (s : sources)
+		{
+			createEObjectNode(parentNode, s, labelProvider.getImage("state sources"), s.name, true);
+		}
+
+		for (t : targets)
+		{
+			createEObjectNode(parentNode, t, labelProvider.getImage("state targets"), t.name, true);
+		}
+
+		createEStructuralFeatureNode(parentNode, state, FSMLPackage.Literals.FSM_STATE__TRANSITIONS,
+			labelProvider.getImage('state transitions'), 'Transitions', false);
+	}
+
+	/**
+	 * Override the default value of true; XText assumes this is a leaf because there are no references
+	 */
+	def _isLeaf(FSMTransition transition)
+	{
+		return false;
+	}
+
+	def _createChildren(IOutlineNode parentNode, FSMTransition transition)
+	{
+		createEStructuralFeatureNode(parentNode, transition, FSMLPackage.Literals.FSM_TRANSITION__INPUT,
+			labelProvider.getImage('transition input'), transition.input, true)
+
+		if(transition.action != null)
+		{
+			createEStructuralFeatureNode(parentNode, transition, FSMLPackage.Literals.FSM_TRANSITION__ACTION,
+				labelProvider.getImage('transition action'), transition.action, true)
+		}
+
+		if(transition.target != null)
+		{
+			createEObjectNode(parentNode, transition.target, labelProvider.getImage('transition target'),
+				transition.target.name, true)
+		}
+	}
+
 }

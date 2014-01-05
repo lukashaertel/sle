@@ -17,6 +17,16 @@ import java.util.Set
  */
 class FSMLValidator extends AbstractFSMLValidator
 {
+	public static val NO_INITIAL_STATE = "noInitialState";
+
+	public static val MORE_THAN_ONE_INITIAL_STATE = "moreThanOneInitialState";
+
+	public static val EXPLICIT_NON_TRANSITION = "explicitNonTransition";
+
+	public static val NON_DETERMINISTIC = "nonDeterministic";
+
+	public static val NOT_REACHABLE = "notReachable";
+
 	@Check
 	def checkHasInitialState(FSM fsm)
 	{
@@ -24,11 +34,18 @@ class FSMLValidator extends AbstractFSMLValidator
 
 		if(initCount < 1)
 		{
-			error('FSM has no initial state', fsm, FSMLPackage.Literals.FSM__STATES)
+			for (s : fsm.states)
+			{
+				error('FSM has no initial state', s, FSMLPackage.Literals.FSM_STATE__NAME, NO_INITIAL_STATE)
+			}
 		}
 		else if(initCount > 1)
 		{
-			error('FSM has more than one initial state', fsm, FSMLPackage.Literals.FSM__STATES)
+			for (s : fsm.states.filter[initial])
+			{
+				error('FSM has more than one initial state', s, FSMLPackage.Literals.FSM_STATE__NAME,
+					MORE_THAN_ONE_INITIAL_STATE)
+			}
 		}
 	}
 
@@ -38,7 +55,7 @@ class FSMLValidator extends AbstractFSMLValidator
 		if(transition.target != null && transition.target.equals(transition.eContainer))
 		{
 			warning('Transition does not change state, target should be omitted', transition,
-				FSMLPackage.Literals.FSM_TRANSITION__TARGET);
+				FSMLPackage.Literals.FSM_TRANSITION__TARGET, EXPLICIT_NON_TRANSITION);
 		}
 	}
 
@@ -50,7 +67,7 @@ class FSMLValidator extends AbstractFSMLValidator
 		if(container.transitions.exists[x|x.input == transition.input && x != transition])
 		{
 			error('Transition shares input with other transition', transition,
-				FSMLPackage.Literals.FSM_TRANSITION__INPUT);
+				FSMLPackage.Literals.FSM_TRANSITION__INPUT, NON_DETERMINISTIC);
 		}
 	}
 
@@ -93,7 +110,8 @@ class FSMLValidator extends AbstractFSMLValidator
 	{
 		if(!state.findBF([x|incomingStates(x)], [x|x.initial]))
 		{
-			error('State is not reachable from the initial state', state, FSMLPackage.Literals.FSM_STATE__NAME);
+			error('State is not reachable from the initial state', state, FSMLPackage.Literals.FSM_STATE__NAME,
+				NOT_REACHABLE);
 		}
 	}
 }
