@@ -8,6 +8,7 @@ import static org.eclipse.emf.common.util.URI.*;
 import sle.fsml.fSML.FSMState
 import java.io.PrintStream
 import java.io.FileNotFoundException
+import java.util.NoSuchElementException
 
 class Simulation
 {
@@ -31,8 +32,28 @@ class Simulation
 			// Find a transition for the given input
 			val transition = state.transitions.findFirst[given.value == input];
 
-			// If such a transition exists and the transition has a target, jump there
-			if(transition != null && transition.target != null)
+			// If there is no such transition, state does not accept the input
+			if(transition == null)
+			{
+
+				// Test if any of the states would accept the given input
+				if(m.states.exists[transitions.exists[given.value == input]])
+				{
+
+					// Throw an illegal argument exception if the given input
+					// is just not valid for this state
+					throw new IllegalArgumentException(given.value);
+				}
+				else
+				{
+					// Throw a no such element exception if the given input
+					// is not valid for any state
+					throw new NoSuchElementException(given.value);
+				}
+			}
+
+			// If the transition has a target, jump there
+			if(transition.target != null)
 			{
 				state = transition.target;
 			}
@@ -58,8 +79,8 @@ class Simulation
 		val iResource = resourceSet.getResource(createFileURI(iFile), true);
 
 		// Find the first objects of type FSM and Input
-		val m = mResource.allContents.filter(typeof(FSM)).head;
-		val i = iResource.allContents.filter(typeof(Input)).head;
+		val m = mResource.allContents.filter(FSM).head;
+		val i = iResource.allContents.filter(Input).head;
 
 		// Run simulation on them
 		return simulate(m, i);

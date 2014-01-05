@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -52,16 +53,38 @@ public class Simulation {
           }
         };
         final FSMTransition transition = IterableExtensions.<FSMTransition>findFirst(_transitions, _function_1);
-        boolean _and = false;
-        boolean _notEquals = (!Objects.equal(transition, null));
-        if (!_notEquals) {
-          _and = false;
-        } else {
-          FSMState _target = transition.getTarget();
-          boolean _notEquals_1 = (!Objects.equal(_target, null));
-          _and = (_notEquals && _notEquals_1);
+        boolean _equals = Objects.equal(transition, null);
+        if (_equals) {
+          EList<FSMState> _states_1 = m.getStates();
+          final Function1<FSMState,Boolean> _function_2 = new Function1<FSMState,Boolean>() {
+            public Boolean apply(final FSMState it) {
+              EList<FSMTransition> _transitions = it.getTransitions();
+              final Function1<FSMTransition,Boolean> _function = new Function1<FSMTransition,Boolean>() {
+                public Boolean apply(final FSMTransition it) {
+                  String _value = given.getValue();
+                  String _input = it.getInput();
+                  boolean _equals = Objects.equal(_value, _input);
+                  return Boolean.valueOf(_equals);
+                }
+              };
+              boolean _exists = IterableExtensions.<FSMTransition>exists(_transitions, _function);
+              return Boolean.valueOf(_exists);
+            }
+          };
+          boolean _exists = IterableExtensions.<FSMState>exists(_states_1, _function_2);
+          if (_exists) {
+            String _value = given.getValue();
+            IllegalArgumentException _illegalArgumentException = new IllegalArgumentException(_value);
+            throw _illegalArgumentException;
+          } else {
+            String _value_1 = given.getValue();
+            NoSuchElementException _noSuchElementException = new NoSuchElementException(_value_1);
+            throw _noSuchElementException;
+          }
         }
-        if (_and) {
+        FSMState _target = transition.getTarget();
+        boolean _notEquals = (!Objects.equal(_target, null));
+        if (_notEquals) {
           FSMState _target_1 = transition.getTarget();
           state = _target_1;
         }

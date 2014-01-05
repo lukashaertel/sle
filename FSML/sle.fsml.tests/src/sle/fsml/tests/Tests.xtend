@@ -17,9 +17,11 @@ import org.junit.Before
 import sle.fsml.fSML.FSMState
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.resource.XtextResourceSet
+import java.util.NoSuchElementException
 
-@RunWith(typeof(XtextRunner))
-@InjectWith(typeof(FSMLInjectorProvider))
+@RunWith(XtextRunner)
+@InjectWith(FSMLInjectorProvider)
 class Tests
 {
 
@@ -144,18 +146,92 @@ state exception {
   pass;
   mute;
   release -> locked;
-}''')
+}''');
 
 		// Assert EObject equality
 		assertEEquals(fsm, fsmParsed);
 	}
 
 	/**
+	 * Negative test for parser, s. figure D.37
+	 */
+	@Test
+	def void testNegativeKeyword()
+	{
+		val annotatedFSM = annotatedParse(
+			'''innnitial state locked {
+	ticket/collect -> unlocked;
+	pass/alarm -> exception;
+}
+
+state unlocked {
+	ticket/eject;
+	pass -> locked;
+}
+
+state exception {
+	ticket/eject;
+	pass;
+	mute;
+	release -> locked;
+}''');
+
+		// Assert that the model could not be parsed
+		assertNull(annotatedFSM.key);
+
+		// Assert there were no warnings
+		assertEquals(annotatedFSM.value.key.size, 0);
+
+		// Assert there was one error
+		assertEquals(annotatedFSM.value.value.size, 1);
+
+		// Store the error for more assertions
+		val error = annotatedFSM.value.value.head;
+
+		// Assert correct position and message of the error
+		assertEquals(error.line, 1);
+		assertEquals(error.message, "missing EOF at 'innnitial'");
+	}
+
+	/**
+	 * Negative test for invalid inputs, s. figure D.38
+	 */
+	@Test(expected=NoSuchElementException)
+	def void testNegativeInvalidInput()
+	{
+
+		// Create the input model
+		val input = createInput => [
+			inputs += createInputEntry => [value = 'foo'];
+		];
+
+		// Simulate, will run into an expected exception
+		Simulation::simulate(fsm, input);
+	}
+
+	/**
+	 * Negative test for infeasible inputs, s. figure D.39
+	 */
+	@Test(expected=IllegalArgumentException)
+	def void testNegativeInfeasibleInput()
+	{
+
+		// Create the input model
+		val input = createInput => [
+			inputs += createInputEntry => [value = 'mute'];
+		];
+
+		// Simulate, will run into an expected exception
+		Simulation::simulate(fsm, input);
+	}
+
+	/**
 	 * testSimulation tests the simulator against a reference result
 	 */
 	@Test
-	def testSimulation()
+	def void testSimulation()
 	{
+
 		// Create the input model
 		val input = createInput => [
 			inputs += createInputEntry => [value = 'ticket'];
@@ -197,6 +273,25 @@ state exception {
 
 		// Assert equality
 		assertEquals(expectedResult, result);
+	}
+
+	/**
+	 * Helper for parsing a model and annotating it with the warnings and errors the parsing generated
+	 */
+	def annotatedParse(CharSequence s)
+	{
+
+		// Make a new resource-set
+		val resourceSet = new XtextResourceSet;
+
+		// Parse the given string
+		val parsed = parse(s, resourceSet);
+
+		// Assume the last resource to be the one generated for the char sequence
+		val resource = resourceSet.resources.last;
+
+		// Return the annotated model
+		return parsed -> (resource.warnings -> resource.errors);
 	}
 
 	/**

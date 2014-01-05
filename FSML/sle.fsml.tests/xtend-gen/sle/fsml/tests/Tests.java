@@ -5,15 +5,20 @@ import com.google.inject.Inject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.junit4.util.ParseHelper;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -267,6 +272,115 @@ public class Tests {
   }
   
   /**
+   * Negative test for parser, s. figure D.37
+   */
+  @Test
+  public void testNegativeKeyword() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("innnitial state locked {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ticket/collect -> unlocked;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("pass/alarm -> exception;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("state unlocked {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ticket/eject;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("pass -> locked;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("state exception {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ticket/eject;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("pass;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("mute;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("release -> locked;");
+    _builder.newLine();
+    _builder.append("}");
+    final Pair<FSM,Pair<EList<Diagnostic>,EList<Diagnostic>>> annotatedFSM = this.annotatedParse(_builder);
+    FSM _key = annotatedFSM.getKey();
+    Assert.assertNull(_key);
+    Pair<EList<Diagnostic>,EList<Diagnostic>> _value = annotatedFSM.getValue();
+    EList<Diagnostic> _key_1 = _value.getKey();
+    int _size = _key_1.size();
+    Assert.assertEquals(_size, 0);
+    Pair<EList<Diagnostic>,EList<Diagnostic>> _value_1 = annotatedFSM.getValue();
+    EList<Diagnostic> _value_2 = _value_1.getValue();
+    int _size_1 = _value_2.size();
+    Assert.assertEquals(_size_1, 1);
+    Pair<EList<Diagnostic>,EList<Diagnostic>> _value_3 = annotatedFSM.getValue();
+    EList<Diagnostic> _value_4 = _value_3.getValue();
+    final Diagnostic error = IterableExtensions.<Diagnostic>head(_value_4);
+    int _line = error.getLine();
+    Assert.assertEquals(_line, 1);
+    String _message = error.getMessage();
+    Assert.assertEquals(_message, "missing EOF at \'innnitial\'");
+  }
+  
+  /**
+   * Negative test for invalid inputs, s. figure D.38
+   */
+  @Test(expected = NoSuchElementException.class)
+  public void testNegativeInvalidInput() {
+    Input _createInput = this.inputFactory.createInput();
+    final Procedure1<Input> _function = new Procedure1<Input>() {
+      public void apply(final Input it) {
+        EList<InputEntry> _inputs = it.getInputs();
+        InputEntry _createInputEntry = Tests.this.inputFactory.createInputEntry();
+        final Procedure1<InputEntry> _function = new Procedure1<InputEntry>() {
+          public void apply(final InputEntry it) {
+            it.setValue("foo");
+          }
+        };
+        InputEntry _doubleArrow = ObjectExtensions.<InputEntry>operator_doubleArrow(_createInputEntry, _function);
+        _inputs.add(_doubleArrow);
+      }
+    };
+    final Input input = ObjectExtensions.<Input>operator_doubleArrow(_createInput, _function);
+    Simulation.simulate(this.fsm, input);
+  }
+  
+  /**
+   * Negative test for infeasible inputs, s. figure D.39
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testNegativeInfeasibleInput() {
+    Input _createInput = this.inputFactory.createInput();
+    final Procedure1<Input> _function = new Procedure1<Input>() {
+      public void apply(final Input it) {
+        EList<InputEntry> _inputs = it.getInputs();
+        InputEntry _createInputEntry = Tests.this.inputFactory.createInputEntry();
+        final Procedure1<InputEntry> _function = new Procedure1<InputEntry>() {
+          public void apply(final InputEntry it) {
+            it.setValue("mute");
+          }
+        };
+        InputEntry _doubleArrow = ObjectExtensions.<InputEntry>operator_doubleArrow(_createInputEntry, _function);
+        _inputs.add(_doubleArrow);
+      }
+    };
+    final Input input = ObjectExtensions.<Input>operator_doubleArrow(_createInput, _function);
+    Simulation.simulate(this.fsm, input);
+  }
+  
+  /**
    * testSimulation tests the simulator against a reference result
    */
   @Test
@@ -420,6 +534,25 @@ public class Tests {
     final List<Pair<String,FSMState>> expectedResult = Collections.<Pair<String, FSMState>>unmodifiableList(Lists.<Pair<String, FSMState>>newArrayList(_mappedTo, _mappedTo_1, _mappedTo_2, _mappedTo_3, _mappedTo_4, _mappedTo_5, _mappedTo_6, _mappedTo_7, _mappedTo_8, _mappedTo_9, _mappedTo_10, _mappedTo_11, _mappedTo_12, _mappedTo_13));
     final LinkedList<Pair<String,FSMState>> result = Simulation.simulate(this.fsm, input);
     Assert.assertEquals(expectedResult, result);
+  }
+  
+  /**
+   * Helper for parsing a model and annotating it with the warnings and errors the parsing generated
+   */
+  public Pair<FSM,Pair<EList<Diagnostic>,EList<Diagnostic>>> annotatedParse(final CharSequence s) {
+    try {
+      XtextResourceSet _xtextResourceSet = new XtextResourceSet();
+      final XtextResourceSet resourceSet = _xtextResourceSet;
+      final FSM parsed = this.parseHelper.parse(s, resourceSet);
+      EList<Resource> _resources = resourceSet.getResources();
+      final Resource resource = IterableExtensions.<Resource>last(_resources);
+      EList<Diagnostic> _warnings = resource.getWarnings();
+      EList<Diagnostic> _errors = resource.getErrors();
+      Pair<EList<Diagnostic>,EList<Diagnostic>> _mappedTo = Pair.<EList<Diagnostic>, EList<Diagnostic>>of(_warnings, _errors);
+      return Pair.<FSM, Pair<EList<Diagnostic>,EList<Diagnostic>>>of(parsed, _mappedTo);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   /**
