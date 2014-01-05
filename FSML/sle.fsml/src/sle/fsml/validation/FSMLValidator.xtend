@@ -21,7 +21,7 @@ class FSMLValidator extends AbstractFSMLValidator
 	def checkHasInitialState(FSM fsm)
 	{
 		val initCount = fsm.states.filter[initial].size
-		
+
 		if(initCount < 1)
 		{
 			error('FSM has no initial state', fsm, FSMLPackage.Literals.FSM__STATES)
@@ -33,6 +33,16 @@ class FSMLValidator extends AbstractFSMLValidator
 	}
 
 	@Check
+	def checkSelfTargeting(FSMTransition transition)
+	{
+		if(transition.target != null && transition.target.equals(transition.eContainer))
+		{
+			warning('Transition does not change state, target should be omitted', transition,
+				FSMLPackage.Literals.FSM_TRANSITION__TARGET);
+		}
+	}
+
+	@Check
 	def checkDeterministic(FSMTransition transition)
 	{
 		val container = transition.eContainer as FSMState
@@ -40,7 +50,7 @@ class FSMLValidator extends AbstractFSMLValidator
 		if(container.transitions.exists[x|x.input == transition.input && x != transition])
 		{
 			error('Transition shares input with other transition', transition,
-				FSMLPackage.Literals.FSM_TRANSITION__INPUT)
+				FSMLPackage.Literals.FSM_TRANSITION__INPUT);
 		}
 	}
 
@@ -83,7 +93,7 @@ class FSMLValidator extends AbstractFSMLValidator
 	{
 		if(!state.findBF([x|incomingStates(x)], [x|x.initial]))
 		{
-			error('State is not reachable from the initial state', state, FSMLPackage.Literals.FSM_STATE__NAME)
+			error('State is not reachable from the initial state', state, FSMLPackage.Literals.FSM_STATE__NAME);
 		}
 	}
 }

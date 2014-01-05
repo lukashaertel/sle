@@ -150,31 +150,13 @@ public interface FSMLPackage extends EPackage
   int FSM_TRANSITION__INPUT = 0;
 
   /**
-   * The feature id for the '<em><b>With Action</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FSM_TRANSITION__WITH_ACTION = 1;
-
-  /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FSM_TRANSITION__ACTION = 2;
-
-  /**
-   * The feature id for the '<em><b>With Target</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FSM_TRANSITION__WITH_TARGET = 3;
+  int FSM_TRANSITION__ACTION = 1;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -183,7 +165,7 @@ public interface FSMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FSM_TRANSITION__TARGET = 4;
+  int FSM_TRANSITION__TARGET = 2;
 
   /**
    * The number of structural features of the '<em>FSM Transition</em>' class.
@@ -192,7 +174,7 @@ public interface FSMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FSM_TRANSITION_FEATURE_COUNT = 5;
+  int FSM_TRANSITION_FEATURE_COUNT = 3;
 
 
   /**
@@ -281,17 +263,6 @@ public interface FSMLPackage extends EPackage
   EAttribute getFSMTransition_Input();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.fsml.fSML.FSMTransition#isWithAction <em>With Action</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>With Action</em>'.
-   * @see sle.fsml.fSML.FSMTransition#isWithAction()
-   * @see #getFSMTransition()
-   * @generated
-   */
-  EAttribute getFSMTransition_WithAction();
-
-  /**
    * Returns the meta object for the attribute '{@link sle.fsml.fSML.FSMTransition#getAction <em>Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -301,17 +272,6 @@ public interface FSMLPackage extends EPackage
    * @generated
    */
   EAttribute getFSMTransition_Action();
-
-  /**
-   * Returns the meta object for the attribute '{@link sle.fsml.fSML.FSMTransition#isWithTarget <em>With Target</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>With Target</em>'.
-   * @see sle.fsml.fSML.FSMTransition#isWithTarget()
-   * @see #getFSMTransition()
-   * @generated
-   */
-  EAttribute getFSMTransition_WithTarget();
 
   /**
    * Returns the meta object for the reference '{@link sle.fsml.fSML.FSMTransition#getTarget <em>Target</em>}'.
@@ -418,28 +378,12 @@ public interface FSMLPackage extends EPackage
     EAttribute FSM_TRANSITION__INPUT = eINSTANCE.getFSMTransition_Input();
 
     /**
-     * The meta object literal for the '<em><b>With Action</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FSM_TRANSITION__WITH_ACTION = eINSTANCE.getFSMTransition_WithAction();
-
-    /**
      * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute FSM_TRANSITION__ACTION = eINSTANCE.getFSMTransition_Action();
-
-    /**
-     * The meta object literal for the '<em><b>With Target</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FSM_TRANSITION__WITH_TARGET = eINSTANCE.getFSMTransition_WithTarget();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.

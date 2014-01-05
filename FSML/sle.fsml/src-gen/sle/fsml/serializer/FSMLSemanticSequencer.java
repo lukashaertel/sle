@@ -57,7 +57,7 @@ public class FSMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (input=ID (withAction?='/' action=ID)? (withTarget?='->' target=[FSMState|ID])?)
+	 *     (input=ID action=ID? target=[FSMState|ID]?)
 	 */
 	protected void sequence_FSMTransition(EObject context, FSMTransition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

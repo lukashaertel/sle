@@ -428,25 +428,25 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFSMTransition"
-    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:199:1: ruleFSMTransition returns [EObject current=null] : ( ( (lv_input_0_0= RULE_ID ) ) ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )? ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) ;
+    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:199:1: ruleFSMTransition returns [EObject current=null] : ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) ;
     public final EObject ruleFSMTransition() throws RecognitionException {
         EObject current = null;
 
         Token lv_input_0_0=null;
-        Token lv_withAction_1_0=null;
+        Token otherlv_1=null;
         Token lv_action_2_0=null;
-        Token lv_withTarget_3_0=null;
+        Token otherlv_3=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
 
          enterRule(); 
             
         try {
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:202:28: ( ( ( (lv_input_0_0= RULE_ID ) ) ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )? ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) )
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )? ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:202:28: ( ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
             {
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )? ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) ) ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )? ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';'
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';'
             {
             // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) )
             // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:204:1: (lv_input_0_0= RULE_ID )
@@ -474,7 +474,7 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:2: ( ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) ) )?
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:2: (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -483,37 +483,19 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:3: ( (lv_withAction_1_0= '/' ) ) ( (lv_action_2_0= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:4: otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) )
                     {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:3: ( (lv_withAction_1_0= '/' ) )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:222:1: (lv_withAction_1_0= '/' )
-                    {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:222:1: (lv_withAction_1_0= '/' )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:223:3: lv_withAction_1_0= '/'
-                    {
-                    lv_withAction_1_0=(Token)match(input,15,FOLLOW_15_in_ruleFSMTransition425); 
+                    otherlv_1=(Token)match(input,15,FOLLOW_15_in_ruleFSMTransition419); 
 
-                            newLeafNode(lv_withAction_1_0, grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0());
+                        	newLeafNode(otherlv_1, grammarAccess.getFSMTransitionAccess().getSolidusKeyword_1_0());
                         
-
-                    	        if (current==null) {
-                    	            current = createModelElement(grammarAccess.getFSMTransitionRule());
-                    	        }
-                           		setWithLastConsumed(current, "withAction", true, "/");
-                    	    
-
-                    }
-
-
-                    }
-
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:236:2: ( (lv_action_2_0= RULE_ID ) )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:237:1: (lv_action_2_0= RULE_ID )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:225:1: ( (lv_action_2_0= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_action_2_0= RULE_ID )
                     {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:237:1: (lv_action_2_0= RULE_ID )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:238:3: lv_action_2_0= RULE_ID
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_action_2_0= RULE_ID )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:227:3: lv_action_2_0= RULE_ID
                     {
-                    lv_action_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition455); 
+                    lv_action_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition436); 
 
                     			newLeafNode(lv_action_2_0, grammarAccess.getFSMTransitionAccess().getActionIDTerminalRuleCall_1_1_0()); 
                     		
@@ -539,7 +521,7 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:254:4: ( ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) ) )?
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:4: (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -548,42 +530,24 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:254:5: ( (lv_withTarget_3_0= '->' ) ) ( (otherlv_4= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:6: otherlv_3= '->' ( (otherlv_4= RULE_ID ) )
                     {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:254:5: ( (lv_withTarget_3_0= '->' ) )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:255:1: (lv_withTarget_3_0= '->' )
-                    {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:255:1: (lv_withTarget_3_0= '->' )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:256:3: lv_withTarget_3_0= '->'
-                    {
-                    lv_withTarget_3_0=(Token)match(input,16,FOLLOW_16_in_ruleFSMTransition481); 
+                    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleFSMTransition456); 
 
-                            newLeafNode(lv_withTarget_3_0, grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0());
+                        	newLeafNode(otherlv_3, grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0());
                         
-
-                    	        if (current==null) {
-                    	            current = createModelElement(grammarAccess.getFSMTransitionRule());
-                    	        }
-                           		setWithLastConsumed(current, "withTarget", true, "->");
-                    	    
-
-                    }
-
-
-                    }
-
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:269:2: ( (otherlv_4= RULE_ID ) )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:270:1: (otherlv_4= RULE_ID )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:247:1: ( (otherlv_4= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:248:1: (otherlv_4= RULE_ID )
                     {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:270:1: (otherlv_4= RULE_ID )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:271:3: otherlv_4= RULE_ID
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:248:1: (otherlv_4= RULE_ID )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:249:3: otherlv_4= RULE_ID
                     {
 
                     			if (current==null) {
                     	            current = createModelElement(grammarAccess.getFSMTransitionRule());
                     	        }
                             
-                    otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition514); 
+                    otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition476); 
 
                     		newLeafNode(otherlv_4, grammarAccess.getFSMTransitionAccess().getTargetFSMStateCrossReference_2_1_0()); 
                     	
@@ -599,7 +563,7 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleFSMTransition528); 
+            otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleFSMTransition490); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getFSMTransitionAccess().getSemicolonKeyword_3());
                 
@@ -641,10 +605,10 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleFSMTransition_in_entryRuleFSMTransition349 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFSMTransition359 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition401 = new BitSet(new long[]{0x0000000000038000L});
-    public static final BitSet FOLLOW_15_in_ruleFSMTransition425 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition455 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_16_in_ruleFSMTransition481 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition514 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFSMTransition528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleFSMTransition419 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition436 = new BitSet(new long[]{0x0000000000030000L});
+    public static final BitSet FOLLOW_16_in_ruleFSMTransition456 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition476 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFSMTransition490 = new BitSet(new long[]{0x0000000000000002L});
 
 }

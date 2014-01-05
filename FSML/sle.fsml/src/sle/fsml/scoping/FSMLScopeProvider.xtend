@@ -3,6 +3,10 @@
  */
 package sle.fsml.scoping
 
+import sle.fsml.fSML.FSM
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.Scopes
+
 /**
  * This class contains custom scoping description.
  * 
@@ -11,5 +15,8 @@ package sle.fsml.scoping
  *
  */
 class FSMLScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-
+	def scope_FSMTransition_target(FSM fsm, EReference ref)
+	{
+		return Scopes::scopeFor(fsm.states);
+	}
 }

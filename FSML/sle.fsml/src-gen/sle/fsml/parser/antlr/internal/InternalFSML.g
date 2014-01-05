@@ -218,22 +218,11 @@ ruleFSMTransition returns [EObject current=null]
 	    }
 
 )
-)((
-(
-		lv_withAction_1_0=	'/' 
+)(	otherlv_1='/' 
     {
-        newLeafNode(lv_withAction_1_0, grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0());
+    	newLeafNode(otherlv_1, grammarAccess.getFSMTransitionAccess().getSolidusKeyword_1_0());
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFSMTransitionRule());
-	        }
-       		setWithLastConsumed($current, "withAction", true, "/");
-	    }
-
-)
-)(
+(
 (
 		lv_action_2_0=RULE_ID
 		{
@@ -251,22 +240,11 @@ ruleFSMTransition returns [EObject current=null]
 	    }
 
 )
-))?((
-(
-		lv_withTarget_3_0=	'->' 
+))?(	otherlv_3='->' 
     {
-        newLeafNode(lv_withTarget_3_0, grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0());
+    	newLeafNode(otherlv_3, grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0());
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFSMTransitionRule());
-	        }
-       		setWithLastConsumed($current, "withTarget", true, "->");
-	    }
-
-)
-)(
+(
 (
 		{
 			if ($current==null) {

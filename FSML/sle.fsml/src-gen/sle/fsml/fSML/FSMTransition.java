@@ -13,9 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link sle.fsml.fSML.FSMTransition#getInput <em>Input</em>}</li>
- *   <li>{@link sle.fsml.fSML.FSMTransition#isWithAction <em>With Action</em>}</li>
  *   <li>{@link sle.fsml.fSML.FSMTransition#getAction <em>Action</em>}</li>
- *   <li>{@link sle.fsml.fSML.FSMTransition#isWithTarget <em>With Target</em>}</li>
  *   <li>{@link sle.fsml.fSML.FSMTransition#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
@@ -53,32 +51,6 @@ public interface FSMTransition extends EObject
   void setInput(String value);
 
   /**
-   * Returns the value of the '<em><b>With Action</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>With Action</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>With Action</em>' attribute.
-   * @see #setWithAction(boolean)
-   * @see sle.fsml.fSML.FSMLPackage#getFSMTransition_WithAction()
-   * @model
-   * @generated
-   */
-  boolean isWithAction();
-
-  /**
-   * Sets the value of the '{@link sle.fsml.fSML.FSMTransition#isWithAction <em>With Action</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>With Action</em>' attribute.
-   * @see #isWithAction()
-   * @generated
-   */
-  void setWithAction(boolean value);
-
-  /**
    * Returns the value of the '<em><b>Action</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -103,32 +75,6 @@ public interface FSMTransition extends EObject
    * @generated
    */
   void setAction(String value);
-
-  /**
-   * Returns the value of the '<em><b>With Target</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>With Target</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>With Target</em>' attribute.
-   * @see #setWithTarget(boolean)
-   * @see sle.fsml.fSML.FSMLPackage#getFSMTransition_WithTarget()
-   * @model
-   * @generated
-   */
-  boolean isWithTarget();
-
-  /**
-   * Sets the value of the '{@link sle.fsml.fSML.FSMTransition#isWithTarget <em>With Target</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>With Target</em>' attribute.
-   * @see #isWithTarget()
-   * @generated
-   */
-  void setWithTarget(boolean value);
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.

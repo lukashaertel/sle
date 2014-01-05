@@ -191,7 +191,7 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFSMTransition_WithAction()
+  public EAttribute getFSMTransition_Action()
   {
     return (EAttribute)fsmTransitionEClass.getEStructuralFeatures().get(1);
   }
@@ -201,29 +201,9 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFSMTransition_Action()
-  {
-    return (EAttribute)fsmTransitionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getFSMTransition_WithTarget()
-  {
-    return (EAttribute)fsmTransitionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getFSMTransition_Target()
   {
-    return (EReference)fsmTransitionEClass.getEStructuralFeatures().get(4);
+    return (EReference)fsmTransitionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -266,9 +246,7 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
 
     fsmTransitionEClass = createEClass(FSM_TRANSITION);
     createEAttribute(fsmTransitionEClass, FSM_TRANSITION__INPUT);
-    createEAttribute(fsmTransitionEClass, FSM_TRANSITION__WITH_ACTION);
     createEAttribute(fsmTransitionEClass, FSM_TRANSITION__ACTION);
-    createEAttribute(fsmTransitionEClass, FSM_TRANSITION__WITH_TARGET);
     createEReference(fsmTransitionEClass, FSM_TRANSITION__TARGET);
   }
 
@@ -313,9 +291,7 @@ public class FSMLPackageImpl extends EPackageImpl implements FSMLPackage
 
     initEClass(fsmTransitionEClass, FSMTransition.class, "FSMTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFSMTransition_Input(), ecorePackage.getEString(), "input", null, 0, 1, FSMTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFSMTransition_WithAction(), ecorePackage.getEBoolean(), "withAction", null, 0, 1, FSMTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFSMTransition_Action(), ecorePackage.getEString(), "action", null, 0, 1, FSMTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFSMTransition_WithTarget(), ecorePackage.getEBoolean(), "withTarget", null, 0, 1, FSMTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFSMTransition_Target(), this.getFSMState(), null, "target", null, 0, 1, FSMTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

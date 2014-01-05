@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalFSMLParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'state'", "'{'", "'}'", "';'", "'initial'", "'/'", "'->'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'state'", "'{'", "'}'", "';'", "'/'", "'->'", "'initial'"
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
@@ -127,7 +127,7 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==11||LA1_0==15) ) {
+                if ( (LA1_0==11||LA1_0==17) ) {
                     alt1=1;
                 }
 
@@ -382,7 +382,7 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==15) ) {
+            if ( (LA2_0==17) ) {
                 alt2=1;
             }
             switch (alt2) {
@@ -971,7 +971,7 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==16) ) {
+            if ( (LA4_0==15) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -1067,7 +1067,7 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==17) ) {
+            if ( (LA5_0==16) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1216,31 +1216,21 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_1__0__Impl"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:474:1: rule__FSMTransition__Group_1__0__Impl : ( ( rule__FSMTransition__WithActionAssignment_1_0 ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:474:1: rule__FSMTransition__Group_1__0__Impl : ( '/' ) ;
     public final void rule__FSMTransition__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:478:1: ( ( ( rule__FSMTransition__WithActionAssignment_1_0 ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:479:1: ( ( rule__FSMTransition__WithActionAssignment_1_0 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:478:1: ( ( '/' ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:479:1: ( '/' )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:479:1: ( ( rule__FSMTransition__WithActionAssignment_1_0 ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:480:1: ( rule__FSMTransition__WithActionAssignment_1_0 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:479:1: ( '/' )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:480:1: '/'
             {
-             before(grammarAccess.getFSMTransitionAccess().getWithActionAssignment_1_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:481:1: ( rule__FSMTransition__WithActionAssignment_1_0 )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:481:2: rule__FSMTransition__WithActionAssignment_1_0
-            {
-            pushFollow(FOLLOW_rule__FSMTransition__WithActionAssignment_1_0_in_rule__FSMTransition__Group_1__0__Impl905);
-            rule__FSMTransition__WithActionAssignment_1_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getFSMTransitionAccess().getWithActionAssignment_1_0()); 
+             before(grammarAccess.getFSMTransitionAccess().getSolidusKeyword_1_0()); 
+            match(input,15,FOLLOW_15_in_rule__FSMTransition__Group_1__0__Impl906); 
+             after(grammarAccess.getFSMTransitionAccess().getSolidusKeyword_1_0()); 
 
             }
 
@@ -1263,16 +1253,16 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_1__1"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:491:1: rule__FSMTransition__Group_1__1 : rule__FSMTransition__Group_1__1__Impl ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:493:1: rule__FSMTransition__Group_1__1 : rule__FSMTransition__Group_1__1__Impl ;
     public final void rule__FSMTransition__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:495:1: ( rule__FSMTransition__Group_1__1__Impl )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:496:2: rule__FSMTransition__Group_1__1__Impl
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:497:1: ( rule__FSMTransition__Group_1__1__Impl )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:498:2: rule__FSMTransition__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__FSMTransition__Group_1__1__Impl_in_rule__FSMTransition__Group_1__1935);
+            pushFollow(FOLLOW_rule__FSMTransition__Group_1__1__Impl_in_rule__FSMTransition__Group_1__1937);
             rule__FSMTransition__Group_1__1__Impl();
 
             state._fsp--;
@@ -1296,23 +1286,23 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_1__1__Impl"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:502:1: rule__FSMTransition__Group_1__1__Impl : ( ( rule__FSMTransition__ActionAssignment_1_1 ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:504:1: rule__FSMTransition__Group_1__1__Impl : ( ( rule__FSMTransition__ActionAssignment_1_1 ) ) ;
     public final void rule__FSMTransition__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:506:1: ( ( ( rule__FSMTransition__ActionAssignment_1_1 ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:507:1: ( ( rule__FSMTransition__ActionAssignment_1_1 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:508:1: ( ( ( rule__FSMTransition__ActionAssignment_1_1 ) ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:509:1: ( ( rule__FSMTransition__ActionAssignment_1_1 ) )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:507:1: ( ( rule__FSMTransition__ActionAssignment_1_1 ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:508:1: ( rule__FSMTransition__ActionAssignment_1_1 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:509:1: ( ( rule__FSMTransition__ActionAssignment_1_1 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:510:1: ( rule__FSMTransition__ActionAssignment_1_1 )
             {
              before(grammarAccess.getFSMTransitionAccess().getActionAssignment_1_1()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:509:1: ( rule__FSMTransition__ActionAssignment_1_1 )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:509:2: rule__FSMTransition__ActionAssignment_1_1
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:511:1: ( rule__FSMTransition__ActionAssignment_1_1 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:511:2: rule__FSMTransition__ActionAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__FSMTransition__ActionAssignment_1_1_in_rule__FSMTransition__Group_1__1__Impl962);
+            pushFollow(FOLLOW_rule__FSMTransition__ActionAssignment_1_1_in_rule__FSMTransition__Group_1__1__Impl964);
             rule__FSMTransition__ActionAssignment_1_1();
 
             state._fsp--;
@@ -1343,21 +1333,21 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_2__0"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:523:1: rule__FSMTransition__Group_2__0 : rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1 ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:525:1: rule__FSMTransition__Group_2__0 : rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1 ;
     public final void rule__FSMTransition__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:527:1: ( rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1 )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:528:2: rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:529:1: ( rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:530:2: rule__FSMTransition__Group_2__0__Impl rule__FSMTransition__Group_2__1
             {
-            pushFollow(FOLLOW_rule__FSMTransition__Group_2__0__Impl_in_rule__FSMTransition__Group_2__0996);
+            pushFollow(FOLLOW_rule__FSMTransition__Group_2__0__Impl_in_rule__FSMTransition__Group_2__0998);
             rule__FSMTransition__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FSMTransition__Group_2__1_in_rule__FSMTransition__Group_2__0999);
+            pushFollow(FOLLOW_rule__FSMTransition__Group_2__1_in_rule__FSMTransition__Group_2__01001);
             rule__FSMTransition__Group_2__1();
 
             state._fsp--;
@@ -1381,31 +1371,21 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_2__0__Impl"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:535:1: rule__FSMTransition__Group_2__0__Impl : ( ( rule__FSMTransition__WithTargetAssignment_2_0 ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:537:1: rule__FSMTransition__Group_2__0__Impl : ( '->' ) ;
     public final void rule__FSMTransition__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:539:1: ( ( ( rule__FSMTransition__WithTargetAssignment_2_0 ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:540:1: ( ( rule__FSMTransition__WithTargetAssignment_2_0 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:541:1: ( ( '->' ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:542:1: ( '->' )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:540:1: ( ( rule__FSMTransition__WithTargetAssignment_2_0 ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:541:1: ( rule__FSMTransition__WithTargetAssignment_2_0 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:542:1: ( '->' )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:543:1: '->'
             {
-             before(grammarAccess.getFSMTransitionAccess().getWithTargetAssignment_2_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:542:1: ( rule__FSMTransition__WithTargetAssignment_2_0 )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:542:2: rule__FSMTransition__WithTargetAssignment_2_0
-            {
-            pushFollow(FOLLOW_rule__FSMTransition__WithTargetAssignment_2_0_in_rule__FSMTransition__Group_2__0__Impl1026);
-            rule__FSMTransition__WithTargetAssignment_2_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getFSMTransitionAccess().getWithTargetAssignment_2_0()); 
+             before(grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0()); 
+            match(input,16,FOLLOW_16_in_rule__FSMTransition__Group_2__0__Impl1029); 
+             after(grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0()); 
 
             }
 
@@ -1428,16 +1408,16 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_2__1"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:552:1: rule__FSMTransition__Group_2__1 : rule__FSMTransition__Group_2__1__Impl ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:556:1: rule__FSMTransition__Group_2__1 : rule__FSMTransition__Group_2__1__Impl ;
     public final void rule__FSMTransition__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:556:1: ( rule__FSMTransition__Group_2__1__Impl )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:557:2: rule__FSMTransition__Group_2__1__Impl
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:560:1: ( rule__FSMTransition__Group_2__1__Impl )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:561:2: rule__FSMTransition__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__FSMTransition__Group_2__1__Impl_in_rule__FSMTransition__Group_2__11056);
+            pushFollow(FOLLOW_rule__FSMTransition__Group_2__1__Impl_in_rule__FSMTransition__Group_2__11060);
             rule__FSMTransition__Group_2__1__Impl();
 
             state._fsp--;
@@ -1461,23 +1441,23 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__Group_2__1__Impl"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:563:1: rule__FSMTransition__Group_2__1__Impl : ( ( rule__FSMTransition__TargetAssignment_2_1 ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:567:1: rule__FSMTransition__Group_2__1__Impl : ( ( rule__FSMTransition__TargetAssignment_2_1 ) ) ;
     public final void rule__FSMTransition__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:567:1: ( ( ( rule__FSMTransition__TargetAssignment_2_1 ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:568:1: ( ( rule__FSMTransition__TargetAssignment_2_1 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:571:1: ( ( ( rule__FSMTransition__TargetAssignment_2_1 ) ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:572:1: ( ( rule__FSMTransition__TargetAssignment_2_1 ) )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:568:1: ( ( rule__FSMTransition__TargetAssignment_2_1 ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:569:1: ( rule__FSMTransition__TargetAssignment_2_1 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:572:1: ( ( rule__FSMTransition__TargetAssignment_2_1 ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:573:1: ( rule__FSMTransition__TargetAssignment_2_1 )
             {
              before(grammarAccess.getFSMTransitionAccess().getTargetAssignment_2_1()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:570:1: ( rule__FSMTransition__TargetAssignment_2_1 )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:570:2: rule__FSMTransition__TargetAssignment_2_1
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:574:1: ( rule__FSMTransition__TargetAssignment_2_1 )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:574:2: rule__FSMTransition__TargetAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__FSMTransition__TargetAssignment_2_1_in_rule__FSMTransition__Group_2__1__Impl1083);
+            pushFollow(FOLLOW_rule__FSMTransition__TargetAssignment_2_1_in_rule__FSMTransition__Group_2__1__Impl1087);
             rule__FSMTransition__TargetAssignment_2_1();
 
             state._fsp--;
@@ -1508,20 +1488,20 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSM__StatesAssignment"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:585:1: rule__FSM__StatesAssignment : ( ruleFSMState ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:589:1: rule__FSM__StatesAssignment : ( ruleFSMState ) ;
     public final void rule__FSM__StatesAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:589:1: ( ( ruleFSMState ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:590:1: ( ruleFSMState )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:593:1: ( ( ruleFSMState ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:594:1: ( ruleFSMState )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:590:1: ( ruleFSMState )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:591:1: ruleFSMState
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:594:1: ( ruleFSMState )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:595:1: ruleFSMState
             {
              before(grammarAccess.getFSMAccess().getStatesFSMStateParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleFSMState_in_rule__FSM__StatesAssignment1122);
+            pushFollow(FOLLOW_ruleFSMState_in_rule__FSM__StatesAssignment1126);
             ruleFSMState();
 
             state._fsp--;
@@ -1549,24 +1529,24 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMState__InitialAssignment_0"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:600:1: rule__FSMState__InitialAssignment_0 : ( ( 'initial' ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:604:1: rule__FSMState__InitialAssignment_0 : ( ( 'initial' ) ) ;
     public final void rule__FSMState__InitialAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:604:1: ( ( ( 'initial' ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:605:1: ( ( 'initial' ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:608:1: ( ( ( 'initial' ) ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:609:1: ( ( 'initial' ) )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:605:1: ( ( 'initial' ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:606:1: ( 'initial' )
-            {
-             before(grammarAccess.getFSMStateAccess().getInitialInitialKeyword_0_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:607:1: ( 'initial' )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:608:1: 'initial'
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:609:1: ( ( 'initial' ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:610:1: ( 'initial' )
             {
              before(grammarAccess.getFSMStateAccess().getInitialInitialKeyword_0_0()); 
-            match(input,15,FOLLOW_15_in_rule__FSMState__InitialAssignment_01158); 
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:611:1: ( 'initial' )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:612:1: 'initial'
+            {
+             before(grammarAccess.getFSMStateAccess().getInitialInitialKeyword_0_0()); 
+            match(input,17,FOLLOW_17_in_rule__FSMState__InitialAssignment_01162); 
              after(grammarAccess.getFSMStateAccess().getInitialInitialKeyword_0_0()); 
 
             }
@@ -1594,20 +1574,20 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMState__NameAssignment_2"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:623:1: rule__FSMState__NameAssignment_2 : ( RULE_ID ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:627:1: rule__FSMState__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__FSMState__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:627:1: ( ( RULE_ID ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:628:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:631:1: ( ( RULE_ID ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:632:1: ( RULE_ID )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:628:1: ( RULE_ID )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:629:1: RULE_ID
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:632:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:633:1: RULE_ID
             {
              before(grammarAccess.getFSMStateAccess().getNameIDTerminalRuleCall_2_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMState__NameAssignment_21197); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMState__NameAssignment_21201); 
              after(grammarAccess.getFSMStateAccess().getNameIDTerminalRuleCall_2_0()); 
 
             }
@@ -1631,20 +1611,20 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMState__TransitionsAssignment_4"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:638:1: rule__FSMState__TransitionsAssignment_4 : ( ruleFSMTransition ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:642:1: rule__FSMState__TransitionsAssignment_4 : ( ruleFSMTransition ) ;
     public final void rule__FSMState__TransitionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:642:1: ( ( ruleFSMTransition ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:643:1: ( ruleFSMTransition )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:646:1: ( ( ruleFSMTransition ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:647:1: ( ruleFSMTransition )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:643:1: ( ruleFSMTransition )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:644:1: ruleFSMTransition
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:647:1: ( ruleFSMTransition )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:648:1: ruleFSMTransition
             {
              before(grammarAccess.getFSMStateAccess().getTransitionsFSMTransitionParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleFSMTransition_in_rule__FSMState__TransitionsAssignment_41228);
+            pushFollow(FOLLOW_ruleFSMTransition_in_rule__FSMState__TransitionsAssignment_41232);
             ruleFSMTransition();
 
             state._fsp--;
@@ -1672,20 +1652,20 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FSMTransition__InputAssignment_0"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:653:1: rule__FSMTransition__InputAssignment_0 : ( RULE_ID ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:657:1: rule__FSMTransition__InputAssignment_0 : ( RULE_ID ) ;
     public final void rule__FSMTransition__InputAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:657:1: ( ( RULE_ID ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:658:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:661:1: ( ( RULE_ID ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:662:1: ( RULE_ID )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:658:1: ( RULE_ID )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:659:1: RULE_ID
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:662:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:663:1: RULE_ID
             {
              before(grammarAccess.getFSMTransitionAccess().getInputIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__InputAssignment_01259); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__InputAssignment_01263); 
              after(grammarAccess.getFSMTransitionAccess().getInputIDTerminalRuleCall_0_0()); 
 
             }
@@ -1708,66 +1688,21 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FSMTransition__InputAssignment_0"
 
 
-    // $ANTLR start "rule__FSMTransition__WithActionAssignment_1_0"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:668:1: rule__FSMTransition__WithActionAssignment_1_0 : ( ( '/' ) ) ;
-    public final void rule__FSMTransition__WithActionAssignment_1_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:672:1: ( ( ( '/' ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:673:1: ( ( '/' ) )
-            {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:673:1: ( ( '/' ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:674:1: ( '/' )
-            {
-             before(grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:675:1: ( '/' )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:676:1: '/'
-            {
-             before(grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0()); 
-            match(input,16,FOLLOW_16_in_rule__FSMTransition__WithActionAssignment_1_01295); 
-             after(grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0()); 
-
-            }
-
-             after(grammarAccess.getFSMTransitionAccess().getWithActionSolidusKeyword_1_0_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FSMTransition__WithActionAssignment_1_0"
-
-
     // $ANTLR start "rule__FSMTransition__ActionAssignment_1_1"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:691:1: rule__FSMTransition__ActionAssignment_1_1 : ( RULE_ID ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:672:1: rule__FSMTransition__ActionAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__FSMTransition__ActionAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:695:1: ( ( RULE_ID ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:696:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:676:1: ( ( RULE_ID ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:677:1: ( RULE_ID )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:696:1: ( RULE_ID )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:697:1: RULE_ID
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:677:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:678:1: RULE_ID
             {
              before(grammarAccess.getFSMTransitionAccess().getActionIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__ActionAssignment_1_11334); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__ActionAssignment_1_11294); 
              after(grammarAccess.getFSMTransitionAccess().getActionIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -1790,70 +1725,25 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FSMTransition__ActionAssignment_1_1"
 
 
-    // $ANTLR start "rule__FSMTransition__WithTargetAssignment_2_0"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:706:1: rule__FSMTransition__WithTargetAssignment_2_0 : ( ( '->' ) ) ;
-    public final void rule__FSMTransition__WithTargetAssignment_2_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:710:1: ( ( ( '->' ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:711:1: ( ( '->' ) )
-            {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:711:1: ( ( '->' ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:712:1: ( '->' )
-            {
-             before(grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:713:1: ( '->' )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:714:1: '->'
-            {
-             before(grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0()); 
-            match(input,17,FOLLOW_17_in_rule__FSMTransition__WithTargetAssignment_2_01370); 
-             after(grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0()); 
-
-            }
-
-             after(grammarAccess.getFSMTransitionAccess().getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FSMTransition__WithTargetAssignment_2_0"
-
-
     // $ANTLR start "rule__FSMTransition__TargetAssignment_2_1"
-    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:729:1: rule__FSMTransition__TargetAssignment_2_1 : ( ( RULE_ID ) ) ;
+    // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:687:1: rule__FSMTransition__TargetAssignment_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__FSMTransition__TargetAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:733:1: ( ( ( RULE_ID ) ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:734:1: ( ( RULE_ID ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:691:1: ( ( ( RULE_ID ) ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:692:1: ( ( RULE_ID ) )
             {
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:734:1: ( ( RULE_ID ) )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:735:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:692:1: ( ( RULE_ID ) )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:693:1: ( RULE_ID )
             {
              before(grammarAccess.getFSMTransitionAccess().getTargetFSMStateCrossReference_2_1_0()); 
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:736:1: ( RULE_ID )
-            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:737:1: RULE_ID
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:694:1: ( RULE_ID )
+            // ../sle.fsml.ui/src-gen/sle/fsml/ui/contentassist/antlr/internal/InternalFSML.g:695:1: RULE_ID
             {
              before(grammarAccess.getFSMTransitionAccess().getTargetFSMStateIDTerminalRuleCall_2_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__TargetAssignment_2_11413); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FSMTransition__TargetAssignment_2_11329); 
              after(grammarAccess.getFSMTransitionAccess().getTargetFSMStateIDTerminalRuleCall_2_1_0_1()); 
 
             }
@@ -1886,14 +1776,14 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
 
     public static final BitSet FOLLOW_ruleFSM_in_entryRuleFSM61 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFSM68 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSM__StatesAssignment_in_ruleFSM94 = new BitSet(new long[]{0x0000000000008802L});
+    public static final BitSet FOLLOW_rule__FSM__StatesAssignment_in_ruleFSM94 = new BitSet(new long[]{0x0000000000020802L});
     public static final BitSet FOLLOW_ruleFSMState_in_entryRuleFSMState122 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFSMState129 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMState__Group__0_in_ruleFSMState155 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFSMTransition_in_entryRuleFSMTransition182 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFSMTransition189 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group__0_in_ruleFSMTransition215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMState__Group__0__Impl_in_rule__FSMState__Group__0249 = new BitSet(new long[]{0x0000000000008800L});
+    public static final BitSet FOLLOW_rule__FSMState__Group__0__Impl_in_rule__FSMState__Group__0249 = new BitSet(new long[]{0x0000000000020800L});
     public static final BitSet FOLLOW_rule__FSMState__Group__1_in_rule__FSMState__Group__0252 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMState__InitialAssignment_0_in_rule__FSMState__Group__0__Impl279 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMState__Group__1__Impl_in_rule__FSMState__Group__1310 = new BitSet(new long[]{0x0000000000000010L});
@@ -1910,35 +1800,33 @@ public class InternalFSMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__FSMState__TransitionsAssignment_4_in_rule__FSMState__Group__4__Impl524 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__FSMState__Group__5__Impl_in_rule__FSMState__Group__5555 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__FSMState__Group__5__Impl583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group__0__Impl_in_rule__FSMTransition__Group__0626 = new BitSet(new long[]{0x0000000000034000L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group__0__Impl_in_rule__FSMTransition__Group__0626 = new BitSet(new long[]{0x000000000001C000L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group__1_in_rule__FSMTransition__Group__0629 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__InputAssignment_0_in_rule__FSMTransition__Group__0__Impl656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group__1__Impl_in_rule__FSMTransition__Group__1686 = new BitSet(new long[]{0x0000000000034000L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group__1__Impl_in_rule__FSMTransition__Group__1686 = new BitSet(new long[]{0x000000000001C000L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group__2_in_rule__FSMTransition__Group__1689 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group_1__0_in_rule__FSMTransition__Group__1__Impl716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group__2__Impl_in_rule__FSMTransition__Group__2747 = new BitSet(new long[]{0x0000000000034000L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group__2__Impl_in_rule__FSMTransition__Group__2747 = new BitSet(new long[]{0x000000000001C000L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group__3_in_rule__FSMTransition__Group__2750 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group_2__0_in_rule__FSMTransition__Group__2__Impl777 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group__3__Impl_in_rule__FSMTransition__Group__3808 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_14_in_rule__FSMTransition__Group__3__Impl836 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group_1__0__Impl_in_rule__FSMTransition__Group_1__0875 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__FSMTransition__Group_1__1_in_rule__FSMTransition__Group_1__0878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__WithActionAssignment_1_0_in_rule__FSMTransition__Group_1__0__Impl905 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group_1__1__Impl_in_rule__FSMTransition__Group_1__1935 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__ActionAssignment_1_1_in_rule__FSMTransition__Group_1__1__Impl962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__0__Impl_in_rule__FSMTransition__Group_2__0996 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__1_in_rule__FSMTransition__Group_2__0999 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__WithTargetAssignment_2_0_in_rule__FSMTransition__Group_2__0__Impl1026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__1__Impl_in_rule__FSMTransition__Group_2__11056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FSMTransition__TargetAssignment_2_1_in_rule__FSMTransition__Group_2__1__Impl1083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFSMState_in_rule__FSM__StatesAssignment1122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__FSMState__InitialAssignment_01158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMState__NameAssignment_21197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFSMTransition_in_rule__FSMState__TransitionsAssignment_41228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__InputAssignment_01259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__FSMTransition__WithActionAssignment_1_01295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__ActionAssignment_1_11334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__FSMTransition__WithTargetAssignment_2_01370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__TargetAssignment_2_11413 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__FSMTransition__Group_1__0__Impl906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group_1__1__Impl_in_rule__FSMTransition__Group_1__1937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FSMTransition__ActionAssignment_1_1_in_rule__FSMTransition__Group_1__1__Impl964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__0__Impl_in_rule__FSMTransition__Group_2__0998 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__1_in_rule__FSMTransition__Group_2__01001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__FSMTransition__Group_2__0__Impl1029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FSMTransition__Group_2__1__Impl_in_rule__FSMTransition__Group_2__11060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FSMTransition__TargetAssignment_2_1_in_rule__FSMTransition__Group_2__1__Impl1087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFSMState_in_rule__FSM__StatesAssignment1126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__FSMState__InitialAssignment_01162 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMState__NameAssignment_21201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFSMTransition_in_rule__FSMState__TransitionsAssignment_41232 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__InputAssignment_01263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__ActionAssignment_1_11294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FSMTransition__TargetAssignment_2_11329 = new BitSet(new long[]{0x0000000000000002L});
 
 }

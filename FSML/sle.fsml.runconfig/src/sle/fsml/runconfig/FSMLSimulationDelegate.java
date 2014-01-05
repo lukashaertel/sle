@@ -141,7 +141,7 @@ public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
 						state.getTransitions(), entry.getValue());
 
 				// If transition has a target, jump there
-				if (transition.isWithTarget()) {
+				if (transition.getTarget() != null) {
 					state = transition.getTarget();
 				}
 
@@ -155,7 +155,7 @@ public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
 
 				// Write a result
 				printStream.print("  ([");
-				if (transition.isWithAction()) {
+				if (transition.getAction() != null) {
 					printStream.print(transition.getAction());
 				}
 				printStream.print("], " + state.getName() + ")");

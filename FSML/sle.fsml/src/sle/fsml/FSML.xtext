@@ -10,4 +10,4 @@ FSMState:
 ;
 
 FSMTransition:
-	input=ID (withAction ?= '/' action=ID)? (withTarget ?= '->' target=[FSMState])? ';';
+	input=ID ('/' action=ID)? ('->' target=[FSMState])? ';';

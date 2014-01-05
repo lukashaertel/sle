@@ -88,23 +88,21 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInputAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cInputIDTerminalRuleCall_0_0 = (RuleCall)cInputAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cWithActionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Keyword cWithActionSolidusKeyword_1_0_0 = (Keyword)cWithActionAssignment_1_0.eContents().get(0);
+		private final Keyword cSolidusKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cActionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cActionIDTerminalRuleCall_1_1_0 = (RuleCall)cActionAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cWithTargetAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final Keyword cWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0 = (Keyword)cWithTargetAssignment_2_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cTargetAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final CrossReference cTargetFSMStateCrossReference_2_1_0 = (CrossReference)cTargetAssignment_2_1.eContents().get(0);
 		private final RuleCall cTargetFSMStateIDTerminalRuleCall_2_1_0_1 = (RuleCall)cTargetFSMStateCrossReference_2_1_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//FSMTransition:
-		//	input=ID (withAction?="/" action=ID)? (withTarget?="->" target=[FSMState])? ";";
+		//	input=ID ("/" action=ID)? ("->" target=[FSMState])? ";";
 		public ParserRule getRule() { return rule; }
 
-		//input=ID (withAction?="/" action=ID)? (withTarget?="->" target=[FSMState])? ";"
+		//input=ID ("/" action=ID)? ("->" target=[FSMState])? ";"
 		public Group getGroup() { return cGroup; }
 
 		//input=ID
@@ -113,14 +111,11 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getInputIDTerminalRuleCall_0_0() { return cInputIDTerminalRuleCall_0_0; }
 
-		//(withAction?="/" action=ID)?
+		//("/" action=ID)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//withAction?="/"
-		public Assignment getWithActionAssignment_1_0() { return cWithActionAssignment_1_0; }
-
 		//"/"
-		public Keyword getWithActionSolidusKeyword_1_0_0() { return cWithActionSolidusKeyword_1_0_0; }
+		public Keyword getSolidusKeyword_1_0() { return cSolidusKeyword_1_0; }
 
 		//action=ID
 		public Assignment getActionAssignment_1_1() { return cActionAssignment_1_1; }
@@ -128,14 +123,11 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getActionIDTerminalRuleCall_1_1_0() { return cActionIDTerminalRuleCall_1_1_0; }
 
-		//(withTarget?="->" target=[FSMState])?
+		//("->" target=[FSMState])?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//withTarget?="->"
-		public Assignment getWithTargetAssignment_2_0() { return cWithTargetAssignment_2_0; }
-
 		//"->"
-		public Keyword getWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0() { return cWithTargetHyphenMinusGreaterThanSignKeyword_2_0_0; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_2_0() { return cHyphenMinusGreaterThanSignKeyword_2_0; }
 
 		//target=[FSMState]
 		public Assignment getTargetAssignment_2_1() { return cTargetAssignment_2_1; }
@@ -214,7 +206,7 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FSMTransition:
-	//	input=ID (withAction?="/" action=ID)? (withTarget?="->" target=[FSMState])? ";";
+	//	input=ID ("/" action=ID)? ("->" target=[FSMState])? ";";
 	public FSMTransitionElements getFSMTransitionAccess() {
 		return (pFSMTransition != null) ? pFSMTransition : (pFSMTransition = new FSMTransitionElements());
 	}

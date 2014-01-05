@@ -84,7 +84,7 @@ class FSMLGenerator implements IGenerator
 			val states = fsm.states.map[s|s.name].toSet;
 			val initial = fsm.states.findFirst[s|s.initial].name;
 			val inputs = fsm.states.map[s|s.transitions.map[t|t.input]].flatten.toSet;
-			val actions = fsm.states.map[s|s.transitions.filter[t|t.withAction].map[t|t.action]].flatten.toSet;
+			val actions = fsm.states.map[s|s.transitions.filter[t|t.action != null].map[t|t.action]].flatten.toSet;
 
 			// FInd all states and write down their names
 			fsa.generateFile(packagePath + '/State.java',
@@ -179,7 +179,7 @@ class FSMLGenerator implements IGenerator
 						
 						«FOR s : fsm.states»
 							«FOR t : s.transitions»
-								add(State.«s.name», Input.«t.input», «IF t.withAction»Action.«t.action»«ELSE»null«ENDIF», «IF t.withTarget»State.«t.
+								add(State.«s.name», Input.«t.input», «IF t.action != null»Action.«t.action»«ELSE»null«ENDIF», «IF t.target != null»State.«t.
 					target.name»«ELSE»State.«s.name»«ENDIF»);
 							«ENDFOR»
 						«ENDFOR»
