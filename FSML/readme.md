@@ -7,23 +7,23 @@ Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple b
 * From the [*XText* update site](http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/) install `Xtext-2.4.3`
 * From the [*Itemis* update site](http://download.itemis.de/updates/) install `Xtext Antlr-2.0.0`
 
-JOHANNESPLUGINS
+ATL GMF Papyrus EMFCompare ....
 
-## Import and run the code
+## Import and run the Code
 * Go to `File > Import... > General > Existing Projects into Workspace` and import the `sle.fsml` and `sle.fsml.*` projects. Wait for *Eclipse* to index and build all the projects.  
 * Run a new *Eclipse Application* by clicking on the `sle.fsml` project root and selecting `Run > Run`. The new *Eclipse* now contains all the plugins required to edit and view the *FSML* files.  
 
 
-## Work with the editor
+## Work with the Editor
 ### Setting up a Project
 * In the new *Eclipse Application*, create a new *Plug-in Project*.
 * If you wan to use the *Java* clases, go to the `MANIFEST.MF` and add `sle.fsml` as a *Required Plug-in* or `sle.fsml.runtime` as an *Imported Package* under the *Dependencies* tab.
 
-### Working with *FSML* files
+### Working with *FSML* Files
 * Create or add any file with a `.fsml` or `.input` extension and open it. 
 * If *Eclipse* asks you if it should add the *XText Nature* click yes.
 
-### Working with the generated *Java* classes
+### Working with the generated *Java* Classes
 * A `src-gen` folder will be created as soon as any `.fsml` file is valid. 
 * To use the generated *Java* classes, add `src-gen` to the build path by right-clicking and selecting `Build Path > Use as Source Folder`. 
 
