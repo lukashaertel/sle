@@ -9,10 +9,9 @@ Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple b
 
 JOHANNESPLUGINS
 
-## Import the code
-Go to `File > Import... > General > Existing Projects into Workspace` and import the `sle.fsml` and `sle.fsml.*` projects. Wait for *Eclipse* to index and build all the projects.  
-
-Run a new *Eclipse Application* by clicking on the `sle.fsml` project root and selecting `Run > Run`. The new *Eclipse* now contains all the plugins required to edit and view the *FSML* files.  
+## Import and run the code
+* Go to `File > Import... > General > Existing Projects into Workspace` and import the `sle.fsml` and `sle.fsml.*` projects. Wait for *Eclipse* to index and build all the projects.  
+* Run a new *Eclipse Application* by clicking on the `sle.fsml` project root and selecting `Run > Run`. The new *Eclipse* now contains all the plugins required to edit and view the *FSML* files.  
 
 
 ## Work with the editor
