@@ -11,9 +11,9 @@ import sle.fsml.fSML.FSMTransition
 import java.util.Set
 
 /**
- * Custom validation rules. 
- *
- * see http://www.eclipse.org/Xtext/documentation.html#validation
+ * The validator checks all FSML constraints except for unique names, i.e.
+ * 'fsmResolvable' and the reference integrity 'fsmResolvable', as they
+ * are already maintained by XText
  */
 class FSMLValidator extends AbstractFSMLValidator
 {
@@ -27,11 +27,19 @@ class FSMLValidator extends AbstractFSMLValidator
 
 	public static val NOT_REACHABLE = "notReachable";
 
+	/**
+	 * Constraint check 'fsmSingleInitial'; checks if there is only one initial
+	 * state and marks all states if none of them is initial and marks some of
+	 * them if they are not exclusively initial
+	 */
 	@Check
 	def checkHasInitialState(FSM fsm)
 	{
+
+		// Count all the initial states
 		val initCount = fsm.states.filter[initial].size
 
+		// If none of them is initial, annotate with an error
 		if(initCount < 1)
 		{
 			for (s : fsm.states)
@@ -41,6 +49,8 @@ class FSMLValidator extends AbstractFSMLValidator
 		}
 		else if(initCount > 1)
 		{
+
+			// If more of them are initial, annotate with an error
 			for (s : fsm.states.filter[initial])
 			{
 				error('FSM has more than one initial state', s, FSMLPackage.Literals.FSM_STATE__NAME,
@@ -49,6 +59,10 @@ class FSMLValidator extends AbstractFSMLValidator
 		}
 	}
 
+	/**
+	 * This is an extraneous check that marks transition that explicitly direct to the
+	 * state they are in. This one is just for demonstrations purposes
+	 */
 	@Check
 	def checkSelfTargeting(FSMTransition transition)
 	{
@@ -59,11 +73,19 @@ class FSMLValidator extends AbstractFSMLValidator
 		}
 	}
 
+	/**
+	 * Check of the 'fsmDeterministic' constraint. This one is checked on single transitions
+	 * to make marking the indeterministic transitions easier
+	 */
 	@Check
 	def checkDeterministic(FSMTransition transition)
 	{
+
+		// Get the containing state
 		val container = transition.eContainer as FSMState
 
+		// If there are transitions with the same input that are not the transition in
+		// question, annotate with an error
 		if(container.transitions.exists[x|x.input == transition.input && x != transition])
 		{
 			error('Transition shares input with other transition', transition,
@@ -71,11 +93,17 @@ class FSMLValidator extends AbstractFSMLValidator
 		}
 	}
 
+	/**
+	 * Initial call of the breadth first search
+	 */
 	def <T> boolean findBF(T initial, (T)=>Iterable<T> next, (T)=>boolean p)
 	{
 		return findBF(initial, newHashSet, next, p)
 	}
 
+	/**
+	 * Continued call of the breadth first search; this method keeps a set of visited nodes
+	 */
 	def <T> boolean findBF(T initial, Set<T> visited, (T)=>Iterable<T> next, (T)=>boolean p)
 	{
 		visited.add(initial)
@@ -98,6 +126,9 @@ class FSMLValidator extends AbstractFSMLValidator
 		}
 	}
 
+	/**
+	 * Returns all states that have the given state as target in any of their transitions
+	 */
 	def incomingStates(FSMState s)
 	{
 		val fsm = s.eContainer as FSM
@@ -105,11 +136,17 @@ class FSMLValidator extends AbstractFSMLValidator
 		return fsm.states.map[transitions].flatten.filter[target == s].map[eContainer as FSMState]
 	}
 
+	/**
+	 * The constraint check for 'fsmReachable' checks if a state is reachable by
+	 * searching for the initial state with a breadth first search
+	 */
 	@Check
 	def checkIsReachable(FSMState state)
 	{
+		// Find x where x is initial, continue by extending on referencing states
 		if(!state.findBF([x|incomingStates(x)], [x|x.initial]))
 		{
+			// If not able to find the initial state, annotate error
 			error('State is not reachable from the initial state', state, FSMLPackage.Literals.FSM_STATE__NAME,
 				NOT_REACHABLE);
 		}

@@ -10,6 +10,9 @@ import java.io.PrintStream
 import java.io.FileNotFoundException
 import java.util.NoSuchElementException
 
+/**
+ * Static FSM simulation API
+ */
 class Simulation
 {
 
@@ -46,6 +49,7 @@ class Simulation
 				}
 				else
 				{
+
 					// Throw a no such element exception if the given input
 					// is not valid for any state
 					throw new NoSuchElementException(given.value);

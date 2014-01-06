@@ -1,9 +1,11 @@
 package sle.fsml.runconfig;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
@@ -12,8 +14,14 @@ import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * The tab that configures the simulation of the FSM
+ * @author lukashaertel
+ *
+ */
 public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * End-point for changed fields
@@ -161,6 +169,18 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public String getName() {
 		return "Simulation";
+	}
+
+	@Override
+	public Image getImage() {
+		// Usually reuse image; we initialize this every time we get the image
+		// for this tab
+		try {
+			return new Image(null, Platform.getBundle("sle.fsml.simulation")
+					.getEntry("icons/fsm.gif").openStream());
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 }

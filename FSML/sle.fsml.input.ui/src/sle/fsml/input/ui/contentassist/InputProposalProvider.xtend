@@ -11,13 +11,14 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import org.eclipse.core.resources.ResourcesPlugin
 
 /**
- * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
+ * The proposal provider suggests all inputs from all FSMs to the user while writing inputs
  */
 class InputProposalProvider extends AbstractInputProposalProvider
 {
 	override completeInputEntry_Value(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor)
 	{
+
 		// Use the basic implementation first
 		super.completeInputEntry_Value(model, assignment, context, acceptor);
 

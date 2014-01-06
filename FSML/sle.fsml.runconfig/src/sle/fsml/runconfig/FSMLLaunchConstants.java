@@ -1,5 +1,12 @@
 package sle.fsml.runconfig;
 
+/**
+ * Shared names of the attributes so the launch configruation tab can
+ * communicate with the launcher delegate
+ * 
+ * @author lukashaertel
+ * 
+ */
 public class FSMLLaunchConstants {
 
 	public static final String MACHINE_FILE_ATTR = "machineFile";

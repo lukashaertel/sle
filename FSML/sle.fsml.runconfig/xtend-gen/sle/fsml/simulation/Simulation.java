@@ -25,6 +25,9 @@ import sle.fsml.fSML.FSMTransition;
 import sle.fsml.input.input.Input;
 import sle.fsml.input.input.InputEntry;
 
+/**
+ * Static FSM simulation API
+ */
 @SuppressWarnings("all")
 public class Simulation {
   /**

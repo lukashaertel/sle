@@ -6,8 +6,8 @@ package sle.fsml.ui.contentassist
 import sle.fsml.ui.contentassist.AbstractFSMLProposalProvider
 
 /**
- * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
+ * The FSM editor does not provide proposals
  */
-class FSMLProposalProvider extends AbstractFSMLProposalProvider {
-	
+class FSMLProposalProvider extends AbstractFSMLProposalProvider
+{
 }

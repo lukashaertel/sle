@@ -4,10 +4,9 @@
 package sle.fsml.generator
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
 import sle.fsml.fSML.FSM
-import org.eclipse.emf.common.util.URI
 import sle.fsml.fSML.FSMState
 import sle.fsml.fSML.FSMTransition
 

@@ -181,7 +181,7 @@ public class Tests {
   }
   
   /**
-   * testParse tests the parser against the reference
+   * This method tests the input-parser against the reference
    */
   @Test
   public void testParse() {

@@ -18,5 +18,13 @@
             type="sle.fsml.runconfig.fsmlSimulation">
       </launchConfigurationTabGroup>
    </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="sle.fsml.runconfig.fsmlSimulation"
+            icon="icons/fsm.gif"
+            id="sle.fsml.runconfig.fsmlSimulationTypeImage">
+      </launchConfigurationTypeImage>
+   </extension>
 
 </plugin>

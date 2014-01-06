@@ -10,13 +10,14 @@ import sle.fsml.validation.FSMLValidator
 import org.eclipse.jface.text.FindReplaceDocumentAdapter
 
 /**
- * Custom quickfixes.
- *
- * see http://www.eclipse.org/Xtext/documentation.html#quickfixes
+ * Quickfixes for the errors and warnings specified by the validator
  */
 class FSMLQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 {
 
+	/**
+	 * Fix the 'No initial state' error by making the selected state initial
+	 */
 	@Fix(FSMLValidator::NO_INITIAL_STATE)
 	def makeStateInitial(Issue issue, IssueResolutionAcceptor acceptor)
 	{
@@ -31,6 +32,12 @@ class FSMLQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQ
 		]
 	}
 
+	/**
+	 * Fix the 'More than one initial state' error by making the selected state
+	 * non-initial; not a complete fix if more than two states are initial, but those
+	 * would require more inflection on the model and the quick-fixes are just text-
+	 * and offset-based
+	 */
 	@Fix(FSMLValidator::MORE_THAN_ONE_INITIAL_STATE)
 	def makeStateNonInitial(Issue issue, IssueResolutionAcceptor acceptor)
 	{
@@ -45,6 +52,9 @@ class FSMLQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQ
 		]
 	}
 
+	/**
+	 * Fix the 'Explicit non-transition' warning by removing the target
+	 */
 	@Fix(FSMLValidator::EXPLICIT_NON_TRANSITION)
 	def removeExplicitNonTransition(Issue issue, IssueResolutionAcceptor acceptor)
 	{

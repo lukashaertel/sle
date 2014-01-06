@@ -67,7 +67,7 @@ class Tests
 	def void setup()
 	{
 
-		// Create states ahead to make them referencable
+		// Create states ahead to make them referencable in code
 		locked = createFSMState => [initial = true; name = 'locked'];
 		unlocked = createFSMState => [name = 'unlocked'];
 		exception = createFSMState => [name = 'exception'];
@@ -276,7 +276,8 @@ state exception {
 	}
 
 	/**
-	 * Helper for parsing a model and annotating it with the warnings and errors the parsing generated
+	 * Helper for parsing a model and annotating it with the warnings and
+	 * errors the parsing process generated
 	 */
 	def annotatedParse(CharSequence s)
 	{

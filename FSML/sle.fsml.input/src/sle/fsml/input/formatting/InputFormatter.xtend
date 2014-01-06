@@ -5,26 +5,32 @@ package sle.fsml.input.formatting
 
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
-// import com.google.inject.Inject;
-// import sle.fsml.input.services.InputGrammarAccess
+import com.google.inject.Inject;
+import sle.fsml.input.services.InputGrammarAccess
 
 /**
- * This class contains custom formatting description.
- * 
- * see : http://www.eclipse.org/Xtext/documentation.html#formatting
- * on how and when to use it 
- * 
- * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
+ * This class does a little bit of formatting for the input files
  */
-class InputFormatter extends AbstractDeclarativeFormatter {
+class InputFormatter extends AbstractDeclarativeFormatter
+{
 
-//	@Inject extension InputGrammarAccess
-	
-	override protected void configureFormatting(FormattingConfig c) {
-// It's usually a good idea to activate the following three statements.
-// They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
-//		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
-//		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+	@Inject extension InputGrammarAccess
+
+	override protected void configureFormatting(FormattingConfig c)
+	{
+
+		// Keep commas and the period to the left
+		c.setNoSpace.before(inputAccess.commaKeyword_2_1_0);
+		c.setNoSpace.before(inputAccess.fullStopKeyword_4);
+
+		// Indent between the square brackets
+		c.setIndentation(inputAccess.leftSquareBracketKeyword_1, inputAccess.rightSquareBracketKeyword_3);
+
+		// Set allowed line wrapping
+		c.setLinewrap(0, 1, 2).after(inputAccess.leftSquareBracketKeyword_1);
+		c.setLinewrap(0, 1, 2).before(inputAccess.rightSquareBracketKeyword_3);
+		c.setLinewrap(0, 1, 2).after(inputAccess.rightSquareBracketKeyword_3);
+
+		c.setLinewrap(0, 1, 2).before(CMRule)
 	}
 }

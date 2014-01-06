@@ -9,6 +9,12 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
 
+/**
+ * Mainly boilerplate copy of the FileFieldEditor
+ * 
+ * @author lukashaertel
+ * 
+ */
 public class ResourceFieldEditor extends StringButtonFieldEditor {
 
 	private String initialFilter = null;
@@ -65,8 +71,8 @@ public class ResourceFieldEditor extends StringButtonFieldEditor {
 			clearErrorMessage();
 			return true;
 		}
-		msg = getErrorMessage(); // subclass might have changed it in the
-									// #doCheckState()
+		msg = getErrorMessage();
+
 		if (msg != null) {
 			showErrorMessage(msg);
 		}
@@ -74,6 +80,8 @@ public class ResourceFieldEditor extends StringButtonFieldEditor {
 	}
 
 	private IFile getFile() {
+		// This is where the field editor differs from the FileFieldEditor, we
+		// select resources in the workspace rather than files on the filesystem
 		FilteredResourcesSelectionDialog frsd = new FilteredResourcesSelectionDialog(
 				getShell(), false, ResourcesPlugin.getWorkspace().getRoot(),
 				IResource.FILE);

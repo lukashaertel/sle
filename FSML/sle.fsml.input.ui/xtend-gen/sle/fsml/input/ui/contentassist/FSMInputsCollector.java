@@ -28,6 +28,9 @@ import sle.fsml.fSML.FSM;
 import sle.fsml.fSML.FSMState;
 import sle.fsml.fSML.FSMTransition;
 
+/**
+ * This class is a utility to find all inputs in all known FSMs
+ */
 @SuppressWarnings("all")
 public class FSMInputsCollector implements IResourceProxyVisitor {
   /**

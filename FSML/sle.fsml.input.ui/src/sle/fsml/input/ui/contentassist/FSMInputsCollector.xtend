@@ -11,6 +11,9 @@ import sle.fsml.fSML.FSM
 import java.util.Collections
 import java.util.Set
 
+/**
+ * This class is a utility to find all inputs in all known FSMs
+ */
 class FSMInputsCollector implements IResourceProxyVisitor
 {
 

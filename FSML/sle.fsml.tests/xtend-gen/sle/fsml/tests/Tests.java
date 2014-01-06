@@ -537,7 +537,8 @@ public class Tests {
   }
   
   /**
-   * Helper for parsing a model and annotating it with the warnings and errors the parsing generated
+   * Helper for parsing a model and annotating it with the warnings and
+   * errors the parsing process generated
    */
   public Pair<FSM,Pair<EList<Diagnostic>,EList<Diagnostic>>> annotatedParse(final CharSequence s) {
     try {

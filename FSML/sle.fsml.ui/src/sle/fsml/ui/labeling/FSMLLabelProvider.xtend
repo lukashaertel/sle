@@ -9,9 +9,8 @@ import sle.fsml.fSML.FSMState
 import sle.fsml.fSML.FSMTransition
 
 /**
- * Provides labels for a EObjects.
- * 
- * see http://www.eclipse.org/Xtext/documentation.html#labelProvider
+ * Provides labels for the symbols of the FSML language, also provides named images
+ * for the outline
  */
 class FSMLLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 {
@@ -22,6 +21,10 @@ class FSMLLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 		super(delegate);
 	}
 
+	/**
+	 * This one is kind of a hack, the label provider will never ask for a
+	 * String, but the outline tree provider uses this to handle "named images"
+	 */
 	def image(String what)
 	{
 		return switch (what)

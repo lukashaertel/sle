@@ -12,6 +12,13 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 
 import sle.fsml.simulation.Simulation;
 
+/**
+ * This delegate handles a launch from the editor, it uses the static simulation
+ * methods; consult the manifest for extension point
+ * 
+ * @author lukashaertel
+ * 
+ */
 public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
 
 	@Override
@@ -27,7 +34,7 @@ public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
 				FSMLLaunchConstants.OUTPUT_FILE_ATTR, "");
 
 		try {
-			// Simulate and catch the exception of the printstream
+			// Simulate and catch the exception of the print-stream
 			Simulation.simulate(machine, input, output);
 		} catch (FileNotFoundException e) {
 			throw new CoreException(new Status(IStatus.ERROR,
