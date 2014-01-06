@@ -1,6 +1,6 @@
 # *FSML EMF/XText*
 ## Preface
-Due to the high integration with *Eclipse*, the *FSML* imlementation in *EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
+Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
 ## Setup *Eclipse*
 * If you do not have an *Eclipse Modeling Tools* installation, go to [*Eclipse* download page](http://www.eclipse.org/downloads/) and download and install: `Eclipse Modeling Tools`
 * Start *Eclipse*.
