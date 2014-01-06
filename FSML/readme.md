@@ -17,7 +17,7 @@ JOHANNESPLUGINS
 ## Work with the editor
 ### Setting up a Project
 * In the new *Eclipse Application*, create a new *Plug-in Project*.
-* Go to the `MANIFEST.MF` and add `sle.fsml` as a *Required Plug-in* or `sle.fsml.runtime` as an *Imported Package* under the *Dependencies* tab.
+* If you wan to use the *Java* clases, go to the `MANIFEST.MF` and add `sle.fsml` as a *Required Plug-in* or `sle.fsml.runtime` as an *Imported Package* under the *Dependencies* tab.
 
 ### Working with *FSML* files
 * Create or add any file with a `.fsml` or `.input` extension and open it. 
@@ -29,5 +29,5 @@ JOHANNESPLUGINS
 
 ### Simulating a *FSM*
 * To simulate a *FSM*, go to `Run > Run Configurations...` and create a new *FSML Simulation* and fill out the *Simulation* tab.
-* If you run the configuration with `Write to console` activated, running the *Run Configruation* will open a new console window in *Eclipse* displaying the output of the simulation or pop up a message box displaying run errors like the invalid or infeasible input exceptions.
+* If you have `Write to console` selected, launching the *Run Configruation* will open a new console window in *Eclipse* displaying the output of the simulation or pop up a message box displaying run errors like the invalid or infeasible input exceptions.
 * If you select `Write to file`, the output will be written to the file specified in the ouput form field.  
