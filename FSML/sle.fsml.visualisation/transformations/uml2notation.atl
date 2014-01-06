@@ -1,0 +1,171 @@
+-- @atlcompiler emftvm
+-- @nsURI MM=http://www.eclipse.org/uml2/4.0.0/UML
+-- @nsURI MM1=http://www.eclipse.org/gmf/runtime/1.0.2/notation
+
+
+module uml2notation;
+create OUT: MM1 from IN: MM;
+
+rule StateMashine2Diagram {
+	from
+		s: MM!StateMachine
+	to
+		t: MM1!Diagram (
+			type <- 'PapyrusUMLStateMachineDiagram',
+			name <- 'Diagram',
+			element <:= s,
+			children <- Sequence{shape},
+			styles <- Sequence{style}
+		),
+		style: MM1!DiagramStyle (
+		),
+		shape: MM1!Shape (
+			type <- '2000',
+			fontName <- 'Segoe UI',
+			lineColor <- 0,
+			element <:= s,
+			eAnnotations <- Sequence{thisModule.CreateEAnnotation('ShadowFigure',
+					'ShadowFigure_Value', 'false'),
+						thisModule.CreateEAnnotation('displayNameLabelIcon',
+								'displayNameLabelIcon_value', 'false'),
+						thisModule.CreateEAnnotation('QualifiedName',
+								'QualifiedNameDepth', '1000')},
+			children <- Sequence{n1,
+						n2},
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
+		),
+		n1: MM1!DecorationNode (
+			type <- '2001',
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
+		),
+		n2: MM1!DecorationNode (
+			type <- '2002',
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100),
+			children <- s.region
+		)
+}
+
+rule Region2Shape {
+	from
+		s: MM!Region
+	to
+		t: MM1!Shape (
+			type <- '3000',
+			fontName <- 'Segoe UI',
+			lineColor <- 0,
+			element <:= s,
+			eAnnotations <- Sequence{thisModule.CreateEAnnotation('ShadowFigure',
+					'ShadowFigure_Value', 'false'),
+						thisModule.CreateEAnnotation('displayNameLabelIcon',
+								'displayNameLabelIcon_value', 'false'),
+						thisModule.CreateEAnnotation('QualifiedName',
+								'QualifiedNameDepth', '1000'),
+						thisModule.CreateEAnnotation('RegionAnnotationKey',
+								'RegionZoneKey', '')},
+			children <- Sequence{n},
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
+		),
+		n: MM1!DecorationNode (
+			type <- '3002',
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 0, 0),
+			children <- s.subvertex
+		)
+}
+
+rule State2Shape {
+	from
+		s: MM!State
+	to
+		t: MM1!Shape (
+			type <- '6000',
+			fontName <- 'Segoe UI',
+			lineColor <- 0,
+			element <:= s,
+			eAnnotations <- Sequence{thisModule.CreateEAnnotation('ShadowFigure',
+					'ShadowFigure_Value', 'false'),
+						thisModule.CreateEAnnotation('displayNameLabelIcon',
+								'displayNameLabelIcon_value', 'false'),
+						thisModule.CreateEAnnotation('QualifiedName',
+								'QualifiedNameDepth', '1000')},
+			children <- Sequence{n1,
+						n2},
+			layoutConstraint <- thisModule.CreateBounds(50, 50, 10, 10)
+		),
+		n1: MM1!DecorationNode (
+			type <- '6001',
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 20, 0 - 1)
+		),
+		n2: MM1!DecorationNode (
+			type <- '6002',
+			layoutConstraint <- thisModule.CreateBounds(0, 0, 20, 0 - 1),
+			visible <- false
+		)
+}
+
+rule Pseudostate2Shape {
+	from
+		s: MM!Pseudostate
+	to
+		t: MM1!Shape (
+			type <- '8000',
+			fontName <- 'Segoe UI',
+			lineColor <- 0,
+			element <:= s,
+			eAnnotations <- Sequence{thisModule.CreateEAnnotation('ShadowFigure',
+					'ShadowFigure_Value', 'false'),
+						thisModule.CreateEAnnotation('displayNameLabelIcon',
+								'displayNameLabelIcon_value', 'false'),
+						thisModule.CreateEAnnotation('QualifiedName',
+								'QualifiedNameDepth', '1000')},
+			children <- Sequence{n1,
+						n2},
+			layoutConstraint <- thisModule.CreateBounds(50, 50, 10, 10)
+		),
+		n1: MM1!DecorationNode (
+			type <- '8001',
+			layoutConstraint <- thisModule.CreateLocation(10, 10)
+		),
+		n2: MM1!DecorationNode (
+			type <- '8002',
+			layoutConstraint <- thisModule.CreateLocation(10, 10)
+		)
+}
+
+rule CreateEAnnotation(source: String,key: String, value: String) {
+	to
+		an: MM1!EAnnotation (
+			source <- source,
+			details <- Sequence{sm}
+		),
+		sm: MM1!EStringToStringMapEntry (
+			key <- key,
+			value <- value
+		)
+	do {
+		an; 
+	}
+}
+
+rule CreateBounds(newX: Integer, newY: Integer, newWidth: Integer, newHeight: Integer) {
+	to
+		b: MM1!Bounds (
+			x <- newX,
+			y <- newY,
+			width <- newWidth,
+			height <- newHeight
+		)
+	do {
+		b; 
+	}
+}
+
+rule CreateLocation(newX: Integer, newY: Integer) {
+	to
+		b: MM1!Location (
+			x <- newX,
+			y <- newY
+		)
+	do {
+		b; 
+	}
+}

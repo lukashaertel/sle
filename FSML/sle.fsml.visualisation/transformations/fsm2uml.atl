@@ -1,0 +1,61 @@
+-- @atlcompiler emftvm
+-- @nsURI MM=http://www.fsml.sle/FSML
+-- @nsURI MM1=http://www.eclipse.org/uml2/4.0.0/UML
+
+
+module fsm2uml;
+create OUT: MM1 from IN: MM;
+
+
+rule Model2Model {
+	from
+		s: MM!FSM
+	to
+		model: MM1!Model (
+			name <- '',
+			packagedElement <- Sequence{sm}
+		),
+		sm: MM1!StateMachine (
+			name <- 'State Machine',
+			region <- Sequence{region}
+		),
+		region: MM1!Region (
+			name <- 'Main Region',
+			subvertex <- MM!FSMState.allInstances(),
+			transition <- MM!FSMTransition.allInstances()
+		)
+}
+
+
+rule State2State {
+	from
+		s: MM!FSMState (
+			not s.initial
+		)
+	to
+		t: MM1!State (
+			name <- s.name
+		)
+}
+
+rule State2Pseudostate {
+	from
+		s: MM!FSMState (
+			s.initial
+		)
+	to
+		t: MM1!Pseudostate (
+			name <- s.name
+		)
+}
+
+rule Transition2Transition {
+	from
+		s: MM!FSMTransition
+	to
+		t: MM1!Transition (
+			source <- s.refImmediateComposite(),
+			target <- s.target,
+			name <- s.input.concat(if s.action = OclUndefined then '' else '/' + s.action endif)
+		)
+}

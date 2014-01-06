@@ -1,0 +1,55 @@
+-- @atlcompiler emftvm
+-- @nsURI MM1=http://www.fsml.sle/FSML
+-- @nsURI MM=http://www.eclipse.org/uml2/4.0.0/UML
+
+
+module uml2fsm;
+create OUT: MM1 from IN: MM;
+
+rule Model2Model {
+	from
+		s: MM!Region
+	to
+		t: MM1!FSM (
+			states <- s.subvertex
+		)
+}
+
+rule State2State {
+	from
+		s: MM!State
+	to
+		t: MM1!FSMState (
+			name <- s.name,
+			initial <- false,
+			transitions <- MM!Transition.allInstances() -> select(transition | transition.
+					source = s)
+		)
+}
+
+rule Pseudostate2State {
+	from
+		s: MM!Pseudostate
+	to
+		t: MM1!FSMState (
+			name <- s.name,
+			initial <- true,
+			transitions <- MM!Transition.allInstances() -> select(transition | transition.
+					source = s)
+		)
+}
+
+rule Transition2Transition {
+	from
+		s: MM!Transition
+	using {
+		indexAction: Integer = s.name.lastIndexOf('/');
+		hasAction: Boolean = not(indexAction = 0);
+	}
+	to
+		t: MM1!FSMTransition (
+			target <- s.target,
+			input <- if hasAction then s.name.substring(1, indexAction-1) else s.name endif,
+			action <- if hasAction then s.name.substring(indexAction+1, s.name.size()) else OclUndefined endif
+		)
+}
