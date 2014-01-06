@@ -5,8 +5,9 @@ package sle.fsml.formatting
 
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
-// import com.google.inject.Inject;
-// import sle.fsml.services.FSMLGrammarAccess
+import com.google.inject.Inject;
+import sle.fsml.services.FSMLGrammarAccess
+import sle.fsml.services.FSMLGrammarAccess.FSMStateElements
 
 /**
  * This class contains custom formatting description.
@@ -18,13 +19,27 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig
  */
 class FSMLFormatter extends AbstractDeclarativeFormatter {
 
-//	@Inject extension FSMLGrammarAccess
-	
+	@Inject extension FSMLGrammarAccess
+
 	override protected void configureFormatting(FormattingConfig c) {
-// It's usually a good idea to activate the following three statements.
-// They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
-//		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
-//		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+
+		// Line wrap Comment
+		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
+		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
+		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+
+		// Line wrap FSML
+		c.setLinewrap(1, 1, 2).after(FSMStateRule)
+		c.setLinewrap(1, 1, 2).after(FSMTransitionRule)
+		c.setLinewrap(1, 1, 2).after(FSMStateAccess.leftCurlyBracketKeyword_3)
+
+		// Indentation FSML
+		c.setIndentationIncrement().after(FSMStateAccess.leftCurlyBracketKeyword_3)
+		c.setIndentationDecrement.before(FSMStateAccess.rightCurlyBracketKeyword_5)
+
+		// No space FSML
+		c.setNoSpace.around(FSMTransitionAccess.solidusKeyword_1_0);
+		c.setNoSpace.before(FSMTransitionAccess.semicolonKeyword_3)
+
 	}
 }
