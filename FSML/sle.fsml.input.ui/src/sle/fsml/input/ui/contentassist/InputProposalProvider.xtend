@@ -4,9 +4,35 @@
 package sle.fsml.input.ui.contentassist
 
 import sle.fsml.input.ui.contentassist.AbstractInputProposalProvider
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.core.resources.ResourcesPlugin
 
 /**
- * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
+ * The proposal provider suggests all inputs from all FSMs to the user while writing inputs
  */
-class InputProposalProvider extends AbstractInputProposalProvider {
+class InputProposalProvider extends AbstractInputProposalProvider
+{
+	override completeInputEntry_Value(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor)
+	{
+
+		// Use the basic implementation first
+		super.completeInputEntry_Value(model, assignment, context, acceptor);
+
+		// Create the inputs collector
+		val ic = new FSMInputsCollector;
+
+		// Let it visit all finite state machines
+		ResourcesPlugin::workspace.root.accept(ic, 0);
+
+		// For each input create a proposal
+		for (p : ic.inputs)
+		{
+			acceptor.accept(createCompletionProposal(p, context));
+		}
+	}
+
 }

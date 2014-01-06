@@ -1,180 +1,163 @@
 package sle.fsml.runconfig;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Date;
+import java.util.LinkedList;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleManager;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
+import org.eclipse.xtext.xbase.lib.Pair;
 
-import sle.fsml.fSML.FSM;
 import sle.fsml.fSML.FSMState;
-import sle.fsml.fSML.FSMTransition;
-import sle.fsml.input.input.Input;
-import sle.fsml.input.input.InputEntry;
+import sle.fsml.simulation.InfeasibleInputException;
+import sle.fsml.simulation.InvalidInputException;
+import sle.fsml.simulation.Simulation;
 
+/**
+ * This delegate handles a launch from the editor, it uses the static simulation
+ * methods; consult the manifest for extension point
+ * 
+ * @author lukashaertel
+ * 
+ */
 public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
-	/**
-	 * Finds the first object of class in the resource by iterating the tree
-	 */
-	private static <T> T firstIn(Class<T> c, Resource r) {
-		TreeIterator<EObject> it = r.getAllContents();
-		while (it.hasNext()) {
-			EObject o = it.next();
-
-			if (c.isInstance(o)) {
-				return c.cast(o);
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Find initial state via iteration over each state given
-	 */
-	private static FSMState initial(Iterable<FSMState> ss) {
-		for (FSMState s : ss) {
-			if (s.isInitial())
-				return s;
-		}
-
-		return null;
-	}
-
-	/**
-	 * Find transition for input via iteration over each transition given
-	 */
-	private static FSMTransition transitionFor(Iterable<FSMTransition> ts,
-			String input) {
-		for (FSMTransition t : ts) {
-			if (t.getInput().equals(input)) {
-				return t;
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Work amount of the given simulation stage
-	 */
-	private static final int ATTRIBUTE_WORK = 1, RESOURCE_WORK = 1,
-			PARSE_WORK = 5, SIMULATION_WORK = 5;
-
-	/**
-	 * Total amount of work
-	 */
-	private static final int TOTAL_WORK = ATTRIBUTE_WORK + RESOURCE_WORK
-			+ PARSE_WORK + SIMULATION_WORK;
 
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode,
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
 
-		// Work with progress framework
-		if (monitor == null)
-			monitor = new NullProgressMonitor();
-		monitor.beginTask("Running FSM simulation", TOTAL_WORK);
-
-		// Attribute getter segment
-		monitor.subTask("Loading attributes");
+		// Get attributes from launch configuration
 		final String machine = configuration.getAttribute(
 				FSMLLaunchConstants.MACHINE_FILE_ATTR, "");
 		final String input = configuration.getAttribute(
 				FSMLLaunchConstants.INPUT_FILE_ATTR, "");
+		final boolean write = configuration.getAttribute(
+				FSMLLaunchConstants.WRITE_ATTR, false);
 		final String output = configuration.getAttribute(
 				FSMLLaunchConstants.OUTPUT_FILE_ATTR, "");
+		final boolean print = configuration.getAttribute(
+				FSMLLaunchConstants.PRINT_ATTR, true);
 
-		// Fist step done
-		monitor.worked(ATTRIBUTE_WORK);
-
-		// Resource segment
-		monitor.subTask("Loading resources");
-		final XtextResourceSet xrs = new XtextResourceSet();
-		final Resource machineResource = xrs.getResource(
-				URI.createFileURI(machine), true);
-		final Resource inputResource = xrs.getResource(
-				URI.createFileURI(input), true);
-
-		// Second step done
-		monitor.worked(RESOURCE_WORK);
-
-		// XText parsing segment
-		monitor.subTask("Parsing resources");
-		final FSM machineValue = firstIn(FSM.class, machineResource);
-		final Input inputValue = firstIn(Input.class, inputResource);
-
-		// Third step done
-		monitor.worked(PARSE_WORK);
-
-		// Create a new sub-progress monitor to satisfy varying input sizes
-		final SubProgressMonitor simulationMonitor = new SubProgressMonitor(
-				monitor, SIMULATION_WORK);
-		simulationMonitor.beginTask("Simulating input sequence on FSM",
-				inputValue.getInputs().size());
-
-		// Simulation segment
-		try (PrintStream printStream = new PrintStream(output)) {
-			// Initialize "file header"
-			printStream.println("[");
-
-			// Store the intersperse flag
-			boolean separate = false;
-
-			// Find the initial state via iteration
-			FSMState state = initial(machineValue.getStates());
-
-			// Handle each input entry
-			for (InputEntry entry : inputValue.getInputs()) {
-				// Find a matching transition via iteration
-				final FSMTransition transition = transitionFor(
-						state.getTransitions(), entry.getValue());
-
-				// If transition has a target, jump there
-				if (transition.getTarget() != null) {
-					state = transition.getTarget();
-				}
-
-				// Optionally separate from the last written result
-				if (separate) {
-					printStream.println(',');
-				}
-
-				// Set the flag
-				separate = true;
-
-				// Write a result
-				printStream.print("  ([");
-				if (transition.getAction() != null) {
-					printStream.print(transition.getAction());
-				}
-				printStream.print("], " + state.getName() + ")");
-
-				// Sub-step done
-				simulationMonitor.worked(1);
-			}
-
-			// Write "file footer"
-			printStream.println();
-			printStream.print("].");
-
-			simulationMonitor.done();
-
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
+		// Skip if no output requested
+		if (!write && !print) {
+			return;
 		}
 
+		// Start a task ...
+		monitor.beginTask("Simulating", 2);
+
+		final LinkedList<Pair<String, FSMState>> simulation;
+
+		// ... while simulating ...
+		try {
+			simulation = Simulation.simulate(machine, input);
+			monitor.worked(1);
+		} catch (InvalidInputException | InfeasibleInputException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					"sle.fsml.simulation",
+					"Exception during finite state machine simulation", e));
+		}
+
+		// ... and toStringing ...
+		final CharSequence result = Simulation.toText(simulation);
+
+		// ... to show a bit of response to the UI
+		monitor.worked(1);
 		monitor.done();
+
+		// If file-write is requested, write to file
+		if (write) {
+			try (PrintStream printStream = new PrintStream(output)) {
+				printStream.print(result);
+			} catch (FileNotFoundException e) {
+				throw new CoreException(
+						new Status(
+								IStatus.ERROR,
+								"sle.fsml.simulation",
+								"Exception while writing finite state machine simulation result",
+								e));
+			}
+		}
+
+		// If print is requested, write to console
+		if (print) {
+			// Get manager
+			final IConsoleManager cm = ConsolePlugin.getDefault()
+					.getConsoleManager();
+
+			// Find a console
+			MessageConsole simulationOutput = null;
+			for (IConsole console : cm.getConsoles()) {
+				if (!(console instanceof MessageConsole)) {
+					continue;
+				}
+
+				if ("Simulation output".equals(console.getName())) {
+					simulationOutput = (MessageConsole) console;
+					break;
+				}
+			}
+
+			// Or create it
+			if (simulationOutput == null) {
+				simulationOutput = new MessageConsole("Simulation output",
+						getImageDescriptor());
+			}
+
+			// Add and show it
+			cm.addConsoles(new IConsole[] { simulationOutput });
+			cm.showConsoleView(simulationOutput);
+
+			// Print to it
+			try (MessageConsoleStream simulationOutputStream = new MessageConsoleStream(
+					simulationOutput)) {
+				simulationOutputStream.println("Running FSM simulation:");
+				simulationOutputStream.println("Start time: " + new Date());
+				simulationOutputStream.println("Machine: " + machine);
+				simulationOutputStream.println("Input: " + input);
+				simulationOutputStream.println("Result: ");
+				simulationOutputStream.println(result.toString());
+			} catch (IOException e) {
+				throw new CoreException(new Status(IStatus.ERROR,
+						"sle.fsml.simulation",
+						"Exception writing eclipse console", e));
+			}
+		}
 	}
 
+	private ImageDescriptor getImageDescriptor() {
+		// Usually reuse image; we initialize this every time we get the image
+		// for this tab
+		try {
+			final Image image = new Image(null, Platform
+					.getBundle("sle.fsml.simulation").getEntry("icons/fsm.gif")
+					.openStream());
+
+			return new ImageDescriptor() {
+
+				@Override
+				public ImageData getImageData() {
+					return image.getImageData();
+				}
+			};
+		} catch (IOException e) {
+			return null;
+		}
+	}
 }

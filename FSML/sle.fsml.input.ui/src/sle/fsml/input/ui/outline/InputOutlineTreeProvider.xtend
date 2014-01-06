@@ -4,10 +4,8 @@
 package sle.fsml.input.ui.outline
 
 /**
- * Customization of the default outline structure.
- *
- * see http://www.eclipse.org/Xtext/documentation.html#outline
+ * The default outline is not modified for the input
  */
-class InputOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+class InputOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+{
 }

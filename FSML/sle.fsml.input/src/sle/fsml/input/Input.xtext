@@ -3,12 +3,22 @@ grammar sle.fsml.input.Input hidden(CM, WS)
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate input "http://www.fsml.sle/input/Input"
 
+/**
+ * Input consists of multiple entries separated by a comma
+ */
 Input:
 	{Input} '[' (inputs+=InputEntry (',' inputs+=InputEntry)*)? ']' '.';
 
+	/**
+ * An input entry has one value id
+ */
 InputEntry:
 	value=ID;
 
+	/**
+ * We redefine these tokens to enforce the Prolog-style comments used in
+ * the example inputs
+ */
 terminal ID:
 	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 
