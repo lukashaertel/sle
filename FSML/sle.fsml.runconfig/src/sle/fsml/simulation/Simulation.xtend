@@ -6,8 +6,6 @@ import org.eclipse.xtext.resource.XtextResourceSet
 
 import static org.eclipse.emf.common.util.URI.*;
 import sle.fsml.fSML.FSMState
-import java.io.PrintStream
-import java.io.FileNotFoundException
 import java.util.NoSuchElementException
 
 /**
@@ -45,14 +43,14 @@ class Simulation
 
 					// Throw an illegal argument exception if the given input
 					// is just not valid for this state
-					throw new IllegalArgumentException(given.value);
+					throw new InfeasibleInputException(state, given.value);
 				}
 				else
 				{
 
 					// Throw a no such element exception if the given input
 					// is not valid for any state
-					throw new NoSuchElementException(given.value);
+					throw new InvalidInputException(state, given.value);
 				}
 			}
 
@@ -91,31 +89,9 @@ class Simulation
 	}
 
 	/**
-	 * Simulation on objects to target file
-	 */
-	static def simulate(FSM fsm, Input input, String target)
-	throws FileNotFoundException
-	{
-		val stream = new PrintStream(target);
-		stream.print(toText(simulate(fsm, input)));
-		stream.close
-	}
-
-	/**
-	 * Simulation on files to target file
-	 */
-	static def simulate(String fsm, String input, String target)
-	throws FileNotFoundException
-	{
-		val stream = new PrintStream(target);
-		stream.print(toText(simulate(fsm, input)));
-		stream.close
-	}
-
-	/**
 	 * Utility for writing an output text
 	 */
-	private static def toText(Iterable<Pair<String, FSMState>> result)
+	public static def toText(Iterable<Pair<String, FSMState>> result)
 	'''
 		[
 		«FOR r : result SEPARATOR ',

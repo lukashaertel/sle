@@ -2,11 +2,8 @@ package sle.fsml.simulation;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -24,6 +21,8 @@ import sle.fsml.fSML.FSMState;
 import sle.fsml.fSML.FSMTransition;
 import sle.fsml.input.input.Input;
 import sle.fsml.input.input.InputEntry;
+import sle.fsml.simulation.InfeasibleInputException;
+import sle.fsml.simulation.InvalidInputException;
 
 /**
  * Static FSM simulation API
@@ -77,12 +76,12 @@ public class Simulation {
           boolean _exists = IterableExtensions.<FSMState>exists(_states_1, _function_2);
           if (_exists) {
             String _value = given.getValue();
-            IllegalArgumentException _illegalArgumentException = new IllegalArgumentException(_value);
-            throw _illegalArgumentException;
+            InfeasibleInputException _infeasibleInputException = new InfeasibleInputException(state, _value);
+            throw _infeasibleInputException;
           } else {
             String _value_1 = given.getValue();
-            NoSuchElementException _noSuchElementException = new NoSuchElementException(_value_1);
-            throw _noSuchElementException;
+            InvalidInputException _invalidInputException = new InvalidInputException(state, _value_1);
+            throw _invalidInputException;
           }
         }
         FSMState _target = transition.getTarget();
@@ -122,33 +121,9 @@ public class Simulation {
   }
   
   /**
-   * Simulation on objects to target file
-   */
-  public static void simulate(final FSM fsm, final Input input, final String target) throws FileNotFoundException {
-    PrintStream _printStream = new PrintStream(target);
-    final PrintStream stream = _printStream;
-    LinkedList<Pair<String,FSMState>> _simulate = Simulation.simulate(fsm, input);
-    CharSequence _text = Simulation.toText(_simulate);
-    stream.print(_text);
-    stream.close();
-  }
-  
-  /**
-   * Simulation on files to target file
-   */
-  public static void simulate(final String fsm, final String input, final String target) throws FileNotFoundException {
-    PrintStream _printStream = new PrintStream(target);
-    final PrintStream stream = _printStream;
-    LinkedList<Pair<String,FSMState>> _simulate = Simulation.simulate(fsm, input);
-    CharSequence _text = Simulation.toText(_simulate);
-    stream.print(_text);
-    stream.close();
-  }
-  
-  /**
    * Utility for writing an output text
    */
-  private static CharSequence toText(final Iterable<Pair<String,FSMState>> result) {
+  public static CharSequence toText(final Iterable<Pair<String,FSMState>> result) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("[");
     _builder.newLine();

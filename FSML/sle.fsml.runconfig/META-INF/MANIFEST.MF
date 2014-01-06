@@ -7,8 +7,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.debug.core,
  org.eclipse.debug.ui,
- sle.fsml;bundle-version="1.0.0",
- sle.fsml.input;bundle-version="1.0.0"
+ sle.fsml,
+ sle.fsml.input,
+ org.eclipse.ui.console
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.dialogs

@@ -14,15 +14,41 @@ import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 /**
  * The tab that configures the simulation of the FSM
+ * 
  * @author lukashaertel
- *
+ * 
  */
 public class FSMLMainTab extends AbstractLaunchConfigurationTab {
+
+	/**
+	 * End-point for changed checkboxes
+	 */
+	private final SelectionListener checkboxSelected = new SelectionListener() {
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			setDirty(true);
+
+			scheduleUpdateJob();
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			setDirty(true);
+
+			scheduleUpdateJob();
+		}
+	};
+
 	/**
 	 * End-point for changed fields
 	 */
@@ -37,19 +63,29 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 	};
 
 	/**
-	 * File field editor for the machine location
+	 * Resource field editor for the machine location
 	 */
 	private ResourceFieldEditor machineLocation;
 
 	/**
-	 * File field editor for the input location
+	 * Resource field editor for the input location
 	 */
 	private ResourceFieldEditor inputLocation;
+
+	/**
+	 * Checkbox for output writer enablement
+	 */
+	private Button write;
 
 	/**
 	 * File field editor for the output location
 	 */
 	private FileFieldEditor outputLocation;
+
+	/**
+	 * Checkbox for print stream enablement
+	 */
+	private Button print;
 
 	@Override
 	public void createControl(Composite parent) {
@@ -74,6 +110,12 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 		inputLocation
 				.setValidateStrategy(StringFieldEditor.VALIDATE_ON_KEY_STROKE);
 
+		// Create checkbox for write enablement
+		write = new Button(panel, SWT.CHECK);
+		write.setText("Write to file");
+		write.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1));
+		write.addSelectionListener(checkboxSelected);
+
 		// Create editor for output location
 		outputLocation = new FileFieldEditor(
 				FSMLLaunchConstants.OUTPUT_FILE_ATTR, "Output", panel);
@@ -82,6 +124,12 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 		outputLocation.setFileExtensions(new String[] { "*.output" });
 		outputLocation
 				.setValidateStrategy(StringFieldEditor.VALIDATE_ON_KEY_STROKE);
+
+		// Create checkbox for print enablement
+		print = new Button(panel, SWT.CHECK);
+		print.setText("Write to console");
+		print.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1));
+		print.addSelectionListener(checkboxSelected);
 
 		// Assign main control
 		setControl(panel);
@@ -92,7 +140,9 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 		// Remove all attributes for defaults
 		configuration.removeAttribute(FSMLLaunchConstants.MACHINE_FILE_ATTR);
 		configuration.removeAttribute(FSMLLaunchConstants.INPUT_FILE_ATTR);
+		configuration.removeAttribute(FSMLLaunchConstants.WRITE_ATTR);
 		configuration.removeAttribute(FSMLLaunchConstants.OUTPUT_FILE_ATTR);
+		configuration.removeAttribute(FSMLLaunchConstants.PRINT_ATTR);
 	}
 
 	@Override
@@ -113,12 +163,28 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 			inputLocation.setStringValue("");
 		}
 
+		// Load write enablement
+		try {
+			write.setSelection(configuration.getAttribute(
+					FSMLLaunchConstants.WRITE_ATTR, false));
+		} catch (CoreException e) {
+			write.setSelection(false);
+		}
+
 		// Load output location
 		try {
 			outputLocation.setStringValue(configuration.getAttribute(
 					FSMLLaunchConstants.OUTPUT_FILE_ATTR, ""));
 		} catch (CoreException e) {
 			outputLocation.setStringValue("");
+		}
+
+		// Load print enablement
+		try {
+			print.setSelection(configuration.getAttribute(
+					FSMLLaunchConstants.PRINT_ATTR, true));
+		} catch (CoreException e) {
+			print.setSelection(true);
 		}
 
 		// Initialize validation and update job
@@ -162,8 +228,12 @@ public class FSMLMainTab extends AbstractLaunchConfigurationTab {
 				machineLocation.getStringValue());
 		configuration.setAttribute(FSMLLaunchConstants.INPUT_FILE_ATTR,
 				inputLocation.getStringValue());
+		configuration.setAttribute(FSMLLaunchConstants.WRITE_ATTR,
+				write.getSelection());
 		configuration.setAttribute(FSMLLaunchConstants.OUTPUT_FILE_ATTR,
 				outputLocation.getStringValue());
+		configuration.setAttribute(FSMLLaunchConstants.PRINT_ATTR,
+				print.getSelection());
 	}
 
 	@Override
