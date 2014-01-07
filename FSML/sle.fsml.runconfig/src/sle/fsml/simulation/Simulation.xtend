@@ -1,12 +1,12 @@
 package sle.fsml.simulation
 
-import sle.fsml.input.input.Input
-import sle.fsml.fSML.FSM
 import org.eclipse.xtext.resource.XtextResourceSet
-
-import static org.eclipse.emf.common.util.URI.*;
+import org.eclipse.xtext.xbase.lib.Pair
+import sle.fsml.fSML.FSM
 import sle.fsml.fSML.FSMState
-import java.util.NoSuchElementException
+import sle.fsml.input.input.Input
+
+import static org.eclipse.emf.common.util.URI.*
 
 /**
  * Static FSM simulation API
