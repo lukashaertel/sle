@@ -3,11 +3,10 @@
  */
 package sle.fsml.formatting
 
+import com.google.inject.Inject
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
-import com.google.inject.Inject;
 import sle.fsml.services.FSMLGrammarAccess
-import sle.fsml.services.FSMLGrammarAccess.FSMStateElements
 
 /**
  * This class contains custom formatting description.

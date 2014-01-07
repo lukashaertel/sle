@@ -1,26 +1,25 @@
 package sle.fsml.tests
 
+import com.google.inject.Inject
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.junit4.util.ParseHelper
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import sle.fsml.fSML.FSMLFactory
-
-import static org.junit.Assert.*
-import org.eclipse.xtext.junit4.InjectWith
-import com.google.inject.Inject
-import org.eclipse.xtext.junit4.util.ParseHelper
-import sle.fsml.fSML.FSM
 import sle.fsml.FSMLInjectorProvider
-import sle.fsml.input.input.InputFactory
-import sle.fsml.simulation.Simulation
-import org.junit.Before
+import sle.fsml.fSML.FSM
+import sle.fsml.fSML.FSMLFactory
 import sle.fsml.fSML.FSMState
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.resource.XtextResourceSet
-import java.util.NoSuchElementException
+import sle.fsml.input.input.InputFactory
 import sle.fsml.simulation.InfeasibleInputException
 import sle.fsml.simulation.InvalidInputException
+import sle.fsml.simulation.Simulation
+
+import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(FSMLInjectorProvider)
