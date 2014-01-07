@@ -4,10 +4,40 @@
 package sle.fsml.ui.contentassist
 
 import sle.fsml.ui.contentassist.AbstractFSMLProposalProvider
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import sle.fsml.fSML.FSM
+import sle.fsml.fSML.FSMState
 
 /**
- * The FSM editor does not provide proposals
+ * The FSM editor provides completion for inputs used by other states
  */
 class FSMLProposalProvider extends AbstractFSMLProposalProvider
 {
+
+	override completeFSMTransition_Input(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor)
+	{
+
+		// Use the basic implementation first
+		super.completeFSMTransition_Input(model, assignment, context, acceptor)
+
+		// Get state and FSM
+		val state = model as FSMState;
+		val fsm = state.eContainer as FSM;
+
+		// Find all used inputs in the FSM
+		val proposals = fsm.states.map[transitions].flatten.map[input].toSet;
+
+		// Subtract all inputs already matched by this state
+		proposals -= state.transitions.map[input];
+
+		// Propose each input
+		for (i : proposals)
+		{
+			acceptor.accept(createCompletionProposal(i, context));
+		}
+	}
 }
