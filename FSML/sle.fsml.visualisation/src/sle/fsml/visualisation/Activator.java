@@ -2,8 +2,6 @@ package sle.fsml.visualisation;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -18,69 +16,32 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
-import org.eclipse.emf.compare.Diff;
-import org.eclipse.emf.compare.DifferenceKind;
-import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.EMFCompare.Builder;
-import org.eclipse.emf.compare.Match;
-import org.eclipse.emf.compare.ReferenceChange;
-import org.eclipse.emf.compare.diff.DefaultDiffEngine;
-import org.eclipse.emf.compare.diff.DiffBuilder;
-import org.eclipse.emf.compare.diff.FeatureFilter;
-import org.eclipse.emf.compare.diff.IDiffEngine;
-import org.eclipse.emf.compare.diff.IDiffProcessor;
-import org.eclipse.emf.compare.internal.spec.ReferenceChangeSpec;
-import org.eclipse.emf.compare.match.DefaultComparisonFactory;
-import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
-import org.eclipse.emf.compare.match.DefaultMatchEngine;
-import org.eclipse.emf.compare.match.IComparisonFactory;
-import org.eclipse.emf.compare.match.IMatchEngine;
-import org.eclipse.emf.compare.match.eobject.IEObjectMatcher;
-import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher;
-import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher.DefaultIDFunction;
-import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl;
-import org.eclipse.emf.compare.rcp.EMFCompareRCPPlugin;
-import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter;
 import org.eclipse.emf.compare.utils.UseIdentifiers;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import com.google.common.base.Function;
-
-import sle.fsml.fSML.FSM;
-import sle.fsml.fSML.FSMLFactory;
 import sle.fsml.fSML.FSMLPackage;
 
+/**
+ * 
+ * @author Johannes
+ *
+ */
 public class Activator implements BundleActivator
 {
 
-	IResourceChangeListener rcl;
+	private final IResourceChangeListener rcl;
 
-	IResourceDeltaVisitor rdl;
+	private final IResourceDeltaVisitor rdl;
 
-	ATLTransformation atlFsmToUml;
+	private final ATLTransformation transformationFsml;
 
-	ATLTransformation atlUmlToFsm;
-
-	ATLTransformation atlUmlToNotation;
+	private final ATLTransformation tranformationUml;
 
 	public Activator()
 	{
@@ -91,9 +52,7 @@ public class Activator implements BundleActivator
 			{
 				try
 				{
-
 					event.getDelta().accept(rdl);
-
 				}
 				catch (CoreException e)
 				{
@@ -115,81 +74,63 @@ public class Activator implements BundleActivator
 					{
 					case "fsml":
 						// Transformation from FSML to UML
-						transformFsml2Uml(resource);
+						transformFsmlToUml(resource);
 						break;
 
 					case "uml":
 						// Transformation from UML FSML
-						transformUml2Fsml(resource);
-
-						transformUml2Notation(resource);
+						transformUmlToFsml(resource);
 						break;
+
 					default:
 						// No transformation required
 						break;
 					}
 				}
-
+				
 				return true;
 			}
-
 		};
 
-		atlFsmToUml = new ATLTransformation();
+		// Fsml
+		transformationFsml = new ATLTransformation();
 
-		atlFsmToUml.setMetamodelNameA("MM");
-		atlFsmToUml.setModelNameA("IN");
-		atlFsmToUml.setMetamodelPackageA(FSMLPackage.eINSTANCE);
+		transformationFsml.setMetamodelNameA("MM");
+		transformationFsml.setModelNameA("IN");
+		transformationFsml.setMetamodelPackageA(FSMLPackage.eINSTANCE);
 
-		atlFsmToUml.setMetamodelNameB("MM1");
-		atlFsmToUml.setModelNameB("OUT");
-		atlFsmToUml.setMetamodelPackageB(UMLPackage.eINSTANCE);
+		transformationFsml.setMetamodelNameB("MM1");
+		transformationFsml.setModelNameB("OUT");
+		transformationFsml.setMetamodelPackageB(UMLPackage.eINSTANCE);
 
-		atlFsmToUml.setModuleName("fsm2uml");
+		transformationFsml.setModuleName("fsm2uml");
+		transformationFsml.setModulePath("platform:/plugin/sle.fsml.visualisation/transformations/");
+		
+		transformationFsml.initialize();
 
-		atlFsmToUml.setModulePath("platform:/plugin/sle.fsml.visualisation/transformations/");
+		// Uml
+		tranformationUml = new ATLTransformation();
 
-		// atlFsmToUml.setModulePath("file:///E:/workspaces/SLE/sle.fsml.visualisation/transformations/");
+		tranformationUml.setMetamodelNameA("MM");
+		tranformationUml.setModelNameA("IN");
+		tranformationUml.setMetamodelPackageA(UMLPackage.eINSTANCE);
 
-		atlFsmToUml.initialize();
+		tranformationUml.setMetamodelNameB("MM1");
+		tranformationUml.setModelNameB("OUT");
+		tranformationUml.setMetamodelPackageB(FSMLPackage.eINSTANCE);
 
-		atlUmlToFsm = new ATLTransformation();
-
-		atlUmlToFsm.setMetamodelNameA("MM");
-		atlUmlToFsm.setModelNameA("IN");
-		atlUmlToFsm.setMetamodelPackageA(UMLPackage.eINSTANCE);
-
-		atlUmlToFsm.setMetamodelNameB("MM1");
-		atlUmlToFsm.setModelNameB("OUT");
-		atlUmlToFsm.setMetamodelPackageB(FSMLPackage.eINSTANCE);
-
-		atlUmlToFsm.setModuleName("uml2fsm");
-		atlUmlToFsm.setModulePath("platform:/plugin/sle.fsml.visualisation/transformations/");
-
-		atlUmlToFsm.initialize();
-
-		atlUmlToNotation = new ATLTransformation();
-
-		atlUmlToNotation.setMetamodelNameA("MM");
-		atlUmlToNotation.setModelNameA("IN");
-		atlUmlToNotation.setMetamodelPackageA(UMLPackage.eINSTANCE);
-
-		atlUmlToNotation.setMetamodelNameB("MM1");
-		atlUmlToNotation.setModelNameB("OUT");
-		atlUmlToNotation.setMetamodelPackageB(NotationPackage.eINSTANCE);
-
-		atlUmlToNotation.setModuleName("uml2notation");
-		atlUmlToNotation.setModulePath("platform:/plugin/sle.fsml.visualisation/transformations/");
-
-		atlUmlToNotation.initialize();
+		tranformationUml.setModuleName("uml2fsm");
+		tranformationUml.setModulePath("platform:/plugin/sle.fsml.visualisation/transformations/");
+		
+		tranformationUml.initialize();
 
 	}
 
 	private void saveResource(final Resource resource)
 	{
-		WorkspaceJob ws = new WorkspaceJob("uml")
+		// Job for saving emf resource
+		WorkspaceJob ws = new WorkspaceJob("Save Resource")
 		{
-
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException
 			{
@@ -199,7 +140,8 @@ public class Activator implements BundleActivator
 				}
 				catch (IOException e)
 				{
-					e.printStackTrace();
+					System.err.println("Problem saving resource");
+					return Status.CANCEL_STATUS;
 				}
 				return Status.OK_STATUS;
 			}
@@ -207,11 +149,10 @@ public class Activator implements BundleActivator
 		ws.schedule();
 	}
 
-	private void transformUml2Fsml(IResource resource)
+	private void transformUmlToFsml(IResource resource)
 	{
 		try
 		{
-			if (true) return;
 			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("fsml").toString(), true);
 			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 
@@ -220,34 +161,48 @@ public class Activator implements BundleActivator
 			final Resource fsmResource = resourceSet.getResource(fsmUri, true);
 			final Resource umlResource = resourceSet.getResource(umlUri, true);
 
-			Model uml = (Model) umlResource.getContents().remove(0);
+			final Resource fsmResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.fsml", true));
 
-			FSM fsm = (FSM) atlUmlToFsm.transform(uml);
+			tranformationUml.setResourceA(umlResource);
+			tranformationUml.setResourceB(fsmResourceTemp);
 
-			FSM fsm2 = FSMLFactory.eINSTANCE.createFSM();
+			tranformationUml.transform();
 
-			if (fsmResource.getContents().size() != 0) fsm2 = (FSM) fsmResource.getContents().remove(0);
+			Compare compare = new Compare()
+			{
+				@Override
+				protected UseIdentifiers getUseIdentifiers()
+				{
+					return UseIdentifiers.NEVER;
+				}
+			};
 
-			boolean changed = EMFComparison.adaptAllDifferences(fsm, fsm2);
+			Comparison comparison = compare.compare(fsmResourceTemp, fsmResource);
 
-			fsmResource.getContents().add(0, fsm2);
+			boolean changed = comparison.getDifferences().size() > 0;
 
-			if (changed) saveResource(fsmResource);
+			//compare.print(comparison);
+
+			if (changed)
+			{
+				compare.mergeLeftToRight(comparison);
+				saveResource(fsmResource);
+			}
+
+			System.out.println("UML -> FSML");
 
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			System.err.println("Error in UML -> FSML");
 		}
 
 	}
 
-	// http://www.eclipse.org/emf/compare/doc/21/developer/Default%20Behavior%20and%20Extensibility.html
-	private void transformFsml2Uml(IResource resource)
+	private void transformFsmlToUml(IResource resource)
 	{
 		try
 		{
-			if (true) return;
 			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("uml").toString(), true);
 
@@ -256,165 +211,39 @@ public class Activator implements BundleActivator
 			final Resource fsmResource = resourceSet.getResource(fsmUri, true);
 			final Resource umlResource = resourceSet.getResource(umlUri, true);
 
-			FSM fsm = (FSM) fsmResource.getContents().get(0);
+			final Resource umlResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.uml", true));
 
-			fsm = EcoreUtil.copy(fsm);
+			transformationFsml.setResourceA(fsmResource);
+			transformationFsml.setResourceB(umlResourceTemp);
 
-			Model uml = (Model) atlFsmToUml.transform(fsm);
+			transformationFsml.transform();
 
-			Model uml2 = (Model) umlResource.getContents().remove(0);
-
-			boolean changed = EMFComparison.adaptAllDifferences(uml, uml2);
-
-			umlResource.getContents().add(0, uml2);
-
-			if (changed) saveResource(umlResource);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-	}
-
-	private void transformUml2Notation(IResource resource)
-	{
-		try
-		{
-			// if(true)return;
-			URI notationUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("notation").toString(), true);
-			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
-
-			ResourceSet resourceSet = new ResourceSetImpl();
-
-			final Resource notationResource = resourceSet.getResource(notationUri, true);
-			final Resource umlResource = resourceSet.getResource(umlUri, true);
-
-			atlUmlToNotation.setaRes(umlResource);
-			atlUmlToNotation.setbRes(resourceSet.createResource(URI.createPlatformResourceURI("temp.notation", true)));
-
-			Diagram dia = (Diagram) atlUmlToNotation.transform(null);
-
-			Diagram dia2 = (Diagram) notationResource.getContents().get(0);
-
-			dia.eResource().getContents().remove(dia);
-			notationResource.getContents().remove(0);
-
-			// Comparison comparison = EMFComparison.getComparison(dia, dia2);
-
-			// New Comparison
-
-			Function<EObject, String> idFunction = new Function<EObject, String>()
+			Compare compare = new Compare()
 			{
-				public String apply(EObject input)
-				{
-					if (input instanceof Diagram) return "root";
-
-					if (input instanceof Shape)
-					{
-						Shape shape = (Shape) input;
-
-						String string = EcoreUtil.getURI(shape.getElement()).toString();
-
-						return string;
-
-					}
-
-					if (input instanceof Bounds)
-					{
-						String string = EcoreUtil.getURI(input).toString();
-
-						return string;
-					}
-					if (input instanceof DecorationNode)
-					{
-	
-						String string = EcoreUtil.getURI(input).toString();
-
-						return string;
-					}
-					// a null return here tells the match engine to fall back to
-					// the other matchers
-					return null;
-				}
-			};
-			// Using this matcher as fall back, EMF Compare will still search
-			// for XMI IDs on EObjects
-			// for which we had no custom id function.
-			IEObjectMatcher fallBackMatcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
-			IEObjectMatcher customIDMatcher = new IdentifierEObjectMatcher(fallBackMatcher, idFunction);
-
-			IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
-
-			final IMatchEngine customMatchEngine = new DefaultMatchEngine(customIDMatcher, comparisonFactory);
-
-			IMatchEngine.Factory engineFactory = new MatchEngineFactoryImpl()
-			{
-				public IMatchEngine getMatchEngine()
-				{
-					return customMatchEngine;
-				}
-			};
-
-			IDiffProcessor diffProcessor = new DiffBuilder();
-			IDiffEngine diffEngine = new DefaultDiffEngine(diffProcessor)
-			{
-
 				@Override
-				protected FeatureFilter createFeatureFilter()
+				protected UseIdentifiers getUseIdentifiers()
 				{
-					return new FeatureFilter()
-					{
-
-						@Override
-						public boolean checkForOrderingChanges(EStructuralFeature feature)
-						{
-							return false;
-						}
-
-						@Override
-						protected boolean isIgnoredAttribute(EAttribute attribute)
-						{
-
-							if (attribute.getName().equals("x")) return true;
-							if (attribute.getName().equals("y")) return true;
-							if (attribute.getName().equals("height")) return true;
-							if (attribute.getName().equals("width")) return true;
-
-							return super.isIgnoredAttribute(attribute);
-						}
-
-					};
+					return UseIdentifiers.NEVER;
 				}
 			};
 
-			IMatchEngine.Factory.Registry registry = EMFCompareRCPPlugin.getDefault().getMatchEngineFactoryRegistry();
+			Comparison comparison = compare.compare(umlResourceTemp, umlResource);
 
-			engineFactory.setRanking(20); // default engine ranking is 10, must
-											// be higher to override.
-			registry.add(engineFactory);
+			boolean changed = comparison.getDifferences().size() > 0;
 
-			Builder builder = EMFCompare.builder();
+			// compare.print(comparison);
 
-			builder.setDiffEngine(diffEngine);
-			builder.setMatchEngineFactoryRegistry(registry);
-
-			Comparison comparison = builder.build().compare(EMFCompare.createDefaultScope(dia, dia2));
-
-			//EMFComparePrettyPrinter.printDifferences(comparison, System.out);
-
-			for (Diff d : comparison.getDifferences())
+			if (changed)
 			{
-				EMFComparison.adaptDifferences(d);
+				compare.mergeLeftToRight(comparison);
+				saveResource(umlResource);
 			}
 
-			notationResource.getContents().add(dia2);
-
-			saveResource(notationResource);
+			System.out.println("FSML -> UML");
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			System.err.println("Error in FSML -> UML");
 		}
 
 	}
@@ -441,5 +270,4 @@ public class Activator implements BundleActivator
 		// Remove listener to running workspace
 		workspace.removeResourceChangeListener(rcl);
 	}
-
 }

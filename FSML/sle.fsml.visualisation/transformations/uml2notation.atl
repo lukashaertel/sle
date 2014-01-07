@@ -6,6 +6,7 @@
 module uml2notation;
 create OUT: MM1 from IN: MM;
 
+
 rule StateMashine2Diagram {
 	from
 		s: MM!StateMachine
@@ -15,7 +16,8 @@ rule StateMashine2Diagram {
 			name <- 'Diagram',
 			element <:= s,
 			children <- Sequence{shape},
-			styles <- Sequence{style}
+			styles <- Sequence{style},
+			edges <- MM!Transition.allInstances()
 		),
 		style: MM1!DiagramStyle (
 		),
@@ -128,6 +130,47 @@ rule Pseudostate2Shape {
 		n2: MM1!DecorationNode (
 			type <- '8002',
 			layoutConstraint <- thisModule.CreateLocation(10, 10)
+		)
+}
+
+rule Transition2Connector {
+	from
+		s: MM!Transition
+	to
+		t: MM1!Connector (
+			source <- s.source,
+			target <- s.target,
+			type <- '7000',
+			lineColor <- 0,
+			children <- Sequence{n1,
+						n2,
+						n3},
+			styles <- Sequence{s1},
+			element <:= s,
+		
+			sourceAnchor <- ia,
+				bendpoints <- rbs
+		),
+		s1: MM1!FontStyle (
+			fontName <- 'Segoe UI'
+		),
+		n1: MM1!DecorationNode (
+			type <- '7001',
+			layoutConstraint <- thisModule.CreateLocation(0, 0)
+		),
+		n2: MM1!DecorationNode (
+			type <- '7002',
+			layoutConstraint <- thisModule.CreateLocation(0, 0)
+		),
+		n3: MM1!DecorationNode (
+			type <- '7003',
+			layoutConstraint <- thisModule.CreateLocation(0, 0)
+		),
+		rbs: MM1!RelativeBendpoints (
+			--- Sequence{'[7, 12, -47, -70]','[51, 114, -3, 32]'}
+		),
+		ia: MM1!IdentityAnchor (
+			id <- '(0.6435643564356436,0.8285714285714286)'
 		)
 }
 

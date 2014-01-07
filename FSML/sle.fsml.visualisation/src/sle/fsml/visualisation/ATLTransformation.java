@@ -1,11 +1,7 @@
 package sle.fsml.visualisation;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.m2m.atl.emftvm.EmftvmFactory;
 import org.eclipse.m2m.atl.emftvm.ExecEnv;
 import org.eclipse.m2m.atl.emftvm.Metamodel;
@@ -14,6 +10,12 @@ import org.eclipse.m2m.atl.emftvm.util.DefaultModuleResolverFactory;
 import org.eclipse.m2m.atl.emftvm.util.ExecEnvPool;
 import org.eclipse.m2m.atl.emftvm.util.ModuleResolverFactory;
 
+
+/**
+ * 
+ * @author Johannes
+ *
+ */
 public class ATLTransformation
 {
 	final ExecEnvPool pool = new ExecEnvPool();
@@ -131,6 +133,26 @@ public class ATLTransformation
 		if (initialised) throw new IllegalStateException("Component initialised");
 		this.jitenable = jitenable;
 	}
+	
+	public Resource getResourceB()
+	{
+		return resouceB;
+	}
+
+	public void setResourceB(Resource bRes)
+	{
+		this.resouceB = bRes;
+	}
+
+	public Resource getResourceA()
+	{
+		return resourceA;
+	}
+
+	public void setResourceA(Resource aRes)
+	{
+		this.resourceA = aRes;
+	}
 
 	private String moduleName;
 	private String modulePath;
@@ -171,10 +193,10 @@ public class ATLTransformation
 		pool.loadModule(moduleName);
 	}
 
-	private Resource aRes;
-	private Resource bRes;
+	private Resource resourceA;
+	private Resource resouceB;
 	
-	public EObject transform(EObject input)
+	public void transform()
 	{
 		if (!initialised) throw new IllegalStateException("not initialised");
 		ExecEnv env = pool.getExecEnv();
@@ -184,19 +206,15 @@ public class ATLTransformation
 			env.setJitDisabled(!jitenable);
 		}
 
-		ResourceSet rs = new ResourceSetImpl();
-
 		Model a = EmftvmFactory.eINSTANCE.createModel();
-		a.setResource(aRes);
-
-		// Set input resource
-		if(input!= null)a.getResource().getContents().add(input);
+		a.setResource(resourceA);
 
 		Model b = EmftvmFactory.eINSTANCE.createModel();
-		b.setResource(bRes);
+		b.setResource(resouceB);
 
 		env.registerInputModel(modelNameA, a);
 		env.registerOutputModel(modelNameB, b);
+		
 		try
 		{
 			env.run(null);
@@ -206,30 +224,8 @@ public class ATLTransformation
 			System.err.println(e);
 		}
 
-		// Get transformed resource
-		EObject result = b.getResource().getContents().get(0);
-
 		pool.returnExecEnv(env);
-		return result;
 	}
 
-	public Resource getbRes()
-	{
-		return bRes;
-	}
-
-	public void setbRes(Resource bRes)
-	{
-		this.bRes = bRes;
-	}
-
-	public Resource getaRes()
-	{
-		return aRes;
-	}
-
-	public void setaRes(Resource aRes)
-	{
-		this.aRes = aRes;
-	}
+	
 }

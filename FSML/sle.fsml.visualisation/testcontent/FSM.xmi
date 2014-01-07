@@ -7,8 +7,8 @@
   <states initial="true"
       name="A">
     <transitions
-        input="b"
-        action="a"
+        input="bb"
+        action="aa"
         target="//@states.1"/>
   </states>
   <states name="B"/>

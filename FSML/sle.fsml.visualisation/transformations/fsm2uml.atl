@@ -7,14 +7,18 @@ module fsm2uml;
 create OUT: MM1 from IN: MM;
 
 
-rule Model2Model {
+entrypoint rule Model() {
+	to
+		t: MM1!Model(
+		name <- 'Model',
+		packagedElement <- MM!FSM.allInstances()
+		)
+}
+
+rule FSM2Region {
 	from
 		s: MM!FSM
 	to
-		model: MM1!Model (
-			name <- '',
-			packagedElement <- Sequence{sm}
-		),
 		sm: MM1!StateMachine (
 			name <- 'State Machine',
 			region <- Sequence{region}

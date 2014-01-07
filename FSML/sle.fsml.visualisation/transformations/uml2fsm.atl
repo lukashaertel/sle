@@ -8,7 +8,7 @@ create OUT: MM1 from IN: MM;
 
 rule Model2Model {
 	from
-		s: MM!Region
+		s: MM!Region(not (MM!Vertex.allInstances().size() = 0))
 	to
 		t: MM1!FSM (
 			states <- s.subvertex
