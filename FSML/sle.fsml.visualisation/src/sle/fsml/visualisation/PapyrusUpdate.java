@@ -1,11 +1,9 @@
-package sle.fsml.visualisation.handlers;
+package sle.fsml.visualisation;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -25,12 +23,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import sle.fsml.visualisation.ATLTransformation;
-import sle.fsml.visualisation.Compare;
+import org.eclipse.uml2.uml.Vertex;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -139,6 +138,7 @@ public class PapyrusUpdate extends AbstractHandler
 
 					if (attribute == NotationPackage.Literals.DIAGRAM__MEASUREMENT_UNIT) return true;
 					if (attribute == NotationPackage.Literals.RELATIVE_BENDPOINTS__POINTS) return true;
+					if (attribute == NotationPackage.Literals.IDENTITY_ANCHOR__ID) return true;
 
 					// Use Default
 					return null;
@@ -175,22 +175,64 @@ public class PapyrusUpdate extends AbstractHandler
 
 	private String getUniqueIdFromRoot(EObject input)
 	{
-		InternalEObject internalEObject = (InternalEObject) input;
-		List<String> uriFragmentPath = new ArrayList<String>();
-		HashSet<InternalEObject> visited = new HashSet<InternalEObject>();
-		for (InternalEObject container = internalEObject.eInternalContainer(); container != null && visited.add(container); container = internalEObject.eInternalContainer())
+		EObject current = input;
+
+		ArrayList<String> uriFragmentPath = new ArrayList<>();
+
+		while (true)
 		{
-			uriFragmentPath.add(container.eURIFragmentSegment(internalEObject.eContainingFeature(), internalEObject));
-			internalEObject = container;
+			String uId = getUniqueId(input);
+			
+			if(uId != null)
+			{
+				uriFragmentPath.add(uId);
+				break;
+			}
+			
+			if(current instanceof Diagram)
+			{
+				uriFragmentPath.add("root");
+				break;
+			}
+			
+			EObject parent = current.eContainer();
+
+			uriFragmentPath.add(((InternalEObject) parent).eURIFragmentSegment(current.eContainingFeature(), current));
+
+			current = parent;
 		}
 
-		StringBuffer result = new StringBuffer("#//");
-
+		StringBuffer result = new StringBuffer();
+		
 		for (int i = uriFragmentPath.size() - 1; i >= 0; --i)
 		{
 			result.append('/');
 			result.append(uriFragmentPath.get(i));
 		}
+	
 		return result.toString();
 	}
+
+	private String getUniqueId(EObject input)
+	{
+		EObject bObject = null;
+
+		String id = null;
+
+		if (input instanceof Shape) bObject = ((Shape) input).getElement();
+		if (input instanceof Connector) bObject = ((Connector) input).getElement();
+
+		if (bObject instanceof Transition)
+		{
+			id = ((Transition) bObject).getName();
+
+		}
+		if (bObject instanceof Vertex)
+		{
+			id = ((Vertex) bObject).getName();
+		}
+
+		return id;
+	}
+
 }

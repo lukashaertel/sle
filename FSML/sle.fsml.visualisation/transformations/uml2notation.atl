@@ -91,7 +91,7 @@ rule State2Shape {
 								'QualifiedNameDepth', '1000')},
 			children <- Sequence{n1,
 						n2},
-			layoutConstraint <- thisModule.CreateBounds(50, 50, 10, 10)
+			layoutConstraint <- thisModule.CreateBounds(50, 50, 80, 30)
 		),
 		n1: MM1!DecorationNode (
 			type <- '6001',
