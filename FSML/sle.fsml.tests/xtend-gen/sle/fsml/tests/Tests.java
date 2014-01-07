@@ -5,7 +5,6 @@ import com.google.inject.Inject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,6 +33,8 @@ import sle.fsml.fSML.FSMTransition;
 import sle.fsml.input.input.Input;
 import sle.fsml.input.input.InputEntry;
 import sle.fsml.input.input.InputFactory;
+import sle.fsml.simulation.InfeasibleInputException;
+import sle.fsml.simulation.InvalidInputException;
 import sle.fsml.simulation.Simulation;
 
 @RunWith(XtextRunner.class)
@@ -337,7 +338,7 @@ public class Tests {
   /**
    * Negative test for invalid inputs, s. figure D.38
    */
-  @Test(expected = NoSuchElementException.class)
+  @Test(expected = InvalidInputException.class)
   public void testNegativeInvalidInput() {
     Input _createInput = this.inputFactory.createInput();
     final Procedure1<Input> _function = new Procedure1<Input>() {
@@ -360,7 +361,7 @@ public class Tests {
   /**
    * Negative test for infeasible inputs, s. figure D.39
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = InfeasibleInputException.class)
   public void testNegativeInfeasibleInput() {
     Input _createInput = this.inputFactory.createInput();
     final Procedure1<Input> _function = new Procedure1<Input>() {

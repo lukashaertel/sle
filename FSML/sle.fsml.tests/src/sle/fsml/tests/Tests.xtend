@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.resource.XtextResourceSet
 import java.util.NoSuchElementException
+import sle.fsml.simulation.InfeasibleInputException
+import sle.fsml.simulation.InvalidInputException
 
 @RunWith(XtextRunner)
 @InjectWith(FSMLInjectorProvider)
@@ -196,7 +198,7 @@ state exception {
 	/**
 	 * Negative test for invalid inputs, s. figure D.38
 	 */
-	@Test(expected=NoSuchElementException)
+	@Test(expected=InvalidInputException)
 	def void testNegativeInvalidInput()
 	{
 
@@ -212,7 +214,7 @@ state exception {
 	/**
 	 * Negative test for infeasible inputs, s. figure D.39
 	 */
-	@Test(expected=IllegalArgumentException)
+	@Test(expected=InfeasibleInputException)
 	def void testNegativeInfeasibleInput()
 	{
 
