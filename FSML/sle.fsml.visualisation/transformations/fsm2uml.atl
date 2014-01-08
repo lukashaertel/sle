@@ -1,56 +1,56 @@
 -- @atlcompiler emftvm
--- @nsURI MM=http://www.fsml.sle/FSML
--- @nsURI MM1=http://www.eclipse.org/uml2/4.0.0/UML
+-- @nsURI FSML=http://www.fsml.sle/FSML
+-- @nsURI UML=http://www.eclipse.org/uml2/4.0.0/UML
 
 
 module fsm2uml;
-create OUT: MM1 from IN: MM;
+create OUT: UML from IN: FSML;
 
 
 entrypoint rule Model() {
 	to
-		t: MM1!Model (
+		t: UML!Model (
 			name <- 'Model',
 			packagedElement <- Sequence{sm}
 		),
-		sm: MM1!StateMachine (
+		sm: UML!StateMachine (
 			name <- 'State Machine',
 			region <- Sequence{region}
 		),
-		region: MM1!Region (
+		region: UML!Region (
 			name <- 'Main Region',
-			subvertex <- MM!FSMState.allInstances(),
-			transition <- MM!FSMTransition.allInstances()
+			subvertex <- FSML!FSMState.allInstances(),
+			transition <- FSML!FSMTransition.allInstances()
 		)
 }
 
 rule State2State {
 	from
-		s: MM!FSMState (
+		s: FSML!FSMState (
 			not s.initial
 		)
 	to
-		t: MM1!State (
+		t: UML!State (
 			name <- s.name
 		)
 }
 
 rule State2Pseudostate {
 	from
-		s: MM!FSMState (
+		s: FSML!FSMState (
 			s.initial
 		)
 	to
-		t: MM1!Pseudostate (
+		t: UML!Pseudostate (
 			name <- s.name
 		)
 }
 
 rule Transition2Transition {
 	from
-		s: MM!FSMTransition
+		s: FSML!FSMTransition
 	to
-		t: MM1!Transition (
+		t: UML!Transition (
 			source <- s.refImmediateComposite(),
 			target <- s.target,
 			name <- s.input.concat(if s.action = OclUndefined then

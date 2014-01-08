@@ -48,7 +48,6 @@ public class AutomatedTransformationPlugin implements BundleActivator
 	public void start(BundleContext context) throws Exception
 	{
 		// Starting transformation plugin
-
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
 		// Add listener to running workspace
@@ -60,7 +59,6 @@ public class AutomatedTransformationPlugin implements BundleActivator
 	public void stop(BundleContext context) throws Exception
 	{
 		// Stop transformation plugin
-
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
 		// Remove listener to running workspace

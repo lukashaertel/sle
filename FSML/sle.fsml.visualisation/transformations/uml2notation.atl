@@ -1,27 +1,27 @@
 -- @atlcompiler emftvm
--- @nsURI MM=http://www.eclipse.org/uml2/4.0.0/UML
--- @nsURI MM1=http://www.eclipse.org/gmf/runtime/1.0.2/notation
+-- @nsURI UML=http://www.eclipse.org/uml2/4.0.0/UML
+-- @nsURI NOTATION=http://www.eclipse.org/gmf/runtime/1.0.2/notation
 
 
 module uml2notation;
-create OUT: MM1 from IN: MM;
+create OUT: NOTATION from IN: UML;
 
 
 rule StateMashine2Diagram {
 	from
-		s: MM!StateMachine
+		s: UML!StateMachine
 	to
-		t: MM1!Diagram (
+		t: NOTATION!Diagram (
 			type <- 'PapyrusUMLStateMachineDiagram',
 			name <- 'Diagram',
 			element <:= s,
 			children <- Sequence{shape},
 			styles <- Sequence{style},
-			edges <- MM!Transition.allInstances()
+			edges <- UML!Transition.allInstances()
 		),
-		style: MM1!DiagramStyle (
+		style: NOTATION!DiagramStyle (
 		),
-		shape: MM1!Shape (
+		shape: NOTATION!Shape (
 			type <- '2000',
 			fontName <- 'Segoe UI',
 			lineColor <- 0,
@@ -36,11 +36,11 @@ rule StateMashine2Diagram {
 						n2},
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
 		),
-		n1: MM1!DecorationNode (
+		n1: NOTATION!DecorationNode (
 			type <- '2001',
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
 		),
-		n2: MM1!DecorationNode (
+		n2: NOTATION!DecorationNode (
 			type <- '2002',
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100),
 			children <- s.region
@@ -49,9 +49,9 @@ rule StateMashine2Diagram {
 
 rule Region2Shape {
 	from
-		s: MM!Region
+		s: UML!Region
 	to
-		t: MM1!Shape (
+		t: NOTATION!Shape (
 			type <- '3000',
 			fontName <- 'Segoe UI',
 			lineColor <- 0,
@@ -67,7 +67,7 @@ rule Region2Shape {
 			children <- Sequence{n},
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 100, 100)
 		),
-		n: MM1!DecorationNode (
+		n: NOTATION!DecorationNode (
 			type <- '3002',
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 0, 0),
 			children <- s.subvertex
@@ -76,9 +76,9 @@ rule Region2Shape {
 
 rule State2Shape {
 	from
-		s: MM!State
+		s: UML!State
 	to
-		t: MM1!Shape (
+		t: NOTATION!Shape (
 			type <- '6000',
 			fontName <- 'Segoe UI',
 			lineColor <- 0,
@@ -93,11 +93,11 @@ rule State2Shape {
 						n2},
 			layoutConstraint <- thisModule.CreateBounds(50, 50, 80, 30)
 		),
-		n1: MM1!DecorationNode (
+		n1: NOTATION!DecorationNode (
 			type <- '6001',
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 20, 0 - 1)
 		),
-		n2: MM1!DecorationNode (
+		n2: NOTATION!DecorationNode (
 			type <- '6002',
 			layoutConstraint <- thisModule.CreateBounds(0, 0, 20, 0 - 1),
 			visible <- false
@@ -106,9 +106,9 @@ rule State2Shape {
 
 rule Pseudostate2Shape {
 	from
-		s: MM!Pseudostate
+		s: UML!Pseudostate
 	to
-		t: MM1!Shape (
+		t: NOTATION!Shape (
 			type <- '8000',
 			fontName <- 'Segoe UI',
 			lineColor <- 0,
@@ -123,11 +123,11 @@ rule Pseudostate2Shape {
 						n2},
 			layoutConstraint <- thisModule.CreateBounds(50, 50, 10, 10)
 		),
-		n1: MM1!DecorationNode (
+		n1: NOTATION!DecorationNode (
 			type <- '8001',
 			layoutConstraint <- thisModule.CreateLocation(10, 10)
 		),
-		n2: MM1!DecorationNode (
+		n2: NOTATION!DecorationNode (
 			type <- '8002',
 			layoutConstraint <- thisModule.CreateLocation(10, 10)
 		)
@@ -135,9 +135,9 @@ rule Pseudostate2Shape {
 
 rule Transition2Connector {
 	from
-		s: MM!Transition
+		s: UML!Transition
 	to
-		t: MM1!Connector (
+		t: NOTATION!Connector (
 			source <- s.source,
 			target <- s.target,
 			type <- '7000',
@@ -151,36 +151,36 @@ rule Transition2Connector {
 			sourceAnchor <- ia,
 				bendpoints <- rbs
 		),
-		s1: MM1!FontStyle (
+		s1: NOTATION!FontStyle (
 			fontName <- 'Segoe UI'
 		),
-		n1: MM1!DecorationNode (
+		n1: NOTATION!DecorationNode (
 			type <- '7001',
 			layoutConstraint <- thisModule.CreateLocation(0, 0)
 		),
-		n2: MM1!DecorationNode (
+		n2: NOTATION!DecorationNode (
 			type <- '7002',
 			layoutConstraint <- thisModule.CreateLocation(0, 0)
 		),
-		n3: MM1!DecorationNode (
+		n3: NOTATION!DecorationNode (
 			type <- '7003',
 			layoutConstraint <- thisModule.CreateLocation(0, 0)
 		),
-		rbs: MM1!RelativeBendpoints (
+		rbs: NOTATION!RelativeBendpoints (
 			--- Sequence{'[7, 12, -47, -70]','[51, 114, -3, 32]'}
 		),
-		ia: MM1!IdentityAnchor (
+		ia: NOTATION!IdentityAnchor (
 			id <- '(0.6435643564356436,0.8285714285714286)'
 		)
 }
 
 rule CreateEAnnotation(source: String,key: String, value: String) {
 	to
-		an: MM1!EAnnotation (
+		an: NOTATION!EAnnotation (
 			source <- source,
 			details <- Sequence{sm}
 		),
-		sm: MM1!EStringToStringMapEntry (
+		sm: NOTATION!EStringToStringMapEntry (
 			key <- key,
 			value <- value
 		)
@@ -191,7 +191,7 @@ rule CreateEAnnotation(source: String,key: String, value: String) {
 
 rule CreateBounds(newX: Integer, newY: Integer, newWidth: Integer, newHeight: Integer) {
 	to
-		b: MM1!Bounds (
+		b: NOTATION!Bounds (
 			x <- newX,
 			y <- newY,
 			width <- newWidth,
@@ -204,7 +204,7 @@ rule CreateBounds(newX: Integer, newY: Integer, newWidth: Integer, newHeight: In
 
 rule CreateLocation(newX: Integer, newY: Integer) {
 	to
-		b: MM1!Location (
+		b: NOTATION!Location (
 			x <- newX,
 			y <- newY
 		)

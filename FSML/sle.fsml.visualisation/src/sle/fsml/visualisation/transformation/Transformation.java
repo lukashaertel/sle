@@ -53,11 +53,11 @@ public class Transformation
 		// FSML transformation
 		transformationFsml = new ATLTransformationWrapper();
 
-		transformationFsml.setMetamodelNameA("MM");
+		transformationFsml.setMetamodelNameA("FSML");
 		transformationFsml.setModelNameA("IN");
 		transformationFsml.setMetamodelPackageA(FSMLPackage.eINSTANCE);
 
-		transformationFsml.setMetamodelNameB("MM1");
+		transformationFsml.setMetamodelNameB("UML");
 		transformationFsml.setModelNameB("OUT");
 		transformationFsml.setMetamodelPackageB(UMLPackage.eINSTANCE);
 
@@ -69,11 +69,11 @@ public class Transformation
 		// UML transformation
 		tranformationUml = new ATLTransformationWrapper();
 
-		tranformationUml.setMetamodelNameA("MM");
+		tranformationUml.setMetamodelNameA("UML");
 		tranformationUml.setModelNameA("IN");
 		tranformationUml.setMetamodelPackageA(UMLPackage.eINSTANCE);
 
-		tranformationUml.setMetamodelNameB("MM1");
+		tranformationUml.setMetamodelNameB("FSML");
 		tranformationUml.setModelNameB("OUT");
 		tranformationUml.setMetamodelPackageB(FSMLPackage.eINSTANCE);
 
@@ -85,11 +85,11 @@ public class Transformation
 		// Notation transformation
 		transformationNotation = new ATLTransformationWrapper();
 
-		transformationNotation.setMetamodelNameA("MM");
+		transformationNotation.setMetamodelNameA("UML");
 		transformationNotation.setModelNameA("IN");
 		transformationNotation.setMetamodelPackageA(UMLPackage.eINSTANCE);
 
-		transformationNotation.setMetamodelNameB("MM1");
+		transformationNotation.setMetamodelNameB("NOTATION");
 		transformationNotation.setModelNameB("OUT");
 		transformationNotation.setMetamodelPackageB(NotationPackage.eINSTANCE);
 
@@ -99,25 +99,31 @@ public class Transformation
 		transformationNotation.initialize();
 	}
 
-	public static void transformUmlToFsml(IResource resource)
+	public static void transformFsmlToUml(IResource resource)
 	{
 		try
 		{
-			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("fsml").toString(), true);
-			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+			// Get URI of files.
+			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("uml").toString(), true);
 
+			// Load EMF resources (no need to call any parser).
 			ResourceSet resourceSet = new ResourceSetImpl();
 
 			final Resource fsmResource = resourceSet.getResource(fsmUri, true);
 			final Resource umlResource = resourceSet.getResource(umlUri, true);
 
-			final Resource fsmResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.fsml", true));
+			// Create temporary EMF resource for transformation output.
+			final Resource umlResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.uml", true));
 
-			tranformationUml.setResourceA(umlResource);
-			tranformationUml.setResourceB(fsmResourceTemp);
+			// Prepare ATL transformation wrapper.
+			transformationFsml.setResourceA(fsmResource);
+			transformationFsml.setResourceB(umlResourceTemp);
 
-			tranformationUml.transform();
+			// Execute transformation
+			transformationFsml.transform();
 
+			// Initialise EMF Compare, no identifiers and no ordering changes.
 			EMFCompareWrapper compare = new EMFCompareWrapper()
 			{
 				@Override
@@ -133,14 +139,77 @@ public class Transformation
 				}
 			};
 
-			Comparison comparison = compare.compare(fsmResourceTemp, fsmResource);
+			// Compare transformation result and old resource.
+			Comparison comparison = compare.compare(umlResourceTemp, umlResource);
 
+			// Check if anything has changed to reach fixpoint.
 			boolean changed = comparison.getDifferences().size() > 0;
-
-			// compare.print(comparison);
 
 			if (changed)
 			{
+				// Merge and save EMF resource.
+				compare.mergeLeftToRight(comparison);
+
+				saveResource(umlResource);
+			}
+
+			System.out.println("FSML -> UML");
+		}
+		catch (Exception e)
+		{
+			System.err.println("Error in FSML -> UML");
+		}
+	}
+
+	public static void transformUmlToFsml(IResource resource)
+	{
+		try
+		{
+			// Get URI of files.
+			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("fsml").toString(), true);
+			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+
+			// Load EMF resources (no need to call any parser).
+			ResourceSet resourceSet = new ResourceSetImpl();
+
+			final Resource fsmResource = resourceSet.getResource(fsmUri, true);
+			final Resource umlResource = resourceSet.getResource(umlUri, true);
+
+			// Create temporary EMF resource for transformation output.
+			final Resource fsmResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.fsml", true));
+
+			// Prepare ATL transformation wrapper.
+			tranformationUml.setResourceA(umlResource);
+			tranformationUml.setResourceB(fsmResourceTemp);
+
+			// Execute transformation
+			tranformationUml.transform();
+
+			// Initialise EMF Compare, no identifiers and no ordering changes.
+			EMFCompareWrapper compare = new EMFCompareWrapper()
+			{
+				@Override
+				protected UseIdentifiers getUseIdentifiers()
+				{
+					return UseIdentifiers.NEVER;
+				}
+
+				@Override
+				public Boolean getCheckForOrderingChanges(EStructuralFeature feature)
+				{
+					return false;
+				}
+			};
+
+			// Compare transformation result and old resource.
+			Comparison comparison = compare.compare(fsmResourceTemp, fsmResource);
+
+			// Check if anything has changed to reach fixpoint.
+			boolean changed = comparison.getDifferences().size() > 0;
+
+			if (changed)
+			{
+				// Merge and save EMF resource.
 				compare.mergeLeftToRight(comparison);
 				saveResource(fsmResource);
 			}
@@ -155,79 +224,32 @@ public class Transformation
 
 	}
 
-	public static void transformFsmlToUml(IResource resource)
-	{
-		try
-		{
-			URI fsmUri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
-			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("uml").toString(), true);
-
-			ResourceSet resourceSet = new ResourceSetImpl();
-
-			final Resource fsmResource = resourceSet.getResource(fsmUri, true);
-			final Resource umlResource = resourceSet.getResource(umlUri, true);
-
-			final Resource umlResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp1.uml", true));
-
-			transformationFsml.setResourceA(fsmResource);
-			transformationFsml.setResourceB(umlResourceTemp);
-
-			transformationFsml.transform();
-
-			EMFCompareWrapper compare = new EMFCompareWrapper()
-			{
-				@Override
-				protected UseIdentifiers getUseIdentifiers()
-				{
-					return UseIdentifiers.NEVER;
-				}
-
-				@Override
-				public Boolean getCheckForOrderingChanges(EStructuralFeature feature)
-				{
-					return false;
-				}
-			};
-
-			Comparison comparison = compare.compare(umlResourceTemp, umlResource);
-
-			boolean changed = comparison.getDifferences().size() > 0;
-
-			// compare.print(comparison);
-
-			if (changed)
-			{
-				compare.mergeLeftToRight(comparison);
-				saveResource(umlResource);
-			}
-
-			System.out.println("FSML -> UML");
-		}
-		catch (Exception e)
-		{
-			System.err.println("Error in FSML -> UML");
-		}
-	}
-
 	public static void transformUmlToNotation(IResource resource)
 	{
 		try
 		{
+			// Get URI of files.
 			URI notationUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("notation").toString(), true);
 			URI umlUri = URI.createPlatformResourceURI(resource.getFullPath().removeFileExtension().addFileExtension("uml").toString(), true);
 
+			// Load EMF resources (no need to call any parser).
 			ResourceSet resourceSet = new ResourceSetImpl();
 
 			final Resource notationResource = resourceSet.getResource(notationUri, true);
 			final Resource umlResource = resourceSet.getResource(umlUri, true);
 
+			// Create temporary EMF resource for transformation output.
 			final Resource notationResourceTemp = resourceSet.createResource(URI.createPlatformResourceURI("temp.notation", true));
 
+			// Prepare ATL transformation wrapper.
 			transformationNotation.setResourceA(umlResource);
 			transformationNotation.setResourceB(notationResourceTemp);
 
+			// Execute transformation
 			transformationNotation.transform();
 
+			// Initialise EMF Compare, identifiers when available, custom
+			// identifiers for some EObjects and ignore layout related attributes
 			EMFCompareWrapper compare = new EMFCompareWrapper()
 			{
 				@Override
@@ -286,7 +308,9 @@ public class Transformation
 	}
 
 	/**
-	 * Returns a unique id for gmf notation package taking nearest container business object id and append the path. 
+	 * Returns a unique id for gmf notation package taking nearest container
+	 * business object id and append the path.
+	 * 
 	 * @param input
 	 * @return
 	 */
