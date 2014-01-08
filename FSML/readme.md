@@ -3,7 +3,7 @@
 Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
 ## Setup *Eclipse*
 * If you do not have an *Eclipse Modeling Tools* installation, go to [*Eclipse* download page](http://www.eclipse.org/downloads/) and download and install: `Eclipse Modeling Tools`
-* Start *Eclipse*.
+* Start *Eclipse*
 * Go to the `Help > Install New Software...`
   * From the [*XText* update site](http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/) install `Xtext-2.4.3`
   * From the [*Itemis* update site](http://download.itemis.de/updates/) install `Xtext Antlr-2.0.0`
