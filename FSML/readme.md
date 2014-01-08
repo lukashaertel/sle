@@ -6,8 +6,8 @@ Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple b
 * Start *Eclipse*.
 * From the [*XText* update site](http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/) install `Xtext-2.4.3`
 * From the [*Itemis* update site](http://download.itemis.de/updates/) install `Xtext Antlr-2.0.0`
-
-ATL GMF Papyrus EMFCompare ....
+* From the *Eclipse Marketplace* under `Help > Eclipse Marketplace...` Install `ATL 3.3` and `ATL/EMFTVM`
+* From `Help > Install Modeling Components` install `Papyrus UML (Incubation)`
 
 ## Import and run the Code
 * Go to `File > Import... > General > Existing Projects into Workspace` and import the `sle.fsml` and `sle.fsml.*` projects. Wait for *Eclipse* to index and build all the projects.  
