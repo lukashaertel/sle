@@ -1,1 +1,1 @@
-This package contains the `.fsml`language, i.e. FSML
+This package contains the `.fsml`language, i.e. *FSML*
