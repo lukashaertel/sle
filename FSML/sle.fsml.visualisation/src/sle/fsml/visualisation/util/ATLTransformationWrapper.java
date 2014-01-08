@@ -1,4 +1,4 @@
-package sle.fsml.visualisation;
+package sle.fsml.visualisation.util;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -12,11 +12,11 @@ import org.eclipse.m2m.atl.emftvm.util.ModuleResolverFactory;
 
 
 /**
- * 
+ * Wrapper around atl emftvm.
  * @author Johannes
  *
  */
-public class ATLTransformation
+public class ATLTransformationWrapper
 {
 	final ExecEnvPool pool = new ExecEnvPool();
 

@@ -9,16 +9,10 @@ create OUT: MM1 from IN: MM;
 
 entrypoint rule Model() {
 	to
-		t: MM1!Model(
-		name <- 'Model',
-		packagedElement <- MM!FSM.allInstances()
-		)
-}
-
-rule FSM2Region {
-	from
-		s: MM!FSM
-	to
+		t: MM1!Model (
+			name <- 'Model',
+			packagedElement <- Sequence{sm}
+		),
 		sm: MM1!StateMachine (
 			name <- 'State Machine',
 			region <- Sequence{region}
@@ -29,7 +23,6 @@ rule FSM2Region {
 			transition <- MM!FSMTransition.allInstances()
 		)
 }
-
 
 rule State2State {
 	from
@@ -60,6 +53,10 @@ rule Transition2Transition {
 		t: MM1!Transition (
 			source <- s.refImmediateComposite(),
 			target <- s.target,
-			name <- s.input.concat(if s.action = OclUndefined then '' else '/' + s.action endif)
+			name <- s.input.concat(if s.action = OclUndefined then
+						''
+					else
+						'/' + s.action
+					endif)
 		)
 }

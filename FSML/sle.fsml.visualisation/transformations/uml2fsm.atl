@@ -8,7 +8,9 @@ create OUT: MM1 from IN: MM;
 
 rule Model2Model {
 	from
-		s: MM!Region(not (MM!Vertex.allInstances().size() = 0))
+		s: MM!Region (
+			not (MM!Vertex.allInstances().size() = 0)
+		)
 	to
 		t: MM1!FSM (
 			states <- s.subvertex
@@ -49,7 +51,15 @@ rule Transition2Transition {
 	to
 		t: MM1!FSMTransition (
 			target <- s.target,
-			input <- if hasAction then s.name.substring(1, indexAction-1) else s.name endif,
-			action <- if hasAction then s.name.substring(indexAction+1, s.name.size()) else OclUndefined endif
+			input <- if hasAction then
+					s.name.substring(1, indexAction - 1)
+				else
+					s.name
+				endif,
+			action <- if hasAction then
+					s.name.substring(indexAction + 1, s.name.size())
+				else
+					OclUndefined
+				endif
 		)
 }

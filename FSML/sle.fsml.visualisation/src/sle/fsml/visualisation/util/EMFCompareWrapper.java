@@ -1,4 +1,4 @@
-package sle.fsml.visualisation;
+package sle.fsml.visualisation.util;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.compare.Comparison;
@@ -30,15 +30,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import com.google.common.base.Function;
 
 /**
- * 
+ * Wrapper around ENF Compare. Override methods for custom matching behavior.
  * @author Johannes
  *
  */
-public class Compare
+public class EMFCompareWrapper
 {
 	private final EMFCompare emfCompare;
 
-	public Compare()
+	public EMFCompareWrapper()
 	{
 		Function<EObject, String> idFunction = new Function<EObject, String>()
 		{
