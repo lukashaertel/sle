@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -222,16 +223,26 @@ public class PapyrusUpdate extends AbstractHandler
 		if (input instanceof Shape) bObject = ((Shape) input).getElement();
 		if (input instanceof Connector) bObject = ((Connector) input).getElement();
 
-		if (bObject instanceof Transition)
-		{
-			id = ((Transition) bObject).getName();
+//		if (bObject instanceof Transition)
+//		{
+//			id = ((Transition) bObject).getName();
+//
+//		}
+//		if (bObject instanceof Vertex)
+//		{
+//			id = ((Vertex) bObject).getName();
+//		}
 
-		}
-		if (bObject instanceof Vertex)
+		if(bObject != null)
 		{
-			id = ((Vertex) bObject).getName();
+			if(bObject.eContainer() != null)
+			{
+				return EcoreUtil.getURI(bObject).deresolve(EcoreUtil.getURI(bObject.eContainer())).toString();
+			}
+			
+			return EcoreUtil.getURI(bObject).toString();
 		}
-
+		
 		return id;
 	}
 
