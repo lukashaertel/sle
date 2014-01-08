@@ -1,13 +1,17 @@
 # *FSML EMF/XText*
 ## Preface
-Due to the high integration with *Eclipse*, the *FSML EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
+Due to the high integration with *Eclipse* and existing editor and transformation frameworks, the *FSML EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
 ## Setup *Eclipse*
 * If you do not have an *Eclipse Modeling Tools* installation, go to [*Eclipse* download page](http://www.eclipse.org/downloads/) and download and install: `Eclipse Modeling Tools`
-* Start *Eclipse*.
-* From the [*XText* update site](http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/) install `Xtext-2.4.3`
-* From the [*Itemis* update site](http://download.itemis.de/updates/) install `Xtext Antlr-2.0.0`
-
-ATL GMF Papyrus EMFCompare ....
+* Start *Eclipse*
+* Go to the `Help > Install New Software...`
+  * From the [*XText* update site](http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/) install `Xtext-2.4.3`
+  * From the [*Itemis* update site](http://download.itemis.de/updates/) install `Xtext Antlr-2.0.0`
+* Go to *Eclipse Marketplace* under `Help > Eclipse Marketplace...`
+  * Install `ATL 3.3` 
+  * Install `ATL/EMFTVM`
+* Go to `Help > Install Modeling Components`
+  * Install `Papyrus UML (Incubation)`
 
 ## Import and run the Code
 * Go to `File > Import... > General > Existing Projects into Workspace` and import the `sle.fsml` and `sle.fsml.*` projects. Wait for *Eclipse* to index and build all the projects.  
