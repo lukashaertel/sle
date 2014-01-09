@@ -24,6 +24,7 @@ Due to the high integration with *Eclipse* and existing editor and transformatio
 * If you wan to use the *Java* clases, go to the `MANIFEST.MF` and add `sle.fsml` as a *Required Plug-in* or `sle.fsml.runtime` as an *Imported Package* under the *Dependencies* tab.
 
 ### Working with *FSML* Files
+![fsmling](https://f.cloud.github.com/assets/5929561/1878835/22abbc76-7941-11e3-89a0-279a55c581db.gif)
 * Create or add any file with a `.fsml` or `.input` extension and open it. 
 * If *Eclipse* asks you if it should add the *XText Nature* click yes.
 
