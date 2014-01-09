@@ -51,9 +51,9 @@
                id="sle.fsml.visualisation.toolbars.sampleToolbar">
             <command
                   commandId="sle.fsml.visualisation.commands.sampleCommand"
-                  icon="icons/sample.gif"
+                  icon="icons/update_layout.gif"
                   id="sle.fsml.visualisation.toolbars.sampleCommand"
-                  tooltip="Say hello world">
+                  tooltip="Update Layout">
             </command>
          </toolbar>
       </menuContribution>

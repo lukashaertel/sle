@@ -3,7 +3,9 @@
  */
 package sle.fsml.ui;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleException;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -11,5 +13,13 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class FSMLUiModule extends sle.fsml.ui.AbstractFSMLUiModule {
 	public FSMLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+
+		// The "sle.fsml.visualisation" plug-in is part of the UI so try to load
+		// it, if it could not be loaded ignore, user might have deactivated it
+		try {
+			Platform.getBundle("sle.fsml.visualisation").start();
+		} catch (BundleException e) {
+
+		}
 	}
 }
