@@ -1,4 +1,5 @@
 # *FSML EMF/XText*
+*FSML* is a domain specific language for *Finite State Machines*, *FSML EMF/XText* provides tools for editing such finite state machines and their input.
 ## Preface
 Due to the high integration with *Eclipse* and existing editor and transformation frameworks, the *FSML EMF/XText* has no simple build script or makefile, but a somewhat extensive setup progress.  
 ## Setup *Eclipse*
