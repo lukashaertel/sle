@@ -428,13 +428,13 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFSMTransition"
-    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:199:1: ruleFSMTransition returns [EObject current=null] : ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) ;
+    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:199:1: ruleFSMTransition returns [EObject current=null] : ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) ;
     public final EObject ruleFSMTransition() throws RecognitionException {
         EObject current = null;
 
         Token lv_input_0_0=null;
         Token otherlv_1=null;
-        Token lv_action_2_0=null;
+        Token lv_actions_2_0=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
@@ -442,11 +442,11 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:202:28: ( ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) )
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:202:28: ( ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' ) )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
             {
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';'
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:1: ( ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';' )
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) ) (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )? (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )? otherlv_5= ';'
             {
             // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:203:2: ( (lv_input_0_0= RULE_ID ) )
             // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:204:1: (lv_input_0_0= RULE_ID )
@@ -474,46 +474,69 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:2: (otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) ) )?
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:2: (otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+ )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA4_0==15) ) {
-                alt4=1;
+            if ( (LA5_0==15) ) {
+                alt5=1;
             }
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:4: otherlv_1= '/' ( (lv_action_2_0= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:221:4: otherlv_1= '/' ( (lv_actions_2_0= RULE_ID ) )+
                     {
                     otherlv_1=(Token)match(input,15,FOLLOW_15_in_ruleFSMTransition419); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getFSMTransitionAccess().getSolidusKeyword_1_0());
                         
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:225:1: ( (lv_action_2_0= RULE_ID ) )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_action_2_0= RULE_ID )
-                    {
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_action_2_0= RULE_ID )
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:227:3: lv_action_2_0= RULE_ID
-                    {
-                    lv_action_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition436); 
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:225:1: ( (lv_actions_2_0= RULE_ID ) )+
+                    int cnt4=0;
+                    loop4:
+                    do {
+                        int alt4=2;
+                        int LA4_0 = input.LA(1);
 
-                    			newLeafNode(lv_action_2_0, grammarAccess.getFSMTransitionAccess().getActionIDTerminalRuleCall_1_1_0()); 
-                    		
-
-                    	        if (current==null) {
-                    	            current = createModelElement(grammarAccess.getFSMTransitionRule());
-                    	        }
-                           		setWithLastConsumed(
-                           			current, 
-                           			"action",
-                            		lv_action_2_0, 
-                            		"ID");
-                    	    
-
-                    }
+                        if ( (LA4_0==RULE_ID) ) {
+                            alt4=1;
+                        }
 
 
-                    }
+                        switch (alt4) {
+                    	case 1 :
+                    	    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_actions_2_0= RULE_ID )
+                    	    {
+                    	    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:226:1: (lv_actions_2_0= RULE_ID )
+                    	    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:227:3: lv_actions_2_0= RULE_ID
+                    	    {
+                    	    lv_actions_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition436); 
+
+                    	    			newLeafNode(lv_actions_2_0, grammarAccess.getFSMTransitionAccess().getActionsIDTerminalRuleCall_1_1_0()); 
+                    	    		
+
+                    	    	        if (current==null) {
+                    	    	            current = createModelElement(grammarAccess.getFSMTransitionRule());
+                    	    	        }
+                    	           		addWithLastConsumed(
+                    	           			current, 
+                    	           			"actions",
+                    	            		lv_actions_2_0, 
+                    	            		"ID");
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt4 >= 1 ) break loop4;
+                                EarlyExitException eee =
+                                    new EarlyExitException(4, input);
+                                throw eee;
+                        }
+                        cnt4++;
+                    } while (true);
 
 
                     }
@@ -521,18 +544,18 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:4: (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:5: (otherlv_3= '->' ( (otherlv_4= RULE_ID ) ) )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA5_0==16) ) {
-                alt5=1;
+            if ( (LA6_0==16) ) {
+                alt6=1;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
-                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:6: otherlv_3= '->' ( (otherlv_4= RULE_ID ) )
+                    // ../sle.fsml/src-gen/sle/fsml/parser/antlr/internal/InternalFSML.g:243:7: otherlv_3= '->' ( (otherlv_4= RULE_ID ) )
                     {
-                    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleFSMTransition456); 
+                    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleFSMTransition457); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0());
                         
@@ -547,7 +570,7 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
                     	            current = createModelElement(grammarAccess.getFSMTransitionRule());
                     	        }
                             
-                    otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition476); 
+                    otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFSMTransition477); 
 
                     		newLeafNode(otherlv_4, grammarAccess.getFSMTransitionAccess().getTargetFSMStateCrossReference_2_1_0()); 
                     	
@@ -563,7 +586,7 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleFSMTransition490); 
+            otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleFSMTransition491); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getFSMTransitionAccess().getSemicolonKeyword_3());
                 
@@ -606,9 +629,9 @@ public class InternalFSMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleFSMTransition359 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition401 = new BitSet(new long[]{0x0000000000038000L});
     public static final BitSet FOLLOW_15_in_ruleFSMTransition419 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition436 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_16_in_ruleFSMTransition456 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition476 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFSMTransition490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition436 = new BitSet(new long[]{0x0000000000030010L});
+    public static final BitSet FOLLOW_16_in_ruleFSMTransition457 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFSMTransition477 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFSMTransition491 = new BitSet(new long[]{0x0000000000000002L});
 
 }

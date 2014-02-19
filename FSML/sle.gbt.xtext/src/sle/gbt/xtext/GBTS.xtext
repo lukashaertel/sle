@@ -1,0 +1,21 @@
+grammar sle.gbt.xtext.GBTS with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/2008/Xtext" as xtext
+generate gBTS "http://www.gbt.sle/xtext/GBTS"
+
+Model:
+	tests+=Test+;
+
+Test:
+	'test' ref=[xtext::Grammar|QID] ('start' 'at' rule=[xtext::AbstractRule])? ('with' 'depth' depth=INT)?;
+
+QID:
+	ID ('.' QID)?;
+	
+	/**
+	 * Predicated true in abstract element ~ '=>' used on abstract element
+	 */
+	 
+	/**
+	 * Cardinality of abstract element ~ {null, '?', '+', '*'}
+	 */

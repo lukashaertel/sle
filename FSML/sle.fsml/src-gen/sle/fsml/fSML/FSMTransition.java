@@ -2,6 +2,8 @@
  */
 package sle.fsml.fSML;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link sle.fsml.fSML.FSMTransition#getInput <em>Input</em>}</li>
- *   <li>{@link sle.fsml.fSML.FSMTransition#getAction <em>Action</em>}</li>
+ *   <li>{@link sle.fsml.fSML.FSMTransition#getActions <em>Actions</em>}</li>
  *   <li>{@link sle.fsml.fSML.FSMTransition#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
@@ -51,30 +53,20 @@ public interface FSMTransition extends EObject
   void setInput(String value);
 
   /**
-   * Returns the value of the '<em><b>Action</b></em>' attribute.
+   * Returns the value of the '<em><b>Actions</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Action</em>' attribute isn't clear,
+   * If the meaning of the '<em>Actions</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Action</em>' attribute.
-   * @see #setAction(String)
-   * @see sle.fsml.fSML.FSMLPackage#getFSMTransition_Action()
-   * @model
+   * @return the value of the '<em>Actions</em>' attribute list.
+   * @see sle.fsml.fSML.FSMLPackage#getFSMTransition_Actions()
+   * @model unique="false"
    * @generated
    */
-  String getAction();
-
-  /**
-   * Sets the value of the '{@link sle.fsml.fSML.FSMTransition#getAction <em>Action</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Action</em>' attribute.
-   * @see #getAction()
-   * @generated
-   */
-  void setAction(String value);
+  EList<String> getActions();
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.

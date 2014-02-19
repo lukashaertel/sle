@@ -3,18 +3,18 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fSML" nsURI="http://www.fsml.sle/FSML" nsPrefix="fSML">
   <eClassifiers xsi:type="ecore:EClass" name="FSM">
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
-        eType="ecore:EClass /sle.fsml/model/generated/FSML.ecore#//FSMState" containment="true"/>
+        eType="#//FSMState" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FSMState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initial" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
-        eType="ecore:EClass /sle.fsml/model/generated/FSML.ecore#//FSMTransition"
-        containment="true"/>
+        eType="#//FSMTransition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FSMTransition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass /sle.fsml/model/generated/FSML.ecore#//FSMState"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//FSMState"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -46,7 +46,7 @@ public class FSMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFSMStateAccess().getNameAssignment_2(), "rule__FSMState__NameAssignment_2");
 					put(grammarAccess.getFSMStateAccess().getTransitionsAssignment_4(), "rule__FSMState__TransitionsAssignment_4");
 					put(grammarAccess.getFSMTransitionAccess().getInputAssignment_0(), "rule__FSMTransition__InputAssignment_0");
-					put(grammarAccess.getFSMTransitionAccess().getActionAssignment_1_1(), "rule__FSMTransition__ActionAssignment_1_1");
+					put(grammarAccess.getFSMTransitionAccess().getActionsAssignment_1_1(), "rule__FSMTransition__ActionsAssignment_1_1");
 					put(grammarAccess.getFSMTransitionAccess().getTargetAssignment_2_1(), "rule__FSMTransition__TargetAssignment_2_1");
 				}
 			};

@@ -53,17 +53,17 @@ class FSMLOutlineTreeProvider extends DefaultOutlineTreeProvider
 	 */
 	def _isLeaf(FSMTransition transition)
 	{
-		return transition.action == null && transition.target == null;
+		return transition.actions.empty && transition.target == null;
 	}
 
 	def _createChildren(IOutlineNode parentNode, FSMTransition transition)
 	{
 
 		// If the transition has an action, create a note for it
-		if(transition.action != null)
+		for(a : transition.actions)
 		{
-			createEStructuralFeatureNode(parentNode, transition, FSMLPackage.Literals.FSM_TRANSITION__ACTION,
-				labelProvider.getImage('transition action'), transition.action, true)
+			createEStructuralFeatureNode(parentNode, transition, FSMLPackage.Literals.FSM_TRANSITION__ACTIONS,
+				labelProvider.getImage('transition action'), a, true)
 		}
 
 		// If the transition has a target, create a note for it

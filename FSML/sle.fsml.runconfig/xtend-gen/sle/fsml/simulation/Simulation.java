@@ -32,8 +32,8 @@ public class Simulation {
   /**
    * Simulation on objects to result-list
    */
-  public static LinkedList<Pair<String,FSMState>> simulate(final FSM m, final Input i) {
-    final LinkedList<Pair<String,FSMState>> result = CollectionLiterals.<Pair<String,FSMState>>newLinkedList();
+  public static LinkedList<Pair<EList<String>,FSMState>> simulate(final FSM m, final Input i) {
+    final LinkedList<Pair<EList<String>,FSMState>> result = CollectionLiterals.<Pair<EList<String>,FSMState>>newLinkedList();
     EList<FSMState> _states = m.getStates();
     final Function1<FSMState,Boolean> _function = new Function1<FSMState,Boolean>() {
       public Boolean apply(final FSMState it) {
@@ -90,11 +90,8 @@ public class Simulation {
           FSMState _target_1 = transition.getTarget();
           state = _target_1;
         }
-        String _action = null;
-        if (transition!=null) {
-          _action=transition.getAction();
-        }
-        Pair<String,FSMState> _mappedTo = Pair.<String, FSMState>of(_action, state);
+        EList<String> _actions = transition.getActions();
+        Pair<EList<String>,FSMState> _mappedTo = Pair.<EList<String>, FSMState>of(_actions, state);
         result.add(_mappedTo);
       }
     }
@@ -104,7 +101,7 @@ public class Simulation {
   /**
    * Simulation on files to result-list
    */
-  public static LinkedList<Pair<String,FSMState>> simulate(final String mFile, final String iFile) {
+  public static LinkedList<Pair<EList<String>,FSMState>> simulate(final String mFile, final String iFile) {
     XtextResourceSet _xtextResourceSet = new XtextResourceSet();
     final XtextResourceSet resourceSet = _xtextResourceSet;
     URI _createFileURI = URI.createFileURI(mFile);
@@ -123,13 +120,13 @@ public class Simulation {
   /**
    * Utility for writing an output text
    */
-  public static CharSequence toText(final Iterable<Pair<String,FSMState>> result) {
+  public static CharSequence toText(final Iterable<Pair<EList<String>,FSMState>> result) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("[");
     _builder.newLine();
     {
       boolean _hasElements = false;
-      for(final Pair<String, FSMState> r : result) {
+      for(final Pair<EList<String>, FSMState> r : result) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -137,11 +134,15 @@ public class Simulation {
         }
         _builder.append("\t([");
         {
-          String _key = r.getKey();
-          boolean _notEquals = (!Objects.equal(_key, null));
-          if (_notEquals) {
-            String _key_1 = r.getKey();
-            _builder.append(_key_1, "");
+          EList<String> _key = r.getKey();
+          boolean _hasElements_1 = false;
+          for(final String a : _key) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate(", ", "");
+            }
+            _builder.append(a, "");
           }
         }
         _builder.append("], ");

@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
@@ -62,7 +63,7 @@ public class FSMLSimulationDelegate implements ILaunchConfigurationDelegate {
 		// Start a task ...
 		monitor.beginTask("Simulating", 2);
 
-		final LinkedList<Pair<String, FSMState>> simulation;
+		final LinkedList<Pair<EList<String>, FSMState>> simulation;
 
 		// ... while simulating ...
 		try {

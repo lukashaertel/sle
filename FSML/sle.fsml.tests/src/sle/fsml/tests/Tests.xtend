@@ -77,12 +77,12 @@ class Tests
 		locked => [
 			transitions += createFSMTransition => [
 				input = 'ticket';
-				action = 'collect';
+				actions += 'collect';
 				target = unlocked;
 			];
 			transitions += createFSMTransition => [
 				input = 'pass';
-				action = 'alarm';
+				actions += 'alarm';
 				target = exception;
 			];
 		];
@@ -91,7 +91,7 @@ class Tests
 		unlocked => [
 			transitions += createFSMTransition => [
 				input = 'ticket';
-				action = 'eject';
+				actions += 'eject';
 			];
 			transitions += createFSMTransition => [
 				input = 'pass';
@@ -103,7 +103,7 @@ class Tests
 		exception => [
 			transitions += createFSMTransition => [
 				input = 'ticket';
-				action = 'eject';
+				actions += 'eject';
 			];
 			transitions += createFSMTransition => [
 				input = 'pass';

@@ -17,7 +17,7 @@
     </genClasses>
     <genClasses ecoreClass="FSML.ecore#//FSMTransition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FSML.ecore#//FSMTransition/input"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FSML.ecore#//FSMTransition/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FSML.ecore#//FSMTransition/actions"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FSML.ecore#//FSMTransition/target"/>
     </genClasses>
   </genPackages>

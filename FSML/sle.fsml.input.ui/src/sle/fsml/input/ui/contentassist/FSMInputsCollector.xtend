@@ -52,10 +52,9 @@ class FSMInputsCollector implements IResourceProxyVisitor
 			return true;
 		}
 	}
-
+	
 	def getInputs()
 	{
 		return Collections::unmodifiableSet(inputs);
 	}
-
 }

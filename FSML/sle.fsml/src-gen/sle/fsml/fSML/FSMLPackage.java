@@ -150,13 +150,13 @@ public interface FSMLPackage extends EPackage
   int FSM_TRANSITION__INPUT = 0;
 
   /**
-   * The feature id for the '<em><b>Action</b></em>' attribute.
+   * The feature id for the '<em><b>Actions</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FSM_TRANSITION__ACTION = 1;
+  int FSM_TRANSITION__ACTIONS = 1;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -263,15 +263,15 @@ public interface FSMLPackage extends EPackage
   EAttribute getFSMTransition_Input();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.fsml.fSML.FSMTransition#getAction <em>Action</em>}'.
+   * Returns the meta object for the attribute list '{@link sle.fsml.fSML.FSMTransition#getActions <em>Actions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Action</em>'.
-   * @see sle.fsml.fSML.FSMTransition#getAction()
+   * @return the meta object for the attribute list '<em>Actions</em>'.
+   * @see sle.fsml.fSML.FSMTransition#getActions()
    * @see #getFSMTransition()
    * @generated
    */
-  EAttribute getFSMTransition_Action();
+  EAttribute getFSMTransition_Actions();
 
   /**
    * Returns the meta object for the reference '{@link sle.fsml.fSML.FSMTransition#getTarget <em>Target</em>}'.
@@ -378,12 +378,12 @@ public interface FSMLPackage extends EPackage
     EAttribute FSM_TRANSITION__INPUT = eINSTANCE.getFSMTransition_Input();
 
     /**
-     * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Actions</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FSM_TRANSITION__ACTION = eINSTANCE.getFSMTransition_Action();
+    EAttribute FSM_TRANSITION__ACTIONS = eINSTANCE.getFSMTransition_Actions();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.

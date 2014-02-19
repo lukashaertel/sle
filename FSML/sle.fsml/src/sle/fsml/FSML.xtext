@@ -21,4 +21,4 @@ FSMState:
  * A transition has an input, an optional action and an optional target state
  */
 FSMTransition:
-	input=ID ('/' action=ID)? ('->' target=[FSMState])? ';';
+	input=ID ('/' actions+=ID+)? ('->' target=[FSMState])? ';';

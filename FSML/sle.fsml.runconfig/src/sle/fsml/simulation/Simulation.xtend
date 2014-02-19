@@ -7,6 +7,7 @@ import sle.fsml.fSML.FSMState
 import sle.fsml.input.input.Input
 
 import static org.eclipse.emf.common.util.URI.*
+import org.eclipse.emf.common.util.EList
 
 /**
  * Static FSM simulation API
@@ -61,7 +62,7 @@ class Simulation
 			}
 
 			// Write a result
-			result += transition?.action -> state;
+			result += transition.actions -> state;
 		}
 
 		return result;
@@ -91,11 +92,11 @@ class Simulation
 	/**
 	 * Utility for writing an output text
 	 */
-	public static def toText(Iterable<Pair<String, FSMState>> result)
+	public static def toText(Iterable<Pair<EList<String>, FSMState>> result)
 	'''
 		[
 		«FOR r : result SEPARATOR ',
-'»	([«IF r.key != null»«r.key»«ENDIF»], «r.value.name»)«ENDFOR»
+'»	([«FOR a: r.key SEPARATOR ', '»«a»«ENDFOR»], «r.value.name»)«ENDFOR»
 		].
 	'''
 }

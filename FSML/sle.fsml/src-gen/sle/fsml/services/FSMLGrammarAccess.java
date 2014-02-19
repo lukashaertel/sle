@@ -23,7 +23,9 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cStatesAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cStatesFSMStateParserRuleCall_0 = (RuleCall)cStatesAssignment.eContents().get(0);
 		
-		//FSM:
+		/// **
+		// * A FSM is a collection of multiple states
+		// * / FSM:
 		//	states+=FSMState*;
 		public ParserRule getRule() { return rule; }
 
@@ -47,7 +49,9 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTransitionsFSMTransitionParserRuleCall_4_0 = (RuleCall)cTransitionsAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//FSMState:
+		/// **
+		// * A state can be optional, has a name and is composed of multiple transitions
+		// * / FSMState:
 		//	initial?="initial"? "state" name=ID "{" transitions+=FSMTransition* "}";
 		public ParserRule getRule() { return rule; }
 
@@ -89,8 +93,8 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInputIDTerminalRuleCall_0_0 = (RuleCall)cInputAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cSolidusKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cActionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cActionIDTerminalRuleCall_1_1_0 = (RuleCall)cActionAssignment_1_1.eContents().get(0);
+		private final Assignment cActionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cActionsIDTerminalRuleCall_1_1_0 = (RuleCall)cActionsAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cTargetAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -98,11 +102,13 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTargetFSMStateIDTerminalRuleCall_2_1_0_1 = (RuleCall)cTargetFSMStateCrossReference_2_1_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//FSMTransition:
-		//	input=ID ("/" action=ID)? ("->" target=[FSMState])? ";";
+		/// **
+		// * A transition has an input, an optional action and an optional target state
+		// * / FSMTransition:
+		//	input=ID ("/" actions+=ID+)? ("->" target=[FSMState])? ";";
 		public ParserRule getRule() { return rule; }
 
-		//input=ID ("/" action=ID)? ("->" target=[FSMState])? ";"
+		//input=ID ("/" actions+=ID+)? ("->" target=[FSMState])? ";"
 		public Group getGroup() { return cGroup; }
 
 		//input=ID
@@ -111,17 +117,17 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getInputIDTerminalRuleCall_0_0() { return cInputIDTerminalRuleCall_0_0; }
 
-		//("/" action=ID)?
+		//("/" actions+=ID+)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"/"
 		public Keyword getSolidusKeyword_1_0() { return cSolidusKeyword_1_0; }
 
-		//action=ID
-		public Assignment getActionAssignment_1_1() { return cActionAssignment_1_1; }
+		//actions+=ID+
+		public Assignment getActionsAssignment_1_1() { return cActionsAssignment_1_1; }
 
 		//ID
-		public RuleCall getActionIDTerminalRuleCall_1_1_0() { return cActionIDTerminalRuleCall_1_1_0; }
+		public RuleCall getActionsIDTerminalRuleCall_1_1_0() { return cActionsIDTerminalRuleCall_1_1_0; }
 
 		//("->" target=[FSMState])?
 		public Group getGroup_2() { return cGroup_2; }
@@ -185,7 +191,9 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//FSM:
+	/// **
+	// * A FSM is a collection of multiple states
+	// * / FSM:
 	//	states+=FSMState*;
 	public FSMElements getFSMAccess() {
 		return (pFSM != null) ? pFSM : (pFSM = new FSMElements());
@@ -195,7 +203,9 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFSMAccess().getRule();
 	}
 
-	//FSMState:
+	/// **
+	// * A state can be optional, has a name and is composed of multiple transitions
+	// * / FSMState:
 	//	initial?="initial"? "state" name=ID "{" transitions+=FSMTransition* "}";
 	public FSMStateElements getFSMStateAccess() {
 		return (pFSMState != null) ? pFSMState : (pFSMState = new FSMStateElements());
@@ -205,8 +215,10 @@ public class FSMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFSMStateAccess().getRule();
 	}
 
-	//FSMTransition:
-	//	input=ID ("/" action=ID)? ("->" target=[FSMState])? ";";
+	/// **
+	// * A transition has an input, an optional action and an optional target state
+	// * / FSMTransition:
+	//	input=ID ("/" actions+=ID+)? ("->" target=[FSMState])? ";";
 	public FSMTransitionElements getFSMTransitionAccess() {
 		return (pFSMTransition != null) ? pFSMTransition : (pFSMTransition = new FSMTransitionElements());
 	}

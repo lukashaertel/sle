@@ -2,13 +2,19 @@
  */
 package sle.fsml.fSML.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import sle.fsml.fSML.FSMLPackage;
 import sle.fsml.fSML.FSMState;
@@ -22,7 +28,7 @@ import sle.fsml.fSML.FSMTransition;
  * The following features are implemented:
  * <ul>
  *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getInput <em>Input</em>}</li>
- *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link sle.fsml.fSML.impl.FSMTransitionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
@@ -52,24 +58,14 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
   protected String input = INPUT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAction()
+   * @see #getActions()
    * @generated
    * @ordered
    */
-  protected static final String ACTION_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAction()
-   * @generated
-   * @ordered
-   */
-  protected String action = ACTION_EDEFAULT;
+  protected EList<String> actions;
 
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -130,22 +126,13 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAction()
+  public EList<String> getActions()
   {
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAction(String newAction)
-  {
-    String oldAction = action;
-    action = newAction;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FSMLPackage.FSM_TRANSITION__ACTION, oldAction, action));
+    if (actions == null)
+    {
+      actions = new EDataTypeEList<String>(String.class, this, FSMLPackage.FSM_TRANSITION__ACTIONS);
+    }
+    return actions;
   }
 
   /**
@@ -203,8 +190,8 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
     {
       case FSMLPackage.FSM_TRANSITION__INPUT:
         return getInput();
-      case FSMLPackage.FSM_TRANSITION__ACTION:
-        return getAction();
+      case FSMLPackage.FSM_TRANSITION__ACTIONS:
+        return getActions();
       case FSMLPackage.FSM_TRANSITION__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
@@ -217,6 +204,7 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -225,8 +213,9 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
       case FSMLPackage.FSM_TRANSITION__INPUT:
         setInput((String)newValue);
         return;
-      case FSMLPackage.FSM_TRANSITION__ACTION:
-        setAction((String)newValue);
+      case FSMLPackage.FSM_TRANSITION__ACTIONS:
+        getActions().clear();
+        getActions().addAll((Collection<? extends String>)newValue);
         return;
       case FSMLPackage.FSM_TRANSITION__TARGET:
         setTarget((FSMState)newValue);
@@ -248,8 +237,8 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
       case FSMLPackage.FSM_TRANSITION__INPUT:
         setInput(INPUT_EDEFAULT);
         return;
-      case FSMLPackage.FSM_TRANSITION__ACTION:
-        setAction(ACTION_EDEFAULT);
+      case FSMLPackage.FSM_TRANSITION__ACTIONS:
+        getActions().clear();
         return;
       case FSMLPackage.FSM_TRANSITION__TARGET:
         setTarget((FSMState)null);
@@ -270,8 +259,8 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
     {
       case FSMLPackage.FSM_TRANSITION__INPUT:
         return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
-      case FSMLPackage.FSM_TRANSITION__ACTION:
-        return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+      case FSMLPackage.FSM_TRANSITION__ACTIONS:
+        return actions != null && !actions.isEmpty();
       case FSMLPackage.FSM_TRANSITION__TARGET:
         return target != null;
     }
@@ -291,8 +280,8 @@ public class FSMTransitionImpl extends MinimalEObjectImpl.Container implements F
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (input: ");
     result.append(input);
-    result.append(", action: ");
-    result.append(action);
+    result.append(", actions: ");
+    result.append(actions);
     result.append(')');
     return result.toString();
   }

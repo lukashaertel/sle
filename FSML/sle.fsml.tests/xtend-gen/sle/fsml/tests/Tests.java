@@ -117,7 +117,8 @@ public class Tests {
         final Procedure1<FSMTransition> _function = new Procedure1<FSMTransition>() {
           public void apply(final FSMTransition it) {
             it.setInput("ticket");
-            it.setAction("collect");
+            EList<String> _actions = it.getActions();
+            _actions.add("collect");
             it.setTarget(Tests.this.unlocked);
           }
         };
@@ -128,7 +129,8 @@ public class Tests {
         final Procedure1<FSMTransition> _function_1 = new Procedure1<FSMTransition>() {
           public void apply(final FSMTransition it) {
             it.setInput("pass");
-            it.setAction("alarm");
+            EList<String> _actions = it.getActions();
+            _actions.add("alarm");
             it.setTarget(Tests.this.exception);
           }
         };
@@ -145,7 +147,8 @@ public class Tests {
         final Procedure1<FSMTransition> _function = new Procedure1<FSMTransition>() {
           public void apply(final FSMTransition it) {
             it.setInput("ticket");
-            it.setAction("eject");
+            EList<String> _actions = it.getActions();
+            _actions.add("eject");
           }
         };
         FSMTransition _doubleArrow = ObjectExtensions.<FSMTransition>operator_doubleArrow(_createFSMTransition, _function);
@@ -171,7 +174,8 @@ public class Tests {
         final Procedure1<FSMTransition> _function = new Procedure1<FSMTransition>() {
           public void apply(final FSMTransition it) {
             it.setInput("ticket");
-            it.setAction("eject");
+            EList<String> _actions = it.getActions();
+            _actions.add("eject");
           }
         };
         FSMTransition _doubleArrow = ObjectExtensions.<FSMTransition>operator_doubleArrow(_createFSMTransition, _function);
@@ -533,7 +537,7 @@ public class Tests {
     Pair<String,FSMState> _mappedTo_12 = Pair.<String, FSMState>of("collect", this.unlocked);
     Pair<String,FSMState> _mappedTo_13 = Pair.<String, FSMState>of(null, this.locked);
     final List<Pair<String,FSMState>> expectedResult = Collections.<Pair<String, FSMState>>unmodifiableList(Lists.<Pair<String, FSMState>>newArrayList(_mappedTo, _mappedTo_1, _mappedTo_2, _mappedTo_3, _mappedTo_4, _mappedTo_5, _mappedTo_6, _mappedTo_7, _mappedTo_8, _mappedTo_9, _mappedTo_10, _mappedTo_11, _mappedTo_12, _mappedTo_13));
-    final LinkedList<Pair<String,FSMState>> result = Simulation.simulate(this.fsm, input);
+    final LinkedList<Pair<EList<String>,FSMState>> result = Simulation.simulate(this.fsm, input);
     Assert.assertEquals(expectedResult, result);
   }
   

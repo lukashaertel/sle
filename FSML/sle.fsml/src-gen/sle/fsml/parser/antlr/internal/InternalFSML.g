@@ -224,23 +224,23 @@ ruleFSMTransition returns [EObject current=null]
     }
 (
 (
-		lv_action_2_0=RULE_ID
+		lv_actions_2_0=RULE_ID
 		{
-			newLeafNode(lv_action_2_0, grammarAccess.getFSMTransitionAccess().getActionIDTerminalRuleCall_1_1_0()); 
+			newLeafNode(lv_actions_2_0, grammarAccess.getFSMTransitionAccess().getActionsIDTerminalRuleCall_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getFSMTransitionRule());
 	        }
-       		setWithLastConsumed(
+       		addWithLastConsumed(
        			$current, 
-       			"action",
-        		lv_action_2_0, 
+       			"actions",
+        		lv_actions_2_0, 
         		"ID");
 	    }
 
 )
-))?(	otherlv_3='->' 
+)+)?(	otherlv_3='->' 
     {
     	newLeafNode(otherlv_3, grammarAccess.getFSMTransitionAccess().getHyphenMinusGreaterThanSignKeyword_2_0());
     }
