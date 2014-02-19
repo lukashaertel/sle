@@ -58,4 +58,8 @@ public class IndexConcat<Item> extends IndexComplex<Item> {
 			return rest.get(i - ids);
 	}
 
+	@Override
+	public String toString() {
+		return initial + " ~~> " + rest;
+	}
 }

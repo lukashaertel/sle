@@ -1,5 +1,6 @@
 package sle.gbt.index;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -62,6 +63,11 @@ public class IndexList<Item> implements Index<Item> {
 				return items.get((int) i);
 			}
 		};
+	}
+
+	@Override
+	public String toString() {
+		return items.toString();
 	}
 
 }

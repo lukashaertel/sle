@@ -20,7 +20,7 @@ public class IndexNaturals implements Index<Long> {
 
 	@Override
 	public boolean exists(long i) {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -51,4 +51,8 @@ public class IndexNaturals implements Index<Long> {
 		};
 	}
 
+	@Override
+	public String toString() {
+		return "natural numbers";
+	}
 }

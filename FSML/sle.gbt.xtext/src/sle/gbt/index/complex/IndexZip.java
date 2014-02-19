@@ -19,7 +19,7 @@ public class IndexZip<Item> extends IndexComplex<Item> {
 
 	@Override
 	public long domainSize() {
-		if (evens.domainSize() != -1 && evens.domainSize() != -1) {
+		if (evens.domainSize() != -1 && odds.domainSize() != -1) {
 			return evens.domainSize() + odds.domainSize();
 		}
 
@@ -42,6 +42,11 @@ public class IndexZip<Item> extends IndexComplex<Item> {
 		} else {
 			return odds.exists(i / 2) ? odds.get(i / 2) : null;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return evens + " zipped with " + odds;
 	}
 
 }

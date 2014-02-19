@@ -53,4 +53,8 @@ public class IndexEmpty<Item> implements Index<Item> {
 		};
 	}
 
+	@Override
+	public String toString() {
+		return "empty";
+	}
 }

@@ -20,7 +20,7 @@ public class IndexNaturalsZero implements Index<Long> {
 
 	@Override
 	public boolean exists(long i) {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -49,5 +49,10 @@ public class IndexNaturalsZero implements Index<Long> {
 				throw new UnsupportedOperationException();
 			}
 		};
+	}
+
+	@Override
+	public String toString() {
+		return "natural numbers w/ 0";
 	}
 }

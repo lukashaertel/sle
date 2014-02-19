@@ -56,4 +56,9 @@ public class IndexSingleton<Item> implements Index<Item> {
 			}
 		};
 	}
+
+	@Override
+	public String toString() {
+		return "just " + item;
+	}
 }

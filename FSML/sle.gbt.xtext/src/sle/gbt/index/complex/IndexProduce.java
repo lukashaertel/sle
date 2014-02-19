@@ -1,17 +1,11 @@
 package sle.gbt.index.complex;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map.Entry;
-import java.util.ArrayList;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 import sle.gbt.index.Index;
-import sle.gbt.index.IndexNaturals;
-import sle.gbt.index.IndexNaturalsZero;
-import sle.gbt.index.IndexSingleton;
-import sle.gbt.xtext.icc.index.IndexNatural;
 
 /**
  * Index concatenates a production of indices, only pulling indices from the
@@ -33,6 +27,11 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 
 	public IndexProduce(Iterator<? extends Index<? extends Item>> production) {
 		this.production = production;
+	}
+
+	public static <Item> IndexProduce<Item> produce(
+			Iterator<? extends Index<? extends Item>> production) {
+		return new IndexProduce<>(production);
 	}
 
 	/**
@@ -93,47 +92,50 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 	}
 
 	private Entry<Long, Index<? extends Item>> getRange(final long i) {
+		// Try to directly find the potential range
 		Entry<Long, Index<? extends Item>> potential = ranges.floorEntry(i);
 
+		// If it does not exist or the domain is not responsible for this index,
+		// and if the production has another index, append and retry
 		while ((potential == null || potential.getValue().domainSize() <= i
 				- potential.getKey())
 				&& production.hasNext()) {
+
+			// Get the next index
 			final Index<? extends Item> next = production.next();
 
-			final Entry<Long, Index<? extends Item>> range = ranges.lastEntry();
-			if (range == null) {
-				ranges.put(0L, next);
-			} else {
-				final long offset = range.getKey();
-				final Index<? extends Item> items = range.getValue();
+			// If it is non-empty
+			if (next.domainSize() != 0) {
+				// Get the range to append the next one to
+				final Entry<Long, Index<? extends Item>> range = ranges
+						.lastEntry();
 
-				if (items.domainSize() == -1)
-					throw new IllegalStateException();
+				// If no range yet, make next the first
+				if (range == null) {
+					ranges.put(0L, next);
+				} else {
+					// Else append
+					final long offset = range.getKey();
+					final Index<? extends Item> items = range.getValue();
 
-				ranges.put(offset + items.domainSize(), next);
+					// Assert the domain of the index appended to is not
+					// infinite
+					if (items.domainSize() == -1)
+						throw new IllegalStateException();
+
+					ranges.put(offset + items.domainSize(), next);
+				}
+
+				// Retry to find a potential range
+				potential = ranges.floorEntry(i);
 			}
-
-			potential = ranges.floorEntry(i);
 		}
 
 		return potential;
 	}
 
-	public static void main(String[] args) {
-		final List<Index<? extends Object>> host = new ArrayList<>();
-
-		host.add(IndexSingleton.singleton("A"));
-		host.add(IndexLimit.limit(IndexNaturals.naturals(), 5L));
-		host.add(IndexSingleton.singleton("B"));
-		host.add(IndexLimit.limit(IndexNaturals.naturals(), 5L));
-		host.add(IndexSingleton.singleton("C"));
-
-		final Iterator<Index<? extends Object>> production = host.iterator();
-
-		final IndexProduce<Object> produce = new IndexProduce<>(production);
-
-		for (Object item : produce) {
-			System.out.println(item);
-		}
+	@Override
+	public String toString() {
+		return "~~> from " + production;
 	}
 }

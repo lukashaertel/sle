@@ -1,5 +1,6 @@
 package sle.gbt.index;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import sle.gbt.index.utils.AtIterator;
@@ -61,6 +62,11 @@ public class IndexArray<Item> implements Index<Item> {
 				return items[(int) i];
 			}
 		};
+	}
+
+	@Override
+	public String toString() {
+		return Arrays.toString(items);
 	}
 
 }

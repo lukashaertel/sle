@@ -59,4 +59,9 @@ public abstract class IndexFilter<Item> extends IndexComplex<Item> {
 	}
 
 	protected abstract boolean filter(Item item);
+
+	@Override
+	public String toString() {
+		return items + ", filtered";
+	}
 }

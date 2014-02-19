@@ -45,4 +45,9 @@ public abstract class IndexMap<InItem, OutItem> extends IndexComplex<OutItem> {
 	}
 
 	protected abstract OutItem map(InItem item);
+
+	@Override
+	public String toString() {
+		return items + ", mapped";
+	}
 }

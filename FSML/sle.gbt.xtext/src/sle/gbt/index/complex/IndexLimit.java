@@ -34,4 +34,8 @@ public class IndexLimit<Item> extends IndexComplex<Item> {
 		return i < limit ? items.get(i) : null;
 	}
 
+	@Override
+	public String toString() {
+		return items + ", max " + limit;
+	}
 }

@@ -3,16 +3,16 @@ package sle.gbt.index.complex;
 import sle.gbt.index.Index;
 
 public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
-	public static long cantor(long x, long y) {
+	private static long cantor(long x, long y) {
 		return (x + y) * (x + y + 1) / 2 + y;
 	}
 
-	public static long icantorX(long z) {
+	private static long icantorX(long z) {
 		long j = (long) Math.floor(Math.sqrt(0.25 + 2 * z) - 0.5);
 		return j - (z - j * (j + 1) / 2);
 	}
 
-	public static long icantorY(long z) {
+	private static long icantorY(long z) {
 		long j = (long) Math.floor(Math.sqrt(0.25 + 2 * z) - 0.5);
 		return z - j * (j + 1) / 2;
 	}
@@ -61,5 +61,10 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 		}
 
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return lefts + " * " + rights;
 	}
 }
