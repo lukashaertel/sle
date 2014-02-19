@@ -53,6 +53,6 @@ public class IndexNaturalsZero implements Index<Long> {
 
 	@Override
 	public String toString() {
-		return "natural numbers w/ 0";
+		return "natural numbers including zero";
 	}
 }

@@ -27,6 +27,11 @@ public abstract class IndexFilter<Item> extends IndexComplex<Item> {
 			protected boolean filter(Item item) {
 				return predicate.apply(item);
 			}
+
+			@Override
+			public String toString() {
+				return items + ", filtered with " + predicate;
+			}
 		};
 	}
 

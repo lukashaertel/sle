@@ -20,6 +20,11 @@ public abstract class IndexMap<InItem, OutItem> extends IndexComplex<OutItem> {
 			protected OutItem map(InItem item) {
 				return map.apply(item);
 			}
+
+			@Override
+			public String toString() {
+				return items + ", mapped with " + map;
+			}
 		};
 	}
 
