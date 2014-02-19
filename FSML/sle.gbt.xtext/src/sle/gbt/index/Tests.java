@@ -54,28 +54,28 @@ public class Tests {
 	}
 
 	private static void testIndex(Index<?> index) {
-		System.out.println("Index: " + index);
-		long i = 0L;
-		for (Object item : index) {
-			System.out.print('#');
-			System.out.print(i);
-			System.out.print(": ");
-			System.out.println(item);
-			i++;
-		}
-		System.out.println();
+		testIndex(index, null);
 	}
 
 	private static void testIndex(Index<?> index, long limit) {
+		testIndex(index, (Long) limit);
+	}
+
+	private static void testIndex(Index<?> index, Long limit) {
 		System.out.println("Index: " + index);
 		long i = 0L;
-		for (Object item : index) {
-			if (i >= limit)
-				break;
-			System.out.print('#');
-			System.out.print(i);
-			System.out.print(": ");
-			System.out.println(item);
+		long y = 0L;
+		while ((index.domainSize() == -1 || i < index.domainSize())
+				&& (limit == null || y < limit)) {
+			if (index.exists(i)) {
+				System.out.print('#');
+				System.out.print(y);
+				System.out.print(": ");
+				System.out.print(i);
+				System.out.print(" = ");
+				System.out.println(index.get(i));
+				y++;
+			}
 			i++;
 		}
 		System.out.println();
