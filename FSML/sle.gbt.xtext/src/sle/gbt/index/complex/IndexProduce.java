@@ -1,21 +1,37 @@
 package sle.gbt.index.complex;
 
 import java.util.Iterator;
-import java.util.SortedMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 import sle.gbt.index.Index;
+import sle.gbt.index.IndexNaturals;
+import sle.gbt.index.IndexNaturalsZero;
+import sle.gbt.index.IndexSingleton;
+import sle.gbt.xtext.icc.index.IndexNatural;
 
+/**
+ * Index concatenates a production of indices, only pulling indices from the
+ * production when their items are accessed
+ * 
+ * @author lukashaertel
+ * 
+ * @param <Item>
+ */
 public class IndexProduce<Item> extends IndexComplex<Item> {
 
 	/**
-	 * Maps the start area to the index providing their items
+	 * Maps the start area to the index providing their items, will not contain
+	 * empty indices
 	 */
-	private final SortedMap<Long, Index<? extends Item>> stage = new TreeMap<>();
+	private final NavigableMap<Long, Index<? extends Item>> ranges = new TreeMap<>();
 
-	public final Iterator<Index<? extends Item>> production;
+	public final Iterator<? extends Index<? extends Item>> production;
 
-	public IndexProduce(Iterator<Index<? extends Item>> production) {
+	public IndexProduce(Iterator<? extends Index<? extends Item>> production) {
 		this.production = production;
 	}
 
@@ -26,21 +42,20 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 	@Override
 	public long domainSize() {
 		if (!production.hasNext()) {
-			if (stage.isEmpty())
-				// No production left and no index in stage, then zero items
-				// total
+			final Entry<Long, Index<? extends Item>> range = ranges.lastEntry();
+
+			if (range == null)
 				return 0;
 			else {
-				// No production left and at least one index in stage
-				final long lo = stage.lastKey();
-				final Index<?> li = stage.get(lo);
+				final long offset = range.getKey();
+				final Index<? extends Item> items = range.getValue();
 
 				// If the last index is infinite, total is infinite
-				if (li.domainSize() == -1) {
+				if (items.domainSize() == -1) {
 					return -1;
 				} else {
 					// Else, total is the last offset plus the last domain size
-					return lo + li.domainSize();
+					return offset + items.domainSize();
 				}
 			}
 		} else
@@ -49,90 +64,76 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 
 	@Override
 	public boolean exists(long i) {
-		// Get the appropriate index
-		final Tuple<Long, Index<? extends Item>> appropriate = getAppropriate(i);
+		// Get the appropriate range
+		final Entry<Long, Index<? extends Item>> range = getRange(i);
 
-		// If an appropriate index could be found, return its existence
-		if (appropriate != null)
-			return appropriate.right.exists(i - appropriate.left);
-		else
+		// If such a range exists, return its existence
+		if (range != null) {
+			final long offset = range.getKey();
+			final Index<? extends Item> items = range.getValue();
+
+			return items.exists(i - offset);
+		} else
 			return false;
 	}
 
 	@Override
 	public Item get(long i) {
-		// Get the appropriate index
-		final Tuple<Long, Index<? extends Item>> appropriate = getAppropriate(i);
+		// Get the appropriate range
+		final Entry<Long, Index<? extends Item>> range = getRange(i);
 
-		// If an appropriate index could be found, return its item
-		if (appropriate != null)
-			return appropriate.right.exists(i - appropriate.left) ? appropriate.right
-					.get(i - appropriate.left) : null;
-		else
+		// If such a range exists, return its item
+		if (range != null) {
+			final long offset = range.getKey();
+			final Index<? extends Item> items = range.getValue();
+
+			return items.get(i - offset);
+		} else
 			return null;
 	}
 
-	/**
-	 * Gets an existing appropriate index and offset or tries to create it
-	 * 
-	 * @param i
-	 *            The index to find the appropriate index for
-	 */
-	public Tuple<Long, Index<? extends Item>> getAppropriate(final long i) {
-		// Store for the appropriate offset and index
-		Tuple<Long, Index<? extends Item>> appropriate;
+	private Entry<Long, Index<? extends Item>> getRange(final long i) {
+		Entry<Long, Index<? extends Item>> potential = ranges.floorEntry(i);
 
-		// While no appropriate item was found and the production is non-empty
-		while ((appropriate = existingAppropriate(i)) == null
+		while ((potential == null || potential.getValue().domainSize() <= i
+				- potential.getKey())
 				&& production.hasNext()) {
-			// Produce one more
 			final Index<? extends Item> next = production.next();
 
-			// If stage is empty, this will be the first item
-			if (stage.isEmpty())
-				stage.put(0L, next);
-			else {
-				// If not, get the last item with its offset
-				final long lo = stage.lastKey();
-				final Index<?> li = stage.get(lo);
+			final Entry<Long, Index<? extends Item>> range = ranges.lastEntry();
+			if (range == null) {
+				ranges.put(0L, next);
+			} else {
+				final long offset = range.getKey();
+				final Index<? extends Item> items = range.getValue();
 
-				// Check that the domain size is not infinite, then add after
-				if (li.domainSize() == -1)
+				if (items.domainSize() == -1)
 					throw new IllegalStateException();
-				else
-					stage.put(lo + li.domainSize(), next);
+
+				ranges.put(offset + items.domainSize(), next);
 			}
+
+			potential = ranges.floorEntry(i);
 		}
-		return appropriate;
+
+		return potential;
 	}
 
-	/**
-	 * Returns the appropriate index with its offset
-	 */
-	private Tuple<Long, Index<? extends Item>> existingAppropriate(final long i) {
-		// Try to find the direct index
-		final Index<? extends Item> pat = stage.get(i);
+	public static void main(String[] args) {
+		final List<Index<? extends Object>> host = new ArrayList<>();
 
-		// If it exists, return it
-		if (pat != null) {
-			return new Tuple<Long, Index<? extends Item>>(i, pat);
-		} else {
-			// Else, try to find the first one before
-			final SortedMap<Long, Index<? extends Item>> before = stage
-					.headMap(i);
+		host.add(IndexSingleton.singleton("A"));
+		host.add(IndexLimit.limit(IndexNaturals.naturals(), 5L));
+		host.add(IndexSingleton.singleton("B"));
+		host.add(IndexLimit.limit(IndexNaturals.naturals(), 5L));
+		host.add(IndexSingleton.singleton("C"));
 
-			if (before.isEmpty()) {
-				return null;
-			} else {
-				final long lo = before.lastKey();
-				final Index<? extends Item> li = before.get(lo);
+		final Iterator<Index<? extends Object>> production = host.iterator();
 
-				if (li.domainSize() == -1 || i < lo + li.domainSize()) {
-					return new Tuple<Long, Index<? extends Item>>(lo, li);
-				} else {
-					return null;
-				}
-			}
+		final IndexProduce<Object> produce = new IndexProduce<>(production);
+
+		for (Object item : produce) {
+			System.out.println(item);
 		}
 	}
 }

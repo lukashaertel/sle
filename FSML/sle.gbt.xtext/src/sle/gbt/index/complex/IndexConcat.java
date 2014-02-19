@@ -53,9 +53,9 @@ public class IndexConcat<Item> extends IndexComplex<Item> {
 		final long ids = initial.domainSize();
 
 		if (i < ids)
-			return initial.exists(i) ? initial.get(i) : null;
+			return initial.get(i);
 		else
-			return rest.exists(i - ids) ? rest.get(i - ids) : null;
+			return rest.get(i - ids);
 	}
 
 }

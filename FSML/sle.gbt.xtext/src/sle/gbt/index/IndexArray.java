@@ -28,6 +28,10 @@ public class IndexArray<Item> implements Index<Item> {
 		this.items = items;
 	}
 
+	public static <Item> IndexArray<Item> array(Item[] items) {
+		return new IndexArray<>(items);
+	}
+
 	@Override
 	public long domainSize() {
 		return items.length;

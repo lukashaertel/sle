@@ -12,6 +12,11 @@ public class IndexLimit<Item> extends IndexComplex<Item> {
 		this.limit = limit;
 	}
 
+	public static <Item> IndexLimit<Item> limit(Index<? extends Item> items,
+			long limit) {
+		return new IndexLimit<Item>(items, limit);
+	}
+
 	@Override
 	public long domainSize() {
 		final long ids = items.domainSize();
@@ -26,7 +31,7 @@ public class IndexLimit<Item> extends IndexComplex<Item> {
 
 	@Override
 	public Item get(long i) {
-		return exists(i) ? items.get(i) : null;
+		return i < limit ? items.get(i) : null;
 	}
 
 }
