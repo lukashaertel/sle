@@ -12,11 +12,6 @@ public class IndexZip<Item> extends IndexComplex<Item> {
 		this.odds = odds;
 	}
 
-	public static <Item> IndexZip<Item> zipWith(Index<? extends Item> evens,
-			Index<? extends Item> odds) {
-		return new IndexZip<Item>(evens, odds);
-	}
-
 	@Override
 	public long domainSize() {
 		if (evens.domainSize() != -1 && odds.domainSize() != -1) {

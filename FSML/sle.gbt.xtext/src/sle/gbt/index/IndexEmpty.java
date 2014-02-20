@@ -12,10 +12,6 @@ import java.util.NoSuchElementException;
  *            The item type
  */
 public class IndexEmpty<Item> implements Index<Item> {
-	public static <Item> IndexEmpty<Item> empty() {
-		return new IndexEmpty<>();
-	}
-
 	@Override
 	public long domainSize() {
 		return 0;

@@ -2,15 +2,13 @@ package sle.gbt.xtext.icc
 
 import java.util.SortedSet
 import java.util.Set
-import sle.gbt.xtext.icc.index.Index
+import sle.gbt.index.Index
 
-import static sle.gbt.xtext.icc.Commons.*
-import static extension sle.gbt.xtext.icc.index.Pairing.*
-import static extension sle.gbt.xtext.icc.index.Zipping.*
-import static extension sle.gbt.xtext.icc.index.Indices.*
+import static extension sle.gbt.index.Indices.*
+import static extension sle.gbt.index.CharIndices.*
+import static extension sle.gbt.utils.Ranges.*
 
 class ICC {
-
 	val SortedSet<String> terminals
 
 	val (String)=>SG grammar
@@ -23,68 +21,51 @@ class ICC {
 		this.whitespaces = whitespaces
 	}
 
-	def dispatch Index<Index<String>> iterate(SG sg) {
+	def dispatch Index<String> iterate(SG sg) {
 		throw new UnsupportedOperationException("Cannot dispatch " + sg)
 	}
 
-	def dispatch Index<Index<String>> iterate(AnyCharacter sg) {
-		rangeStrings(Character.MIN_VALUE, Character.MAX_VALUE).toSingletonIndex
+	def dispatch Index<String> iterate(AnyCharacter sg) {
+		SIGMA.map[toString]
 	}
 
-	def dispatch Index<Index<String>> iterate(CharacterRange sg) {
-		rangeStrings(sg.min, sg.max).toSingletonIndex
+	def dispatch Index<String> iterate(CharacterRange sg) {
+		chars(sg.min, sg.max).list.map[toString]
 	}
 
-	def dispatch Index<Index<String>> iterate(SingleCharacterToken sg) {
-		sg.token.toString.toSingletonIndex.toSingletonIndex
+	def dispatch Index<String> iterate(SingleCharacterToken sg) {
+		sg.token.toString.singleton
 	}
 
-	def dispatch Index<Index<String>> iterate(SingleStringToken sg) {
-		sg.token.toSingletonIndex.toSingletonIndex
+	def dispatch Index<String> iterate(SingleStringToken sg) {
+		sg.token.singleton
 	}
 
-	def dispatch Index<Index<String>> iterate(UntilCharacterToken sg) {
-		compactUniversalIndex[n|combinations(SIGMA, n + 1).map[new String(it)].filter[endsWith(sg.token.toString)]]
+	def dispatch Index<String> iterate(UntilCharacterToken sg) {
+		allCombinations(SIGMA, null).map[new String(it)].filter[endsWith(sg.token.toString)]
 	}
 
-	def dispatch Index<Index<String>> iterate(UntilStringToken sg) {
-		compactUniversalIndex[n|combinations(SIGMA, n + 1).map[new String(it)].filter[endsWith(sg.token)]]
+	def dispatch Index<String> iterate(UntilStringToken sg) {
+		allCombinations(SIGMA, null).map[new String(it)].filter[endsWith(sg.token)]
 	}
 
-	def dispatch Index<Index<String>> iterate(Sequence sg) {
-		(iterate(sg.first) * iterate(sg.second)).map[key + value]
+	def dispatch Index<String> iterate(Sequence sg) {
+		iterate(sg.first).pairWith(iterate(sg.second)).map[left + right]
 	}
 
-	def dispatch Index<Index<String>> iterate(Alternative sg) {
-		iterate(sg.either) + iterate(sg.or)
+	def dispatch Index<String> iterate(Alternative sg) {
+		iterate(sg.either).zipWith(iterate(sg.or))
 	}
 
-	def dispatch Index<Index<String>> iterate(Optional sg) {
-		val inner = iterate(sg.of)
-
-		index([it != 0L && inner.exceeds(it - 1)], [it == 0L || inner.exists(it - 1)],
-			[
-				switch (it) {
-					case 0L: emptyIndex
-					case it > 0L: inner.get(it - 1)
-				}])
+	def dispatch Index<String> iterate(Optional sg) {
+		"".singleton.concatWith(iterate(sg.of))
 	}
 
-	def dispatch Index<Index<String>> iterate(Plus sg) {
-		val inner = iterate(sg.of)
-
-		index([false], [inner.exists(it)],
-			[
-				combinationsUnion(inner.get(it), 1, it).filter[it != null].map[fold("", [a, b|a + b])]
-			])
+	def dispatch Index<String> iterate(Plus sg) {
+		allCombinations(iterate(sg.of), null).map[fold("", [a, b|a + b])]
 	}
 
-	def dispatch Index<Index<String>> iterate(Star sg) {
-		val inner = iterate(sg.of)
-
-		index([false], [true],
-			[
-				combinationsUnion(inner.get(it), 0, it).filter[it != null].map[fold("", [a, b|a + b])]
-			])
+	def dispatch Index<String> iterate(Star sg) {
+		"".singleton.concatWith(allCombinations(iterate(sg.of), null).map[fold("", [a, b|a + b])])
 	}
 }

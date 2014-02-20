@@ -1,7 +1,5 @@
 package sle.gbt.index.complex;
 
-import com.google.common.base.Predicate;
-
 import sle.gbt.index.Index;
 
 /**
@@ -17,22 +15,6 @@ public abstract class IndexFilter<Item> extends IndexComplex<Item> {
 
 	public IndexFilter(Index<? extends Item> items) {
 		this.items = items;
-	}
-
-	public static <Item> IndexFilter<Item> filter(Index<? extends Item> items,
-			final Predicate<Item> predicate) {
-		return new IndexFilter<Item>(items) {
-
-			@Override
-			protected boolean filter(Item item) {
-				return predicate.apply(item);
-			}
-
-			@Override
-			public String toString() {
-				return items + ", filtered with " + predicate;
-			}
-		};
 	}
 
 	/**

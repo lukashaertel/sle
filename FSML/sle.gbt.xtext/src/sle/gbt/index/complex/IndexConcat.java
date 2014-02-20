@@ -25,11 +25,6 @@ public class IndexConcat<Item> extends IndexComplex<Item> {
 		this.rest = rest;
 	}
 
-	public static <Item> IndexConcat<Item> concatWith(
-			Index<? extends Item> initial, Index<? extends Item> rest) {
-		return new IndexConcat<>(initial, rest);
-	}
-
 	@Override
 	public long domainSize() {
 		if (rest.domainSize() != -1)

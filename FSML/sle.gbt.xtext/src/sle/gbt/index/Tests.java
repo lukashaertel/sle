@@ -1,53 +1,39 @@
 package sle.gbt.index;
 
-import static sle.gbt.index.IndexArray.*;
-import static sle.gbt.index.IndexEmpty.*;
-import static sle.gbt.index.IndexList.*;
-import static sle.gbt.index.IndexNaturals.*;
-import static sle.gbt.index.IndexNaturalsZero.*;
-import static sle.gbt.index.IndexSingleton.*;
-import static sle.gbt.index.complex.IndexConcat.*;
-import static sle.gbt.index.complex.IndexFilter.*;
-import static sle.gbt.index.complex.IndexLimit.*;
-import static sle.gbt.index.complex.IndexMap.*;
-import static sle.gbt.index.complex.IndexPair.*;
-import static sle.gbt.index.complex.IndexProduce.*;
-import static sle.gbt.index.complex.IndexZip.*;
 import static sle.gbt.index.Indices.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.AbstractIterator;
 
-@SuppressWarnings("unused")
 public class Tests {
 	public static void main(String[] args) {
 		// Test array index
-		testIndex(array(new Integer[] { 1, 3, 5, 6 }));
+		testIndex(Indices.array(new Integer[] { 1, 3, 5, 6 }));
 
 		// Test empty index
-		testIndex(empty());
+		testIndex(Indices.empty());
 
 		// Test list index
-		testIndex(list(Arrays.asList("Hallo", "Welt")));
+		testIndex(Indices.list(Arrays.asList("Hallo", "Welt")));
 
 		// Test natural numbers
-		testIndex(naturals(), 3);
+		testIndex(new IndexNaturals(), 3);
 
 		// Test natural numbers including zero
-		testIndex(naturalsZero(), 3);
+		testIndex(new IndexNaturalsZero(), 3);
 
 		// Test singleton indices
-		testIndex(singleton(true));
+		testIndex(Indices.singleton(true));
 
 		// Test concatenation
-		testIndex(concatWith(list(Arrays.asList("X", "Y")), naturals()), 6);
+		testIndex(Indices.concatWith(Indices.list(Arrays.asList("X", "Y")),
+				new IndexNaturals()), 6);
 
 		// Test filter
-		testIndex(filter(naturals(), new Predicate<Long>() {
+		testIndex(Indices.filter(new IndexNaturals(), new Predicate<Long>() {
 
 			@Override
 			public boolean apply(Long l) {
@@ -61,32 +47,33 @@ public class Tests {
 		}), 6);
 
 		// Test limiter
-		testIndex(limit(singleton("X"), 6));
+		testIndex(Indices.limit(Indices.singleton("X"), 6));
 
 		// Test mapping
-		testIndex(map(naturals(), new Function<Long, Double>() {
+		testIndex(
+				Indices.map(new IndexNaturals(), new Function<Long, Double>() {
 
-			@Override
-			public Double apply(Long l) {
-				return Math.sqrt(l);
-			}
+					@Override
+					public Double apply(Long l) {
+						return Math.sqrt(l);
+					}
 
-			@Override
-			public String toString() {
-				return "n := sqrt(n)";
-			}
-		}), 6);
+					@Override
+					public String toString() {
+						return "n := sqrt(n)";
+					}
+				}), 6);
 		// Test pairing
-		testIndex(pairWith(list(Arrays.asList("X", "Y", "Z")),
-				list(Arrays.asList("1", "2", "3"))));
+		testIndex(Indices.pairWith(Indices.list(Arrays.asList("X", "Y", "Z")),
+				Indices.list(Arrays.asList("1", "2", "3"))));
 
 		// Test productive concatenation
-		testIndex(produce(new AbstractIterator<Index<Long>>() {
+		testIndex(Indices.produce(new AbstractIterator<Index<Long>>() {
 			private long l = 1L;
 
 			@Override
 			protected Index<Long> computeNext() {
-				return limit(naturals(), l++);
+				return Indices.limit(new IndexNaturals(), l++);
 			}
 
 			@Override
@@ -96,15 +83,18 @@ public class Tests {
 		}), 15);
 
 		// Test zipping
-		testIndex(zipWith(list(Arrays.asList("A", "B", "C", "D")), naturals()),
-				10);
+		testIndex(Indices.zipWith(
+				Indices.list(Arrays.asList("A", "B", "C", "D")),
+				new IndexNaturals()), 10);
 
 		// Test combinations
-		testIndex(combinationsOf(list(Arrays.asList("A", "B", "C")), 3L));
+		testIndex(combinations(Indices.list(Arrays.asList("A", "B", "C")), 3L));
 		// Test combinations
-		testIndex(combinationsUpTo(list(Arrays.asList("A", "B", "C")), 3L));
+		testIndex(combinationsTo(Indices.list(Arrays.asList("A", "B", "C")),
+				3L));
 		// Test combinations
-		testIndex(combinationsAll(naturals(), 4L));
+		testIndex(allInfiniteCombinations(new IndexNaturals(), 4L));
+		testIndex(CharIndices.SIGMA, 70);
 	}
 
 	/**
@@ -162,12 +152,19 @@ public class Tests {
 		final long ads = index.domainSize();
 		if (ads != ds) {
 			if (ads == -1)
-				System.out.println("}, domain size changed: infinite");
+				System.out
+						.println("}, domain size changed: infinite, fill rate: "
+								+ Math.round(100.0 * (double) y / (double) i)
+								+ "%");
 			else {
 				System.out.print("}, domain size changed: ");
-				System.out.println(ads);
+				System.out.println(ads + ", fill rate: "
+						+ Math.round(100.0 * (double) y / (double) i) + "%");
 			}
 		} else
-			System.out.println("}");
+			System.out.println("}, fill rate: "
+					+ Math.round(100.0 * (double) y / (double) i) + "%");
+
+		System.out.println();
 	}
 }

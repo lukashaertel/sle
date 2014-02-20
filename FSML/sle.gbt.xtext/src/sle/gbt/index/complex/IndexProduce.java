@@ -29,11 +29,6 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 		this.production = production;
 	}
 
-	public static <Item> IndexProduce<Item> produce(
-			Iterator<? extends Index<? extends Item>> production) {
-		return new IndexProduce<>(production);
-	}
-
 	/**
 	 * {@inheritDoc}<br/>
 	 * Calculation of domain size does not pull further

@@ -29,10 +29,6 @@ public class IndexList<Item> implements Index<Item> {
 		this.items = items;
 	}
 
-	public static <Item> IndexList<Item> list(List<Item> items) {
-		return new IndexList<>(items);
-	}
-
 	@Override
 	public long domainSize() {
 		return items.size();

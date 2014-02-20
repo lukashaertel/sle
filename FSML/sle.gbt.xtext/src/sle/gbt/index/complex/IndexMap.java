@@ -1,7 +1,5 @@
 package sle.gbt.index.complex;
 
-import com.google.common.base.Function;
-
 import sle.gbt.index.Index;
 
 public abstract class IndexMap<InItem, OutItem> extends IndexComplex<OutItem> {
@@ -9,23 +7,6 @@ public abstract class IndexMap<InItem, OutItem> extends IndexComplex<OutItem> {
 
 	public IndexMap(Index<? extends InItem> items) {
 		this.items = items;
-	}
-
-	public static <InItem, OutItem> IndexMap<InItem, OutItem> map(
-			Index<? extends InItem> items,
-			final Function<? super InItem, ? extends OutItem> map) {
-		return new IndexMap<InItem, OutItem>(items) {
-
-			@Override
-			protected OutItem map(InItem item) {
-				return map.apply(item);
-			}
-
-			@Override
-			public String toString() {
-				return items + ", mapped with " + map;
-			}
-		};
 	}
 
 	@Override

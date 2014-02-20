@@ -9,10 +9,6 @@ import java.util.Iterator;
  * 
  */
 public class IndexNaturals implements Index<Long> {
-	public static IndexNaturals naturals() {
-		return new IndexNaturals();
-	}
-
 	@Override
 	public long domainSize() {
 		return -1;

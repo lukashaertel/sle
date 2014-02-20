@@ -10,10 +10,6 @@ public class IndexSingleton<Item> implements Index<Item> {
 		this.item = item;
 	}
 
-	public static <Item> IndexSingleton<Item> singleton(Item item) {
-		return new IndexSingleton<>(item);
-	}
-
 	@Override
 	public long domainSize() {
 		return 1;
