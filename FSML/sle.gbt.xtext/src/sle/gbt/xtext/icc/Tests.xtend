@@ -10,7 +10,7 @@ import static extension sle.gbt.xtext.icc.SG.*
 class Tests {
 
 	def static void main(String... args) {
-		testAcceptor
+		testFSMLICC
 	}
 
 	def static testAcceptor() {
@@ -22,9 +22,8 @@ class Tests {
 			"ID" -> ("a" .. "z").plus,
 			"model" -> "ID".ref.star
 		).asFunction;
-		val whitespaces = [newHashSet()]
 
-		val icc = new ICC(terminals, grammar, whitespaces)
+		val icc = new ICC(terminals, grammar)
 
 		val s = "model".ref
 		val si = icc.iterate(s, ICC.INITIAL_LBR)
@@ -56,9 +55,8 @@ class Tests {
 			"state" -> seq("INITIAL".ref.opt, "STATE".ref, "ID".ref, "{".ref, "transition".ref.star, "}".ref),
 			"transition" -> seq("\t".single, "ID".ref, ("/".ref > "ID".ref).opt, ("->".ref > "ID".ref).opt, ";".ref)
 		).asFunction;
-		val whitespaces = [newHashSet()]
 
-		val icc = new ICC(terminals, grammar, whitespaces)
+		val icc = new ICC(terminals, grammar)
 
 		val s = "model".ref
 		val si = icc.iterate(s, ICC.INITIAL_LBR)
