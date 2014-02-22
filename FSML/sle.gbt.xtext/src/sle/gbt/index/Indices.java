@@ -73,22 +73,19 @@ public class Indices {
 	}
 
 	/**
-	 * This ratio describes how much the depth enumeration advances per breadth
-	 * enumeration
-	 */
-	public static final int COMBINATIONS_INFINITE_RATIO = 157;
-
-	/**
 	 * Combines an infinite element source up to a given length, does not
 	 * include the zero length combination
 	 * 
 	 * @param source
 	 *            The item source, may be finite
+	 * @param lbr
+	 *            Length/breadth ratio, equal to the number of inner elements
+	 *            pulled on one outer element
 	 * @param limit
 	 *            The maximum length of the combinations
 	 */
 	public static <Item> IndexProduce<? extends Iterable<Item>> combinations(
-			final Index<? extends Item> items, final Long limit) {
+			final Index<? extends Item> items, final long lbr, final Long limit) {
 		return produce(new AbstractIterator<Index<? extends Iterable<Item>>>() {
 
 			private long at = 1;
@@ -101,9 +98,7 @@ public class Indices {
 				at++;
 
 				if (items.domainSize() == -1)
-					return ccc(
-							limit(items, COMBINATIONS_INFINITE_RATIO * (at - 1)),
-							at - 1);
+					return ccc(limit(items, lbr * (at - 1)), at - 1);
 				else
 					return ccc(items, at - 1);
 			}
@@ -135,7 +130,7 @@ public class Indices {
 		return new IndexCache<>(items, degree);
 	}
 
-	public static int CACHE_SIZE_INFINITE_DOMAIN = 1234;
+	public static int CACHE_SIZE_INFINITE_DOMAIN = 2427;
 
 	public static double CACHE_FACTOR_FINITE_DOMAIN = 2.981;
 

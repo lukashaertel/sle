@@ -16,7 +16,7 @@ public class Tests {
 		// IndexPair<Long, Iterable<Character>> operator = pairWith(naturals(),
 		// combinationsOfFinite(list(Arrays.asList('A', 'B', 'C')), 5));
 
-		Index<? extends Iterable<Long>> operator = combinations(naturals(),
+		Index<? extends Iterable<Long>> operator = combinations(naturals(), 5,
 				null);
 		for (int i = 0; i < 15; i++) {
 			System.out.println(i + " := " + operator.get(i));

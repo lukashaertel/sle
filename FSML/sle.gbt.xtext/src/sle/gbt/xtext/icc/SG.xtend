@@ -1,5 +1,7 @@
 package sle.gbt.xtext.icc
 
+import java.util.List
+
 class SG {
 	def static any() {
 		new Any
@@ -30,6 +32,10 @@ class SG {
 	}
 
 	def static SG seq(SG... sgs) {
+		seq(newArrayList(sgs))
+	}
+
+	def static SG seq(List<SG> sgs) {
 		switch (sgs.length) {
 			case 0: throw new IllegalArgumentException
 			case 1: sgs.get(0)
