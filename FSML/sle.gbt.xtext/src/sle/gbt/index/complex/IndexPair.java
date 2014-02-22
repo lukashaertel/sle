@@ -18,7 +18,7 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 	}
 
 	private long fixLeft(long x, long y) {
-		return y * lefts.domainSize() + x;
+		return x + lefts.domainSize() * y;
 	}
 
 	private long ifixLeftX(long z) {
@@ -30,15 +30,15 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 	}
 
 	private long fixRight(long x, long y) {
-		return y * rights.domainSize() + x;
+		return y + rights.domainSize() * x;
 	}
 
 	private long ifixRightX(long z) {
-		return z % rights.domainSize();
+		return z / rights.domainSize();
 	}
 
 	private long ifixRightY(long z) {
-		return z / rights.domainSize();
+		return z % rights.domainSize();
 	}
 
 	private long index(long x, long y) {
@@ -73,15 +73,14 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 	public final Index<? extends Right> rights;
 
 	public IndexPair(Index<? extends Left> lefts, Index<? extends Right> rights) {
-		assert lefts.domainSize() == -1;
-		assert rights.domainSize() == -1;
-
 		this.lefts = lefts;
 		this.rights = rights;
 	}
 
 	@Override
 	public long domainSize() {
+		if (lefts.domainSize() == 0 || rights.domainSize() == 0)
+			return 0;
 		if (lefts.domainSize() != -1 && rights.domainSize() != -1)
 			return index(lefts.domainSize() - 1, rights.domainSize() - 1) + 1;
 		else
@@ -90,11 +89,16 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 
 	@Override
 	public boolean exists(long i) {
+		if (lefts.domainSize() == 0 || rights.domainSize() == 0)
+			return false;
 		return lefts.exists(iindexX(i)) && rights.exists(iindexY(i));
 	}
 
 	@Override
 	public Tuple<Left, Right> get(long i) {
+		if (lefts.domainSize() == 0 || rights.domainSize() == 0)
+			return null;
+
 		final long x = iindexX(i);
 		final long y = iindexY(i);
 

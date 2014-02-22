@@ -4,18 +4,19 @@ import java.util.SortedSet
 import java.util.Set
 import sle.gbt.index.Index
 
-import static extension sle.gbt.index.Indices.*
 import static extension sle.gbt.index.CharIndices.*
 import static extension sle.gbt.utils.Ranges.*
+import static extension sle.gbt.index.Indices.*
+import java.util.List
 
 class ICC {
-	val SortedSet<String> terminals
+	val List<String> terminals
 
 	val (String)=>SG grammar
 
 	val (String)=>Set<String> whitespaces
 
-	new(SortedSet<String> terminals, (String)=>SG grammar, (String)=>Set<String> whitespaces) {
+	new(List<String> terminals, (String)=>SG grammar, (String)=>Set<String> whitespaces) {
 		this.terminals = terminals
 		this.grammar = grammar
 		this.whitespaces = whitespaces
@@ -25,32 +26,26 @@ class ICC {
 		throw new UnsupportedOperationException("Cannot dispatch " + sg)
 	}
 
-	def dispatch Index<String> iterate(AnyCharacter sg) {
-		SIGMA.map[toString]
+	def dispatch Index<String> iterate(Any sg) {
+		SIGMA.mapToString
 	}
 
-	def dispatch Index<String> iterate(CharacterRange sg) {
-		chars(sg.min, sg.max).list.map[toString]
+	def dispatch Index<String> iterate(Range sg) {
+		chars(sg.min, sg.max).list.mapToString
 	}
 
-	def dispatch Index<String> iterate(SingleCharacterToken sg) {
-		sg.token.toString.singleton
-	}
-
-	def dispatch Index<String> iterate(SingleStringToken sg) {
+	def dispatch Index<String> iterate(Single sg) {
 		sg.token.singleton
 	}
 
-	def dispatch Index<String> iterate(UntilCharacterToken sg) {
-		allCombinations(SIGMA, null).map[new String(it)].filter[endsWith(sg.token.toString)]
-	}
-
-	def dispatch Index<String> iterate(UntilStringToken sg) {
-		allCombinations(SIGMA, null).map[new String(it)].filter[endsWith(sg.token)]
+	def dispatch Index<String> iterate(Until sg) {
+		"".singleton.concatWith(
+			combinations(SIGMA, null).mapFoldChars.filter[!contains(sg.token)].map[it + sg.token]
+		)
 	}
 
 	def dispatch Index<String> iterate(Sequence sg) {
-		iterate(sg.first).pairWith(iterate(sg.second)).map[left + right]
+		iterate(sg.first).pairWith(iterate(sg.second)).mapConcat
 	}
 
 	def dispatch Index<String> iterate(Alternative sg) {
@@ -62,10 +57,60 @@ class ICC {
 	}
 
 	def dispatch Index<String> iterate(Plus sg) {
-		allCombinations(iterate(sg.of), null).map[fold("", [a, b|a + b])]
+		combinations(iterate(sg.of), null).mapFoldString
 	}
 
 	def dispatch Index<String> iterate(Star sg) {
-		"".singleton.concatWith(allCombinations(iterate(sg.of), null).map[fold("", [a, b|a + b])])
+		"".singleton.concatWith(
+			combinations(iterate(sg.of), null).mapFoldString
+		)
+	}
+
+	val resolve = true
+
+	def dispatch Index<String> iterate(Reference sg) {
+		if(terminals.contains(sg.to)) {
+			if(resolve) {
+				val higher = terminals.tailSet(sg.to).map(grammar);
+
+				// Iterate but leave out all productions of other terminals
+				iterate(grammar.apply(sg.to)).filter[s|!higher.fold(false, [a, t|a || accept(t, s)])]
+			} else
+				("[" + sg.to + "]").singleton
+
+		} else {
+			iterate(grammar.apply(sg.to))
+		}
+	}
+
+	def tailSet(List<String> strings, String string) {
+		val i = strings.indexOf(string)
+		if(i == -1)
+			strings
+		else
+			strings.subList(i + 1, strings.length)
+
+	}
+
+	def dispatch boolean accept(SG sg, String string) {
+
+		//throw new UnsupportedOperationException("Cannot dispatch " + sg)
+		false
+	}
+
+	def dispatch boolean accept(Any sg, String string) {
+		string.length == 1
+	}
+
+	def dispatch boolean accept(Range sg, String string) {
+		string.length == 1 && sg.min <= string.charAt(0) && string.charAt(0) <= sg.max
+	}
+
+	def dispatch boolean accept(Single sg, String string) {
+		string == sg.token
+	}
+
+	def dispatch boolean accept(Until sg, String string) {
+		string.endsWith(sg.token)
 	}
 }

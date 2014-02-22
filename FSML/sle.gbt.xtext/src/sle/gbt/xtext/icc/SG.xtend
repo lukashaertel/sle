@@ -2,19 +2,19 @@ package sle.gbt.xtext.icc
 
 class SG {
 	def static any() {
-		new AnyCharacter
+		new Any
 	}
 
 	def static operator_upTo(String l, String r) {
-		new CharacterRange(l.charAt(0), r.charAt(0))
+		new Range(l.charAt(0), r.charAt(0))
 	}
 
 	def static single(String token) {
-		new SingleStringToken(token)
+		new Single(token)
 	}
 
 	def static until(String token) {
-		new UntilStringToken(token)
+		new Until(token)
 	}
 
 	def static operator_greaterThan(SG l, SG r) {
@@ -56,48 +56,38 @@ class SG {
 	def static operator_not(SG sg) {
 		new Negation(sg)
 	}
+
+	def static ref(String to) {
+		new Reference(to)
+	}
 }
 
 /**
  * (1.2a)
  */
-@Data class AnyCharacter extends SG {
+@Data class Any extends SG {
 }
 
 /**
  * (1.2b)
  */
-@Data class CharacterRange extends SG {
+@Data class Range extends SG {
 	char min
 
 	char max
 }
 
 /**
- * (1.2c)
- */
-@Data class SingleCharacterToken extends SG {
-	char token
-}
-
-/**
  * (1.2d)
  */
-@Data class SingleStringToken extends SG {
+@Data class Single extends SG {
 	String token
-}
-
-/**
- * (1.2e)
- */
-@Data class UntilCharacterToken extends SG {
-	char token
 }
 
 /**
  * (1.2f)
  */
-@Data class UntilStringToken extends SG {
+@Data class Until extends SG {
 	String token
 }
 

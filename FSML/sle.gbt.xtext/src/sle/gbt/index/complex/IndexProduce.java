@@ -86,14 +86,35 @@ public class IndexProduce<Item> extends IndexComplex<Item> {
 			return null;
 	}
 
+	/**
+	 * A pair of offset and index is a range for i, if it lies before it and its
+	 * domain is either infinite or i can be mapped into it by subtracting the
+	 * offset
+	 * 
+	 * @param range
+	 * @param i
+	 * @return
+	 */
+	private boolean isRangeFor(Entry<Long, ? extends Index<?>> range, long i) {
+		if (range == null)
+			return false;
+		if (range.getKey() > i)
+			return false;
+		if (range.getValue().domainSize() == -1)
+			return true;
+		if (range.getValue().domainSize() > i - range.getKey())
+			return true;
+
+		return false;
+	}
+
 	private Entry<Long, Index<? extends Item>> getRange(final long i) {
 		// Try to directly find the potential range
 		Entry<Long, Index<? extends Item>> potential = ranges.floorEntry(i);
 
 		// If it does not exist or the domain is not responsible for this index,
 		// and if the production has another index, append and retry
-		while ((potential == null || potential.getValue().domainSize() <= i
-				- potential.getKey())
+		while ((potential == null || !isRangeFor(potential, i))
 				&& production.hasNext()) {
 
 			// Get the next index

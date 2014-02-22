@@ -1,100 +1,118 @@
 package sle.gbt.index;
 
 import static sle.gbt.index.Indices.*;
+import static sle.gbt.index.CharIndices.*;
 
 import java.util.Arrays;
 
+import sle.gbt.index.complex.IndexPair;
+import sle.gbt.index.complex.Tuple;
+
 import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.AbstractIterator;
 
 public class Tests {
 	public static void main(String[] args) {
-		// Test array index
-		testIndex(Indices.array(new Integer[] { 1, 3, 5, 6 }));
 
-		// Test empty index
-		testIndex(Indices.empty());
+		// IndexPair<Long, Iterable<Character>> operator = pairWith(naturals(),
+		// combinationsOfFinite(list(Arrays.asList('A', 'B', 'C')), 5));
 
-		// Test list index
-		testIndex(Indices.list(Arrays.asList("Hallo", "Welt")));
+		Index<? extends Iterable<Long>> operator = combinations(naturals(),
+				null);
+		for (int i = 10000; i < 1000000; i++) {
+			System.out.println(i + " := " + operator.get(i));
+		}
 
-		// Test natural numbers
-		testIndex(new IndexNaturals(), 3);
-
-		// Test natural numbers including zero
-		testIndex(new IndexNaturalsZero(), 3);
-
-		// Test singleton indices
-		testIndex(Indices.singleton(true));
-
-		// Test concatenation
-		testIndex(Indices.concatWith(Indices.list(Arrays.asList("X", "Y")),
-				new IndexNaturals()), 6);
-
-		// Test filter
-		testIndex(Indices.filter(new IndexNaturals(), new Predicate<Long>() {
-
-			@Override
-			public boolean apply(Long l) {
-				return l % 3 == 0;
-			}
-
-			@Override
-			public String toString() {
-				return "n := n % 3 = 0";
-			}
-		}), 6);
-
-		// Test limiter
-		testIndex(Indices.limit(Indices.singleton("X"), 6));
-
-		// Test mapping
-		testIndex(
-				Indices.map(new IndexNaturals(), new Function<Long, Double>() {
-
-					@Override
-					public Double apply(Long l) {
-						return Math.sqrt(l);
-					}
-
-					@Override
-					public String toString() {
-						return "n := sqrt(n)";
-					}
-				}), 6);
-		// Test pairing
-		testIndex(Indices.pairWith(Indices.list(Arrays.asList("X", "Y", "Z")),
-				Indices.list(Arrays.asList("1", "2", "3"))));
-
-		// Test productive concatenation
-		testIndex(Indices.produce(new AbstractIterator<Index<Long>>() {
-			private long l = 1L;
-
-			@Override
-			protected Index<Long> computeNext() {
-				return Indices.limit(new IndexNaturals(), l++);
-			}
-
-			@Override
-			public String toString() {
-				return "n := {x| 1 <= x < n + 1}";
-			}
-		}), 15);
-
-		// Test zipping
-		testIndex(Indices.zipWith(
-				Indices.list(Arrays.asList("A", "B", "C", "D")),
-				new IndexNaturals()), 10);
-
-		// Test combinations
-		testIndex(combinations(Indices.list(Arrays.asList("A", "B", "C")), 3L));
-		// Test combinations
-		testIndex(combinationsTo(Indices.list(Arrays.asList("A", "B", "C")),
-				3L));
-		// Test combinations
-		testIndex(allInfiniteCombinations(new IndexNaturals(), 4L));
-		testIndex(CharIndices.SIGMA, 70);
+		// // Test array index
+		// testIndex(Indices.array(new Integer[] { 1, 3, 5, 6 }));
+		//
+		// // Test empty index
+		// testIndex(Indices.empty());
+		//
+		// // Test list index
+		// testIndex(Indices.list(Arrays.asList("Hallo", "Welt")));
+		//
+		// // Test natural numbers
+		// testIndex(new IndexNaturals(), 3);
+		//
+		// // Test natural numbers including zero
+		// testIndex(new IndexNaturalsZero(), 3);
+		//
+		// // Test singleton indices
+		// testIndex(Indices.singleton(true));
+		//
+		// // Test concatenation
+		// testIndex(Indices.concatWith(Indices.list(Arrays.asList("X", "Y")),
+		// new IndexNaturals()), 6);
+		//
+		// // Test filter
+		// testIndex(Indices.filter(new IndexNaturals(), new Predicate<Long>() {
+		//
+		// @Override
+		// public boolean apply(Long l) {
+		// return l % 3 == 0;
+		// }
+		//
+		// @Override
+		// public String toString() {
+		// return "n := n % 3 = 0";
+		// }
+		// }), 6);
+		//
+		// // Test limiter
+		// testIndex(Indices.limit(Indices.singleton("X"), 6));
+		//
+		// // Test mapping
+		// testIndex(
+		// Indices.map(new IndexNaturals(), new Function<Long, Double>() {
+		//
+		// @Override
+		// public Double apply(Long l) {
+		// return Math.sqrt(l);
+		// }
+		//
+		// @Override
+		// public String toString() {
+		// return "n := sqrt(n)";
+		// }
+		// }), 6);
+		// // Test pairing
+		// testIndex(Indices.pairWith(Indices.list(Arrays.asList("X", "Y",
+		// "Z")),
+		// Indices.list(Arrays.asList("1", "2", "3"))));
+		//
+		// // Test productive concatenation
+		// testIndex(Indices.produce(new AbstractIterator<Index<Long>>() {
+		// private long l = 1L;
+		//
+		// @Override
+		// protected Index<Long> computeNext() {
+		// return Indices.limit(new IndexNaturals(), l++);
+		// }
+		//
+		// @Override
+		// public String toString() {
+		// return "n := {x| 1 <= x < n + 1}";
+		// }
+		// }), 15);
+		//
+		// // Test zipping
+		// testIndex(Indices.zipWith(
+		// Indices.list(Arrays.asList("A", "B", "C", "D")), naturals()),
+		// 10);
+		//
+		// // Test combinations
+		// testIndex(combinationsOfFinite(
+		// Indices.list(Arrays.asList("A", "B", "C")), 3L));
+		// // Test combinations
+		// testIndex(combinationsToArb(Indices.list(Arrays.asList("A", "B",
+		// "C")),
+		// 1L, 2L));
+		// testIndex(combinationsToArb(Indices.list(Arrays.asList("A", "B",
+		// "C")),
+		// 0L, 2L));
+		// testIndex(combinationsToArb(naturals(), 0L, 3L));
+		// // Test combinations
+		// testIndex(CharIndices.SIGMA, 20);
 	}
 
 	/**

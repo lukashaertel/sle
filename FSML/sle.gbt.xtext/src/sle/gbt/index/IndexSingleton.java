@@ -22,7 +22,7 @@ public class IndexSingleton<Item> implements Index<Item> {
 
 	@Override
 	public Item get(long i) {
-		return exists(i) ? item : null;
+		return i == 0 ? item : null;
 	}
 
 	@Override

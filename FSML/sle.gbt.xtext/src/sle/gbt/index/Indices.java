@@ -2,14 +2,17 @@ package sle.gbt.index;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.base.Supplier;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterables;
 
 import sle.gbt.index.complex.IndexConcat;
 import sle.gbt.index.complex.IndexFilter;
+import sle.gbt.index.complex.IndexLate;
 import sle.gbt.index.complex.IndexLimit;
 import sle.gbt.index.complex.IndexMap;
 import sle.gbt.index.complex.IndexPair;
@@ -19,61 +22,41 @@ import sle.gbt.index.complex.Tuple;
 import static sle.gbt.utils.Iterables.*;
 
 public class Indices {
-	/**
-	 * Returns the index of all combinations of the items of the given length
-	 * 
-	 * @param items
-	 *            Index of elements to be combined, must be finite
-	 */
-	public static <Item> Index<Iterable<Item>> combinations(
-			final Index<? extends Item> items, final long length) {
-		if (length == 0)
-			return Indices.empty();
-		else if (length == 1) {
-			return Indices.map(items, new Function<Item, Iterable<Item>>() {
-
-				@Override
-				public Iterable<Item> apply(Item x) {
-					return one(x);
-				}
-
-				@Override
-				public String toString() {
-					return "x := [x]";
-				}
-			});
-		} else
-			return Indices
-					.map(Indices.pairWith(combinations(items, length - 1),
-							items),
-							new Function<Tuple<Iterable<Item>, Item>, Iterable<Item>>() {
-
-								@Override
-								public Iterable<Item> apply(
-										Tuple<Iterable<Item>, Item> x) {
-									return then(x.left, x.right);
-								}
-
-								@Override
-								public String toString() {
-									return "([xs],x) := [xs:x]";
-								}
-							});
-	}
-
-	/**
-	 * Returns the index of all combinations of the items up to the given length
-	 * 
-	 * @param items
-	 *            Index of elements to be combined, must be finite
-	 */
-	public static <Item> Index<Iterable<Item>> combinationsTo(
-			Index<? extends Item> items, long upToLength) {
-		if (upToLength == 0)
-			return combinations(items, 0);
+	public static <Item> Index<? extends Iterable<Item>> combinationsFinite(
+			final Index<? extends Item> source, final Long limit) {
+		final Index<Iterable<Item>> sourceOnes = map(source,
+				new Function<Item, Iterable<Item>>() {
+					@Override
+					public Iterable<Item> apply(Item arg0) {
+						return one(arg0);
+					}
+				});
+		if (limit != null && limit < 1)
+			throw new IllegalArgumentException();
+		else if (limit != null && limit == 1)
+			return sourceOnes;
 		else
-			return concatWith(combinationsTo(items, upToLength - 1),
-					combinations(items, upToLength));
+			return concatWith(sourceOnes,
+					late(new Supplier<Index<? extends Iterable<Item>>>() {
+						@Override
+						public Index<? extends Iterable<Item>> get() {
+
+							return map(
+									pairWith(
+											source,
+											combinationsFinite(source,
+													limit == null ? null
+															: limit - 1)),
+									new Function<Tuple<Item, Iterable<Item>>, Iterable<Item>>() {
+										@Override
+										public Iterable<Item> apply(
+												Tuple<Item, Iterable<Item>> x) {
+
+											return then(x.left, x.right);
+										}
+									});
+						}
+					}));
 	}
 
 	/**
@@ -85,82 +68,100 @@ public class Indices {
 	 * @param limit
 	 *            Optional limit of length
 	 */
-	public static <Item> IndexProduce<Iterable<Item>> allInfiniteCombinations(
+	public static <Item> IndexProduce<? extends Iterable<Item>> combinationsInfinite(
 			final Index<? extends Item> items, final Long limit) {
-		return produce(new AbstractIterator<Index<Iterable<Item>>>() {
+		return produce(new AbstractIterator<Index<? extends Iterable<Item>>>() {
 
-			private long at = 0L;
+			private long at = 1;
 
 			@Override
-			protected Index<Iterable<Item>> computeNext() {
-				if (limit != null && at == limit)
+			protected Index<? extends Iterable<Item>> computeNext() {
+				if (limit != null && at > limit)
 					return endOfData();
 
 				at++;
 
-				return combinationsTo(Indices.limit(items, at), at);
+				return combinationsFinite(limit(items, at - 1), at - 1);
 
 			}
-
-			@Override
-			public String toString() {
-				if (limit != null)
-					return "n := all combinations of " + items
-							+ " of legnth n up to length " + limit;
-				else
-					return "n := all combinations of " + items + " of legnth n";
-			}
+			//
+			// @Override
+			// public String toString() {
+			// if (limit != null)
+			// return "An := (" + items + ")^n + An-1, n=" + init
+			// + ",..., " + limit;
+			// else
+			// return "An := (" + items + ")^n + An-1, n=" + init + ",...";
+			// }
 		});
 	}
 
-	/**
-	 * Index of all combinations of any index, will return some items multiple
-	 * times but works for infinite indices
-	 * 
-	 * @param items
-	 *            Index of elements to be combined
-	 * @param limit
-	 *            Optional limit of length
-	 */
-	public static <Item> IndexProduce<Iterable<Item>> allFiniteCombinations(
-			final Index<? extends Item> items, final Long limit) {
-		return produce(new AbstractIterator<Index<Iterable<Item>>>() {
-
-			private long at = 0L;
-
-			@Override
-			protected Index<Iterable<Item>> computeNext() {
-				if (limit != null && at == limit)
-					return endOfData();
-
-				at++;
-
-				return combinations(items, at);
-
-			}
-
-			@Override
-			public String toString() {
-				if (limit != null)
-					return "n := all combinations of " + items
-							+ " of legnth n up to length " + limit;
-				else
-					return "n := all combinations of " + items + " of legnth n";
-			}
-		});
-	}
-
-	/**
-	 * Maps to the matching of {@link #allInfiniteCombinations(Index, Long)} and
-	 * {@link #allFiniteCombinations(Index, Long)}
-	 */
-	public static <Item> IndexProduce<Iterable<Item>> allCombinations(
-			final Index<? extends Item> items, final Long limit) {
+	public static <Item> Index<? extends Iterable<Item>> combinations(
+			Index<? extends Item> items, Long limit) {
 		if (items.domainSize() == -1)
-			return allInfiniteCombinations(items, limit);
+			return combinationsInfinite(items, limit);
 		else
-			return allFiniteCombinations(items, limit);
+			return combinationsFinite(items, limit);
 	}
+
+	// public static <Item> Index<Iterable<Item>> combinationsToArb(
+	// Index<? extends Item> items, long init, Long limit) {
+	// if (items.domainSize() == -1)
+	// return combinationsToOfInfinite(items, init, limit);
+	// else
+	// return combinationsToOfFinite(items, init, limit);
+	// }
+
+	//
+	// /**
+	// * Index of all combinations of any index, will return some items multiple
+	// * times but works for infinite indices
+	// *
+	// * @param items
+	// * Index of elements to be combined
+	// * @param limit
+	// * Optional limit of length
+	// */
+	// public static <Item> IndexProduce<Iterable<Item>> allFiniteCombinations(
+	// final Index<? extends Item> items, final Long limit) {
+	// return produce(new AbstractIterator<Index<Iterable<Item>>>() {
+	//
+	// private long at = 0L;
+	//
+	// @Override
+	// protected Index<Iterable<Item>> computeNext() {
+	// if (limit != null && at == limit)
+	// return endOfData();
+	//
+	// at++;
+	//
+	// return combinations(items, at);
+	//
+	// }
+	//
+	// @Override
+	// public String toString() {
+	// if (limit != null)
+	// return "n := all combinations of " + items
+	// + " of legnth n up to length " + limit;
+	// else
+	// return "n := all combinations of " + items + " of legnth n";
+	// }
+	// });
+	// }
+
+	// /**
+	// * Maps to the matching of {@link #allInfiniteCombinations(Index, Long)}
+	// and
+	// * {@link #allFiniteCombinations(Index, Long)}
+	// */
+	// public static <Item> IndexProduce<Iterable<Item>> allCombinations(
+	// final Index<? extends Item> items, final Long limit) {
+	// if (items.domainSize() == -1)
+	// return allInfiniteCombinations(items, limit);
+	// else
+	// return allFiniteCombinations(items, limit);
+	// }
 
 	public static <Item> Index<Item> consolidate(Index<Item> items,
 			Class<Item> type) {
@@ -168,6 +169,83 @@ public class Indices {
 			throw new IllegalArgumentException();
 
 		return array(Iterables.toArray(items, type));
+	}
+
+	public static Index<String> mapToString(Index<?> items) {
+		return map(items, new Function<Object, String>() {
+
+			@Override
+			public String apply(Object x) {
+				return Objects.toString(x);
+			}
+
+			@Override
+			public String toString() {
+				return "x := x.toString";
+			}
+		});
+	}
+
+	public static Index<String> mapConcat(
+			Index<? extends Tuple<String, String>> items) {
+		return map(items, new Function<Tuple<String, String>, String>() {
+
+			@Override
+			public String apply(Tuple<String, String> x) {
+				final StringBuilder builder = new StringBuilder(x.left);
+
+				builder.append(x.right);
+
+				return builder.toString();
+			}
+
+			@Override
+			public String toString() {
+				return "(x, y) := x + y";
+			}
+		});
+	}
+
+	public static Index<String> mapFoldString(
+			Index<? extends Iterable<String>> items) {
+		return map(items, new Function<Iterable<String>, String>() {
+
+			@Override
+			public String apply(Iterable<String> xs) {
+				final StringBuilder builder = new StringBuilder();
+
+				for (String x : xs)
+					builder.append(x);
+
+				return builder.toString();
+			}
+
+			@Override
+			public String toString() {
+				return "xs := fold strings xs";
+			}
+		});
+	}
+
+	public static Index<String> mapFoldChars(
+			Index<? extends Iterable<Character>> items) {
+		return map(items, new Function<Iterable<Character>, String>() {
+
+			@Override
+			public String apply(Iterable<Character> xs) {
+				final StringBuilder builder = new StringBuilder();
+
+				for (char x : xs)
+					builder.append(x);
+
+				return builder.toString();
+			}
+
+			@Override
+			public String toString() {
+				return "xs := fold strings xs";
+			}
+		});
 	}
 
 	/**
@@ -211,6 +289,17 @@ public class Indices {
 			@Override
 			public String toString() {
 				return items + ", filtered with " + predicate;
+			}
+		};
+	}
+
+	public static <Item> IndexLate<Item> late(
+			final Supplier<Index<? extends Item>> bind) {
+		return new IndexLate<Item>() {
+
+			@Override
+			protected Index<? extends Item> bind() {
+				return bind.get();
 			}
 		};
 	}
@@ -304,6 +393,20 @@ public class Indices {
 	 */
 	public static <Item> IndexList<Item> list(List<Item> items) {
 		return new IndexList<>(items);
+	}
+
+	/**
+	 * Makes a new naturals index
+	 */
+	public static IndexNaturals naturals() {
+		return new IndexNaturals();
+	}
+
+	/**
+	 * Makes a new naturals including zero index
+	 */
+	public static IndexNaturalsZero naturalsZero() {
+		return new IndexNaturalsZero();
 	}
 
 	/**
