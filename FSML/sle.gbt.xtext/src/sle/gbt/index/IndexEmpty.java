@@ -29,6 +29,11 @@ public class IndexEmpty<Item> implements Index<Item> {
 
 	@Override
 	public Iterator<Item> iterator() {
+		return iterator(0);
+	}
+
+	@Override
+	public Iterator<Item> iterator(long offset) {
 		return new Iterator<Item>() {
 
 			@Override
@@ -43,8 +48,7 @@ public class IndexEmpty<Item> implements Index<Item> {
 
 			@Override
 			public void remove() {
-				// TODO Auto-generated method stub
-
+				throw new UnsupportedOperationException();
 			}
 		};
 	}

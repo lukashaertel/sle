@@ -32,7 +32,6 @@ public class IndexSingleton<Item> implements Index<Item> {
 
 			@Override
 			public boolean hasNext() {
-				// TODO Auto-generated method stub
 				return !exhausted;
 			}
 
@@ -54,7 +53,32 @@ public class IndexSingleton<Item> implements Index<Item> {
 	}
 
 	@Override
+	public Iterator<Item> iterator(long offset) {
+		if (offset == 0)
+			return iterator();
+		else
+			return new Iterator<Item>() {
+
+				@Override
+				public boolean hasNext() {
+					return false;
+				}
+
+				@Override
+				public Item next() {
+					throw new NoSuchElementException();
+				}
+
+				@Override
+				public void remove() {
+					throw new UnsupportedOperationException();
+				}
+			};
+	}
+
+	@Override
 	public String toString() {
 		return "just " + item;
 	}
+
 }

@@ -74,6 +74,46 @@ public class Iterables {
 		};
 	}
 
+	public static <Item> Iterable<Item> two(final Item itemA, final Item itemB) {
+		return new Iterable<Item>() {
+
+			@Override
+			public Iterator<Item> iterator() {
+				return new Iterator<Item>() {
+					private boolean itemAOut = false;
+					private boolean itemBOut = false;
+
+					@Override
+					public boolean hasNext() {
+						return !itemAOut || !itemBOut;
+					}
+
+					@Override
+					public Item next() {
+						if (!itemAOut) {
+							itemAOut = true;
+							return itemA;
+						} else if (!itemBOut) {
+							itemBOut = true;
+							return itemB;
+						} else
+							throw new NoSuchElementException();
+					}
+
+					@Override
+					public void remove() {
+						throw new UnsupportedOperationException();
+					}
+				};
+			}
+
+			@Override
+			public String toString() {
+				return itemA + ":" + itemB;
+			}
+		};
+	}
+
 	public static <Item> Iterable<Item> then(
 			final Iterable<? extends Item> init, final Item last) {
 		return new Iterable<Item>() {
@@ -155,5 +195,11 @@ public class Iterables {
 				return "(" + head + ":" + tail + ")";
 			}
 		};
+	}
+
+	public static <Item> Iterable<Item> then(
+			final Iterable<? extends Item> first,
+			final Iterable<? extends Item> second) {
+		return com.google.common.collect.Iterables.concat(first, second);
 	}
 }

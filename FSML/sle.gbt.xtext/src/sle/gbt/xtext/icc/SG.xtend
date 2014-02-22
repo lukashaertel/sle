@@ -29,6 +29,15 @@ class SG {
 		new Sequence(l, single(r))
 	}
 
+	def static SG seq(SG... sgs) {
+		switch (sgs.length) {
+			case 0: throw new IllegalArgumentException
+			case 1: sgs.get(0)
+			case 2: sgs.get(0) > sgs.get(1)
+			default: seq(sgs.subList(0, sgs.length / 2)) > seq(sgs.subList(sgs.length / 2, sgs.length))
+		}
+	}
+
 	def static operator_diamond(SG l, SG r) {
 		new Alternative(l, r)
 	}

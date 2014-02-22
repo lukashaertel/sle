@@ -58,5 +58,4 @@ public class IndexCache<Item> extends IndexComplex<Item> {
 			return result;
 		}
 	}
-
 }

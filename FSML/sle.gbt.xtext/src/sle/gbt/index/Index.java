@@ -1,5 +1,7 @@
 package sle.gbt.index;
 
+import java.util.Iterator;
+
 public interface Index<Item> extends Iterable<Item> {
 	/**
 	 * Size of the domain of this index or {@code -1} if infinite
@@ -21,4 +23,9 @@ public interface Index<Item> extends Iterable<Item> {
 	 *            The position to get
 	 */
 	public Item get(long i);
+
+	/**
+	 * Behaves like {@link #iterator()} but uses an offset before that
+	 */
+	public Iterator<Item> iterator(long offset);
 }

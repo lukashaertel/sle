@@ -10,6 +10,10 @@ public abstract class AtIterator<Item> implements Iterator<Item> {
 
 	private long at;
 
+	public AtIterator(long first) {
+		this.at = first;
+	}
+
 	@Override
 	public boolean hasNext() {
 		return at < length();

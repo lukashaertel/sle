@@ -28,7 +28,7 @@ class ICC {
 		if(cache.containsKey(sg))
 			cache.get(sg)
 		else {
-			val result = iterate_(sg)
+			val result = iterate_(sg).cache
 			cache.put(sg, result)
 			result
 		}
@@ -82,20 +82,19 @@ class ICC {
 
 	def dispatch Index<String> iterate_(Reference sg) {
 
-		//		if(terminals.contains(sg.to)) {
-		//			if(resolve) {
-		//				//val higher = terminals.tailSet(sg.to).map(grammar);
-		//
-		//				// Iterate but leave out all productions of other terminals
-		//				//iterate(grammar.apply(sg.to)).filter[s|!higher.fold(false, [a, t|a || accept(t, s)])]
-		//				iterate(grammar.apply(sg.to))
-		//			} else
-		//				("[" + sg.to + "]").singleton
-		//
-		//		} else {
-		iterate(grammar.apply(sg.to))
+		if(terminals.contains(sg.to)) {
+			if(resolve) {
 
-	//		}
+				val higher = terminals.tailSet(sg.to).map(grammar);
+
+				// Iterate but leave out all productions of other terminals
+				iterate(grammar.apply(sg.to)).filter[s|!higher.fold(false, [a, t|a || accept(t, s)])]
+			} else
+				("[" + sg.to + "]").singleton
+
+		} else {
+			iterate(grammar.apply(sg.to))
+		}
 	}
 
 	def tailSet(List<String> strings, String string) {

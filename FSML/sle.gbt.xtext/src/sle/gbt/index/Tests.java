@@ -18,7 +18,7 @@ public class Tests {
 
 		Index<? extends Iterable<Long>> operator = combinations(naturals(),
 				null);
-		for (int i = 10000; i < 1000000; i++) {
+		for (int i = 0; i < 15; i++) {
 			System.out.println(i + " := " + operator.get(i));
 		}
 

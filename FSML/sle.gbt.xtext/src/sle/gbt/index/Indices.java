@@ -32,47 +32,51 @@ public class Indices {
 	 * @param limit
 	 *            The maximum length of the combinations
 	 */
-	public static <Item> Index<? extends Iterable<Item>> combinationsFinite(
-			final Index<? extends Item> source, final Long limit) {
-		final Index<Iterable<Item>> sourceOnes = map(source,
-				new Function<Item, Iterable<Item>>() {
+	public static <Item> Index<? extends Iterable<Item>> ccc(
+			final Index<? extends Item> source, final long limit) {
+		// Don't allow less or equal to zero
+		if (limit <= 0)
+			throw new IllegalArgumentException();
+
+		// One maps to source unary iteration
+		if (limit == 1)
+			return map(source, new Function<Item, Iterable<Item>>() {
+				@Override
+				public Iterable<Item> apply(Item x) {
+					return one(x);
+				}
+			});
+
+		// Two maps to the pairing and the binary iteration
+		if (limit == 2)
+			return map(pairWith(source, source),
+					new Function<Tuple<Item, Item>, Iterable<Item>>() {
+
+						@Override
+						public Iterable<Item> apply(Tuple<Item, Item> x) {
+							return two(x.left, x.right);
+						}
+					});
+
+		// Any higher limit maps to a bisection
+		return map(
+				pairWith(ccc(source, limit / 2),
+						ccc(source, limit / 2 + limit % 2)),
+				new Function<Tuple<Iterable<Item>, Iterable<Item>>, Iterable<Item>>() {
+
 					@Override
-					public Iterable<Item> apply(Item arg0) {
-						return one(arg0);
+					public Iterable<Item> apply(
+							Tuple<Iterable<Item>, Iterable<Item>> x) {
+						return then(x.left, x.right);
 					}
 				});
-		if (limit != null && limit < 1)
-			throw new IllegalArgumentException();
-		else if (limit != null && limit == 1)
-			return sourceOnes;
-		else
-			return concatWith(sourceOnes,
-					late(new Supplier<Index<? extends Iterable<Item>>>() {
-						@Override
-						public Index<? extends Iterable<Item>> get() {
-
-							return map(
-									pairWith(
-											source,
-											combinationsFinite(source,
-													limit == null ? null
-															: limit - 1)),
-									new Function<Tuple<Item, Iterable<Item>>, Iterable<Item>>() {
-										@Override
-										public Iterable<Item> apply(
-												Tuple<Item, Iterable<Item>> x) {
-
-											return then(x.left, x.right);
-										}
-									});
-						}
-					}));
 	}
 
 	/**
-	 * This ratio describes how much the depth enumeration advances per breadth enumeration
+	 * This ratio describes how much the depth enumeration advances per breadth
+	 * enumeration
 	 */
-	public static final int COMBINATIONS_INFINITE_RATIO = 27;
+	public static final int COMBINATIONS_INFINITE_RATIO = 157;
 
 	/**
 	 * Combines an infinite element source up to a given length, does not
@@ -83,7 +87,7 @@ public class Indices {
 	 * @param limit
 	 *            The maximum length of the combinations
 	 */
-	public static <Item> IndexProduce<? extends Iterable<Item>> combinationsInfinite(
+	public static <Item> IndexProduce<? extends Iterable<Item>> combinations(
 			final Index<? extends Item> items, final Long limit) {
 		return produce(new AbstractIterator<Index<? extends Iterable<Item>>>() {
 
@@ -96,10 +100,12 @@ public class Indices {
 
 				at++;
 
-				return combinationsFinite(
-						limit(items, COMBINATIONS_INFINITE_RATIO * (at - 1)),
-						at - 1);
-
+				if (items.domainSize() == -1)
+					return ccc(
+							limit(items, COMBINATIONS_INFINITE_RATIO * (at - 1)),
+							at - 1);
+				else
+					return ccc(items, at - 1);
 			}
 
 			@Override
@@ -111,14 +117,6 @@ public class Indices {
 							+ limit;
 			}
 		});
-	}
-
-	public static <Item> Index<? extends Iterable<Item>> combinations(
-			Index<? extends Item> items, Long limit) {
-		if (items.domainSize() == -1)
-			return combinationsInfinite(items, limit);
-		else
-			return combinationsFinite(items, limit);
 	}
 
 	/**
@@ -137,7 +135,7 @@ public class Indices {
 		return new IndexCache<>(items, degree);
 	}
 
-	public static int CACHE_SIZE_INFINITE_DOMAIN = 1254;
+	public static int CACHE_SIZE_INFINITE_DOMAIN = 1234;
 
 	public static double CACHE_FACTOR_FINITE_DOMAIN = 2.981;
 
@@ -154,7 +152,7 @@ public class Indices {
 		final long ds = items.domainSize();
 
 		return new IndexCache<>(items, ds == -1 ? CACHE_SIZE_INFINITE_DOMAIN
-				: (int) (ds / CACHE_FACTOR_FINITE_DOMAIN));
+				: (int) Math.ceil(ds / (double) CACHE_FACTOR_FINITE_DOMAIN));
 	}
 
 	/**

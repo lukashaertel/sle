@@ -26,9 +26,14 @@ public class IndexNaturals implements Index<Long> {
 
 	@Override
 	public Iterator<Long> iterator() {
+		return iterator(0);
+	}
+
+	@Override
+	public Iterator<Long> iterator(final long offset) {
 		return new Iterator<Long>() {
 
-			private long at = 1;
+			private long at = offset + 1;
 
 			@Override
 			public Long next() {

@@ -7,10 +7,11 @@ import com.google.common.collect.AbstractIterator;
 public class PullIterator<Item> extends AbstractIterator<Item> {
 	public final Index<? extends Item> source;
 
-	private long at = -1;
+	private long at;
 
-	public PullIterator(Index<? extends Item> source) {
+	public PullIterator(Index<? extends Item> source, long first) {
 		this.source = source;
+		this.at = first - 1;
 	}
 
 	@Override

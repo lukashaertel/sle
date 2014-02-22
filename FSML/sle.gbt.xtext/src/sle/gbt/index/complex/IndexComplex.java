@@ -17,6 +17,11 @@ public abstract class IndexComplex<Item> implements Index<Item> {
 
 	@Override
 	public Iterator<Item> iterator() {
-		return new PullIterator<>(this);
+		return iterator(0);
+	}
+
+	@Override
+	public Iterator<Item> iterator(long offset) {
+		return new PullIterator<>(this, offset);
 	}
 }

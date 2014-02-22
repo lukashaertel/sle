@@ -46,7 +46,12 @@ public class IndexArray<Item> implements Index<Item> {
 
 	@Override
 	public Iterator<Item> iterator() {
-		return new AtIterator<Item>() {
+		return iterator(0);
+	}
+
+	@Override
+	public Iterator<Item> iterator(long offset) {
+		return new AtIterator<Item>(offset) {
 
 			@Override
 			protected long length() {
