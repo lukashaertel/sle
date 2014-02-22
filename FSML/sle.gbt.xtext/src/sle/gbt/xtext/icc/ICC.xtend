@@ -1,6 +1,5 @@
 package sle.gbt.xtext.icc
 
-import java.util.SortedSet
 import java.util.Set
 import sle.gbt.index.Index
 
@@ -8,6 +7,7 @@ import static extension sle.gbt.index.CharIndices.*
 import static extension sle.gbt.utils.Ranges.*
 import static extension sle.gbt.index.Indices.*
 import java.util.List
+import java.util.HashMap
 
 class ICC {
 	val List<String> terminals
@@ -16,51 +16,63 @@ class ICC {
 
 	val (String)=>Set<String> whitespaces
 
+	val cache = new HashMap<SG, Index<String>>
+
 	new(List<String> terminals, (String)=>SG grammar, (String)=>Set<String> whitespaces) {
 		this.terminals = terminals
 		this.grammar = grammar
 		this.whitespaces = whitespaces
 	}
 
-	def dispatch Index<String> iterate(SG sg) {
+	def iterate(SG sg) {
+		if(cache.containsKey(sg))
+			cache.get(sg)
+		else {
+			val result = iterate_(sg)
+			cache.put(sg, result)
+			result
+		}
+	}
+
+	def dispatch Index<String> iterate_(SG sg) {
 		throw new UnsupportedOperationException("Cannot dispatch " + sg)
 	}
 
-	def dispatch Index<String> iterate(Any sg) {
+	def dispatch Index<String> iterate_(Any sg) {
 		SIGMA.mapToString
 	}
 
-	def dispatch Index<String> iterate(Range sg) {
+	def dispatch Index<String> iterate_(Range sg) {
 		chars(sg.min, sg.max).list.mapToString
 	}
 
-	def dispatch Index<String> iterate(Single sg) {
+	def dispatch Index<String> iterate_(Single sg) {
 		sg.token.singleton
 	}
 
-	def dispatch Index<String> iterate(Until sg) {
+	def dispatch Index<String> iterate_(Until sg) {
 		"".singleton.concatWith(
 			combinations(SIGMA, null).mapFoldChars.filter[!contains(sg.token)].map[it + sg.token]
 		)
 	}
 
-	def dispatch Index<String> iterate(Sequence sg) {
+	def dispatch Index<String> iterate_(Sequence sg) {
 		iterate(sg.first).pairWith(iterate(sg.second)).mapConcat
 	}
 
-	def dispatch Index<String> iterate(Alternative sg) {
+	def dispatch Index<String> iterate_(Alternative sg) {
 		iterate(sg.either).zipWith(iterate(sg.or))
 	}
 
-	def dispatch Index<String> iterate(Optional sg) {
+	def dispatch Index<String> iterate_(Optional sg) {
 		"".singleton.concatWith(iterate(sg.of))
 	}
 
-	def dispatch Index<String> iterate(Plus sg) {
+	def dispatch Index<String> iterate_(Plus sg) {
 		combinations(iterate(sg.of), null).mapFoldString
 	}
 
-	def dispatch Index<String> iterate(Star sg) {
+	def dispatch Index<String> iterate_(Star sg) {
 		"".singleton.concatWith(
 			combinations(iterate(sg.of), null).mapFoldString
 		)
@@ -68,19 +80,22 @@ class ICC {
 
 	val resolve = true
 
-	def dispatch Index<String> iterate(Reference sg) {
-		if(terminals.contains(sg.to)) {
-			if(resolve) {
-				val higher = terminals.tailSet(sg.to).map(grammar);
+	def dispatch Index<String> iterate_(Reference sg) {
 
-				// Iterate but leave out all productions of other terminals
-				iterate(grammar.apply(sg.to)).filter[s|!higher.fold(false, [a, t|a || accept(t, s)])]
-			} else
-				("[" + sg.to + "]").singleton
+		//		if(terminals.contains(sg.to)) {
+		//			if(resolve) {
+		//				//val higher = terminals.tailSet(sg.to).map(grammar);
+		//
+		//				// Iterate but leave out all productions of other terminals
+		//				//iterate(grammar.apply(sg.to)).filter[s|!higher.fold(false, [a, t|a || accept(t, s)])]
+		//				iterate(grammar.apply(sg.to))
+		//			} else
+		//				("[" + sg.to + "]").singleton
+		//
+		//		} else {
+		iterate(grammar.apply(sg.to))
 
-		} else {
-			iterate(grammar.apply(sg.to))
-		}
+	//		}
 	}
 
 	def tailSet(List<String> strings, String string) {

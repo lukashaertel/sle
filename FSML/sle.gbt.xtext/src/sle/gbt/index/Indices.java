@@ -10,6 +10,7 @@ import com.google.common.base.Supplier;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterables;
 
+import sle.gbt.index.complex.IndexCache;
 import sle.gbt.index.complex.IndexConcat;
 import sle.gbt.index.complex.IndexFilter;
 import sle.gbt.index.complex.IndexLate;
@@ -22,6 +23,15 @@ import sle.gbt.index.complex.Tuple;
 import static sle.gbt.utils.Iterables.*;
 
 public class Indices {
+	/**
+	 * Combines a finite element source up to a given length, does not include
+	 * the zero length combination
+	 * 
+	 * @param source
+	 *            The item source, must be finite
+	 * @param limit
+	 *            The maximum length of the combinations
+	 */
 	public static <Item> Index<? extends Iterable<Item>> combinationsFinite(
 			final Index<? extends Item> source, final Long limit) {
 		final Index<Iterable<Item>> sourceOnes = map(source,
@@ -60,13 +70,18 @@ public class Indices {
 	}
 
 	/**
-	 * Index of all combinations of any index, will return some items multiple
-	 * times but works for infinite indices
+	 * This ratio describes how much the depth enumeration advances per breadth enumeration
+	 */
+	public static final int COMBINATIONS_INFINITE_RATIO = 27;
+
+	/**
+	 * Combines an infinite element source up to a given length, does not
+	 * include the zero length combination
 	 * 
-	 * @param items
-	 *            Index of elements to be combined
+	 * @param source
+	 *            The item source, may be finite
 	 * @param limit
-	 *            Optional limit of length
+	 *            The maximum length of the combinations
 	 */
 	public static <Item> IndexProduce<? extends Iterable<Item>> combinationsInfinite(
 			final Index<? extends Item> items, final Long limit) {
@@ -81,18 +96,20 @@ public class Indices {
 
 				at++;
 
-				return combinationsFinite(limit(items, at - 1), at - 1);
+				return combinationsFinite(
+						limit(items, COMBINATIONS_INFINITE_RATIO * (at - 1)),
+						at - 1);
 
 			}
-			//
-			// @Override
-			// public String toString() {
-			// if (limit != null)
-			// return "An := (" + items + ")^n + An-1, n=" + init
-			// + ",..., " + limit;
-			// else
-			// return "An := (" + items + ")^n + An-1, n=" + init + ",...";
-			// }
+
+			@Override
+			public String toString() {
+				if (limit == null)
+					return "all combinations of " + items;
+				else
+					return "all combinations of " + items + " to length "
+							+ limit;
+			}
 		});
 	}
 
@@ -104,65 +121,45 @@ public class Indices {
 			return combinationsFinite(items, limit);
 	}
 
-	// public static <Item> Index<Iterable<Item>> combinationsToArb(
-	// Index<? extends Item> items, long init, Long limit) {
-	// if (items.domainSize() == -1)
-	// return combinationsToOfInfinite(items, init, limit);
-	// else
-	// return combinationsToOfFinite(items, init, limit);
-	// }
+	/**
+	 * Caches up to {@code degree} of the last queried results of items, useful
+	 * for re-enumerated indices as in pair. Does not re-cache existing caches
+	 * 
+	 * @param items
+	 *            The source items to cache
+	 * @param degree
+	 *            The amount of items to cache
+	 */
+	public static <Item> IndexCache<Item> cache(Index<Item> items, int degree) {
+		if (items instanceof IndexCache<?>)
+			return (IndexCache<Item>) items;
 
-	//
-	// /**
-	// * Index of all combinations of any index, will return some items multiple
-	// * times but works for infinite indices
-	// *
-	// * @param items
-	// * Index of elements to be combined
-	// * @param limit
-	// * Optional limit of length
-	// */
-	// public static <Item> IndexProduce<Iterable<Item>> allFiniteCombinations(
-	// final Index<? extends Item> items, final Long limit) {
-	// return produce(new AbstractIterator<Index<Iterable<Item>>>() {
-	//
-	// private long at = 0L;
-	//
-	// @Override
-	// protected Index<Iterable<Item>> computeNext() {
-	// if (limit != null && at == limit)
-	// return endOfData();
-	//
-	// at++;
-	//
-	// return combinations(items, at);
-	//
-	// }
-	//
-	// @Override
-	// public String toString() {
-	// if (limit != null)
-	// return "n := all combinations of " + items
-	// + " of legnth n up to length " + limit;
-	// else
-	// return "n := all combinations of " + items + " of legnth n";
-	// }
-	// });
-	// }
+		return new IndexCache<>(items, degree);
+	}
 
-	// /**
-	// * Maps to the matching of {@link #allInfiniteCombinations(Index, Long)}
-	// and
-	// * {@link #allFiniteCombinations(Index, Long)}
-	// */
-	// public static <Item> IndexProduce<Iterable<Item>> allCombinations(
-	// final Index<? extends Item> items, final Long limit) {
-	// if (items.domainSize() == -1)
-	// return allInfiniteCombinations(items, limit);
-	// else
-	// return allFiniteCombinations(items, limit);
-	// }
+	public static int CACHE_SIZE_INFINITE_DOMAIN = 1254;
 
+	public static double CACHE_FACTOR_FINITE_DOMAIN = 2.981;
+
+	/**
+	 * Behaves like {@link #cache(Index, int)} but calculates the cached amount
+	 * by taking {@link #CACHE_SIZE_INFINITE_DOMAIN} for infinite domains and
+	 * {@link Index#domainSize()} / {@link #CACHE_FACTOR_FINITE_DOMAIN} for
+	 * finite domains
+	 */
+	public static <Item> IndexCache<Item> cache(Index<Item> items) {
+		if (items instanceof IndexCache<?>)
+			return (IndexCache<Item>) items;
+
+		final long ds = items.domainSize();
+
+		return new IndexCache<>(items, ds == -1 ? CACHE_SIZE_INFINITE_DOMAIN
+				: (int) (ds / CACHE_FACTOR_FINITE_DOMAIN));
+	}
+
+	/**
+	 * Consolidates an intex into an array index
+	 */
 	public static <Item> Index<Item> consolidate(Index<Item> items,
 			Class<Item> type) {
 		if (items.domainSize() == -1)
@@ -171,6 +168,9 @@ public class Indices {
 		return array(Iterables.toArray(items, type));
 	}
 
+	/**
+	 * Maps an arbitrary index into a string-index
+	 */
 	public static Index<String> mapToString(Index<?> items) {
 		return map(items, new Function<Object, String>() {
 
@@ -186,6 +186,9 @@ public class Indices {
 		});
 	}
 
+	/**
+	 * Maps an index of a tuple of strings into an index concatenating those
+	 */
 	public static Index<String> mapConcat(
 			Index<? extends Tuple<String, String>> items) {
 		return map(items, new Function<Tuple<String, String>, String>() {
@@ -206,6 +209,9 @@ public class Indices {
 		});
 	}
 
+	/**
+	 * Maps an index of iterable of strings into an index folding them
+	 */
 	public static Index<String> mapFoldString(
 			Index<? extends Iterable<String>> items) {
 		return map(items, new Function<Iterable<String>, String>() {
@@ -227,6 +233,10 @@ public class Indices {
 		});
 	}
 
+	/**
+	 * Maps an index of iterable of characters into an index folding them into a
+	 * string
+	 */
 	public static Index<String> mapFoldChars(
 			Index<? extends Iterable<Character>> items) {
 		return map(items, new Function<Iterable<Character>, String>() {

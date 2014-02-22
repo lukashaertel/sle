@@ -9,19 +9,19 @@ import static extension sle.gbt.utils.Maps.*
 class Tests {
 
 	def static void main(String... args) {
-		val terminals = newArrayList("ID", "TERM", "TO", "ACTION", "CCB", "OCB", "STATE", "INITIAL")
+		val terminals = newArrayList("ID", ";", "->", "/", "{", "}", "STATE", "INITIAL")
 		val grammar = newHashMap(
 			"INITIAL" -> "initial ".single,
 			"STATE" -> "state ".single,
-			"OCB" -> "{".single,
-			"CCB" -> "}".single,
-			"ACTION" -> "/".single,
-			"TO" -> "->".single,
-			"TERM" -> ";".single,
+			"{" -> "{".single,
+			"}" -> "}".single,
+			"/" -> "/".single,
+			"->" -> "->".single,
+			";" -> ";".single,
 			"ID" -> ("a" .. "c"),
-			"model" -> "state".ref.star,
-			"state" -> ("INITIAL".ref.opt > "STATE".ref > "ID".ref > "OCB".ref > "transition".ref.star > "CCB".ref ),
-			"transition" -> ("ID".ref > ("ACTION".ref > "ID".ref).opt > ("TO".ref > "ID".ref).opt > "TERM".ref)
+			"model" -> ("state".ref.star ),
+			"state" -> ( "INITIAL".ref.opt > "STATE".ref > "ID".ref > "{".ref > "transition".ref.star > "}".ref ),
+			"transition" -> ("ID".ref > ("/".ref > "ID".ref).opt > ("->".ref > "ID".ref).opt > ";".ref)
 		).asFunction;
 		val whitespaces = [newHashSet()]
 
@@ -32,10 +32,24 @@ class Tests {
 		val s = "model".ref
 		val si = icc.iterate(s)
 
-		for (i : 30000 .. 50000) {
-			if(si.exists(i))
+		var o = 0;
+		val st = System.currentTimeMillis
+		var lso = st / 1000;
+		for (i : 0 .. 3000) {
+			if(si.exists(i)) {
 				println(si.get(i))
-			else {
+				o = o + 1
+				val ct = System.currentTimeMillis
+				var cso = ct / 1000;
+
+				if(cso != lso) {
+					lso = cso;
+					val t = 1000.0 * (o as double / (ct - st))
+					println
+					println("> " + t + " per second")
+					println
+				}
+			} else {
 				println("NO:" + i)
 			}
 		}
