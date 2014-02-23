@@ -140,7 +140,6 @@ class ICC {
 	 * ?????????????????
 	 */
 	def dispatch Index<String> iterate_(Negation sg, long lbr) {
-		
 	}
 
 	/**
@@ -154,7 +153,7 @@ class ICC {
 		val higher = terminals.after(sg.to).map(grammar);
 
 		// Iterate but leave out all productions of higher precedence terminals
-		iterate(grammar.apply(sg.to), lbr).filter[s|!higher.fold(false, [a, t|a || doesAccept(t, s)])]
+		iterate(grammar.apply(sg.to), lbr).filter[s|!higher.exists[t|doesAccept(t, s)]]
 	}
 
 	/**
@@ -268,7 +267,6 @@ class ICC {
 	 * ??????????????
 	 */
 	def dispatch Iterable<Integer> accept(Negation sg, String string) {
-		
 	}
 
 	/**

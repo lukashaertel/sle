@@ -10,7 +10,7 @@ import static extension sle.gbt.xtext.icc.SG.*
 class Tests {
 
 	def static void main(String... args) {
-		testFSMLICC
+		testNegation
 	}
 
 	def static testNegation() {
