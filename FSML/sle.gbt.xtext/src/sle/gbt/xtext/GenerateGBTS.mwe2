@@ -22,6 +22,10 @@ Workflow {
     	registerEcoreFile = "platform:/resource/org.eclipse.xtext/org/eclipse/xtext/Xtext.ecore"
     	registerGenModelFile = "platform:/resource/org.eclipse.xtext/org/eclipse/xtext/Xtext.genmodel"
     	registerGeneratedEPackage = "org.eclipse.xtext.XtextPackage"
+    	
+    	registerEcoreFile = "platform:/resource/sle.gbt.xtext/src/SG.ecore"
+    	registerGenModelFile = "platform:/resource/sle.gbt.xtext/src/SG.genmodel"
+    	registerGeneratedEPackage = "sle.gbt.sg.SgPackage"
     }
     
     component = DirectoryCleaner {
@@ -61,7 +65,7 @@ Workflow {
     
     		// serializer 2.0
     		fragment = serializer.SerializerFragment auto-inject {
-    			generateStub = false
+    			generateStub = true
     		}
     
     		// a custom ResourceFactory for use with EMF

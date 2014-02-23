@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sg" nsURI="http://www.gbt.sle/xtext/sg" nsPrefix="sg">
+  <eClassifiers xsi:type="ecore:EClass" name="SG" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Unary" abstract="true" eSuperTypes="#//SG">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="of" eType="#//SG" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Binary" abstract="true" eSuperTypes="#//SG">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//SG" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//SG" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Unary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Until" eSuperTypes="#//Unary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Optional" eSuperTypes="#//Unary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//Unary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Star" eSuperTypes="#//Unary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//Binary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sequence" eSuperTypes="#//Binary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Any" eSuperTypes="#//SG"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Range" eSuperTypes="#//SG">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Single" eSuperTypes="#//SG">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="token" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//SG">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

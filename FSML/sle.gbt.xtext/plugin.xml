@@ -13,4 +13,12 @@
 
 
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SG -->
+      <package
+            uri="http://www.gbt.sle/xtext/sg"
+            class="sle.gbt.sg.SgPackage"
+            genModel="src/SG.genmodel"/>
+   </extension>
+
 </plugin>

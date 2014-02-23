@@ -37,15 +37,41 @@ public class GBTSParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getCardinalityAccess().getAlternatives_1(), "rule__Cardinality__Alternatives_1");
+					put(grammarAccess.getOperatedAccess().getAlternatives(), "rule__Operated__Alternatives");
+					put(grammarAccess.getTerminalAccess().getAlternatives(), "rule__Terminal__Alternatives");
+					put(grammarAccess.getGrammarIDAccess().getGroup(), "rule__GrammarID__Group__0");
+					put(grammarAccess.getGrammarIDAccess().getGroup_1(), "rule__GrammarID__Group_1__0");
 					put(grammarAccess.getTestAccess().getGroup(), "rule__Test__Group__0");
 					put(grammarAccess.getTestAccess().getGroup_2(), "rule__Test__Group_2__0");
 					put(grammarAccess.getTestAccess().getGroup_3(), "rule__Test__Group_3__0");
-					put(grammarAccess.getQIDAccess().getGroup(), "rule__QID__Group__0");
-					put(grammarAccess.getQIDAccess().getGroup_1(), "rule__QID__Group_1__0");
+					put(grammarAccess.getSubstitutionAccess().getGroup(), "rule__Substitution__Group__0");
+					put(grammarAccess.getAlternativeAccess().getGroup(), "rule__Alternative__Group__0");
+					put(grammarAccess.getAlternativeAccess().getGroup_1(), "rule__Alternative__Group_1__0");
+					put(grammarAccess.getSequenceAccess().getGroup(), "rule__Sequence__Group__0");
+					put(grammarAccess.getSequenceAccess().getGroup_1(), "rule__Sequence__Group_1__0");
+					put(grammarAccess.getCardinalityAccess().getGroup(), "rule__Cardinality__Group__0");
+					put(grammarAccess.getCardinalityAccess().getGroup_1_0(), "rule__Cardinality__Group_1_0__0");
+					put(grammarAccess.getCardinalityAccess().getGroup_1_1(), "rule__Cardinality__Group_1_1__0");
+					put(grammarAccess.getCardinalityAccess().getGroup_1_2(), "rule__Cardinality__Group_1_2__0");
+					put(grammarAccess.getOperatedAccess().getGroup_0(), "rule__Operated__Group_0__0");
+					put(grammarAccess.getOperatedAccess().getGroup_1(), "rule__Operated__Group_1__0");
+					put(grammarAccess.getTerminalAccess().getGroup_0(), "rule__Terminal__Group_0__0");
+					put(grammarAccess.getTerminalAccess().getGroup_1(), "rule__Terminal__Group_1__0");
+					put(grammarAccess.getParenthesizedElementAccess().getGroup(), "rule__ParenthesizedElement__Group__0");
 					put(grammarAccess.getModelAccess().getTestsAssignment(), "rule__Model__TestsAssignment");
 					put(grammarAccess.getTestAccess().getRefAssignment_1(), "rule__Test__RefAssignment_1");
-					put(grammarAccess.getTestAccess().getRuleAssignment_2_2(), "rule__Test__RuleAssignment_2_2");
-					put(grammarAccess.getTestAccess().getDepthAssignment_3_2(), "rule__Test__DepthAssignment_3_2");
+					put(grammarAccess.getTestAccess().getRuleAssignment_2_1(), "rule__Test__RuleAssignment_2_1");
+					put(grammarAccess.getTestAccess().getSubstitutionsAssignment_3_1(), "rule__Test__SubstitutionsAssignment_3_1");
+					put(grammarAccess.getSubstitutionAccess().getRuleAssignment_1(), "rule__Substitution__RuleAssignment_1");
+					put(grammarAccess.getSubstitutionAccess().getSubstitutionAssignment_3(), "rule__Substitution__SubstitutionAssignment_3");
+					put(grammarAccess.getAlternativeAccess().getRightAssignment_1_2(), "rule__Alternative__RightAssignment_1_2");
+					put(grammarAccess.getSequenceAccess().getRightAssignment_1_1(), "rule__Sequence__RightAssignment_1_1");
+					put(grammarAccess.getOperatedAccess().getOfAssignment_0_2(), "rule__Operated__OfAssignment_0_2");
+					put(grammarAccess.getOperatedAccess().getOfAssignment_1_2(), "rule__Operated__OfAssignment_1_2");
+					put(grammarAccess.getTerminalAccess().getMinAssignment_0_1(), "rule__Terminal__MinAssignment_0_1");
+					put(grammarAccess.getTerminalAccess().getMaxAssignment_0_3(), "rule__Terminal__MaxAssignment_0_3");
+					put(grammarAccess.getTerminalAccess().getTokenAssignment_1_1(), "rule__Terminal__TokenAssignment_1_1");
 				}
 			};
 		}

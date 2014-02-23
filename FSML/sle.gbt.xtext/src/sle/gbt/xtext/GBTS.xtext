@@ -1,21 +1,44 @@
 grammar sle.gbt.xtext.GBTS with org.eclipse.xtext.common.Terminals
 
+import "http://www.gbt.sle/xtext/sg" as sg
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.eclipse.org/2008/Xtext" as xtext
 generate gBTS "http://www.gbt.sle/xtext/GBTS"
 
 Model:
 	tests+=Test+;
 
-Test:
-	'test' ref=[xtext::Grammar|QID] ('start' 'at' rule=[xtext::AbstractRule])? ('with' 'depth' depth=INT)?;
+GrammarID returns ecore::EString:
+	ID ('.' ID)*;
 
-QID:
-	ID ('.' QID)?;
-	
-	/**
-	 * Predicated true in abstract element ~ '=>' used on abstract element
-	 */
-	 
-	/**
-	 * Cardinality of abstract element ~ {null, '?', '+', '*'}
-	 */
+Test:
+	'test' ref=[xtext::Grammar|GrammarID] ('start' rule=[xtext::AbstractRule])? ('{' substitutions+=Substitution '}')?;
+
+Substitution:
+	'substitute' rule=[xtext::AbstractRule] 'with' substitution=SG ';';
+
+SG returns sg::SG:
+	Alternative;
+
+Alternative returns sg::SG:
+	Sequence ({sg::Alternative.left=current} '|' right=Sequence)?;
+
+Sequence returns sg::SG:
+	Cardinality ({sg::Sequence.left=current} right=Cardinality)?;
+
+Cardinality returns sg::SG:
+	Operated (({sg::Optional.of=current} '?' | {sg::Star.of=current} '*' | {sg::Plus.of=current}
+	'+'))?;
+
+Operated returns sg::SG:
+	'->' {sg::Until} of=Operated |
+	'!' {sg::Negation} of=Operated |
+	Terminal;
+
+Terminal returns sg::SG:
+	{sg::Range} min=STRING '..' max=STRING |
+	{sg::Single} token=STRING |
+	ParenthesizedElement;
+
+ParenthesizedElement returns sg::SG:
+	'(' Alternative ')';

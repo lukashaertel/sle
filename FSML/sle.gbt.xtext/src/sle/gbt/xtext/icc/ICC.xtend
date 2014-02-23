@@ -1,15 +1,31 @@
 package sle.gbt.xtext.icc
 
-import sle.gbt.index.Index
-
-import static extension sle.gbt.index.CharIndices.*
-import static extension sle.gbt.utils.Ranges.*
-import static extension sle.gbt.index.Indices.*
-import static extension sle.gbt.utils.Iterables.*
-import java.util.List
 import java.util.HashMap
+import java.util.List
+import java.util.Map
+import sle.gbt.index.Index
+import sle.gbt.sg.Alternative
+import sle.gbt.sg.Any
+import sle.gbt.sg.Negation
+import sle.gbt.sg.Optional
+import sle.gbt.sg.Plus
+import sle.gbt.sg.Range
+import sle.gbt.sg.Reference
+import sle.gbt.sg.SG
+import sle.gbt.sg.Sequence
+import sle.gbt.sg.Single
+import sle.gbt.sg.Star
+import sle.gbt.sg.Until
+
+import static sle.gbt.index.CharIndices.*
+import static sle.gbt.utils.Iterables.*
+import static sle.gbt.utils.Ranges.*
+
+import static extension sle.gbt.index.Indices.*
+import sle.gbt.sg.SgFactory
 
 class ICC {
+	static extension SgFactory sgFactory = SgFactory.eINSTANCE
 
 	/**
 	 * Initial value for the length/breadth parameter
@@ -27,9 +43,9 @@ class ICC {
 	val List<String> terminals
 
 	/**
-	 * Grammar-function mapping identifiers to constructs
+	 * Grammar mapping identifiers to constructs
 	 */
-	val (String)=>SG grammar
+	val Map<String, SG> grammar
 
 	/**
 	 * Cache that maps identical constructs to the same indices for sharing purposes
@@ -41,7 +57,7 @@ class ICC {
 	 * @param terminals List of terminals in ascending precedence
 	 * @param grammar Grammar-function mapping identifiers to constructs
 	 */
-	new(List<String> terminals, (String)=>SG grammar) {
+	new(List<String> terminals, Map<String, SG> grammar) {
 		this.terminals = terminals
 		this.grammar = grammar
 	}
@@ -65,72 +81,71 @@ class ICC {
 	/**
 	 * Dispatcher for the iteration
 	 */
-	def dispatch Index<String> iterate_(SG sg, long lbr) {
+	private def dispatch Index<String> iterate_(SG sg, long lbr) {
 		throw new UnsupportedOperationException("Cannot dispatch " + sg)
 	}
 
 	/**
 	 * Iterates the any character construct by enumerating sigma
 	 */
-	def dispatch Index<String> iterate_(Any sg, long lbr) {
+	private def dispatch Index<String> iterate_(Any sg, long lbr) {
 		SIGMA.mapToString
 	}
 
 	/**
 	 * Iterates the range by enumerating the ranges characters
 	 */
-	def dispatch Index<String> iterate_(Range sg, long lbr) {
-		chars(sg.min, sg.max).list.mapToString
+	private def dispatch Index<String> iterate_(Range sg, long lbr) {
+		chars(sg.min.charAt(0), sg.max.charAt(0)).list.mapToString
 	}
 
 	/**
 	 * Iterates the single token by just returning it
 	 */
-	def dispatch Index<String> iterate_(Single sg, long lbr) {
+	private def dispatch Index<String> iterate_(Single sg, long lbr) {
 		sg.token.singleton
 	}
 
 	/**
 	 * Iterates the until construct by appending its token to all strings not containing its token
 	 */
-	def dispatch Index<String> iterate_(Until sg, long lbr) {
-		"".singleton.concatWith(
-			combinations(SIGMA, lbr, null).mapFoldChars.filter[!contains(sg.token)].map[it + sg.token]
-		)
+	private def dispatch Index<String> iterate_(Until sg, long lbr) {
+		("".singleton.concatWith(combinations(SIGMA, lbr, null).mapFoldChars)).filter[s|!doesAcceptAny(sg.of, s)].
+			pairWith(iterate(sg.of, lbr)).mapConcat
 	}
 
 	/**
 	 * Iterates the sequence by enumerating all pairs of the left-hand and the right-hand
 	 */
-	def dispatch Index<String> iterate_(Sequence sg, long lbr) {
-		iterate(sg.first, lbr).pairWith(iterate(sg.second, lbr)).mapConcat
+	private def dispatch Index<String> iterate_(Sequence sg, long lbr) {
+		iterate(sg.left, lbr).pairWith(iterate(sg.right, lbr)).mapConcat
 	}
 
 	/**
 	 * Iterates the alternative by interleaving enumeration
 	 */
-	def dispatch Index<String> iterate_(Alternative sg, long lbr) {
-		iterate(sg.either, lbr).zipWith(iterate(sg.or, lbr))
+	private def dispatch Index<String> iterate_(Alternative sg, long lbr) {
+		iterate(sg.left, lbr).zipWith(iterate(sg.right, lbr))
 	}
 
 	/**
 	 * Iterates the optional construct by iterating its inner construct and prepending the empty-length string
 	 */
-	def dispatch Index<String> iterate_(Optional sg, long lbr) {
+	private def dispatch Index<String> iterate_(Optional sg, long lbr) {
 		"".singleton.concatWith(iterate(sg.of, lbr))
 	}
 
 	/**
 	 * Iterates the plus construct by enumerating all combinations of its inner construct
 	 */
-	def dispatch Index<String> iterate_(Plus sg, long lbr) {
+	private def dispatch Index<String> iterate_(Plus sg, long lbr) {
 		combinations(iterate(sg.of, lbr / DEEPENING_LBR_FACTOR), lbr, null).mapFoldString
 	}
 
 	/**
 	 * Iterates the star construct just like the plus construct with the empty-length string prepended
 	 */
-	def dispatch Index<String> iterate_(Star sg, long lbr) {
+	private def dispatch Index<String> iterate_(Star sg, long lbr) {
 		"".singleton.concatWith(
 			combinations(iterate(sg.of, lbr / DEEPENING_LBR_FACTOR), lbr, null).mapFoldString
 		)
@@ -139,28 +154,29 @@ class ICC {
 	/**
 	 * ?????????????????
 	 */
-	def dispatch Index<String> iterate_(Negation sg, long lbr) {
+	private def dispatch Index<String> iterate_(Negation sg, long lbr) {
+		("".singleton.concatWith(combinations(SIGMA, lbr, null).mapFoldChars)).filter[s|!doesAcceptAny(sg.of, s)]
 	}
 
 	/**
 	 * Iterates the reference by checking if a terminal precedence is to be applied to
 	 * the iteration of the inner construct
 	 */
-	def dispatch Index<String> iterate_(Reference sg, long lbr) {
+	private def dispatch Index<String> iterate_(Reference sg, long lbr) {
 
 		// Find all terminals that are of higher precedence, will return the
 		// empty list if the reference is not on a terminal
-		val higher = terminals.after(sg.to).map(grammar);
+		val higher = terminals.after(sg.to).map[id|grammar.get(id)];
 
 		// Iterate but leave out all productions of higher precedence terminals
-		iterate(grammar.apply(sg.to), lbr).filter[s|!higher.exists[t|doesAccept(t, s)]]
+		iterate(grammar.get(sg.to), lbr).filter[s|!higher.exists[t|doesAccept(t, s)]]
 	}
 
 	/**
 	 * Returns all strings in the list that have a higher index
 	 * than the reference string or the empty list if the string is not contained
 	 */
-	def static after(List<String> strings, String string) {
+	private def static after(List<String> strings, String string) {
 		val i = strings.indexOf(string)
 		if(i == -1)
 			emptyList
@@ -174,6 +190,13 @@ class ICC {
 	 */
 	def boolean doesAccept(SG sg, String string) {
 		accept(sg, string).exists[it == string.length]
+	}
+
+	/**
+	 * Does accept any returns true if the any substring string is accepted by the construct
+	 */
+	def boolean doesAcceptAny(SG sg, String string) {
+		(0 .. string.length).exists[l|doesAccept(sg, string.substring(l))]
 	}
 
 	/**
@@ -199,7 +222,7 @@ class ICC {
 	 * character is inside of the given range
 	 */
 	def dispatch Iterable<Integer> accept(Range sg, String string) {
-		if(string.length > 0 && sg.min <= string.charAt(0) && string.charAt(0) <= sg.max)
+		if(string.length > 0 && sg.min.charAt(0) <= string.charAt(0) && string.charAt(0) <= sg.max.charAt(0))
 			one(1)
 		else
 			none
@@ -216,28 +239,23 @@ class ICC {
 	}
 
 	/**
-	 * Until accepts the first subsequence up to the given token or nothing if not found
+	 * ??????????????
 	 */
 	def dispatch Iterable<Integer> accept(Until sg, String string) {
-		val fio = string.indexOf(sg.token)
-		if(fio >= 0)
-			one(fio + sg.token.length)
-		else
-			none
 	}
 
 	/**
 	 * Sequence accepts the second construct from all of the first constructs accepted lengths
 	 */
 	def dispatch Iterable<Integer> accept(Sequence sg, String string) {
-		accept(sg.first, string).map[l|accept(sg.second, string.substring(l)).map[it + l]].flatten
+		accept(sg.left, string).map[l|accept(sg.right, string.substring(l)).map[it + l]].flatten
 	}
 
 	/**
 	 * Alternative accepts the both alternatives individually and concatenates their results
 	 */
 	def dispatch Iterable<Integer> accept(Alternative sg, String string) {
-		accept(sg.either, string) + accept(sg.or, string)
+		accept(sg.left, string) + accept(sg.right, string)
 	}
 
 	/**
@@ -260,7 +278,7 @@ class ICC {
 	 * Star uses the acceptor for plus and prepends the empty length
 	 */
 	def dispatch Iterable<Integer> accept(Star sg, String string) {
-		one(0) + accept(new Plus(sg.of), string)
+		one(0) + accept(createPlus => [of = sg.of], string)
 	}
 
 	/**
@@ -273,6 +291,6 @@ class ICC {
 	 * Reference resolves the reference and accepts the construct mapped
 	 */
 	def dispatch Iterable<Integer> accept(Reference sg, String string) {
-		accept(grammar.apply(sg.to), string)
+		accept(grammar.get(sg.to), string)
 	}
 }

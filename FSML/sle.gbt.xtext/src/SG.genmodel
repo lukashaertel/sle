@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/sle.gbt.xtext/src-gen" modelPluginID="sle.gbt.xtext"
+    modelName="SG" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SG.ecore</foreignModel>
+  <genPackages prefix="Sg" basePackage="sle.gbt" disposableProviderFactory="true"
+      ecorePackage="SG.ecore#/">
+    <genClasses image="false" ecoreClass="SG.ecore#//SG"/>
+    <genClasses image="false" ecoreClass="SG.ecore#//Unary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SG.ecore#//Unary/of"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SG.ecore#//Binary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SG.ecore#//Binary/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SG.ecore#//Binary/right"/>
+    </genClasses>
+    <genClasses ecoreClass="SG.ecore#//Negation"/>
+    <genClasses ecoreClass="SG.ecore#//Until"/>
+    <genClasses ecoreClass="SG.ecore#//Optional"/>
+    <genClasses ecoreClass="SG.ecore#//Plus"/>
+    <genClasses ecoreClass="SG.ecore#//Star"/>
+    <genClasses ecoreClass="SG.ecore#//Alternative"/>
+    <genClasses ecoreClass="SG.ecore#//Sequene"/>
+    <genClasses ecoreClass="SG.ecore#//Any"/>
+    <genClasses ecoreClass="SG.ecore#//Range">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SG.ecore#//Range/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SG.ecore#//Range/max"/>
+    </genClasses>
+    <genClasses ecoreClass="SG.ecore#//Single">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SG.ecore#//Single/token"/>
+    </genClasses>
+    <genClasses ecoreClass="SG.ecore#//Referenve">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SG.ecore#//Referenve/to"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
