@@ -5,7 +5,8 @@ import org.eclipse.xtext.xbase.lib.util.ToStringHelper;
 import sle.gbt.xtext.icc.SG;
 
 /**
- * (1.2f)
+ * Until token construct<br/>
+ * (1.2f) including (1.2e)
  */
 @Data
 @SuppressWarnings("all")

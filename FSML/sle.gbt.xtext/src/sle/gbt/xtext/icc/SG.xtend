@@ -78,12 +78,14 @@ class SG {
 }
 
 /**
+ * Any character construct<br/>
  * (1.2a)
  */
 @Data class Any extends SG {
 }
 
 /**
+ * Character range construct<br/>
  * (1.2b)
  */
 @Data class Range extends SG {
@@ -93,66 +95,111 @@ class SG {
 }
 
 /**
- * (1.2d)
+ * Single character and single token construct<br/>
+ * (1.2d) including (1.2c)
  */
 @Data class Single extends SG {
 	String token
 }
 
 /**
- * (1.2f)
+ * Until token construct<br/>
+ * (1.2f) including (1.2e)
  */
 @Data class Until extends SG {
 	String token
 }
 
 /**
+ * Sequence combinator<br/>
  * (1.3a)
  */
 @Data class Sequence extends SG {
+
+	/**
+	 * Left-hand construct
+	 */
 	SG first
+
+	/**
+	 * Right-hand construct
+	 */
 	SG second
 }
 
 /**
+ * Alternative combinator<br/>
  * (1.3b)
  */
 @Data class Alternative extends SG {
+
+	/**
+	 * Left-hand construct
+	 */
 	SG either
+
+	/**
+	 * Right-hand construct
+	 */
 	SG or
 }
 
 /**
+ * Optional combinator<br/>
  * (1.3c)
  */
 @Data class Optional extends SG {
+
+	/**
+	 * Inner construct
+	 */
 	SG of
 }
 
 /**
+ * Plus combinator<br/>
  * (1.3d)
  */
 @Data class Plus extends SG {
+
+	/**
+	 * Inner construct
+	 */
 	SG of
 }
 
 /**
+ * Star combinator<br/>
  * (1.3e)
  */
 @Data class Star extends SG {
+
+	/**
+	 * Inner construct
+	 */
 	SG of
 }
 
 /**
+ * Negation combinator</br>
  * (1.3f)
  */
 @Data class Negation extends SG {
+
+	/**
+	 * Inner construct
+	 */
 	SG of
 }
 
 /**
+ * Reference construct<br/>
  * (2.2)
  */
 @Data class Reference extends SG {
+
+	/**
+	 * Identifier in grammar
+	 */
 	String to
 }

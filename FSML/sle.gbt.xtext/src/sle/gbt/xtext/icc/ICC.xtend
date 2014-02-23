@@ -137,6 +137,13 @@ class ICC {
 	}
 
 	/**
+	 * ?????????????????
+	 */
+	def dispatch Index<String> iterate_(Negation sg, long lbr) {
+		
+	}
+
+	/**
 	 * Iterates the reference by checking if a terminal precedence is to be applied to
 	 * the iteration of the inner construct
 	 */
@@ -255,6 +262,13 @@ class ICC {
 	 */
 	def dispatch Iterable<Integer> accept(Star sg, String string) {
 		one(0) + accept(new Plus(sg.of), string)
+	}
+
+	/**
+	 * ??????????????
+	 */
+	def dispatch Iterable<Integer> accept(Negation sg, String string) {
+		
 	}
 
 	/**

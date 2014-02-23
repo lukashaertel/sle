@@ -5,6 +5,7 @@ import org.eclipse.xtext.xbase.lib.util.ToStringHelper;
 import sle.gbt.xtext.icc.SG;
 
 /**
+ * Any character construct<br/>
  * (1.2a)
  */
 @Data

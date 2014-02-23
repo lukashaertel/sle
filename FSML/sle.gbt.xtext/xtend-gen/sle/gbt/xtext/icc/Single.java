@@ -5,7 +5,8 @@ import org.eclipse.xtext.xbase.lib.util.ToStringHelper;
 import sle.gbt.xtext.icc.SG;
 
 /**
- * (1.2d)
+ * Single character and single token construct<br/>
+ * (1.2d) including (1.2c)
  */
 @Data
 @SuppressWarnings("all")
