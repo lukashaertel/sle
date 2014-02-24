@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sle.gbt.xtext.gBTS.Model#getTests <em>Tests</em>}</li>
+ *   <li>{@link sle.gbt.xtext.gBTS.Model#getItems <em>Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Tests</b></em>' containment reference list.
-   * The list contents are of type {@link sle.gbt.xtext.gBTS.Test}.
+   * Returns the value of the '<em><b>Items</b></em>' containment reference list.
+   * The list contents are of type {@link sle.gbt.xtext.gBTS.Item}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Tests</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Items</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Tests</em>' containment reference list.
-   * @see sle.gbt.xtext.gBTS.GBTSPackage#getModel_Tests()
+   * @return the value of the '<em>Items</em>' containment reference list.
+   * @see sle.gbt.xtext.gBTS.GBTSPackage#getModel_Items()
    * @model containment="true"
    * @generated
    */
-  EList<Test> getTests();
+  EList<Item> getItems();
 
 } // Model

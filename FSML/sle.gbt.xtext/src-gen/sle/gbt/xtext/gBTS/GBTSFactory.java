@@ -32,13 +32,40 @@ public interface GBTSFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Test</em>'.
+   * Returns a new object of class '<em>Item</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Test</em>'.
+   * @return a new object of class '<em>Item</em>'.
    * @generated
    */
-  Test createTest();
+  Item createItem();
+
+  /**
+   * Returns a new object of class '<em>Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Def</em>'.
+   * @generated
+   */
+  Def createDef();
+
+  /**
+   * Returns a new object of class '<em>Apply</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Apply</em>'.
+   * @generated
+   */
+  Apply createApply();
+
+  /**
+   * Returns a new object of class '<em>Substitution</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Substitution</em>'.
+   * @generated
+   */
+  Substitution createSubstitution();
 
   /**
    * Returns the package supported by this factory.

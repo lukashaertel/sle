@@ -37,7 +37,4 @@ Export-Package: sle.gbt.xtext,
  sle.gbt.xtext.validation,
  sle.gbt.sg,
  sle.gbt.sg.impl,
- sle.gbt.sg.util,
- sg,
- sg.impl,
- sg.util
+ sle.gbt.sg.util

@@ -5,12 +5,8 @@ package sle.gbt.xtext.scoping
 
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
-import org.eclipse.xtext.Assignment
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.xtext.scoping.IScope
-import sle.gbt.xtext.gBTS.Test
 import org.eclipse.xtext.AbstractRule
+import sle.gbt.xtext.gBTS.Def
 
 /**
  * This class contains custom scoping description.
@@ -20,7 +16,7 @@ import org.eclipse.xtext.AbstractRule
  *
  */
 class GBTSScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-	def scope_Test_rule(Test t, EReference r) {
+	def scope_Def_startrule(Def t, EReference r) {
 		Scopes::scopeFor(t.ref.eAllContents.filter(AbstractRule).toIterable)
 	}
 }

@@ -65,7 +65,10 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
     switch (eClass.getClassifierID())
     {
       case GBTSPackage.MODEL: return createModel();
-      case GBTSPackage.TEST: return createTest();
+      case GBTSPackage.ITEM: return createItem();
+      case GBTSPackage.DEF: return createDef();
+      case GBTSPackage.APPLY: return createApply();
+      case GBTSPackage.SUBSTITUTION: return createSubstitution();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -87,10 +90,43 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Test createTest()
+  public Item createItem()
   {
-    TestImpl test = new TestImpl();
-    return test;
+    ItemImpl item = new ItemImpl();
+    return item;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Def createDef()
+  {
+    DefImpl def = new DefImpl();
+    return def;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Apply createApply()
+  {
+    ApplyImpl apply = new ApplyImpl();
+    return apply;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Substitution createSubstitution()
+  {
+    SubstitutionImpl substitution = new SubstitutionImpl();
+    return substitution;
   }
 
   /**

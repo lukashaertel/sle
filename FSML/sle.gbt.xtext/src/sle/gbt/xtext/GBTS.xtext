@@ -6,13 +6,17 @@ import "http://www.eclipse.org/2008/Xtext" as xtext
 generate gBTS "http://www.gbt.sle/xtext/GBTS"
 
 Model:
-	tests+=Test+;
+	items+=Item+;
 
-GrammarID returns ecore::EString:
-	ID ('.' ID)*;
+Item:
+	Def | Apply;
 
-Test:
-	'test' ref=[xtext::Grammar|GrammarID] ('start' rule=[xtext::AbstractRule])? ('{' substitutions+=Substitution '}')?;
+Def:
+	'def' name=ID ':' ref=[xtext::Grammar|GrammarID] (hasStartrule?='start' startrule=[xtext::AbstractRule])? ('{'
+	substitutions+=Substitution '}')?;
+
+Apply:
+	'apply' def=[Def] ':' minOrIt=INT (hasMax?='..' max=INT (hasSpace?='space' space=INT))?;
 
 Substitution:
 	'substitute' rule=[xtext::AbstractRule] 'with' substitution=SG ';';
@@ -21,24 +25,22 @@ SG returns sg::SG:
 	Alternative;
 
 Alternative returns sg::SG:
-	Sequence ({sg::Alternative.left=current} '|' right=Sequence)?;
+	Sequence ({sg::Alternative.left=current} '|' right=Alternative)?;
 
 Sequence returns sg::SG:
-	Cardinality ({sg::Sequence.left=current} right=Cardinality)?;
+	Cardinality ({sg::Sequence.left=current} right=Sequence)?;
 
 Cardinality returns sg::SG:
-	Operated (({sg::Optional.of=current} '?' | {sg::Star.of=current} '*' | {sg::Plus.of=current}
-	'+'))?;
+	Operated (({sg::Optional.of=current} '?' | {sg::Star.of=current} '*' | {sg::Plus.of=current} '+'))?;
 
 Operated returns sg::SG:
-	'->' {sg::Until} of=Operated |
-	'!' {sg::Negation} of=Operated |
-	Terminal;
+	'->' {sg::Until} of=Operated | '!' {sg::Negation} of=Operated | Terminal;
 
 Terminal returns sg::SG:
-	{sg::Range} min=STRING '..' max=STRING |
-	{sg::Single} token=STRING |
-	ParenthesizedElement;
+	{sg::Range} min=STRING '..' max=STRING | {sg::Single} token=STRING | ParenthesizedElement;
 
 ParenthesizedElement returns sg::SG:
 	'(' Alternative ')';
+
+GrammarID returns ecore::EString:
+	ID ('.' ID)*;

@@ -13,6 +13,7 @@ public class AbstractGBTSValidator extends org.eclipse.xtext.validation.Abstract
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
 	    result.add(sle.gbt.xtext.gBTS.GBTSPackage.eINSTANCE);
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.gbt.sle/xtext/sg"));
 		return result;
 	}
 }

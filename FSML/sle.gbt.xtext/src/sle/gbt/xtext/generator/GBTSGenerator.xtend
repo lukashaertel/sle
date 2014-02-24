@@ -6,13 +6,14 @@ package sle.gbt.xtext.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
-import sle.gbt.xtext.gBTS.Test
 
 import sle.gbt.xtext.icc.ICC
 import org.eclipse.emf.ecore.EObject
 import java.util.List
 import org.eclipse.xtext.ParserRule
 import sle.gbt.xtext.icc.XtextToSG
+import sle.gbt.xtext.gBTS.Def
+import sle.gbt.xtext.gBTS.Apply
 
 /**
  * Generates code from your model files on save.
@@ -20,58 +21,60 @@ import sle.gbt.xtext.icc.XtextToSG
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class GBTSGenerator implements IGenerator {
-	public static val FIRST_INDEX = 100000000L
-	public static val SPACE_BETWEEN_INDICES = 100000L
-	public static val TEST_COUNT = 80
-
-	private static def index(EObject e) {
-		if(e.eContainer == null)
-			return 0
-		else if(!e.eContainingFeature.many)
-			return 0
-		else
-			(e.eContainer.eGet(e.eContainingFeature) as List<?>).indexOf(e)
-	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for (test : resource.allContents.filter(Test).toIterable) {
+		for (test : resource.allContents.filter(Def).toIterable) {
 
 			// Extract terminals and grammar
 			val terminals = XtextToSG.terminalsFrom(test.ref)
 			val grammar = XtextToSG.grammarFrom(test.ref)
 
 			for (sub : test.substitutions) {
-				grammar.put(sub.rule.name, sub.sub)
+				grammar.put(sub.rule.name, sub.substitution)
 			}
 
 			// Create iterator host
 			val icc = new ICC(terminals, grammar)
 
+			// Create the ranges
+			val range = newArrayList
+			for (apply : resource.allContents.filter(Apply).toIterable) {
+				if(apply.hasMax)
+					if(apply.hasSpace)
+						range +=
+							(0 .. ((apply.max - apply.minOrIt) / apply.space)).map[apply.minOrIt + it * apply.space]
+					else
+						range += apply.minOrIt .. apply.max
+				else
+					range += apply.minOrIt
+			}
+
 			// Find the start-rule
-			val startrule = if(test.rule == null) test.ref.rules.filter(ParserRule).head.name else test.rule.name
+			val startrule = if(test.hasStartrule)
+					test.startrule.name
+				else
+					test.ref.rules.filter(ParserRule).head.name
 
 			// Generate the testfile
-			fsa.generateFile('''Test «test.index».htm''',
+			fsa.generateFile('''«test.name».htm''',
 				'''
 					<html>
 						<head>
-							<title>Test «test.index»</title>
+							<title>«test.name»</title>
 						</head>
 						<body>
 							<p><table border="1" width="640">
 								<tr>
 									<th colspan="2">Generated tests</th>
 								</tr>
-							«FOR i : 0 ..< TEST_COUNT SEPARATOR '''<tr>
+							«FOR i : range SEPARATOR '''<tr>
 									<td colspan="2">&nbsp;</td>
 								</tr>'''»
 								<tr>
-									<td>#«i + 1»</td>
-									<td>«FIRST_INDEX + i * SPACE_BETWEEN_INDICES»</td>
+									<td>«i»</td>
 								</tr>
 								<tr>
-									<td colspan="2"><code>«icc.iterate(grammar.get(startrule), ICC.INITIAL_LBR).iterator(
-						FIRST_INDEX + i * SPACE_BETWEEN_INDICES).head»</code></td>
+									<td><code>«icc.iterate(grammar.get(startrule), ICC.INITIAL_LBR).iterator(i).head»</code></td>
 								</tr>
 							«ENDFOR»
 							</table></p>

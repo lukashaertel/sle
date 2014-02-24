@@ -80,9 +80,24 @@ public class GBTSAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseTest(Test object)
+      public Adapter caseItem(Item object)
       {
-        return createTestAdapter();
+        return createItemAdapter();
+      }
+      @Override
+      public Adapter caseDef(Def object)
+      {
+        return createDefAdapter();
+      }
+      @Override
+      public Adapter caseApply(Apply object)
+      {
+        return createApplyAdapter();
+      }
+      @Override
+      public Adapter caseSubstitution(Substitution object)
+      {
+        return createSubstitutionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -122,16 +137,61 @@ public class GBTSAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link sle.gbt.xtext.gBTS.Test <em>Test</em>}'.
+   * Creates a new adapter for an object of class '{@link sle.gbt.xtext.gBTS.Item <em>Item</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see sle.gbt.xtext.gBTS.Test
+   * @see sle.gbt.xtext.gBTS.Item
    * @generated
    */
-  public Adapter createTestAdapter()
+  public Adapter createItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link sle.gbt.xtext.gBTS.Def <em>Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see sle.gbt.xtext.gBTS.Def
+   * @generated
+   */
+  public Adapter createDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link sle.gbt.xtext.gBTS.Apply <em>Apply</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see sle.gbt.xtext.gBTS.Apply
+   * @generated
+   */
+  public Adapter createApplyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link sle.gbt.xtext.gBTS.Substitution <em>Substitution</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see sle.gbt.xtext.gBTS.Substitution
+   * @generated
+   */
+  public Adapter createSubstitutionAdapter()
   {
     return null;
   }

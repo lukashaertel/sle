@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import sle.gbt.xtext.gBTS.GBTSPackage;
+import sle.gbt.xtext.gBTS.Item;
 import sle.gbt.xtext.gBTS.Model;
-import sle.gbt.xtext.gBTS.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import sle.gbt.xtext.gBTS.Test;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sle.gbt.xtext.gBTS.impl.ModelImpl#getTests <em>Tests</em>}</li>
+ *   <li>{@link sle.gbt.xtext.gBTS.impl.ModelImpl#getItems <em>Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,14 +36,14 @@ import sle.gbt.xtext.gBTS.Test;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getTests() <em>Tests</em>}' containment reference list.
+   * The cached value of the '{@link #getItems() <em>Items</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTests()
+   * @see #getItems()
    * @generated
    * @ordered
    */
-  protected EList<Test> tests;
+  protected EList<Item> items;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +71,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Test> getTests()
+  public EList<Item> getItems()
   {
-    if (tests == null)
+    if (items == null)
     {
-      tests = new EObjectContainmentEList<Test>(Test.class, this, GBTSPackage.MODEL__TESTS);
+      items = new EObjectContainmentEList<Item>(Item.class, this, GBTSPackage.MODEL__ITEMS);
     }
-    return tests;
+    return items;
   }
 
   /**
@@ -90,8 +90,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case GBTSPackage.MODEL__TESTS:
-        return ((InternalEList<?>)getTests()).basicRemove(otherEnd, msgs);
+      case GBTSPackage.MODEL__ITEMS:
+        return ((InternalEList<?>)getItems()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +106,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case GBTSPackage.MODEL__TESTS:
-        return getTests();
+      case GBTSPackage.MODEL__ITEMS:
+        return getItems();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +123,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case GBTSPackage.MODEL__TESTS:
-        getTests().clear();
-        getTests().addAll((Collection<? extends Test>)newValue);
+      case GBTSPackage.MODEL__ITEMS:
+        getItems().clear();
+        getItems().addAll((Collection<? extends Item>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case GBTSPackage.MODEL__TESTS:
-        getTests().clear();
+      case GBTSPackage.MODEL__ITEMS:
+        getItems().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +158,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case GBTSPackage.MODEL__TESTS:
-        return tests != null && !tests.isEmpty();
+      case GBTSPackage.MODEL__ITEMS:
+        return items != null && !items.isEmpty();
     }
     return super.eIsSet(featureID);
   }
