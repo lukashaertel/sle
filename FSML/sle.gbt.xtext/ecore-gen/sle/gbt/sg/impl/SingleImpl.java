@@ -2,10 +2,9 @@
  */
 package sle.gbt.sg.impl;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import sle.gbt.sg.SgPackage;
@@ -150,13 +149,7 @@ public class SingleImpl extends SGImpl implements Single {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (token: ");
-		result.append(token);
-		result.append(')');
-		return result.toString();
+		return "\"" + StringEscapeUtils.escapeJava(token) + "\"";
 	}
 
 } //SingleImpl

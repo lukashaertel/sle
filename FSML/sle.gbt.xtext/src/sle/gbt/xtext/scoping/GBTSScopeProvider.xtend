@@ -6,7 +6,9 @@ package sle.gbt.xtext.scoping
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.AbstractRule
-import sle.gbt.xtext.gBTS.Def
+import sle.gbt.xtext.gBTS.Test
+import sle.gbt.xtext.gBTS.Sub
+import org.eclipse.xtext.Grammar
 
 /**
  * This class contains custom scoping description.
@@ -16,7 +18,18 @@ import sle.gbt.xtext.gBTS.Def
  *
  */
 class GBTSScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-	def scope_Def_startrule(Def t, EReference r) {
-		Scopes::scopeFor(t.ref.eAllContents.filter(AbstractRule).toIterable)
+	static def Iterable<AbstractRule> allRules(Grammar g) {
+		return g.usedGrammars.map[allRules].flatten + g.eAllContents.filter(AbstractRule).toIterable
+	}
+
+	def scope_Test_startrule(Test t, EReference r) {
+
+		Scopes::scopeFor(t.ref.allRules)
+	}
+
+	def scope_Sub_rule(Sub s, EReference r) {
+		val t = s.eContainer as Test
+
+		Scopes::scopeFor(t.ref.allRules)
 	}
 }

@@ -8,18 +8,17 @@ import sle.gbt.sg.Sequence;
 import sle.gbt.sg.SgPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sequence</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Sequence</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class SequenceImpl extends BinaryImpl implements Sequence {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SequenceImpl() {
@@ -27,8 +26,8 @@ public class SequenceImpl extends BinaryImpl implements Sequence {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -36,4 +35,12 @@ public class SequenceImpl extends BinaryImpl implements Sequence {
 		return SgPackage.Literals.SEQUENCE;
 	}
 
-} //SequenceImpl
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return "(" + getLeft().toString() + getRight() + ")";
+	}
+
+} // SequenceImpl

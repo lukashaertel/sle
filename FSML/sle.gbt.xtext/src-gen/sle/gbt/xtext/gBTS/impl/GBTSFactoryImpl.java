@@ -65,10 +65,11 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
     switch (eClass.getClassifierID())
     {
       case GBTSPackage.MODEL: return createModel();
-      case GBTSPackage.ITEM: return createItem();
-      case GBTSPackage.DEF: return createDef();
+      case GBTSPackage.TEST: return createTest();
+      case GBTSPackage.MEMBER: return createMember();
       case GBTSPackage.APPLY: return createApply();
-      case GBTSPackage.SUBSTITUTION: return createSubstitution();
+      case GBTSPackage.SUB: return createSub();
+      case GBTSPackage.NEW: return createNew();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -90,10 +91,10 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Item createItem()
+  public Test createTest()
   {
-    ItemImpl item = new ItemImpl();
-    return item;
+    TestImpl test = new TestImpl();
+    return test;
   }
 
   /**
@@ -101,10 +102,10 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Def createDef()
+  public Member createMember()
   {
-    DefImpl def = new DefImpl();
-    return def;
+    MemberImpl member = new MemberImpl();
+    return member;
   }
 
   /**
@@ -123,10 +124,21 @@ public class GBTSFactoryImpl extends EFactoryImpl implements GBTSFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Substitution createSubstitution()
+  public Sub createSub()
   {
-    SubstitutionImpl substitution = new SubstitutionImpl();
-    return substitution;
+    SubImpl sub = new SubImpl();
+    return sub;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public New createNew()
+  {
+    NewImpl new_ = new NewImpl();
+    return new_;
   }
 
   /**

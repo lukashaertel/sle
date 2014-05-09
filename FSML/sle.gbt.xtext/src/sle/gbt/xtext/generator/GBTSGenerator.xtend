@@ -12,8 +12,11 @@ import org.eclipse.emf.ecore.EObject
 import java.util.List
 import org.eclipse.xtext.ParserRule
 import sle.gbt.xtext.icc.XtextToSG
-import sle.gbt.xtext.gBTS.Def
 import sle.gbt.xtext.gBTS.Apply
+import sle.gbt.xtext.gBTS.Test
+import sle.gbt.xtext.gBTS.Sub
+import sle.gbt.xtext.gBTS.New
+import sle.gbt.sg.SgFactory
 
 /**
  * Generates code from your model files on save.
@@ -21,32 +24,55 @@ import sle.gbt.xtext.gBTS.Apply
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class GBTSGenerator implements IGenerator {
-
+	extension SgFactory sgFactory = SgFactory.eINSTANCE
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for (test : resource.allContents.filter(Def).toIterable) {
+		for (test : resource.allContents.filter(Test).toIterable) {
 
 			// Extract terminals and grammar
 			val terminals = XtextToSG.terminalsFrom(test.ref)
 			val grammar = XtextToSG.grammarFrom(test.ref)
 
-			for (sub : test.substitutions) {
+			for (sub : test.members.filter(Sub)) {
 				grammar.put(sub.rule.name, sub.substitution)
 			}
+			
+			val newterms = newArrayList
+			
+			for (^new : test.members.filter(New)) {
+				grammar.put(^new.rule, ^new.definition)
+				
+				if(^new.term)
+					newterms.add(0, ^new.rule)
+			}
+			
+			terminals += newterms
+
+			val lbr = if(test.hasLbr)
+					test.lbr
+				else
+					ICC.DEEPENING_LBR_DEFAULT
+
+			val lbrInitial = if(test.hasLbrInitial)
+					test.lbrInitial
+				else
+					ICC.INITIAL_LBR
 
 			// Create iterator host
-			val icc = new ICC(terminals, grammar)
-
+			val icc = new ICC(lbr, terminals, grammar)
+			
 			// Create the ranges
 			val range = newArrayList
-			for (apply : resource.allContents.filter(Apply).toIterable) {
-				if(apply.hasMax)
-					if(apply.hasSpace)
-						range +=
-							(0 .. ((apply.max - apply.minOrIt) / apply.space)).map[apply.minOrIt + it * apply.space]
+			for (apply : test.members.filter(Apply)) {
+				val num = if(apply.hasNum)
+						apply.num
 					else
-						range += apply.minOrIt .. apply.max
+						10
+
+				if(apply.hasMax)
+					range += (0 ..< num).map[apply.minOrIt + it * (apply.max - apply.minOrIt) / num]
 				else
-					range += apply.minOrIt
+					range += (0 ..< num).map[apply.minOrIt + it]
 			}
 
 			// Find the start-rule
@@ -74,7 +100,7 @@ class GBTSGenerator implements IGenerator {
 									<td>«i»</td>
 								</tr>
 								<tr>
-									<td><code>«icc.iterate(grammar.get(startrule), ICC.INITIAL_LBR).iterator(i).head»</code></td>
+									<td><code>«icc.iterate(grammar.get(startrule), lbrInitial).iterator(i).head»</code></td>
 								</tr>
 							«ENDFOR»
 							</table></p>
@@ -83,6 +109,17 @@ class GBTSGenerator implements IGenerator {
 								<tr>
 									<th colspan="2">Generated from the derived specification</th>
 								</tr>
+								<tr>
+									<td>Initial LBR</td>
+									<td>«lbrInitial»</td>
+								</tr>
+								<tr>
+									<td>LBR</td>
+									<td>«lbr»</td>
+								</tr>
+							<tr>
+								<td colspan="2">&nbsp;</td>
+							</tr>
 							«FOR ti : terminals.size >.. 0»
 								<tr>
 									<td>Terminal #«ti»</td>

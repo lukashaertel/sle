@@ -33,9 +33,14 @@ class ICC {
 	static public val INITIAL_LBR = 782L
 
 	/**
+	 * Initial value for the length/breadth parameter
+	 */
+	static public val DEEPENING_LBR_DEFAULT = 3L
+
+	/**
 	 * Reduction factor for the length/breadth parameter
 	 */
-	static public val DEEPENING_LBR_FACTOR = 2L
+	val long deepeningLBR
 
 	/**
 	 * List of terminals in ascending precedence
@@ -57,7 +62,8 @@ class ICC {
 	 * @param terminals List of terminals in ascending precedence
 	 * @param grammar Grammar-function mapping identifiers to constructs
 	 */
-	new(List<String> terminals, Map<String, SG> grammar) {
+	new(long deepeningLBR, List<String> terminals, Map<String, SG> grammar) {
+		this.deepeningLBR = deepeningLBR
 		this.terminals = terminals
 		this.grammar = grammar
 	}
@@ -139,7 +145,7 @@ class ICC {
 	 * Iterates the plus construct by enumerating all combinations of its inner construct
 	 */
 	private def dispatch Index<String> iterate_(Plus sg, long lbr) {
-		combinations(iterate(sg.of, lbr / DEEPENING_LBR_FACTOR), lbr, null).mapFoldString
+		combinations(iterate(sg.of, lbr / deepeningLBR), lbr, null).mapFoldString
 	}
 
 	/**
@@ -147,7 +153,7 @@ class ICC {
 	 */
 	private def dispatch Index<String> iterate_(Star sg, long lbr) {
 		"".singleton.concatWith(
-			combinations(iterate(sg.of, lbr / DEEPENING_LBR_FACTOR), lbr, null).mapFoldString
+			combinations(iterate(sg.of, lbr / deepeningLBR), lbr, null).mapFoldString
 		)
 	}
 
@@ -239,9 +245,11 @@ class ICC {
 	}
 
 	/**
-	 * ??????????????
+	 * Accept all strings that end with the accepted until composee
 	 */
 	def dispatch Iterable<Integer> accept(Until sg, String string) {
+		(0 ..< string.length).filter[i|!doesAcceptAny(sg.of, string.substring(0, i))].map[i|
+			accept(sg.of, string.substring(i)).map[j|i + j]].flatten
 	}
 
 	/**
@@ -282,9 +290,10 @@ class ICC {
 	}
 
 	/**
-	 * ??????????????
+	 * Negation rejects all indexes that are accepted by the composee
 	 */
 	def dispatch Iterable<Integer> accept(Negation sg, String string) {
+		(0 ..< string.length).filter[i|!doesAcceptAny(sg.of, string.substring(0, i))]
 	}
 
 	/**

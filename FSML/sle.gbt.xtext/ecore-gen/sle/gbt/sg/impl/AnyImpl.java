@@ -36,4 +36,11 @@ public class AnyImpl extends SGImpl implements Any {
 		return SgPackage.Literals.ANY;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return ".";
+	}
 } //AnyImpl

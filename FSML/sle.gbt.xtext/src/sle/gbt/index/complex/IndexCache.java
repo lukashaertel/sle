@@ -58,4 +58,10 @@ public class IndexCache<Item> extends IndexComplex<Item> {
 			return result;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return items.toString();
+	}
+	
 }

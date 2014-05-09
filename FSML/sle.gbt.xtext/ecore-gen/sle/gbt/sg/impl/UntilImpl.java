@@ -36,4 +36,11 @@ public class UntilImpl extends UnaryImpl implements Until {
 		return SgPackage.Literals.UNTIL;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return "->" + getOf();
+	}
 } //UntilImpl

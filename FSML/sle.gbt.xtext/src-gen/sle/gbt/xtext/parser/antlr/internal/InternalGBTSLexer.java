@@ -29,9 +29,13 @@ public class InternalGBTSLexer extends Lexer {
     public static final int RULE_ML_COMMENT=7;
     public static final int T__19=19;
     public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
     public static final int RULE_STRING=6;
     public static final int T__16=16;
+    public static final int T__33=33;
     public static final int T__15=15;
+    public static final int T__34=34;
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
@@ -59,10 +63,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:11:7: ( 'def' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:11:9: 'def'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:11:7: ( 'test' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:11:9: 'test'
             {
-            match("def"); 
+            match("test"); 
 
 
             }
@@ -80,10 +84,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:12:7: ( ':' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:12:9: ':'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:12:7: ( ':=' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:12:9: ':='
             {
-            match(':'); 
+            match(":="); 
+
 
             }
 
@@ -100,10 +105,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:13:7: ( 'start' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:13:9: 'start'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:13:7: ( 'lbr' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:13:9: 'lbr'
             {
-            match("start"); 
+            match("lbr"); 
 
 
             }
@@ -121,10 +126,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:14:7: ( '{' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:14:9: '{'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:14:7: ( '-' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:14:9: '-'
             {
-            match('{'); 
+            match('-'); 
 
             }
 
@@ -141,10 +146,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:15:7: ( '}' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:15:9: '}'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:15:7: ( 'initial' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:15:9: 'initial'
             {
-            match('}'); 
+            match("initial"); 
+
 
             }
 
@@ -161,10 +167,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:16:7: ( 'apply' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:16:9: 'apply'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:16:7: ( 'start' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:16:9: 'start'
             {
-            match("apply"); 
+            match("start"); 
 
 
             }
@@ -182,11 +188,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:17:7: ( '..' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:17:9: '..'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:17:7: ( '{' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:17:9: '{'
             {
-            match(".."); 
-
+            match('{'); 
 
             }
 
@@ -203,11 +208,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:18:7: ( 'space' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:18:9: 'space'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:18:7: ( '}' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:18:9: '}'
             {
-            match("space"); 
-
+            match('}'); 
 
             }
 
@@ -224,10 +228,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:19:7: ( 'substitute' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:19:9: 'substitute'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:19:7: ( 'apply' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:19:9: 'apply'
             {
-            match("substitute"); 
+            match("apply"); 
 
 
             }
@@ -245,10 +249,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:20:7: ( 'with' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:20:9: 'with'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:20:7: ( '..' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:20:9: '..'
             {
-            match("with"); 
+            match(".."); 
 
 
             }
@@ -266,10 +270,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:21:7: ( ';' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:21:9: ';'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:21:7: ( ':' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:21:9: ':'
             {
-            match(';'); 
+            match(':'); 
 
             }
 
@@ -286,10 +290,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:22:7: ( '|' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:22:9: '|'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:22:7: ( ';' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:22:9: ';'
             {
-            match('|'); 
+            match(';'); 
 
             }
 
@@ -306,10 +310,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:23:7: ( '?' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:23:9: '?'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:23:7: ( 'sub' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:23:9: 'sub'
             {
-            match('?'); 
+            match("sub"); 
+
 
             }
 
@@ -326,10 +331,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:24:7: ( '*' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:24:9: '*'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:24:7: ( 'new' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:24:9: 'new'
             {
-            match('*'); 
+            match("new"); 
+
 
             }
 
@@ -346,10 +352,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:25:7: ( '+' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:25:9: '+'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:25:7: ( 'terminal' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:25:9: 'terminal'
             {
-            match('+'); 
+            match("terminal"); 
+
 
             }
 
@@ -366,11 +373,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:26:7: ( '->' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:26:9: '->'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:26:7: ( '|' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:26:9: '|'
             {
-            match("->"); 
-
+            match('|'); 
 
             }
 
@@ -387,10 +393,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:27:7: ( '!' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:27:9: '!'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:27:7: ( '?' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:27:9: '?'
             {
-            match('!'); 
+            match('?'); 
 
             }
 
@@ -407,10 +413,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:28:7: ( '(' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:28:9: '('
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:28:7: ( '*' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:28:9: '*'
             {
-            match('('); 
+            match('*'); 
 
             }
 
@@ -427,10 +433,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:29:7: ( ')' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:29:9: ')'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:29:7: ( '+' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:29:9: '+'
             {
-            match(')'); 
+            match('+'); 
 
             }
 
@@ -447,10 +453,11 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:30:7: ( '.' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:30:9: '.'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:30:7: ( '->' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:30:9: '->'
             {
-            match('.'); 
+            match("->"); 
+
 
             }
 
@@ -462,15 +469,95 @@ public class InternalGBTSLexer extends Lexer {
     }
     // $ANTLR end "T__30"
 
+    // $ANTLR start "T__31"
+    public final void mT__31() throws RecognitionException {
+        try {
+            int _type = T__31;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:31:7: ( '!' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:31:9: '!'
+            {
+            match('!'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__31"
+
+    // $ANTLR start "T__32"
+    public final void mT__32() throws RecognitionException {
+        try {
+            int _type = T__32;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:32:7: ( '(' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:32:9: '('
+            {
+            match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__32"
+
+    // $ANTLR start "T__33"
+    public final void mT__33() throws RecognitionException {
+        try {
+            int _type = T__33;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:33:7: ( ')' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:33:9: ')'
+            {
+            match(')'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public final void mT__34() throws RecognitionException {
+        try {
+            int _type = T__34;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:34:7: ( '.' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:34:9: '.'
+            {
+            match('.'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__34"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:924:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:924:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1156:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1156:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:924:11: ( '^' )?
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1156:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -479,7 +566,7 @@ public class InternalGBTSLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:924:11: '^'
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1156:11: '^'
                     {
                     match('^'); 
 
@@ -497,7 +584,7 @@ public class InternalGBTSLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:924:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1156:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -546,10 +633,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:926:10: ( ( '0' .. '9' )+ )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:926:12: ( '0' .. '9' )+
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1158:10: ( ( '0' .. '9' )+ )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1158:12: ( '0' .. '9' )+
             {
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:926:12: ( '0' .. '9' )+
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1158:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -563,7 +650,7 @@ public class InternalGBTSLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:926:13: '0' .. '9'
+            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1158:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -595,10 +682,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -616,10 +703,10 @@ public class InternalGBTSLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -635,7 +722,7 @@ public class InternalGBTSLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -651,7 +738,7 @@ public class InternalGBTSLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -676,10 +763,10 @@ public class InternalGBTSLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -695,7 +782,7 @@ public class InternalGBTSLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -711,7 +798,7 @@ public class InternalGBTSLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:928:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1160:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -754,12 +841,12 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:930:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:930:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1162:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1162:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:930:24: ( options {greedy=false; } : . )*
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1162:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -784,7 +871,7 @@ public class InternalGBTSLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:930:52: .
+            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1162:52: .
             	    {
             	    matchAny(); 
 
@@ -814,12 +901,12 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -832,7 +919,7 @@ public class InternalGBTSLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -852,7 +939,7 @@ public class InternalGBTSLexer extends Lexer {
                 }
             } while (true);
 
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:40: ( ( '\\r' )? '\\n' )?
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -861,9 +948,9 @@ public class InternalGBTSLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:41: ( '\\r' )? '\\n'
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:41: ( '\\r' )? '\\n'
                     {
-                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:41: ( '\\r' )?
+                    // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -872,7 +959,7 @@ public class InternalGBTSLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:932:41: '\\r'
+                            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1164:41: '\\r'
                             {
                             match('\r'); 
 
@@ -904,10 +991,10 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:934:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:934:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1166:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1166:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:934:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1166:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -961,8 +1048,8 @@ public class InternalGBTSLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:936:16: ( . )
-            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:936:18: .
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1168:16: ( . )
+            // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1168:18: .
             {
             matchAny(); 
 
@@ -977,8 +1064,8 @@ public class InternalGBTSLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=27;
+        // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=31;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1122,49 +1209,77 @@ public class InternalGBTSLexer extends Lexer {
                 }
                 break;
             case 21 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:130: RULE_ID
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:130: T__31
+                {
+                mT__31(); 
+
+                }
+                break;
+            case 22 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:136: T__32
+                {
+                mT__32(); 
+
+                }
+                break;
+            case 23 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:142: T__33
+                {
+                mT__33(); 
+
+                }
+                break;
+            case 24 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:148: T__34
+                {
+                mT__34(); 
+
+                }
+                break;
+            case 25 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:154: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 22 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:138: RULE_INT
+            case 26 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:162: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 23 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:147: RULE_STRING
+            case 27 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:171: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 24 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:159: RULE_ML_COMMENT
+            case 28 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:183: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 25 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:175: RULE_SL_COMMENT
+            case 29 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:199: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 26 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:191: RULE_WS
+            case 30 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:215: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 27 :
-                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:199: RULE_ANY_OTHER
+            case 31 :
+                // ../sle.gbt.xtext/src-gen/sle/gbt/xtext/parser/antlr/internal/InternalGBTS.g:1:223: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1178,74 +1293,53 @@ public class InternalGBTSLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\33\1\uffff\1\33\2\uffff\1\33\1\44\1\33\5\uffff\1\31"+
-        "\3\uffff\1\31\2\uffff\3\31\2\uffff\1\33\2\uffff\3\33\2\uffff\1\33"+
-        "\2\uffff\1\33\16\uffff\1\72\5\33\1\uffff\4\33\1\104\1\105\1\106"+
-        "\1\33\1\110\3\uffff\1\33\1\uffff\3\33\1\115\1\uffff";
+        "\1\uffff\1\35\1\37\1\35\1\42\2\35\2\uffff\1\35\1\52\1\uffff\1\35"+
+        "\7\uffff\1\33\2\uffff\3\33\2\uffff\1\35\3\uffff\1\35\2\uffff\3\35"+
+        "\2\uffff\1\35\3\uffff\1\35\14\uffff\2\35\1\103\2\35\1\106\1\35\1"+
+        "\110\1\111\1\35\1\uffff\2\35\1\uffff\1\35\2\uffff\2\35\1\120\1\121"+
+        "\2\35\2\uffff\1\35\1\125\1\126\2\uffff";
     static final String DFA12_eofS =
-        "\116\uffff";
+        "\127\uffff";
     static final String DFA12_minS =
-        "\1\0\1\145\1\uffff\1\160\2\uffff\1\160\1\56\1\151\5\uffff\1\76"+
-        "\3\uffff\1\101\2\uffff\2\0\1\52\2\uffff\1\146\2\uffff\2\141\1\142"+
-        "\2\uffff\1\160\2\uffff\1\164\16\uffff\1\60\1\162\1\143\1\163\1\154"+
-        "\1\150\1\uffff\1\164\1\145\1\164\1\171\3\60\1\151\1\60\3\uffff\1"+
-        "\164\1\uffff\1\165\1\164\1\145\1\60\1\uffff";
+        "\1\0\1\145\1\75\1\142\1\76\1\156\1\164\2\uffff\1\160\1\56\1\uffff"+
+        "\1\145\7\uffff\1\101\2\uffff\2\0\1\52\2\uffff\1\162\3\uffff\1\162"+
+        "\2\uffff\1\151\1\141\1\142\2\uffff\1\160\3\uffff\1\167\14\uffff"+
+        "\1\164\1\155\1\60\1\164\1\162\1\60\1\154\2\60\1\151\1\uffff\1\151"+
+        "\1\164\1\uffff\1\171\2\uffff\1\156\1\141\2\60\1\141\1\154\2\uffff"+
+        "\1\154\2\60\2\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\145\1\uffff\1\165\2\uffff\1\160\1\56\1\151\5\uffff\1"+
-        "\76\3\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\1\146\2\uffff\2\141"+
-        "\1\142\2\uffff\1\160\2\uffff\1\164\16\uffff\1\172\1\162\1\143\1"+
-        "\163\1\154\1\150\1\uffff\1\164\1\145\1\164\1\171\3\172\1\151\1\172"+
-        "\3\uffff\1\164\1\uffff\1\165\1\164\1\145\1\172\1\uffff";
+        "\1\uffff\1\145\1\75\1\142\1\76\1\156\1\165\2\uffff\1\160\1\56\1"+
+        "\uffff\1\145\7\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\1\163\3"+
+        "\uffff\1\162\2\uffff\1\151\1\141\1\142\2\uffff\1\160\3\uffff\1\167"+
+        "\14\uffff\1\164\1\155\1\172\1\164\1\162\1\172\1\154\2\172\1\151"+
+        "\1\uffff\1\151\1\164\1\uffff\1\171\2\uffff\1\156\1\141\2\172\1\141"+
+        "\1\154\2\uffff\1\154\2\172\2\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\1\uffff\1\4\1\5\3\uffff\1\13\1\14\1\15\1\16\1\17\1"+
-        "\uffff\1\21\1\22\1\23\1\uffff\1\25\1\26\3\uffff\1\32\1\33\1\uffff"+
-        "\1\25\1\2\3\uffff\1\4\1\5\1\uffff\1\7\1\24\1\uffff\1\13\1\14\1\15"+
-        "\1\16\1\17\1\20\1\21\1\22\1\23\1\26\1\27\1\30\1\31\1\32\6\uffff"+
-        "\1\1\11\uffff\1\12\1\3\1\10\1\uffff\1\6\4\uffff\1\11";
+        "\7\uffff\1\7\1\10\2\uffff\1\14\1\uffff\1\20\1\21\1\22\1\23\1\25"+
+        "\1\26\1\27\1\uffff\1\31\1\32\3\uffff\1\36\1\37\1\uffff\1\31\1\2"+
+        "\1\13\1\uffff\1\24\1\4\3\uffff\1\7\1\10\1\uffff\1\12\1\30\1\14\1"+
+        "\uffff\1\20\1\21\1\22\1\23\1\25\1\26\1\27\1\32\1\33\1\34\1\35\1"+
+        "\36\12\uffff\1\3\2\uffff\1\15\1\uffff\1\16\1\1\6\uffff\1\6\1\11"+
+        "\3\uffff\1\5\1\17";
     static final String DFA12_specialS =
-        "\1\2\24\uffff\1\1\1\0\67\uffff}>";
+        "\1\0\26\uffff\1\1\1\2\76\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\31\2\30\2\31\1\30\22\31\1\30\1\17\1\25\4\31\1\26\1\20\1"+
-            "\21\1\14\1\15\1\31\1\16\1\7\1\27\12\24\1\2\1\11\3\31\1\13\1"+
-            "\31\32\23\3\31\1\22\1\23\1\31\1\6\2\23\1\1\16\23\1\3\3\23\1"+
-            "\10\3\23\1\4\1\12\1\5\uff82\31",
-            "\1\32",
-            "",
-            "\1\36\3\uffff\1\35\1\37",
-            "",
-            "",
-            "\1\42",
+            "\11\33\2\32\2\33\1\32\22\33\1\32\1\21\1\27\4\33\1\30\1\22\1"+
+            "\23\1\17\1\20\1\33\1\4\1\12\1\31\12\26\1\2\1\13\3\33\1\16\1"+
+            "\33\32\25\3\33\1\24\1\25\1\33\1\11\7\25\1\5\2\25\1\3\1\25\1"+
+            "\14\4\25\1\6\1\1\6\25\1\7\1\15\1\10\uff82\33",
+            "\1\34",
+            "\1\36",
+            "\1\40",
+            "\1\41",
             "\1\43",
-            "\1\45",
+            "\1\44\1\45",
             "",
             "",
+            "\1\50",
+            "\1\51",
             "",
-            "",
-            "",
-            "\1\53",
-            "",
-            "",
-            "",
-            "\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "",
-            "\0\60",
-            "\0\60",
-            "\1\61\4\uffff\1\62",
-            "",
-            "",
-            "\1\64",
-            "",
-            "",
-            "\1\65",
-            "\1\66",
-            "\1\67",
-            "",
-            "",
-            "\1\70",
-            "",
-            "",
-            "\1\71",
+            "\1\54",
             "",
             "",
             "",
@@ -1253,38 +1347,72 @@ public class InternalGBTSLexer extends Lexer {
             "",
             "",
             "",
+            "\32\35\4\uffff\1\35\1\uffff\32\35",
+            "",
+            "",
+            "\0\65",
+            "\0\65",
+            "\1\66\4\uffff\1\67",
+            "",
+            "",
+            "\1\72\1\71",
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\1\73",
+            "",
+            "",
             "\1\74",
             "\1\75",
             "\1\76",
+            "",
+            "",
             "\1\77",
             "",
+            "",
+            "",
             "\1\100",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\101",
             "\1\102",
-            "\1\103",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\104",
+            "\1\105",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
             "\1\107",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "",
-            "",
-            "\1\111",
-            "",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
             "\1\112",
+            "",
             "\1\113",
             "\1\114",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "",
+            "\1\115",
+            "",
+            "",
+            "\1\116",
+            "\1\117",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\122",
+            "\1\123",
+            "",
+            "",
+            "\1\124",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "",
             ""
     };
 
@@ -1318,85 +1446,89 @@ public class InternalGBTSLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_22 = input.LA(1);
+                        int LA12_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 48;}
+                        if ( (LA12_0=='t') ) {s = 1;}
 
-                        else s = 25;
+                        else if ( (LA12_0==':') ) {s = 2;}
+
+                        else if ( (LA12_0=='l') ) {s = 3;}
+
+                        else if ( (LA12_0=='-') ) {s = 4;}
+
+                        else if ( (LA12_0=='i') ) {s = 5;}
+
+                        else if ( (LA12_0=='s') ) {s = 6;}
+
+                        else if ( (LA12_0=='{') ) {s = 7;}
+
+                        else if ( (LA12_0=='}') ) {s = 8;}
+
+                        else if ( (LA12_0=='a') ) {s = 9;}
+
+                        else if ( (LA12_0=='.') ) {s = 10;}
+
+                        else if ( (LA12_0==';') ) {s = 11;}
+
+                        else if ( (LA12_0=='n') ) {s = 12;}
+
+                        else if ( (LA12_0=='|') ) {s = 13;}
+
+                        else if ( (LA12_0=='?') ) {s = 14;}
+
+                        else if ( (LA12_0=='*') ) {s = 15;}
+
+                        else if ( (LA12_0=='+') ) {s = 16;}
+
+                        else if ( (LA12_0=='!') ) {s = 17;}
+
+                        else if ( (LA12_0=='(') ) {s = 18;}
+
+                        else if ( (LA12_0==')') ) {s = 19;}
+
+                        else if ( (LA12_0=='^') ) {s = 20;}
+
+                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='b' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='k')||LA12_0=='m'||(LA12_0>='o' && LA12_0<='r')||(LA12_0>='u' && LA12_0<='z')) ) {s = 21;}
+
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 22;}
+
+                        else if ( (LA12_0=='\"') ) {s = 23;}
+
+                        else if ( (LA12_0=='\'') ) {s = 24;}
+
+                        else if ( (LA12_0=='/') ) {s = 25;}
+
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 26;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||(LA12_0>='#' && LA12_0<='&')||LA12_0==','||(LA12_0>='<' && LA12_0<='>')||LA12_0=='@'||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 27;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_21 = input.LA(1);
+                        int LA12_23 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 48;}
+                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 53;}
 
-                        else s = 25;
+                        else s = 27;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_0 = input.LA(1);
+                        int LA12_24 = input.LA(1);
 
                         s = -1;
-                        if ( (LA12_0=='d') ) {s = 1;}
+                        if ( ((LA12_24>='\u0000' && LA12_24<='\uFFFF')) ) {s = 53;}
 
-                        else if ( (LA12_0==':') ) {s = 2;}
-
-                        else if ( (LA12_0=='s') ) {s = 3;}
-
-                        else if ( (LA12_0=='{') ) {s = 4;}
-
-                        else if ( (LA12_0=='}') ) {s = 5;}
-
-                        else if ( (LA12_0=='a') ) {s = 6;}
-
-                        else if ( (LA12_0=='.') ) {s = 7;}
-
-                        else if ( (LA12_0=='w') ) {s = 8;}
-
-                        else if ( (LA12_0==';') ) {s = 9;}
-
-                        else if ( (LA12_0=='|') ) {s = 10;}
-
-                        else if ( (LA12_0=='?') ) {s = 11;}
-
-                        else if ( (LA12_0=='*') ) {s = 12;}
-
-                        else if ( (LA12_0=='+') ) {s = 13;}
-
-                        else if ( (LA12_0=='-') ) {s = 14;}
-
-                        else if ( (LA12_0=='!') ) {s = 15;}
-
-                        else if ( (LA12_0=='(') ) {s = 16;}
-
-                        else if ( (LA12_0==')') ) {s = 17;}
-
-                        else if ( (LA12_0=='^') ) {s = 18;}
-
-                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='b' && LA12_0<='c')||(LA12_0>='e' && LA12_0<='r')||(LA12_0>='t' && LA12_0<='v')||(LA12_0>='x' && LA12_0<='z')) ) {s = 19;}
-
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 20;}
-
-                        else if ( (LA12_0=='\"') ) {s = 21;}
-
-                        else if ( (LA12_0=='\'') ) {s = 22;}
-
-                        else if ( (LA12_0=='/') ) {s = 23;}
-
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 24;}
-
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||(LA12_0>='#' && LA12_0<='&')||LA12_0==','||(LA12_0>='<' && LA12_0<='>')||LA12_0=='@'||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 25;}
+                        else s = 27;
 
                         if ( s>=0 ) return s;
                         break;

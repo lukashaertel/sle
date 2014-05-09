@@ -202,15 +202,10 @@ public class RangeImpl extends SGImpl implements Range {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (min: ");
-		result.append(min);
-		result.append(", max: ");
-		result.append(max);
-		result.append(')');
-		return result.toString();
+		return "'" + min + "'..'" + max + "'";
 	}
 
 } //RangeImpl

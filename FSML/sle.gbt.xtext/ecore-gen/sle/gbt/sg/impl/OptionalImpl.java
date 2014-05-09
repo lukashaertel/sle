@@ -36,4 +36,11 @@ public class OptionalImpl extends UnaryImpl implements Optional {
 		return SgPackage.Literals.OPTIONAL;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return getOf() + "?";
+	}
 } //OptionalImpl

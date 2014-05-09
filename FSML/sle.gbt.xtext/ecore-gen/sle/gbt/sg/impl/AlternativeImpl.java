@@ -36,4 +36,11 @@ public class AlternativeImpl extends BinaryImpl implements Alternative {
 		return SgPackage.Literals.ALTERNATIVE;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return "(" + getLeft() + "|" + getRight() + ")";
+	}
 } //AlternativeImpl

@@ -36,4 +36,11 @@ public class PlusImpl extends UnaryImpl implements Plus {
 		return SgPackage.Literals.PLUS;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return getOf() + "+";
+	}
 } //PlusImpl

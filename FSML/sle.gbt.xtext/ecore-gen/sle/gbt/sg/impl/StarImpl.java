@@ -36,4 +36,11 @@ public class StarImpl extends UnaryImpl implements Star {
 		return SgPackage.Literals.STAR;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return getOf() + "*";
+	}
 } //StarImpl

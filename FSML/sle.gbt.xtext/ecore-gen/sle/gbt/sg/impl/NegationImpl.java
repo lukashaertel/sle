@@ -36,4 +36,11 @@ public class NegationImpl extends UnaryImpl implements Negation {
 		return SgPackage.Literals.NEGATION;
 	}
 
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		return "!" + getOf();
+	}
 } //NegationImpl

@@ -15,12 +15,13 @@ import org.eclipse.xtext.XtextPackage;
 import sle.gbt.sg.SgPackage;
 
 import sle.gbt.xtext.gBTS.Apply;
-import sle.gbt.xtext.gBTS.Def;
 import sle.gbt.xtext.gBTS.GBTSFactory;
 import sle.gbt.xtext.gBTS.GBTSPackage;
-import sle.gbt.xtext.gBTS.Item;
+import sle.gbt.xtext.gBTS.Member;
 import sle.gbt.xtext.gBTS.Model;
-import sle.gbt.xtext.gBTS.Substitution;
+import sle.gbt.xtext.gBTS.New;
+import sle.gbt.xtext.gBTS.Sub;
+import sle.gbt.xtext.gBTS.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,14 +43,14 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass itemEClass = null;
+  private EClass testEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass defEClass = null;
+  private EClass memberEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -63,7 +64,14 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass substitutionEClass = null;
+  private EClass subEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass newEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -147,7 +155,7 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Items()
+  public EReference getModel_Tsts()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -157,9 +165,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getItem()
+  public EClass getTest()
   {
-    return itemEClass;
+    return testEClass;
   }
 
   /**
@@ -167,9 +175,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDef()
+  public EAttribute getTest_Name()
   {
-    return defEClass;
+    return (EAttribute)testEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -177,9 +185,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDef_Name()
+  public EReference getTest_Ref()
   {
-    return (EAttribute)defEClass.getEStructuralFeatures().get(0);
+    return (EReference)testEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -187,9 +195,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDef_Ref()
+  public EAttribute getTest_HasLbr()
   {
-    return (EReference)defEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)testEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -197,9 +205,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDef_HasStartrule()
+  public EAttribute getTest_Lbr()
   {
-    return (EAttribute)defEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)testEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -207,9 +215,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDef_Startrule()
+  public EAttribute getTest_HasLbrInitial()
   {
-    return (EReference)defEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)testEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -217,9 +225,49 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDef_Substitutions()
+  public EAttribute getTest_LbrInitial()
   {
-    return (EReference)defEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)testEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTest_HasStartrule()
+  {
+    return (EAttribute)testEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTest_Startrule()
+  {
+    return (EReference)testEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTest_Members()
+  {
+    return (EReference)testEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMember()
+  {
+    return memberEClass;
   }
 
   /**
@@ -237,19 +285,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getApply_Def()
-  {
-    return (EReference)applyEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getApply_MinOrIt()
   {
-    return (EAttribute)applyEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)applyEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -259,7 +297,7 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    */
   public EAttribute getApply_HasMax()
   {
-    return (EAttribute)applyEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)applyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -269,6 +307,16 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    */
   public EAttribute getApply_Max()
   {
+    return (EAttribute)applyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getApply_HasNum()
+  {
     return (EAttribute)applyEClass.getEStructuralFeatures().get(3);
   }
 
@@ -277,7 +325,7 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getApply_HasSpace()
+  public EAttribute getApply_Num()
   {
     return (EAttribute)applyEClass.getEStructuralFeatures().get(4);
   }
@@ -287,9 +335,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getApply_Space()
+  public EClass getSub()
   {
-    return (EAttribute)applyEClass.getEStructuralFeatures().get(5);
+    return subEClass;
   }
 
   /**
@@ -297,9 +345,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSubstitution()
+  public EReference getSub_Rule()
   {
-    return substitutionEClass;
+    return (EReference)subEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -307,9 +355,9 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSubstitution_Rule()
+  public EReference getSub_Substitution()
   {
-    return (EReference)substitutionEClass.getEStructuralFeatures().get(0);
+    return (EReference)subEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -317,9 +365,39 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSubstitution_Substitution()
+  public EClass getNew()
   {
-    return (EReference)substitutionEClass.getEStructuralFeatures().get(1);
+    return newEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNew_Term()
+  {
+    return (EAttribute)newEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNew_Rule()
+  {
+    return (EAttribute)newEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNew_Definition()
+  {
+    return (EReference)newEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -353,28 +431,36 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__ITEMS);
+    createEReference(modelEClass, MODEL__TSTS);
 
-    itemEClass = createEClass(ITEM);
+    testEClass = createEClass(TEST);
+    createEAttribute(testEClass, TEST__NAME);
+    createEReference(testEClass, TEST__REF);
+    createEAttribute(testEClass, TEST__HAS_LBR);
+    createEAttribute(testEClass, TEST__LBR);
+    createEAttribute(testEClass, TEST__HAS_LBR_INITIAL);
+    createEAttribute(testEClass, TEST__LBR_INITIAL);
+    createEAttribute(testEClass, TEST__HAS_STARTRULE);
+    createEReference(testEClass, TEST__STARTRULE);
+    createEReference(testEClass, TEST__MEMBERS);
 
-    defEClass = createEClass(DEF);
-    createEAttribute(defEClass, DEF__NAME);
-    createEReference(defEClass, DEF__REF);
-    createEAttribute(defEClass, DEF__HAS_STARTRULE);
-    createEReference(defEClass, DEF__STARTRULE);
-    createEReference(defEClass, DEF__SUBSTITUTIONS);
+    memberEClass = createEClass(MEMBER);
 
     applyEClass = createEClass(APPLY);
-    createEReference(applyEClass, APPLY__DEF);
     createEAttribute(applyEClass, APPLY__MIN_OR_IT);
     createEAttribute(applyEClass, APPLY__HAS_MAX);
     createEAttribute(applyEClass, APPLY__MAX);
-    createEAttribute(applyEClass, APPLY__HAS_SPACE);
-    createEAttribute(applyEClass, APPLY__SPACE);
+    createEAttribute(applyEClass, APPLY__HAS_NUM);
+    createEAttribute(applyEClass, APPLY__NUM);
 
-    substitutionEClass = createEClass(SUBSTITUTION);
-    createEReference(substitutionEClass, SUBSTITUTION__RULE);
-    createEReference(substitutionEClass, SUBSTITUTION__SUBSTITUTION);
+    subEClass = createEClass(SUB);
+    createEReference(subEClass, SUB__RULE);
+    createEReference(subEClass, SUB__SUBSTITUTION);
+
+    newEClass = createEClass(NEW);
+    createEAttribute(newEClass, NEW__TERM);
+    createEAttribute(newEClass, NEW__RULE);
+    createEReference(newEClass, NEW__DEFINITION);
   }
 
   /**
@@ -411,33 +497,42 @@ public class GBTSPackageImpl extends EPackageImpl implements GBTSPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    defEClass.getESuperTypes().add(this.getItem());
-    applyEClass.getESuperTypes().add(this.getItem());
+    applyEClass.getESuperTypes().add(this.getMember());
+    subEClass.getESuperTypes().add(this.getMember());
+    newEClass.getESuperTypes().add(this.getMember());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Items(), this.getItem(), null, "items", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Tsts(), this.getTest(), null, "tsts", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTest_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTest_Ref(), theXtextPackage.getGrammar(), null, "ref", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTest_HasLbr(), theEcorePackage.getEBoolean(), "hasLbr", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTest_Lbr(), theEcorePackage.getEInt(), "lbr", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTest_HasLbrInitial(), theEcorePackage.getEBoolean(), "hasLbrInitial", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTest_LbrInitial(), theEcorePackage.getEInt(), "lbrInitial", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTest_HasStartrule(), theEcorePackage.getEBoolean(), "hasStartrule", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTest_Startrule(), theXtextPackage.getAbstractRule(), null, "startrule", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTest_Members(), this.getMember(), null, "members", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(defEClass, Def.class, "Def", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDef_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Def.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDef_Ref(), theXtextPackage.getGrammar(), null, "ref", null, 0, 1, Def.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDef_HasStartrule(), theEcorePackage.getEBoolean(), "hasStartrule", null, 0, 1, Def.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDef_Startrule(), theXtextPackage.getAbstractRule(), null, "startrule", null, 0, 1, Def.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDef_Substitutions(), this.getSubstitution(), null, "substitutions", null, 0, -1, Def.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(memberEClass, Member.class, "Member", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(applyEClass, Apply.class, "Apply", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getApply_Def(), this.getDef(), null, "def", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getApply_MinOrIt(), theEcorePackage.getEInt(), "minOrIt", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getApply_HasMax(), theEcorePackage.getEBoolean(), "hasMax", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getApply_Max(), theEcorePackage.getEInt(), "max", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getApply_HasSpace(), theEcorePackage.getEBoolean(), "hasSpace", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getApply_Space(), theEcorePackage.getEInt(), "space", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getApply_HasNum(), theEcorePackage.getEBoolean(), "hasNum", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getApply_Num(), theEcorePackage.getEInt(), "num", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(substitutionEClass, Substitution.class, "Substitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSubstitution_Rule(), theXtextPackage.getAbstractRule(), null, "rule", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSubstitution_Substitution(), theSgPackage.getSG(), null, "substitution", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(subEClass, Sub.class, "Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSub_Rule(), theXtextPackage.getAbstractRule(), null, "rule", null, 0, 1, Sub.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSub_Substitution(), theSgPackage.getSG(), null, "substitution", null, 0, 1, Sub.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(newEClass, New.class, "New", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNew_Term(), theEcorePackage.getEBoolean(), "term", null, 0, 1, New.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNew_Rule(), theEcorePackage.getEString(), "rule", null, 0, 1, New.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNew_Definition(), theSgPackage.getSG(), null, "definition", null, 0, 1, New.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

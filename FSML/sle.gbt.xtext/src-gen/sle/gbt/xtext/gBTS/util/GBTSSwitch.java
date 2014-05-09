@@ -79,18 +79,17 @@ public class GBTSSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GBTSPackage.ITEM:
+      case GBTSPackage.TEST:
       {
-        Item item = (Item)theEObject;
-        T result = caseItem(item);
+        Test test = (Test)theEObject;
+        T result = caseTest(test);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GBTSPackage.DEF:
+      case GBTSPackage.MEMBER:
       {
-        Def def = (Def)theEObject;
-        T result = caseDef(def);
-        if (result == null) result = caseItem(def);
+        Member member = (Member)theEObject;
+        T result = caseMember(member);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -98,14 +97,23 @@ public class GBTSSwitch<T> extends Switch<T>
       {
         Apply apply = (Apply)theEObject;
         T result = caseApply(apply);
-        if (result == null) result = caseItem(apply);
+        if (result == null) result = caseMember(apply);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GBTSPackage.SUBSTITUTION:
+      case GBTSPackage.SUB:
       {
-        Substitution substitution = (Substitution)theEObject;
-        T result = caseSubstitution(substitution);
+        Sub sub = (Sub)theEObject;
+        T result = caseSub(sub);
+        if (result == null) result = caseMember(sub);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GBTSPackage.NEW:
+      {
+        New new_ = (New)theEObject;
+        T result = caseNew(new_);
+        if (result == null) result = caseMember(new_);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -130,33 +138,33 @@ public class GBTSSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Test</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Item</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseItem(Item object)
+  public T caseTest(Test object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Def</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Member</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Def</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Member</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDef(Def object)
+  public T caseMember(Member object)
   {
     return null;
   }
@@ -178,17 +186,33 @@ public class GBTSSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Substitution</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Sub</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Substitution</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Sub</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSubstitution(Substitution object)
+  public T caseSub(Sub object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>New</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>New</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNew(New object)
   {
     return null;
   }

@@ -67,13 +67,13 @@ public interface GBTSPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Items</b></em>' containment reference list.
+   * The feature id for the '<em><b>Tsts</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__ITEMS = 0;
+  int MODEL__TSTS = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -85,33 +85,14 @@ public interface GBTSPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.ItemImpl <em>Item</em>}' class.
+   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.TestImpl <em>Test</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see sle.gbt.xtext.gBTS.impl.ItemImpl
-   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getItem()
+   * @see sle.gbt.xtext.gBTS.impl.TestImpl
+   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getTest()
    * @generated
    */
-  int ITEM = 1;
-
-  /**
-   * The number of structural features of the '<em>Item</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ITEM_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.DefImpl <em>Def</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see sle.gbt.xtext.gBTS.impl.DefImpl
-   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getDef()
-   * @generated
-   */
-  int DEF = 2;
+  int TEST = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -120,7 +101,7 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEF__NAME = ITEM_FEATURE_COUNT + 0;
+  int TEST__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -129,7 +110,43 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEF__REF = ITEM_FEATURE_COUNT + 1;
+  int TEST__REF = 1;
+
+  /**
+   * The feature id for the '<em><b>Has Lbr</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST__HAS_LBR = 2;
+
+  /**
+   * The feature id for the '<em><b>Lbr</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST__LBR = 3;
+
+  /**
+   * The feature id for the '<em><b>Has Lbr Initial</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST__HAS_LBR_INITIAL = 4;
+
+  /**
+   * The feature id for the '<em><b>Lbr Initial</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST__LBR_INITIAL = 5;
 
   /**
    * The feature id for the '<em><b>Has Startrule</b></em>' attribute.
@@ -138,7 +155,7 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEF__HAS_STARTRULE = ITEM_FEATURE_COUNT + 2;
+  int TEST__HAS_STARTRULE = 6;
 
   /**
    * The feature id for the '<em><b>Startrule</b></em>' reference.
@@ -147,25 +164,44 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEF__STARTRULE = ITEM_FEATURE_COUNT + 3;
+  int TEST__STARTRULE = 7;
 
   /**
-   * The feature id for the '<em><b>Substitutions</b></em>' containment reference list.
+   * The feature id for the '<em><b>Members</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEF__SUBSTITUTIONS = ITEM_FEATURE_COUNT + 4;
+  int TEST__MEMBERS = 8;
 
   /**
-   * The number of structural features of the '<em>Def</em>' class.
+   * The number of structural features of the '<em>Test</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEF_FEATURE_COUNT = ITEM_FEATURE_COUNT + 5;
+  int TEST_FEATURE_COUNT = 9;
+
+  /**
+   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.MemberImpl <em>Member</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see sle.gbt.xtext.gBTS.impl.MemberImpl
+   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getMember()
+   * @generated
+   */
+  int MEMBER = 2;
+
+  /**
+   * The number of structural features of the '<em>Member</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MEMBER_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.ApplyImpl <em>Apply</em>}' class.
@@ -178,22 +214,13 @@ public interface GBTSPackage extends EPackage
   int APPLY = 3;
 
   /**
-   * The feature id for the '<em><b>Def</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int APPLY__DEF = ITEM_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Min Or It</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY__MIN_OR_IT = ITEM_FEATURE_COUNT + 1;
+  int APPLY__MIN_OR_IT = MEMBER_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Has Max</b></em>' attribute.
@@ -202,7 +229,7 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__HAS_MAX = ITEM_FEATURE_COUNT + 2;
+  int APPLY__HAS_MAX = MEMBER_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Max</b></em>' attribute.
@@ -211,25 +238,25 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__MAX = ITEM_FEATURE_COUNT + 3;
+  int APPLY__MAX = MEMBER_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Has Space</b></em>' attribute.
+   * The feature id for the '<em><b>Has Num</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY__HAS_SPACE = ITEM_FEATURE_COUNT + 4;
+  int APPLY__HAS_NUM = MEMBER_FEATURE_COUNT + 3;
 
   /**
-   * The feature id for the '<em><b>Space</b></em>' attribute.
+   * The feature id for the '<em><b>Num</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY__SPACE = ITEM_FEATURE_COUNT + 5;
+  int APPLY__NUM = MEMBER_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Apply</em>' class.
@@ -238,17 +265,17 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY_FEATURE_COUNT = ITEM_FEATURE_COUNT + 6;
+  int APPLY_FEATURE_COUNT = MEMBER_FEATURE_COUNT + 5;
 
   /**
-   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.SubstitutionImpl <em>Substitution</em>}' class.
+   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.SubImpl <em>Sub</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see sle.gbt.xtext.gBTS.impl.SubstitutionImpl
-   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getSubstitution()
+   * @see sle.gbt.xtext.gBTS.impl.SubImpl
+   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getSub()
    * @generated
    */
-  int SUBSTITUTION = 4;
+  int SUB = 4;
 
   /**
    * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -257,7 +284,7 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUBSTITUTION__RULE = 0;
+  int SUB__RULE = MEMBER_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Substitution</b></em>' containment reference.
@@ -266,16 +293,62 @@ public interface GBTSPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUBSTITUTION__SUBSTITUTION = 1;
+  int SUB__SUBSTITUTION = MEMBER_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Substitution</em>' class.
+   * The number of structural features of the '<em>Sub</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUBSTITUTION_FEATURE_COUNT = 2;
+  int SUB_FEATURE_COUNT = MEMBER_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link sle.gbt.xtext.gBTS.impl.NewImpl <em>New</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see sle.gbt.xtext.gBTS.impl.NewImpl
+   * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getNew()
+   * @generated
+   */
+  int NEW = 5;
+
+  /**
+   * The feature id for the '<em><b>Term</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW__TERM = MEMBER_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Rule</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW__RULE = MEMBER_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Definition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW__DEFINITION = MEMBER_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>New</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_FEATURE_COUNT = MEMBER_FEATURE_COUNT + 3;
 
 
   /**
@@ -289,90 +362,134 @@ public interface GBTSPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link sle.gbt.xtext.gBTS.Model#getItems <em>Items</em>}'.
+   * Returns the meta object for the containment reference list '{@link sle.gbt.xtext.gBTS.Model#getTsts <em>Tsts</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Items</em>'.
-   * @see sle.gbt.xtext.gBTS.Model#getItems()
+   * @return the meta object for the containment reference list '<em>Tsts</em>'.
+   * @see sle.gbt.xtext.gBTS.Model#getTsts()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Items();
+  EReference getModel_Tsts();
 
   /**
-   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Item <em>Item</em>}'.
+   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Test <em>Test</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Item</em>'.
-   * @see sle.gbt.xtext.gBTS.Item
+   * @return the meta object for class '<em>Test</em>'.
+   * @see sle.gbt.xtext.gBTS.Test
    * @generated
    */
-  EClass getItem();
+  EClass getTest();
 
   /**
-   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Def <em>Def</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Def</em>'.
-   * @see sle.gbt.xtext.gBTS.Def
-   * @generated
-   */
-  EClass getDef();
-
-  /**
-   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Def#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see sle.gbt.xtext.gBTS.Def#getName()
-   * @see #getDef()
+   * @see sle.gbt.xtext.gBTS.Test#getName()
+   * @see #getTest()
    * @generated
    */
-  EAttribute getDef_Name();
+  EAttribute getTest_Name();
 
   /**
-   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Def#getRef <em>Ref</em>}'.
+   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Test#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Ref</em>'.
-   * @see sle.gbt.xtext.gBTS.Def#getRef()
-   * @see #getDef()
+   * @see sle.gbt.xtext.gBTS.Test#getRef()
+   * @see #getTest()
    * @generated
    */
-  EReference getDef_Ref();
+  EReference getTest_Ref();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Def#isHasStartrule <em>Has Startrule</em>}'.
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#isHasLbr <em>Has Lbr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Has Lbr</em>'.
+   * @see sle.gbt.xtext.gBTS.Test#isHasLbr()
+   * @see #getTest()
+   * @generated
+   */
+  EAttribute getTest_HasLbr();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#getLbr <em>Lbr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lbr</em>'.
+   * @see sle.gbt.xtext.gBTS.Test#getLbr()
+   * @see #getTest()
+   * @generated
+   */
+  EAttribute getTest_Lbr();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#isHasLbrInitial <em>Has Lbr Initial</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Has Lbr Initial</em>'.
+   * @see sle.gbt.xtext.gBTS.Test#isHasLbrInitial()
+   * @see #getTest()
+   * @generated
+   */
+  EAttribute getTest_HasLbrInitial();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#getLbrInitial <em>Lbr Initial</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lbr Initial</em>'.
+   * @see sle.gbt.xtext.gBTS.Test#getLbrInitial()
+   * @see #getTest()
+   * @generated
+   */
+  EAttribute getTest_LbrInitial();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Test#isHasStartrule <em>Has Startrule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Has Startrule</em>'.
-   * @see sle.gbt.xtext.gBTS.Def#isHasStartrule()
-   * @see #getDef()
+   * @see sle.gbt.xtext.gBTS.Test#isHasStartrule()
+   * @see #getTest()
    * @generated
    */
-  EAttribute getDef_HasStartrule();
+  EAttribute getTest_HasStartrule();
 
   /**
-   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Def#getStartrule <em>Startrule</em>}'.
+   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Test#getStartrule <em>Startrule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Startrule</em>'.
-   * @see sle.gbt.xtext.gBTS.Def#getStartrule()
-   * @see #getDef()
+   * @see sle.gbt.xtext.gBTS.Test#getStartrule()
+   * @see #getTest()
    * @generated
    */
-  EReference getDef_Startrule();
+  EReference getTest_Startrule();
 
   /**
-   * Returns the meta object for the containment reference list '{@link sle.gbt.xtext.gBTS.Def#getSubstitutions <em>Substitutions</em>}'.
+   * Returns the meta object for the containment reference list '{@link sle.gbt.xtext.gBTS.Test#getMembers <em>Members</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Substitutions</em>'.
-   * @see sle.gbt.xtext.gBTS.Def#getSubstitutions()
-   * @see #getDef()
+   * @return the meta object for the containment reference list '<em>Members</em>'.
+   * @see sle.gbt.xtext.gBTS.Test#getMembers()
+   * @see #getTest()
    * @generated
    */
-  EReference getDef_Substitutions();
+  EReference getTest_Members();
+
+  /**
+   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Member <em>Member</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Member</em>'.
+   * @see sle.gbt.xtext.gBTS.Member
+   * @generated
+   */
+  EClass getMember();
 
   /**
    * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Apply <em>Apply</em>}'.
@@ -383,17 +500,6 @@ public interface GBTSPackage extends EPackage
    * @generated
    */
   EClass getApply();
-
-  /**
-   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Apply#getDef <em>Def</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Def</em>'.
-   * @see sle.gbt.xtext.gBTS.Apply#getDef()
-   * @see #getApply()
-   * @generated
-   */
-  EReference getApply_Def();
 
   /**
    * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Apply#getMinOrIt <em>Min Or It</em>}'.
@@ -429,58 +535,101 @@ public interface GBTSPackage extends EPackage
   EAttribute getApply_Max();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Apply#isHasSpace <em>Has Space</em>}'.
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Apply#isHasNum <em>Has Num</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Has Space</em>'.
-   * @see sle.gbt.xtext.gBTS.Apply#isHasSpace()
+   * @return the meta object for the attribute '<em>Has Num</em>'.
+   * @see sle.gbt.xtext.gBTS.Apply#isHasNum()
    * @see #getApply()
    * @generated
    */
-  EAttribute getApply_HasSpace();
+  EAttribute getApply_HasNum();
 
   /**
-   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Apply#getSpace <em>Space</em>}'.
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.Apply#getNum <em>Num</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Space</em>'.
-   * @see sle.gbt.xtext.gBTS.Apply#getSpace()
+   * @return the meta object for the attribute '<em>Num</em>'.
+   * @see sle.gbt.xtext.gBTS.Apply#getNum()
    * @see #getApply()
    * @generated
    */
-  EAttribute getApply_Space();
+  EAttribute getApply_Num();
 
   /**
-   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Substitution <em>Substitution</em>}'.
+   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.Sub <em>Sub</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Substitution</em>'.
-   * @see sle.gbt.xtext.gBTS.Substitution
+   * @return the meta object for class '<em>Sub</em>'.
+   * @see sle.gbt.xtext.gBTS.Sub
    * @generated
    */
-  EClass getSubstitution();
+  EClass getSub();
 
   /**
-   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Substitution#getRule <em>Rule</em>}'.
+   * Returns the meta object for the reference '{@link sle.gbt.xtext.gBTS.Sub#getRule <em>Rule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Rule</em>'.
-   * @see sle.gbt.xtext.gBTS.Substitution#getRule()
-   * @see #getSubstitution()
+   * @see sle.gbt.xtext.gBTS.Sub#getRule()
+   * @see #getSub()
    * @generated
    */
-  EReference getSubstitution_Rule();
+  EReference getSub_Rule();
 
   /**
-   * Returns the meta object for the containment reference '{@link sle.gbt.xtext.gBTS.Substitution#getSubstitution <em>Substitution</em>}'.
+   * Returns the meta object for the containment reference '{@link sle.gbt.xtext.gBTS.Sub#getSubstitution <em>Substitution</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Substitution</em>'.
-   * @see sle.gbt.xtext.gBTS.Substitution#getSubstitution()
-   * @see #getSubstitution()
+   * @see sle.gbt.xtext.gBTS.Sub#getSubstitution()
+   * @see #getSub()
    * @generated
    */
-  EReference getSubstitution_Substitution();
+  EReference getSub_Substitution();
+
+  /**
+   * Returns the meta object for class '{@link sle.gbt.xtext.gBTS.New <em>New</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>New</em>'.
+   * @see sle.gbt.xtext.gBTS.New
+   * @generated
+   */
+  EClass getNew();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.New#isTerm <em>Term</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Term</em>'.
+   * @see sle.gbt.xtext.gBTS.New#isTerm()
+   * @see #getNew()
+   * @generated
+   */
+  EAttribute getNew_Term();
+
+  /**
+   * Returns the meta object for the attribute '{@link sle.gbt.xtext.gBTS.New#getRule <em>Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Rule</em>'.
+   * @see sle.gbt.xtext.gBTS.New#getRule()
+   * @see #getNew()
+   * @generated
+   */
+  EAttribute getNew_Rule();
+
+  /**
+   * Returns the meta object for the containment reference '{@link sle.gbt.xtext.gBTS.New#getDefinition <em>Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Definition</em>'.
+   * @see sle.gbt.xtext.gBTS.New#getDefinition()
+   * @see #getNew()
+   * @generated
+   */
+  EReference getNew_Definition();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -516,32 +665,22 @@ public interface GBTSPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Items</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Tsts</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__ITEMS = eINSTANCE.getModel_Items();
+    EReference MODEL__TSTS = eINSTANCE.getModel_Tsts();
 
     /**
-     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.ItemImpl <em>Item</em>}' class.
+     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.TestImpl <em>Test</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see sle.gbt.xtext.gBTS.impl.ItemImpl
-     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getItem()
+     * @see sle.gbt.xtext.gBTS.impl.TestImpl
+     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getTest()
      * @generated
      */
-    EClass ITEM = eINSTANCE.getItem();
-
-    /**
-     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.DefImpl <em>Def</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see sle.gbt.xtext.gBTS.impl.DefImpl
-     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getDef()
-     * @generated
-     */
-    EClass DEF = eINSTANCE.getDef();
+    EClass TEST = eINSTANCE.getTest();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -549,7 +688,7 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DEF__NAME = eINSTANCE.getDef_Name();
+    EAttribute TEST__NAME = eINSTANCE.getTest_Name();
 
     /**
      * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
@@ -557,7 +696,39 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEF__REF = eINSTANCE.getDef_Ref();
+    EReference TEST__REF = eINSTANCE.getTest_Ref();
+
+    /**
+     * The meta object literal for the '<em><b>Has Lbr</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEST__HAS_LBR = eINSTANCE.getTest_HasLbr();
+
+    /**
+     * The meta object literal for the '<em><b>Lbr</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEST__LBR = eINSTANCE.getTest_Lbr();
+
+    /**
+     * The meta object literal for the '<em><b>Has Lbr Initial</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEST__HAS_LBR_INITIAL = eINSTANCE.getTest_HasLbrInitial();
+
+    /**
+     * The meta object literal for the '<em><b>Lbr Initial</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEST__LBR_INITIAL = eINSTANCE.getTest_LbrInitial();
 
     /**
      * The meta object literal for the '<em><b>Has Startrule</b></em>' attribute feature.
@@ -565,7 +736,7 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DEF__HAS_STARTRULE = eINSTANCE.getDef_HasStartrule();
+    EAttribute TEST__HAS_STARTRULE = eINSTANCE.getTest_HasStartrule();
 
     /**
      * The meta object literal for the '<em><b>Startrule</b></em>' reference feature.
@@ -573,15 +744,25 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEF__STARTRULE = eINSTANCE.getDef_Startrule();
+    EReference TEST__STARTRULE = eINSTANCE.getTest_Startrule();
 
     /**
-     * The meta object literal for the '<em><b>Substitutions</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEF__SUBSTITUTIONS = eINSTANCE.getDef_Substitutions();
+    EReference TEST__MEMBERS = eINSTANCE.getTest_Members();
+
+    /**
+     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.MemberImpl <em>Member</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see sle.gbt.xtext.gBTS.impl.MemberImpl
+     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getMember()
+     * @generated
+     */
+    EClass MEMBER = eINSTANCE.getMember();
 
     /**
      * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.ApplyImpl <em>Apply</em>}' class.
@@ -592,14 +773,6 @@ public interface GBTSPackage extends EPackage
      * @generated
      */
     EClass APPLY = eINSTANCE.getApply();
-
-    /**
-     * The meta object literal for the '<em><b>Def</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference APPLY__DEF = eINSTANCE.getApply_Def();
 
     /**
      * The meta object literal for the '<em><b>Min Or It</b></em>' attribute feature.
@@ -626,30 +799,30 @@ public interface GBTSPackage extends EPackage
     EAttribute APPLY__MAX = eINSTANCE.getApply_Max();
 
     /**
-     * The meta object literal for the '<em><b>Has Space</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Has Num</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute APPLY__HAS_SPACE = eINSTANCE.getApply_HasSpace();
+    EAttribute APPLY__HAS_NUM = eINSTANCE.getApply_HasNum();
 
     /**
-     * The meta object literal for the '<em><b>Space</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Num</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute APPLY__SPACE = eINSTANCE.getApply_Space();
+    EAttribute APPLY__NUM = eINSTANCE.getApply_Num();
 
     /**
-     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.SubstitutionImpl <em>Substitution</em>}' class.
+     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.SubImpl <em>Sub</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see sle.gbt.xtext.gBTS.impl.SubstitutionImpl
-     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getSubstitution()
+     * @see sle.gbt.xtext.gBTS.impl.SubImpl
+     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getSub()
      * @generated
      */
-    EClass SUBSTITUTION = eINSTANCE.getSubstitution();
+    EClass SUB = eINSTANCE.getSub();
 
     /**
      * The meta object literal for the '<em><b>Rule</b></em>' reference feature.
@@ -657,7 +830,7 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUBSTITUTION__RULE = eINSTANCE.getSubstitution_Rule();
+    EReference SUB__RULE = eINSTANCE.getSub_Rule();
 
     /**
      * The meta object literal for the '<em><b>Substitution</b></em>' containment reference feature.
@@ -665,7 +838,41 @@ public interface GBTSPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUBSTITUTION__SUBSTITUTION = eINSTANCE.getSubstitution_Substitution();
+    EReference SUB__SUBSTITUTION = eINSTANCE.getSub_Substitution();
+
+    /**
+     * The meta object literal for the '{@link sle.gbt.xtext.gBTS.impl.NewImpl <em>New</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see sle.gbt.xtext.gBTS.impl.NewImpl
+     * @see sle.gbt.xtext.gBTS.impl.GBTSPackageImpl#getNew()
+     * @generated
+     */
+    EClass NEW = eINSTANCE.getNew();
+
+    /**
+     * The meta object literal for the '<em><b>Term</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEW__TERM = eINSTANCE.getNew_Term();
+
+    /**
+     * The meta object literal for the '<em><b>Rule</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEW__RULE = eINSTANCE.getNew_Rule();
+
+    /**
+     * The meta object literal for the '<em><b>Definition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW__DEFINITION = eINSTANCE.getNew_Definition();
 
   }
 

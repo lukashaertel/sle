@@ -6,20 +6,32 @@ import "http://www.eclipse.org/2008/Xtext" as xtext
 generate gBTS "http://www.gbt.sle/xtext/GBTS"
 
 Model:
-	items+=Item+;
+	tsts+=Test*;
 
-Item:
-	Def | Apply;
+Test:
+	'test' name=ID ':=' ref=[xtext::Grammar|GrammarID]
+	// Take override for length/breadth ratio
+	((hasLbr?='lbr' lbr=INT)? &
+	// Take override for initial length/breadth value
+	(hasLbrInitial?='lbr' '-' 'initial' lbrInitial=INT)? &
+	// Allow other startrule
+	(hasStartrule?='start' startrule=[xtext::AbstractRule])?)
+	'{'
+	// Fill with members
+	members+=Member*
+	'}';
 
-Def:
-	'def' name=ID ':' ref=[xtext::Grammar|GrammarID] (hasStartrule?='start' startrule=[xtext::AbstractRule])? ('{'
-	substitutions+=Substitution '}')?;
+Member:
+	Apply | Sub | New;
 
 Apply:
-	'apply' def=[Def] ':' minOrIt=INT (hasMax?='..' max=INT (hasSpace?='space' space=INT))?;
+	'apply' minOrIt=INT (hasMax?='..' max=INT)? (hasNum?=':' num=INT)? ';';
 
-Substitution:
-	'substitute' rule=[xtext::AbstractRule] 'with' substitution=SG ';';
+Sub:
+	'sub' rule=[xtext::AbstractRule] ':=' substitution=SG ';';
+
+New:
+	'new' (term?='terminal')? rule=ID ':=' definition=SG ';';
 
 SG returns sg::SG:
 	Alternative;
@@ -37,7 +49,7 @@ Operated returns sg::SG:
 	'->' {sg::Until} of=Operated | '!' {sg::Negation} of=Operated | Terminal;
 
 Terminal returns sg::SG:
-	{sg::Range} min=STRING '..' max=STRING | {sg::Single} token=STRING | ParenthesizedElement;
+	{sg::Range} min=STRING '..' max=STRING | {sg::Single} token=STRING | {sg::Reference} to=ID | ParenthesizedElement;
 
 ParenthesizedElement returns sg::SG:
 	'(' Alternative ')';

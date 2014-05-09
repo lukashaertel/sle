@@ -150,13 +150,10 @@ public class ReferenceImpl extends SGImpl implements Reference {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (to: ");
-		result.append(to);
-		result.append(')');
-		return result.toString();
+		return getTo();
 	}
 
 } //ReferenceImpl

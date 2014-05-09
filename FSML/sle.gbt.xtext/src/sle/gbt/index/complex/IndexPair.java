@@ -90,7 +90,7 @@ public class IndexPair<Left, Right> extends IndexComplex<Tuple<Left, Right>> {
 	@Override
 	public boolean exists(long i) {
 		if (lefts.domainSize() == 0 || rights.domainSize() == 0)
-			return false;
+			return false;	
 		return lefts.exists(iindexX(i)) && rights.exists(iindexY(i));
 	}
 
